@@ -10,9 +10,34 @@
 		A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75806EA28C4E75A0073D03A /* Assets.xcassets */; };
 		A75806ED28C4E93E0073D03A /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806EC28C4E93E0073D03A /* splash.png */; };
 		A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806EE28C4EEDA0073D03A /* UIColor++.swift */; };
+		A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806F428C4F2490073D03A /* OnboardingCharacterViewController.swift */; };
+		A75806F828C4F3A80073D03A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A75806F728C4F3A80073D03A /* SnapKit */; };
+		A758071028C4F7F70073D03A /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806FC28C4F7F60073D03A /* bear.png */; };
+		A758071128C4F7F70073D03A /* lion.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806FD28C4F7F60073D03A /* lion.png */; };
+		A758071228C4F7F70073D03A /* hedgehog.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806FE28C4F7F60073D03A /* hedgehog.png */; };
+		A758071328C4F7F70073D03A /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806FF28C4F7F60073D03A /* rabbit.png */; };
+		A758071428C4F7F70073D03A /* llama.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070028C4F7F60073D03A /* llama.png */; };
+		A758071528C4F7F70073D03A /* raccoon.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070128C4F7F60073D03A /* raccoon.png */; };
+		A758071628C4F7F70073D03A /* octopus.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070228C4F7F60073D03A /* octopus.png */; };
+		A758071728C4F7F70073D03A /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070328C4F7F60073D03A /* dog.png */; };
+		A758071828C4F7F70073D03A /* dinosaur.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070428C4F7F60073D03A /* dinosaur.png */; };
+		A758071928C4F7F70073D03A /* deer.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070528C4F7F60073D03A /* deer.png */; };
+		A758071A28C4F7F70073D03A /* mouse.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070628C4F7F60073D03A /* mouse.png */; };
+		A758071B28C4F7F70073D03A /* chameleon.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070728C4F7F70073D03A /* chameleon.png */; };
+		A758071C28C4F7F70073D03A /* chick.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070828C4F7F70073D03A /* chick.png */; };
+		A758071D28C4F7F70073D03A /* prawn.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070928C4F7F70073D03A /* prawn.png */; };
+		A758071E28C4F7F70073D03A /* frog.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070A28C4F7F70073D03A /* frog.png */; };
+		A758071F28C4F7F70073D03A /* sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070B28C4F7F70073D03A /* sheep.png */; };
+		A758072028C4F7F70073D03A /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070C28C4F7F70073D03A /* tiger.png */; };
+		A758072128C4F7F70073D03A /* giraffe.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070D28C4F7F70073D03A /* giraffe.png */; };
+		A758072228C4F7F70073D03A /* axolotl.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070E28C4F7F70073D03A /* axolotl.png */; };
+		A758072328C4F7F70073D03A /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070F28C4F7F70073D03A /* turtle.png */; };
+		A758072528C4F83D0073D03A /* UIImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072428C4F83D0073D03A /* UIImage++.swift */; };
+		A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */; };
+		A758072928C501C50073D03A /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072828C501C50073D03A /* ReusableCell.swift */; };
+		A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */; };
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
 		A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295BA28C4E1A500242836 /* SceneDelegate.swift */; };
-		A7F295BD28C4E1A500242836 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295BC28C4E1A500242836 /* ViewController.swift */; };
 		A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */; };
 		A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7F295D028C4E1C100242836 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -21,10 +46,34 @@
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
+		A75806F428C4F2490073D03A /* OnboardingCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterViewController.swift; sourceTree = "<group>"; };
+		A75806FC28C4F7F60073D03A /* bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear.png; sourceTree = "<group>"; };
+		A75806FD28C4F7F60073D03A /* lion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lion.png; sourceTree = "<group>"; };
+		A75806FE28C4F7F60073D03A /* hedgehog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hedgehog.png; sourceTree = "<group>"; };
+		A75806FF28C4F7F60073D03A /* rabbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit.png; sourceTree = "<group>"; };
+		A758070028C4F7F60073D03A /* llama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = llama.png; sourceTree = "<group>"; };
+		A758070128C4F7F60073D03A /* raccoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raccoon.png; sourceTree = "<group>"; };
+		A758070228C4F7F60073D03A /* octopus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octopus.png; sourceTree = "<group>"; };
+		A758070328C4F7F60073D03A /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		A758070428C4F7F60073D03A /* dinosaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dinosaur.png; sourceTree = "<group>"; };
+		A758070528C4F7F60073D03A /* deer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deer.png; sourceTree = "<group>"; };
+		A758070628C4F7F60073D03A /* mouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouse.png; sourceTree = "<group>"; };
+		A758070728C4F7F70073D03A /* chameleon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chameleon.png; sourceTree = "<group>"; };
+		A758070828C4F7F70073D03A /* chick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chick.png; sourceTree = "<group>"; };
+		A758070928C4F7F70073D03A /* prawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prawn.png; sourceTree = "<group>"; };
+		A758070A28C4F7F70073D03A /* frog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frog.png; sourceTree = "<group>"; };
+		A758070B28C4F7F70073D03A /* sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sheep.png; sourceTree = "<group>"; };
+		A758070C28C4F7F70073D03A /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
+		A758070D28C4F7F70073D03A /* giraffe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = giraffe.png; sourceTree = "<group>"; };
+		A758070E28C4F7F70073D03A /* axolotl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axolotl.png; sourceTree = "<group>"; };
+		A758070F28C4F7F70073D03A /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
+		A758072428C4F83D0073D03A /* UIImage++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage++.swift"; sourceTree = "<group>"; };
+		A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterCell.swift; sourceTree = "<group>"; };
+		A758072828C501C50073D03A /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterHeaderView.swift; sourceTree = "<group>"; };
 		A7F295B528C4E1A500242836 /* Tadak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F295B828C4E1A500242836 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F295BA28C4E1A500242836 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A7F295BC28C4E1A500242836 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7F295C428C4E1A600242836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7F295C628C4E1A600242836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tadak/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
 		A7F295CF28C4E1C100242836 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -36,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A75806F828C4F3A80073D03A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				A75806EE28C4EEDA0073D03A /* UIColor++.swift */,
+				A758072428C4F83D0073D03A /* UIImage++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -54,8 +105,54 @@
 			isa = PBXGroup;
 			children = (
 				A75806F028C4EEE00073D03A /* Extensions */,
+				A758072828C501C50073D03A /* ReusableCell.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A75806F228C4F1390073D03A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		A75806F328C4F1400073D03A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A75806F428C4F2490073D03A /* OnboardingCharacterViewController.swift */,
+				A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */,
+				A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		A75806FB28C4F7DB0073D03A /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A758070E28C4F7F70073D03A /* axolotl.png */,
+				A75806FC28C4F7F60073D03A /* bear.png */,
+				A758070728C4F7F70073D03A /* chameleon.png */,
+				A758070828C4F7F70073D03A /* chick.png */,
+				A758070528C4F7F60073D03A /* deer.png */,
+				A758070428C4F7F60073D03A /* dinosaur.png */,
+				A758070328C4F7F60073D03A /* dog.png */,
+				A758070A28C4F7F70073D03A /* frog.png */,
+				A758070D28C4F7F70073D03A /* giraffe.png */,
+				A75806FE28C4F7F60073D03A /* hedgehog.png */,
+				A75806FD28C4F7F60073D03A /* lion.png */,
+				A758070028C4F7F60073D03A /* llama.png */,
+				A758070628C4F7F60073D03A /* mouse.png */,
+				A758070228C4F7F60073D03A /* octopus.png */,
+				A758070928C4F7F70073D03A /* prawn.png */,
+				A75806FF28C4F7F60073D03A /* rabbit.png */,
+				A758070128C4F7F60073D03A /* raccoon.png */,
+				A758070B28C4F7F70073D03A /* sheep.png */,
+				A758070C28C4F7F70073D03A /* tiger.png */,
+				A758070F28C4F7F70073D03A /* turtle.png */,
+			);
+			path = Characters;
 			sourceTree = "<group>";
 		};
 		A7F295AC28C4E1A500242836 = {
@@ -97,8 +194,8 @@
 		A7F295D328C4E58500242836 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */,
-				A7F295BC28C4E1A500242836 /* ViewController.swift */,
+				A75806F228C4F1390073D03A /* Splash */,
+				A75806F328C4F1400073D03A /* Onboarding */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -110,6 +207,7 @@
 				A75806EA28C4E75A0073D03A /* Assets.xcassets */,
 				A7F295C628C4E1A600242836 /* Info.plist */,
 				A7F295D028C4E1C100242836 /* InfoPlist.strings */,
+				A75806FB28C4F7DB0073D03A /* Characters */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -130,6 +228,9 @@
 			dependencies = (
 			);
 			name = Tadak;
+			packageProductDependencies = (
+				A75806F728C4F3A80073D03A /* SnapKit */,
+			);
 			productName = Tadak;
 			productReference = A7F295B528C4E1A500242836 /* Tadak.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +260,9 @@
 				ko,
 			);
 			mainGroup = A7F295AC28C4E1A500242836;
+			packageReferences = (
+				A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A7F295B628C4E1A500242836 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,10 +277,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A758071728C4F7F70073D03A /* dog.png in Resources */,
+				A758071228C4F7F70073D03A /* hedgehog.png in Resources */,
+				A758072228C4F7F70073D03A /* axolotl.png in Resources */,
+				A758071528C4F7F70073D03A /* raccoon.png in Resources */,
+				A758071328C4F7F70073D03A /* rabbit.png in Resources */,
+				A758072328C4F7F70073D03A /* turtle.png in Resources */,
+				A758072128C4F7F70073D03A /* giraffe.png in Resources */,
+				A758071828C4F7F70073D03A /* dinosaur.png in Resources */,
+				A758071F28C4F7F70073D03A /* sheep.png in Resources */,
 				A75806ED28C4E93E0073D03A /* splash.png in Resources */,
+				A758071028C4F7F70073D03A /* bear.png in Resources */,
+				A758071428C4F7F70073D03A /* llama.png in Resources */,
 				A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */,
+				A758071928C4F7F70073D03A /* deer.png in Resources */,
 				A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */,
+				A758071A28C4F7F70073D03A /* mouse.png in Resources */,
+				A758071E28C4F7F70073D03A /* frog.png in Resources */,
+				A758071B28C4F7F70073D03A /* chameleon.png in Resources */,
+				A758071628C4F7F70073D03A /* octopus.png in Resources */,
+				A758071D28C4F7F70073D03A /* prawn.png in Resources */,
+				A758072028C4F7F70073D03A /* tiger.png in Resources */,
 				A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */,
+				A758071C28C4F7F70073D03A /* chick.png in Resources */,
+				A758071128C4F7F70073D03A /* lion.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,9 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7F295BD28C4E1A500242836 /* ViewController.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
+				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
+				A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */,
+				A758072528C4F83D0073D03A /* UIImage++.swift in Sources */,
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
+				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
+				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
 				A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +541,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A75806F728C4F3A80073D03A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A7F295AD28C4E1A500242836 /* Project object */;
 }

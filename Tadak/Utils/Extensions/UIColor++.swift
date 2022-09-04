@@ -15,4 +15,5 @@ extension UIColor {
     class var customCoral: UIColor? { return UIColor(named: "Coral") }
     class var customPumpkin: UIColor? { return UIColor(named: "Pumpkin") }
     class var customSkyBlue: UIColor? { return UIColor(named: "SkyBlue") }
+    class var customDarkCloud: UIColor? { return UIColor(named: "DarkCloud") }
 }
