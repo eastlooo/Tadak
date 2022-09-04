@@ -13,31 +13,7 @@ final class OnboardingCharacterViewController: UIViewController {
     // MARK: Properties
     private var dataSource = (1...20).shuffled().map { $0 }
     
-    private lazy var collectionView: UICollectionView = {
-        let cellWidth = (UIScreen.main.bounds.width - 70) / 3
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.itemSize = .init(width: cellWidth, height: cellWidth)
-        flowLayout.minimumLineSpacing = 16
-        flowLayout.sectionInset = .zero
-        let headerWidth = UIScreen.main.bounds.width
-        flowLayout.headerReferenceSize = .init(width: headerWidth, height: 200)
-        let collectionView = UICollectionView(
-            frame: .zero, collectionViewLayout: flowLayout
-        )
-        collectionView.register(
-            OnboardingCharacterHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: OnboardingCharacterHeaderView.reuseIdentifier)
-        collectionView.register(
-            OnboardingCharacterCell.self,
-            forCellWithReuseIdentifier: OnboardingCharacterCell.reuseIdentifier
-        )
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .customNavy
-        collectionView.showsVerticalScrollIndicator = false
-        return collectionView
-    }()
+    private let collectionView = OnboardingCharacterCollectionView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -52,6 +28,7 @@ final class OnboardingCharacterViewController: UIViewController {
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy
+        collectionView.dataSource = self
     }
     
     private func layout() {
@@ -84,11 +61,24 @@ extension OnboardingCharacterViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(
-            ofKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: OnboardingCharacterHeaderView.reuseIdentifier,
-            for: indexPath
-        ) as! OnboardingCharacterHeaderView
-        return headerView
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: OnboardingCharacterHeaderView.reuseIdentifier,
+                for: indexPath
+            ) as! OnboardingCharacterHeaderView
+            return headerView
+            
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionFooter,
+                withReuseIdentifier: OnboardingCharacterFooterView.reuseIdentifier,
+                for: indexPath
+            ) as! OnboardingCharacterFooterView
+            return footerView
+            
+        default: return UICollectionReusableView()
+        }
     }
 }
