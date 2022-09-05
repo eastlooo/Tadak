@@ -29,7 +29,7 @@ final class TextButton: UIControl {
     private let titleLabel = UILabel()
     
     private lazy var accessoryImageView: UIImageView = {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 10, weight: .semibold)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
         let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)
         let imageView = UIImageView(image: image)
         imageView.tintColor = .white
@@ -58,10 +58,19 @@ final class TextButton: UIControl {
     
     private func layout() {
         self.layer.cornerRadius = 12
+        self.layer.cornerCurve = .continuous
         
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        if hasAccessory {
+            self.addSubview(accessoryImageView)
+            accessoryImageView.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.right.equalToSuperview().inset(16)
+            }
         }
     }
     

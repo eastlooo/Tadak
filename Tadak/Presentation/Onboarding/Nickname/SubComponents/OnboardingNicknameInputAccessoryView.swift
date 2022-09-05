@@ -13,14 +13,14 @@ final class OnboardingNicknameInputAccessoryView: UIView {
     // MARK: Properties
     private let characterReselectButton: TextButton = {
         let button = TextButton(colorType: .pumpkin)
-        button.titleFont = .systemFont(ofSize: 16, weight: .bold)
+        button.titleFont = .notoSansKR(ofSize: 16, weight: .bold)
         return button
     }()
     
     private let doneButton: TextButton = {
         let button = TextButton(colorType: .coral)
         button.isEnabled = false
-        button.titleFont = .systemFont(ofSize: 16, weight: .bold)
+        button.titleFont = .notoSansKR(ofSize: 16, weight: .bold)
         return button
     }()
     
@@ -41,7 +41,7 @@ final class OnboardingNicknameInputAccessoryView: UIView {
         self.backgroundColor = .clear
         
         characterReselectButton.title = "캐릭터 재선택"
-        doneButton.title = "완료"
+        doneButton.title = "시작하기"
     }
     
     private func layout() {

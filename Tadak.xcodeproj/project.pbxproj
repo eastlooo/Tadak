@@ -12,6 +12,16 @@
 		A72E757E28C60BC00028CE8D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757D28C60BC00028CE8D /* TextField.swift */; };
 		A72E758028C612E10028CE8D /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757F28C612E10028CE8D /* TextButton.swift */; };
 		A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */; };
+		A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758928C6461F0028CE8D /* TadakMainViewController.swift */; };
+		A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */; };
+		A72E759028C64A9C0028CE8D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A72E758F28C64A9C0028CE8D /* logo.png */; };
+		A72E759828C658440028CE8D /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759228C658430028CE8D /* NotoSansKR-Black.otf */; };
+		A72E759928C658440028CE8D /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759328C658430028CE8D /* NotoSansKR-Bold.otf */; };
+		A72E759A28C658440028CE8D /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759428C658440028CE8D /* NotoSansKR-Light.otf */; };
+		A72E759B28C658440028CE8D /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759528C658440028CE8D /* NotoSansKR-Thin.otf */; };
+		A72E759C28C658440028CE8D /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759628C658440028CE8D /* NotoSansKR-Regular.otf */; };
+		A72E759F28C6587C0028CE8D /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759E28C6587C0028CE8D /* NotoSansKR-Medium.otf */; };
+		A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A028C659A30028CE8D /* UIFont++.swift */; };
 		A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75806EA28C4E75A0073D03A /* Assets.xcassets */; };
 		A75806ED28C4E93E0073D03A /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806EC28C4E93E0073D03A /* splash.png */; };
 		A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806EE28C4EEDA0073D03A /* UIColor++.swift */; };
@@ -55,6 +65,16 @@
 		A72E757D28C60BC00028CE8D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		A72E757F28C612E10028CE8D /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
 		A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameInputAccessoryView.swift; sourceTree = "<group>"; };
+		A72E758928C6461F0028CE8D /* TadakMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewController.swift; sourceTree = "<group>"; };
+		A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainBackgroundView.swift; sourceTree = "<group>"; };
+		A72E758F28C64A9C0028CE8D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		A72E759228C658430028CE8D /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
+		A72E759328C658430028CE8D /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		A72E759428C658440028CE8D /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
+		A72E759528C658440028CE8D /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
+		A72E759628C658440028CE8D /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		A72E759E28C6587C0028CE8D /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		A72E75A028C659A30028CE8D /* UIFont++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont++.swift"; sourceTree = "<group>"; };
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -144,11 +164,42 @@
 			path = SubComponents;
 			sourceTree = "<group>";
 		};
+		A72E758B28C646230028CE8D /* TadakMain */ = {
+			isa = PBXGroup;
+			children = (
+				A72E758928C6461F0028CE8D /* TadakMainViewController.swift */,
+				A72E758E28C6475D0028CE8D /* SubComponents */,
+			);
+			path = TadakMain;
+			sourceTree = "<group>";
+		};
+		A72E758E28C6475D0028CE8D /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A72E759128C6581C0028CE8D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A72E759228C658430028CE8D /* NotoSansKR-Black.otf */,
+				A72E759328C658430028CE8D /* NotoSansKR-Bold.otf */,
+				A72E759E28C6587C0028CE8D /* NotoSansKR-Medium.otf */,
+				A72E759628C658440028CE8D /* NotoSansKR-Regular.otf */,
+				A72E759428C658440028CE8D /* NotoSansKR-Light.otf */,
+				A72E759528C658440028CE8D /* NotoSansKR-Thin.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A75806F028C4EEE00073D03A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A75806EE28C4EEDA0073D03A /* UIColor++.swift */,
 				A758072428C4F83D0073D03A /* UIImage++.swift */,
+				A72E75A028C659A30028CE8D /* UIFont++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,6 +315,7 @@
 			children = (
 				A75806F228C4F1390073D03A /* Splash */,
 				A75806F328C4F1400073D03A /* Onboarding */,
+				A72E758B28C646230028CE8D /* TadakMain */,
 				A72E757A28C5FFB60028CE8D /* CommonComponents */,
 			);
 			path = Presentation;
@@ -273,10 +325,12 @@
 			isa = PBXGroup;
 			children = (
 				A75806EC28C4E93E0073D03A /* splash.png */,
+				A72E758F28C64A9C0028CE8D /* logo.png */,
 				A75806EA28C4E75A0073D03A /* Assets.xcassets */,
 				A7F295C628C4E1A600242836 /* Info.plist */,
 				A7F295D028C4E1C100242836 /* InfoPlist.strings */,
 				A75806FB28C4F7DB0073D03A /* Characters */,
+				A72E759128C6581C0028CE8D /* Fonts */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -348,9 +402,12 @@
 			files = (
 				A758071728C4F7F70073D03A /* dog.png in Resources */,
 				A758071228C4F7F70073D03A /* hedgehog.png in Resources */,
+				A72E759A28C658440028CE8D /* NotoSansKR-Light.otf in Resources */,
 				A758072228C4F7F70073D03A /* axolotl.png in Resources */,
+				A72E759C28C658440028CE8D /* NotoSansKR-Regular.otf in Resources */,
 				A758071528C4F7F70073D03A /* raccoon.png in Resources */,
 				A758071328C4F7F70073D03A /* rabbit.png in Resources */,
+				A72E759828C658440028CE8D /* NotoSansKR-Black.otf in Resources */,
 				A758072328C4F7F70073D03A /* turtle.png in Resources */,
 				A758072128C4F7F70073D03A /* giraffe.png in Resources */,
 				A758071828C4F7F70073D03A /* dinosaur.png in Resources */,
@@ -362,14 +419,18 @@
 				A758071928C4F7F70073D03A /* deer.png in Resources */,
 				A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */,
 				A758071A28C4F7F70073D03A /* mouse.png in Resources */,
+				A72E759028C64A9C0028CE8D /* logo.png in Resources */,
 				A758071E28C4F7F70073D03A /* frog.png in Resources */,
 				A758071B28C4F7F70073D03A /* chameleon.png in Resources */,
 				A758071628C4F7F70073D03A /* octopus.png in Resources */,
 				A758071D28C4F7F70073D03A /* prawn.png in Resources */,
+				A72E759928C658440028CE8D /* NotoSansKR-Bold.otf in Resources */,
 				A758072028C4F7F70073D03A /* tiger.png in Resources */,
 				A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */,
+				A72E759B28C658440028CE8D /* NotoSansKR-Thin.otf in Resources */,
 				A758071C28C4F7F70073D03A /* chick.png in Resources */,
 				A758071128C4F7F70073D03A /* lion.png in Resources */,
+				A72E759F28C6587C0028CE8D /* NotoSansKR-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,11 +441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
+				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A72E757E28C60BC00028CE8D /* TextField.swift in Sources */,
+				A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */,

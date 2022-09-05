@@ -14,14 +14,14 @@ final class OnboardingCharacterHeaderView: UICollectionReusableView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 28.0, weight: .black)
+        label.font = .notoSansKR(ofSize: 26.0, weight: .black)
         return label
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 16.0, weight: .medium)
+        label.font = .notoSansKR(ofSize: 16.0, weight: .medium)
         label.numberOfLines = 2
         return label
     }()
