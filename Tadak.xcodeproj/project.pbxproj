@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */; };
+		A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757828C5FD7A0028CE8D /* LightTextField.swift */; };
+		A72E757E28C60BC00028CE8D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757D28C60BC00028CE8D /* TextField.swift */; };
+		A72E758028C612E10028CE8D /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757F28C612E10028CE8D /* TextButton.swift */; };
+		A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */; };
 		A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75806EA28C4E75A0073D03A /* Assets.xcassets */; };
 		A75806ED28C4E93E0073D03A /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806EC28C4E93E0073D03A /* splash.png */; };
 		A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806EE28C4EEDA0073D03A /* UIColor++.swift */; };
@@ -45,6 +50,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameViewController.swift; sourceTree = "<group>"; };
+		A72E757828C5FD7A0028CE8D /* LightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTextField.swift; sourceTree = "<group>"; };
+		A72E757D28C60BC00028CE8D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		A72E757F28C612E10028CE8D /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
+		A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameInputAccessoryView.swift; sourceTree = "<group>"; };
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -96,6 +106,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A72E757528C5F77F0028CE8D /* Nickname */ = {
+			isa = PBXGroup;
+			children = (
+				A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */,
+				A72E758628C637110028CE8D /* SubComponents */,
+			);
+			path = Nickname;
+			sourceTree = "<group>";
+		};
+		A72E757A28C5FFB60028CE8D /* CommonComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A72E757D28C60BC00028CE8D /* TextField.swift */,
+				A72E757828C5FD7A0028CE8D /* LightTextField.swift */,
+				A72E757F28C612E10028CE8D /* TextButton.swift */,
+			);
+			path = CommonComponents;
+			sourceTree = "<group>";
+		};
+		A72E758528C634920028CE8D /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */,
+				A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */,
+				A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */,
+				A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A72E758628C637110028CE8D /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
 		A75806F028C4EEE00073D03A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				A758073128C5196F0073D03A /* Character */,
+				A72E757528C5F77F0028CE8D /* Nickname */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -169,10 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				A75806F428C4F2490073D03A /* OnboardingCharacterViewController.swift */,
-				A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */,
-				A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */,
-				A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */,
-				A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */,
+				A72E758528C634920028CE8D /* SubComponents */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -218,6 +264,7 @@
 			children = (
 				A75806F228C4F1390073D03A /* Splash */,
 				A75806F328C4F1400073D03A /* Onboarding */,
+				A72E757A28C5FFB60028CE8D /* CommonComponents */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -335,11 +382,16 @@
 			files = (
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
+				A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
+				A72E757E28C60BC00028CE8D /* TextField.swift in Sources */,
+				A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */,
+				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */,
 				A758072528C4F83D0073D03A /* UIImage++.swift in Sources */,
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
+				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */,

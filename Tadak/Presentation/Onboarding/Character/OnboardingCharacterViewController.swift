@@ -11,7 +11,7 @@ import SnapKit
 final class OnboardingCharacterViewController: UIViewController {
     
     // MARK: Properties
-    private var dataSource = (1...20).shuffled().map { $0 }
+    private var dataSource = (1...20).shuffled().shuffled().shuffled().map { $0 }
     
     private let collectionView = OnboardingCharacterCollectionView()
     

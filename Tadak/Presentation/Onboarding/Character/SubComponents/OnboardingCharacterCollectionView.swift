@@ -46,7 +46,7 @@ final class OnboardingCharacterCollectionView: UICollectionView {
         flowLayout.minimumLineSpacing = 16
         flowLayout.sectionInset = .zero
         let width = UIScreen.main.bounds.width
-        flowLayout.headerReferenceSize = .init(width: width, height: 200)
+        flowLayout.headerReferenceSize = .init(width: width, height: 280)
         flowLayout.footerReferenceSize = .init(width: width, height: 30)
         return flowLayout
     }

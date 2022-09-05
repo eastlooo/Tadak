@@ -14,7 +14,7 @@ final class OnboardingCharacterHeaderView: UICollectionReusableView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 24.0, weight: .heavy)
+        label.font = .systemFont(ofSize: 28.0, weight: .black)
         return label
     }()
     
@@ -61,7 +61,7 @@ final class OnboardingCharacterHeaderView: UICollectionReusableView {
     private func layout() {
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(30.0)
+            $0.top.equalToSuperview().inset(120.0)
             $0.centerX.equalToSuperview()
         }
         
