@@ -33,4 +33,17 @@ extension UIImage {
         default: return nil
         }
     }
+    
+    static func reward(_ number: Int) -> UIImage? {
+        switch number {
+        case 1: return UIImage(named: "clover.png")
+        case 2: return UIImage(named: "bronze-medal.png")
+        case 3: return UIImage(named: "silver-medal.png")
+        case 4: return UIImage(named: "gold-medal.png")
+        case 5: return UIImage(named: "gold-trophy.png")
+        case 6: return UIImage(named: "diamond.png")
+        case 7: return UIImage(named: "crown.png")
+        default: return nil
+        }
+    }
 }
