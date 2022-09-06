@@ -1,5 +1,5 @@
 //
-//  TadakNavigationView.swift
+//  ListButtonTypeNavigationView.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/06.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class TadakNavigationView: UIView {
+final class ListButtonTypeNavigationView: UIView {
     
     // MARK: Properties
     var title: String? {
@@ -17,14 +17,14 @@ final class TadakNavigationView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .notoSansKR(ofSize: 22.0, weight: .black)
+        label.font = .notoSansKR(ofSize: 26.0, weight: .black)
         label.textColor = .white
         return label
     }()
     
-    private let homeButton: UIButton = {
+    private let listButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "exit"), for: .normal)
+        button.setImage(UIImage(named: "list"), for: .normal)
         return button
     }()
     
@@ -47,19 +47,20 @@ final class TadakNavigationView: UIView {
     
     private func layout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(55)
+            $0.height.equalTo(72)
+        }
+        
+        self.addSubview(listButton)
+        listButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(20)
+            $0.right.equalToSuperview().inset(26)
+            $0.width.height.equalTo(44)
         }
         
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        self.addSubview(homeButton)
-        homeButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview().inset(14)
-            $0.width.height.equalTo(44)
+            $0.left.equalToSuperview().inset(28)
+            $0.centerY.equalTo(listButton)
         }
     }
 }

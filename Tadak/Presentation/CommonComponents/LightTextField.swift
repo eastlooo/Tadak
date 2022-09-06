@@ -13,10 +13,10 @@ final class LightTextField: TextField {
     // MARK: Properties
     override var placeholder: String? {
         didSet {
-            self.attributedText = NSAttributedString(
+            self.attributedPlaceholder = NSAttributedString(
                 string: placeholder ?? "",
                 attributes: [
-                    .foregroundColor: UIColor.systemGray
+                    .foregroundColor: UIColor.gray
                 ]
             )
         }

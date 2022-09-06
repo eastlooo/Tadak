@@ -11,7 +11,6 @@
 		A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757828C5FD7A0028CE8D /* LightTextField.swift */; };
 		A72E757E28C60BC00028CE8D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757D28C60BC00028CE8D /* TextField.swift */; };
 		A72E758028C612E10028CE8D /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757F28C612E10028CE8D /* TextButton.swift */; };
-		A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */; };
 		A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758928C6461F0028CE8D /* TadakMainViewController.swift */; };
 		A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */; };
 		A72E759028C64A9C0028CE8D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A72E758F28C64A9C0028CE8D /* logo.png */; };
@@ -23,7 +22,7 @@
 		A72E759F28C6587C0028CE8D /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A72E759E28C6587C0028CE8D /* NotoSansKR-Medium.otf */; };
 		A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A028C659A30028CE8D /* UIFont++.swift */; };
 		A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A228C66A680028CE8D /* TadakListViewController.swift */; };
-		A72E75A628C66B670028CE8D /* TadakNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A528C66B670028CE8D /* TadakNavigationView.swift */; };
+		A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */; };
 		A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75806EA28C4E75A0073D03A /* Assets.xcassets */; };
 		A75806ED28C4E93E0073D03A /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806EC28C4E93E0073D03A /* splash.png */; };
 		A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806EE28C4EEDA0073D03A /* UIColor++.swift */; };
@@ -55,6 +54,13 @@
 		A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */; };
 		A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */; };
 		A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */; };
+		A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127328C735100015BBA1 /* ComposeParticipantsViewController.swift */; };
+		A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */; };
+		A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127A28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift */; };
+		A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */; };
+		A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */; };
+		A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */; };
+		A78B128C28C784F40015BBA1 /* TadakInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */; };
 		A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE428C6738100D663D2 /* BorderedButton.swift */; };
 		A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */; };
 		A7B4CCF028C681C200D663D2 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B4CCE928C681C200D663D2 /* crown.png */; };
@@ -81,7 +87,6 @@
 		A72E757828C5FD7A0028CE8D /* LightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTextField.swift; sourceTree = "<group>"; };
 		A72E757D28C60BC00028CE8D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		A72E757F28C612E10028CE8D /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
-		A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameInputAccessoryView.swift; sourceTree = "<group>"; };
 		A72E758928C6461F0028CE8D /* TadakMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewController.swift; sourceTree = "<group>"; };
 		A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainBackgroundView.swift; sourceTree = "<group>"; };
 		A72E758F28C64A9C0028CE8D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -93,7 +98,7 @@
 		A72E759E28C6587C0028CE8D /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		A72E75A028C659A30028CE8D /* UIFont++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont++.swift"; sourceTree = "<group>"; };
 		A72E75A228C66A680028CE8D /* TadakListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListViewController.swift; sourceTree = "<group>"; };
-		A72E75A528C66B670028CE8D /* TadakNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakNavigationView.swift; sourceTree = "<group>"; };
+		A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonTypeNavigationView.swift; sourceTree = "<group>"; };
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -124,6 +129,13 @@
 		A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterHeaderView.swift; sourceTree = "<group>"; };
 		A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterCollectionView.swift; sourceTree = "<group>"; };
 		A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterFooterView.swift; sourceTree = "<group>"; };
+		A78B127328C735100015BBA1 /* ComposeParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsViewController.swift; sourceTree = "<group>"; };
+		A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonTypeNavigationView.swift; sourceTree = "<group>"; };
+		A78B127A28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsHeaderView.swift; sourceTree = "<group>"; };
+		A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsCell.swift; sourceTree = "<group>"; };
+		A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsNumberButton.swift; sourceTree = "<group>"; };
+		A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsFooterView.swift; sourceTree = "<group>"; };
+		A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakInputAccessoryView.swift; sourceTree = "<group>"; };
 		A7B4CCE428C6738100D663D2 /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListCell.swift; sourceTree = "<group>"; };
 		A7B4CCE928C681C200D663D2 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
@@ -164,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */,
-				A72E758628C637110028CE8D /* SubComponents */,
 			);
 			path = Nickname;
 			sourceTree = "<group>";
@@ -176,7 +187,9 @@
 				A72E757828C5FD7A0028CE8D /* LightTextField.swift */,
 				A72E757F28C612E10028CE8D /* TextButton.swift */,
 				A7B4CCE428C6738100D663D2 /* BorderedButton.swift */,
-				A72E75A528C66B670028CE8D /* TadakNavigationView.swift */,
+				A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */,
+				A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */,
+				A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -188,14 +201,6 @@
 				A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */,
 				A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */,
 				A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */,
-			);
-			path = SubComponents;
-			sourceTree = "<group>";
-		};
-		A72E758628C637110028CE8D /* SubComponents */ = {
-			isa = PBXGroup;
-			children = (
-				A72E758328C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -319,6 +324,26 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
+		A78B127528C735140015BBA1 /* ComposeParticipants */ = {
+			isa = PBXGroup;
+			children = (
+				A78B127328C735100015BBA1 /* ComposeParticipantsViewController.swift */,
+				A78B127C28C73B600015BBA1 /* SubComponents */,
+			);
+			path = ComposeParticipants;
+			sourceTree = "<group>";
+		};
+		A78B127C28C73B600015BBA1 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */,
+				A78B127A28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift */,
+				A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */,
+				A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
 		A7B4CCE828C681A500D663D2 /* Reward */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +463,7 @@
 				A72E75A428C66AD50028CE8D /* TadakList */,
 				A7B4CCFB28C6FABD00D663D2 /* MyList */,
 				A7B4CD0628C70E9500D663D2 /* TextDetail */,
+				A78B127528C735140015BBA1 /* ComposeParticipants */,
 				A72E757A28C5FFB60028CE8D /* CommonComponents */,
 			);
 			path = Presentation;
@@ -571,18 +597,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */,
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
 				A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
-				A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A72E757E28C60BC00028CE8D /* TextField.swift in Sources */,
 				A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */,
-				A72E75A628C66B670028CE8D /* TadakNavigationView.swift in Sources */,
+				A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */,
+				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
+				A78B128C28C784F40015BBA1 /* TadakInputAccessoryView.swift in Sources */,
+				A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */,
 				A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */,
 				A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */,
 				A758072528C4F83D0073D03A /* UIImage++.swift in Sources */,
@@ -592,12 +621,15 @@
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
+				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */,
 				A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */,
 				A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */,
+				A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */,
+				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

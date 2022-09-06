@@ -125,7 +125,7 @@ final class TextDetailViewController: UIViewController {
         view.addSubview(startButton)
         startButton.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(30)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
             $0.height.equalTo(55)
         }
         
@@ -133,7 +133,7 @@ final class TextDetailViewController: UIViewController {
         contentsTextView.snp.makeConstraints {
             $0.top.equalTo(dashboard.snp.bottom).offset(30)
             $0.left.right.equalTo(dashboard)
-            $0.bottom.equalTo(startButton.snp.top).offset(-30)
+            $0.bottom.equalTo(startButton.snp.top).offset(-10)
         }
     }
 }

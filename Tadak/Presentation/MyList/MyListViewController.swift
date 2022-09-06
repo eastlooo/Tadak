@@ -11,7 +11,7 @@ import SnapKit
 final class MyListViewController: UIViewController {
     
     // MARK: Properties
-    private let navigationView = TadakNavigationView()
+    private let navigationView = HomeButtonTypeNavigationView()
     
     private let practiceModeButton: BorderedButton = {
         let button = BorderedButton()

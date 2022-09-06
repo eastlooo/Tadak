@@ -21,10 +21,10 @@ final class OnboardingNicknameViewController: UIViewController {
         return label
     }()
     
-    private let characterImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    private let characterButton: UIButton = {
+        let button = UIButton()
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
     }()
     
     private let textField: LightTextField = {
@@ -41,10 +41,14 @@ final class OnboardingNicknameViewController: UIViewController {
         return label
     }()
     
-    private let accessoryView: OnboardingNicknameInputAccessoryView = {
-        let width = UIScreen.main.bounds.width
-        let frame = CGRect(x: 0, y: 0, width: width, height: 70)
-        let accessoryView = OnboardingNicknameInputAccessoryView(frame: frame)
+    private let registerButton: TextButton = {
+        let button = TextButton(colorType: .coral)
+        button.titleFont = .notoSansKR(ofSize: 20, weight: .bold)
+        return button
+    }()
+    
+    private lazy var accessoryView: TadakInputAccessoryView = {
+        let accessoryView = TadakInputAccessoryView(rootView: registerButton)
         return accessoryView
     }()
     
@@ -60,23 +64,15 @@ final class OnboardingNicknameViewController: UIViewController {
         layout()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        _ = textField.becomeFirstResponder()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.textField.resignFirstResponder()
-        }
-    }
-    
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy
         contentView.backgroundColor = .customNavy
         
         titleLabel.text = "별명짓기"
-        descriptionLabel.text = "2~6자의 한글을 입력해주세요"
-        characterImageView.image = UIImage.character(11)
+        descriptionLabel.text = "별명을 입력해주세요 (2~6 글자)"
+        registerButton.title = "등록하기"
+        characterButton.setImage(UIImage.character(11), for: .normal)
     }
     
     private func layout() {
@@ -98,8 +94,8 @@ final class OnboardingNicknameViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
         
-        contentView.addSubview(characterImageView)
-        characterImageView.snp.makeConstraints {
+        contentView.addSubview(characterButton)
+        characterButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(50)
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(150)
@@ -108,7 +104,7 @@ final class OnboardingNicknameViewController: UIViewController {
         textField.layer.cornerRadius = 25
         contentView.addSubview(textField)
         textField.snp.makeConstraints {
-            $0.top.equalTo(characterImageView.snp.bottom).offset(20)
+            $0.top.equalTo(characterButton.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(230)
             $0.height.equalTo(50)

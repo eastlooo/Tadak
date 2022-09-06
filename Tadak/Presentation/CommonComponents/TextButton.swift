@@ -26,7 +26,11 @@ final class TextButton: UIControl {
     private let colorType: ColorType
     private let hasAccessory: Bool
     
-    private let titleLabel = UILabel()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        return label
+    }()
     
     private lazy var accessoryImageView: UIImageView = {
         let configuration = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
@@ -75,7 +79,6 @@ final class TextButton: UIControl {
     }
     
     private func updateButtonState() {
-        titleLabel.textColor = isEnabled ? .white : .darkGray
         self.backgroundColor = isEnabled ? colorType.color : .lightGray
     }
 }

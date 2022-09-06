@@ -11,7 +11,7 @@ import SnapKit
 final class TadakListViewController: UIViewController {
     
     // MARK: Properties
-    private let navigationView = TadakNavigationView()
+    private let navigationView = HomeButtonTypeNavigationView()
     
     private let practiceModeButton: BorderedButton = {
         let button = BorderedButton()
@@ -35,6 +35,7 @@ final class TadakListViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .customNavy
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
         tableView.rowHeight = 100
         tableView.register(
             TadakListCell.self,
