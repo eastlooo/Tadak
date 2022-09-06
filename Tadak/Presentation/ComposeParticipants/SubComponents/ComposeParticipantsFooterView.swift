@@ -33,7 +33,7 @@ final class ComposeParticipantsFooterView: UIView {
     
     // MARK: Helpers
     private func configure() {
-        descriptionLabel.text = "게임 순서는 무작위로 진행되요  :)"
+        descriptionLabel.text = "게임 순서는 랜덤으로 진행돼요  :)"
     }
     
     private func layout() {

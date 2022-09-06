@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */; };
-		A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757828C5FD7A0028CE8D /* LightTextField.swift */; };
-		A72E757E28C60BC00028CE8D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757D28C60BC00028CE8D /* TextField.swift */; };
+		A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757828C5FD7A0028CE8D /* TadakTextField.swift */; };
 		A72E758028C612E10028CE8D /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757F28C612E10028CE8D /* TextButton.swift */; };
 		A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758928C6461F0028CE8D /* TadakMainViewController.swift */; };
 		A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */; };
@@ -61,6 +60,13 @@
 		A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */; };
 		A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */; };
 		A78B128C28C784F40015BBA1 /* TadakInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */; };
+		A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */; };
+		A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129028C79F0A0015BBA1 /* TypingDashboard.swift */; };
+		A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129228C7A0AA0015BBA1 /* ProgressBar.swift */; };
+		A78B129528C7A99C0015BBA1 /* TypingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129428C7A99C0015BBA1 /* TypingSheet.swift */; };
+		A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129728C7C42E0015BBA1 /* CountdownView.swift */; };
+		A78B129B28C7C59C0015BBA1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A78B129A28C7C59C0015BBA1 /* Lottie */; };
+		A78B129D28C7C69C0015BBA1 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = A78B129C28C7C69C0015BBA1 /* countdown.json */; };
 		A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE428C6738100D663D2 /* BorderedButton.swift */; };
 		A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */; };
 		A7B4CCF028C681C200D663D2 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B4CCE928C681C200D663D2 /* crown.png */; };
@@ -84,8 +90,7 @@
 
 /* Begin PBXFileReference section */
 		A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameViewController.swift; sourceTree = "<group>"; };
-		A72E757828C5FD7A0028CE8D /* LightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTextField.swift; sourceTree = "<group>"; };
-		A72E757D28C60BC00028CE8D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		A72E757828C5FD7A0028CE8D /* TadakTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakTextField.swift; sourceTree = "<group>"; };
 		A72E757F28C612E10028CE8D /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
 		A72E758928C6461F0028CE8D /* TadakMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewController.swift; sourceTree = "<group>"; };
 		A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainBackgroundView.swift; sourceTree = "<group>"; };
@@ -136,6 +141,12 @@
 		A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsNumberButton.swift; sourceTree = "<group>"; };
 		A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsFooterView.swift; sourceTree = "<group>"; };
 		A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakInputAccessoryView.swift; sourceTree = "<group>"; };
+		A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTypingViewController.swift; sourceTree = "<group>"; };
+		A78B129028C79F0A0015BBA1 /* TypingDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingDashboard.swift; sourceTree = "<group>"; };
+		A78B129228C7A0AA0015BBA1 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		A78B129428C7A99C0015BBA1 /* TypingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingSheet.swift; sourceTree = "<group>"; };
+		A78B129728C7C42E0015BBA1 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		A78B129C28C7C69C0015BBA1 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		A7B4CCE428C6738100D663D2 /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListCell.swift; sourceTree = "<group>"; };
 		A7B4CCE928C681C200D663D2 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
@@ -166,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75806F828C4F3A80073D03A /* SnapKit in Frameworks */,
+				A78B129B28C7C59C0015BBA1 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +195,7 @@
 		A72E757A28C5FFB60028CE8D /* CommonComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A72E757D28C60BC00028CE8D /* TextField.swift */,
-				A72E757828C5FD7A0028CE8D /* LightTextField.swift */,
+				A72E757828C5FD7A0028CE8D /* TadakTextField.swift */,
 				A72E757F28C612E10028CE8D /* TextButton.swift */,
 				A7B4CCE428C6738100D663D2 /* BorderedButton.swift */,
 				A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */,
@@ -344,6 +355,34 @@
 			path = SubComponents;
 			sourceTree = "<group>";
 		};
+		A78B128F28C79D680015BBA1 /* Typing */ = {
+			isa = PBXGroup;
+			children = (
+				A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */,
+				A78B129628C7A9B30015BBA1 /* SubComponents */,
+			);
+			path = Typing;
+			sourceTree = "<group>";
+		};
+		A78B129628C7A9B30015BBA1 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A78B129228C7A0AA0015BBA1 /* ProgressBar.swift */,
+				A78B129028C79F0A0015BBA1 /* TypingDashboard.swift */,
+				A78B129428C7A99C0015BBA1 /* TypingSheet.swift */,
+				A78B129728C7C42E0015BBA1 /* CountdownView.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A78B129E28C7C6A00015BBA1 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				A78B129C28C7C69C0015BBA1 /* countdown.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		A7B4CCE828C681A500D663D2 /* Reward */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +503,7 @@
 				A7B4CCFB28C6FABD00D663D2 /* MyList */,
 				A7B4CD0628C70E9500D663D2 /* TextDetail */,
 				A78B127528C735140015BBA1 /* ComposeParticipants */,
+				A78B128F28C79D680015BBA1 /* Typing */,
 				A72E757A28C5FFB60028CE8D /* CommonComponents */,
 			);
 			path = Presentation;
@@ -479,6 +519,7 @@
 				A7F295D028C4E1C100242836 /* InfoPlist.strings */,
 				A75806FB28C4F7DB0073D03A /* Characters */,
 				A7B4CCE828C681A500D663D2 /* Reward */,
+				A78B129E28C7C6A00015BBA1 /* Lottie */,
 				A72E759128C6581C0028CE8D /* Fonts */,
 			);
 			path = Resource;
@@ -502,6 +543,7 @@
 			name = Tadak;
 			packageProductDependencies = (
 				A75806F728C4F3A80073D03A /* SnapKit */,
+				A78B129A28C7C59C0015BBA1 /* Lottie */,
 			);
 			productName = Tadak;
 			productReference = A7F295B528C4E1A500242836 /* Tadak.app */;
@@ -534,6 +576,7 @@
 			mainGroup = A7F295AC28C4E1A500242836;
 			packageReferences = (
 				A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A78B129928C7C59C0015BBA1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = A7F295B628C4E1A500242836 /* Products */;
 			projectDirPath = "";
@@ -570,6 +613,7 @@
 				A75806ED28C4E93E0073D03A /* splash.png in Resources */,
 				A758071028C4F7F70073D03A /* bear.png in Resources */,
 				A758071428C4F7F70073D03A /* llama.png in Resources */,
+				A78B129D28C7C69C0015BBA1 /* countdown.json in Resources */,
 				A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */,
 				A758071928C4F7F70073D03A /* deer.png in Resources */,
 				A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */,
@@ -599,16 +643,17 @@
 			files = (
 				A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */,
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
+				A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
 				A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
-				A72E757E28C60BC00028CE8D /* TextField.swift in Sources */,
+				A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */,
 				A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */,
 				A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
-				A72E757928C5FD7A0028CE8D /* LightTextField.swift in Sources */,
+				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A78B128C28C784F40015BBA1 /* TadakInputAccessoryView.swift in Sources */,
 				A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */,
@@ -618,12 +663,15 @@
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
 				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
+				A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
+				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
+				A78B129528C7A99C0015BBA1 /* TypingSheet.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */,
 				A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */,
@@ -863,6 +911,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		A78B129928C7C59C0015BBA1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -870,6 +926,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		A78B129A28C7C59C0015BBA1 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A78B129928C7C59C0015BBA1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

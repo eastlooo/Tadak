@@ -11,8 +11,8 @@ import SnapKit
 final class ComposeParticipantsCell: UITableViewCell {
     
     // MARK: Properties
-    private let nameTextField: LightTextField = {
-        let textField = LightTextField()
+    private let nameTextField: TadakTextField = {
+        let textField = TadakTextField()
         textField.font = .notoSansKR(ofSize: 18, weight: .medium)
         textField.textAlignment = .center
         return textField

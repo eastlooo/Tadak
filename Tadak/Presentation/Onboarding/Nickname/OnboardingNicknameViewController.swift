@@ -27,8 +27,8 @@ final class OnboardingNicknameViewController: UIViewController {
         return button
     }()
     
-    private let textField: LightTextField = {
-        let textField = LightTextField()
+    private let textField: TadakTextField = {
+        let textField = TadakTextField()
         textField.textAlignment = .center
         textField.font = .systemFont(ofSize: 24.0, weight: .semibold)
         return textField
