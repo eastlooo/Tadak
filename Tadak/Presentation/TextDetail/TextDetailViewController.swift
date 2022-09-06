@@ -44,6 +44,7 @@ final class TextDetailViewController: UIViewController {
         textView.textContainer.lineFragmentPadding = -10
         textView.textContainerInset = .zero
         textView.indicatorStyle = .white
+        textView.isEditable = false
         return textView
     }()
     
@@ -92,7 +93,7 @@ final class TextDetailViewController: UIViewController {
             ])
         
         dashboard.typingMode = .practice
-        dashboard.record = 496
+        dashboard.record = 0
     }
     
     private func layout() {

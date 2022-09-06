@@ -15,8 +15,8 @@ final class TextDetailDashboardView: UIView {
         didSet { typingModeLabel.text = typingMode.description }
     }
     
-    var record: Int? {
-        didSet { updateRecord() }
+    var record: Int = 0 {
+        didSet { highestRecordValueLabel.text = "\(record)" }
     }
     
     private let topDivider = UIView()
@@ -39,16 +39,7 @@ final class TextDetailDashboardView: UIView {
         return label
     }()
     
-    private let recordStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = -8
-        stackView.alignment = .center
-        stackView.distribution = .fillProportionally
-        return stackView
-    }()
-    
-    private lazy var highestRecordLabel: UILabel = {
+    private let highestRecordLabel: UILabel = {
         let label = UILabel()
         label.text = "최고 기록"
         label.textColor = .white
@@ -56,7 +47,7 @@ final class TextDetailDashboardView: UIView {
         return label
     }()
     
-    private lazy var highestRecordValueLabel: UILabel = {
+    private let highestRecordValueLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .notoSansKR(ofSize: 36, weight: .black)
@@ -81,10 +72,18 @@ final class TextDetailDashboardView: UIView {
         topDivider.backgroundColor = .white
         bottomDivider.backgroundColor = .white
         
-        rewardImageView.image = .reward(3)
+        rewardImageView.image = .reward(1)
     }
     
     private func layout() {
+        let recordStackView = UIStackView(arrangedSubviews: [
+            highestRecordLabel, highestRecordValueLabel
+        ])
+        recordStackView.axis = .vertical
+        recordStackView.spacing = -8
+        recordStackView.alignment = .center
+        recordStackView.distribution = .fillProportionally
+        
         self.snp.makeConstraints {
             $0.height.equalTo(122)
         }
@@ -123,16 +122,5 @@ final class TextDetailDashboardView: UIView {
             $0.left.equalTo(rewardImageView.snp.right).offset(10)
             $0.bottom.equalTo(rewardImageView)
         }
-    }
-    
-    private func updateRecord() {
-        recordStackView.arrangedSubviews.forEach {
-            recordStackView.removeArrangedSubview($0)
-        }
-        
-        guard let record = record else { return }
-        highestRecordValueLabel.text = "\(record)"
-        recordStackView.addArrangedSubview(highestRecordLabel)
-        recordStackView.addArrangedSubview(highestRecordValueLabel)
     }
 }
