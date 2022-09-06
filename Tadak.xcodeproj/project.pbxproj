@@ -67,6 +67,9 @@
 		A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCF928C6FAB300D663D2 /* MyListViewController.swift */; };
 		A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCFC28C6FB5000D663D2 /* MyListCell.swift */; };
 		A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0228C6FD9600D663D2 /* MyListHeaderView.swift */; };
+		A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0428C70E8F00D663D2 /* TextDetailViewController.swift */; };
+		A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0728C7129300D663D2 /* TextDetailDashboardView.swift */; };
+		A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0928C7159B00D663D2 /* TypingMode.swift */; };
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
 		A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295BA28C4E1A500242836 /* SceneDelegate.swift */; };
 		A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */; };
@@ -133,6 +136,9 @@
 		A7B4CCF928C6FAB300D663D2 /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		A7B4CCFC28C6FB5000D663D2 /* MyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCell.swift; sourceTree = "<group>"; };
 		A7B4CD0228C6FD9600D663D2 /* MyListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListHeaderView.swift; sourceTree = "<group>"; };
+		A7B4CD0428C70E8F00D663D2 /* TextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDetailViewController.swift; sourceTree = "<group>"; };
+		A7B4CD0728C7129300D663D2 /* TextDetailDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDetailDashboardView.swift; sourceTree = "<group>"; };
+		A7B4CD0928C7159B00D663D2 /* TypingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingMode.swift; sourceTree = "<group>"; };
 		A7F295B528C4E1A500242836 /* Tadak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F295B828C4E1A500242836 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F295BA28C4E1A500242836 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -353,6 +359,39 @@
 			path = SubComponents;
 			sourceTree = "<group>";
 		};
+		A7B4CD0628C70E9500D663D2 /* TextDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A7B4CD0428C70E8F00D663D2 /* TextDetailViewController.swift */,
+				A7B4CD0D28C71D0200D663D2 /* SubComponents */,
+			);
+			path = TextDetail;
+			sourceTree = "<group>";
+		};
+		A7B4CD0B28C7160D00D663D2 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A7B4CD0928C7159B00D663D2 /* TypingMode.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A7B4CD0C28C7161500D663D2 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A7B4CD0B28C7160D00D663D2 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A7B4CD0D28C71D0200D663D2 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A7B4CD0728C7129300D663D2 /* TextDetailDashboardView.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
 		A7F295AC28C4E1A500242836 = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +414,7 @@
 				A7F295D428C4E5C000242836 /* Resource */,
 				A7F295D228C4E57B00242836 /* AppDelegate */,
 				A7F295D328C4E58500242836 /* Presentation */,
+				A7B4CD0C28C7161500D663D2 /* Domain */,
 				A75806F128C4EEEB0073D03A /* Utils */,
 			);
 			path = Tadak;
@@ -397,6 +437,7 @@
 				A72E758B28C646230028CE8D /* TadakMain */,
 				A72E75A428C66AD50028CE8D /* TadakList */,
 				A7B4CCFB28C6FABD00D663D2 /* MyList */,
+				A7B4CD0628C70E9500D663D2 /* TextDetail */,
 				A72E757A28C5FFB60028CE8D /* CommonComponents */,
 			);
 			path = Presentation;
@@ -533,6 +574,7 @@
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
+				A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A72E758428C622430028CE8D /* OnboardingNicknameInputAccessoryView.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
@@ -548,11 +590,13 @@
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
 				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
+				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */,
+				A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */,
 				A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 			);

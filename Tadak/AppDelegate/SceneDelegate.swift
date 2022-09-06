@@ -15,7 +15,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let viewContoller = MyListViewController()
+        let viewContoller = TextDetailViewController()
         window?.rootViewController = viewContoller
         window?.makeKeyAndVisible()
     }
