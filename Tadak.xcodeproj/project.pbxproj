@@ -67,6 +67,8 @@
 		A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129728C7C42E0015BBA1 /* CountdownView.swift */; };
 		A78B129B28C7C59C0015BBA1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A78B129A28C7C59C0015BBA1 /* Lottie */; };
 		A78B129D28C7C69C0015BBA1 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = A78B129C28C7C69C0015BBA1 /* countdown.json */; };
+		A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129F28C8BFD80015BBA1 /* Composition.swift */; };
+		A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B12A128C8C2140015BBA1 /* TadakUser.swift */; };
 		A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE428C6738100D663D2 /* BorderedButton.swift */; };
 		A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */; };
 		A7B4CCF028C681C200D663D2 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B4CCE928C681C200D663D2 /* crown.png */; };
@@ -147,6 +149,8 @@
 		A78B129428C7A99C0015BBA1 /* TypingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingSheet.swift; sourceTree = "<group>"; };
 		A78B129728C7C42E0015BBA1 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		A78B129C28C7C69C0015BBA1 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
+		A78B129F28C8BFD80015BBA1 /* Composition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
+		A78B12A128C8C2140015BBA1 /* TadakUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakUser.swift; sourceTree = "<group>"; };
 		A7B4CCE428C6738100D663D2 /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListCell.swift; sourceTree = "<group>"; };
 		A7B4CCE928C681C200D663D2 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
@@ -436,6 +440,8 @@
 			isa = PBXGroup;
 			children = (
 				A7B4CD0928C7159B00D663D2 /* TypingMode.swift */,
+				A78B12A128C8C2140015BBA1 /* TadakUser.swift */,
+				A78B129F28C8BFD80015BBA1 /* Composition.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
+				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
@@ -678,6 +685,7 @@
 				A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */,
 				A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */,
 				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
+				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
