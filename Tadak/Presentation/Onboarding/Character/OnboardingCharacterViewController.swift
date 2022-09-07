@@ -7,10 +7,14 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
+import RxCocoa
 
-final class OnboardingCharacterViewController: UIViewController {
+final class OnboardingCharacterViewController: UIViewController, View {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private var dataSource = (1...20).shuffled().shuffled().shuffled().map { $0 }
     
     private let collectionView = OnboardingCharacterCollectionView()
@@ -28,7 +32,6 @@ final class OnboardingCharacterViewController: UIViewController {
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy
-        collectionView.dataSource = self
     }
     
     private func layout() {
@@ -39,46 +42,19 @@ final class OnboardingCharacterViewController: UIViewController {
             $0.bottom.equalToSuperview()
         }
     }
-}
-
-// MARK: - UICollectionViewDataSource
-extension OnboardingCharacterViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataSource.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: OnboardingCharacterCell.reuseIdentifier,
-            for: indexPath
-        ) as! OnboardingCharacterCell
-        cell.bind(dataSource[indexPath.item])
-        return cell
-    }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: OnboardingCharacterHeaderView.reuseIdentifier,
-                for: indexPath
-            ) as! OnboardingCharacterHeaderView
-            return headerView
-            
-        case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: UICollectionView.elementKindSectionFooter,
-                withReuseIdentifier: OnboardingCharacterFooterView.reuseIdentifier,
-                for: indexPath
-            ) as! OnboardingCharacterFooterView
-            return footerView
-            
-        default: return UICollectionReusableView()
-        }
+    func bind(reactor: OnboardingCharacterViewReactor) {
+        collectionView.rx.itemSelected
+            .map { OnboardingCharacterViewReactor.Action.itemSelected($0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.items)
+            .bind(to: collectionView.rx.items)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap(\.characterID)
+            .bind(onNext: { print("DEBUG: selected ID \($0)") })
+            .disposed(by: disposeBag)
     }
 }

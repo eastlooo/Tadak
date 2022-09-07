@@ -15,7 +15,10 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let viewContoller = PracticeTypingViewController()
+        let useCase = OnboardingCharacterUseCase()
+        let reactor = OnboardingCharacterViewReactor(useCase: useCase)
+        let viewContoller = OnboardingCharacterViewController()
+        viewContoller.reactor = reactor
         window?.rootViewController = viewContoller
         window?.makeKeyAndVisible()
     }
