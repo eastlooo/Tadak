@@ -7,24 +7,25 @@
 
 import Foundation
 import ReactorKit
+import RxFlow
+import RxRelay
+import UIKit
 
-final class OnboardingCharacterViewReactor: Reactor {
-    
+final class OnboardingCharacterViewReactor: Reactor, Stepper {
+
     enum Action {
         case itemSelected(IndexPath)
     }
     
-    enum Mutation {
-        case findCharacterID(Int)
-    }
+    enum Mutation {}
     
     struct State {
         let items: [Int]
-        var characterID: Int?
     }
     
     private let useCase: OnboardingCharacterUseCaseProtocol
     let initialState: State
+    var steps = PublishRelay<Step>()
     
     init(useCase: OnboardingCharacterUseCaseProtocol) {
         self.useCase = useCase
@@ -34,17 +35,13 @@ final class OnboardingCharacterViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .itemSelected(indexPath):
-            return Observable.just(Mutation.findCharacterID(indexPath.row))
+            let characterID = useCase.findCharacterID(index: indexPath.row)
+            steps.accept(OnboardingStep.onboardingCharacterSelected(withCharacterID: characterID))
+            return .empty()
         }
-    }
-    
-    func reduce(state: State, mutation: Mutation) -> State {
-        var state = state
-        
-        switch mutation {
-        case .findCharacterID(let index):
-            state.characterID = useCase.findCharacterID(index: index)
-        }
-        return state
     }
 }
+
+
+
+

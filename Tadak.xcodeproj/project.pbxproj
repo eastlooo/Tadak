@@ -30,7 +30,15 @@
 		A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */; };
 		A74ACC5728C8FC6800780433 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC5628C8FC6800780433 /* ReactorKit */; };
 		A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC5828C8FD0300780433 /* OnboardingCharacterViewReactor.swift */; };
-		A74ACC5C28C9025C00780433 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC5B28C9025C00780433 /* RxCocoa */; };
+		A74ACC5F28C9B73B00780433 /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC5E28C9B73B00780433 /* RxFlow */; };
+		A74ACC6528C9CCED00780433 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC6428C9CCED00780433 /* RxCocoa */; };
+		A74ACC6728C9CCED00780433 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC6628C9CCED00780433 /* RxRelay */; };
+		A74ACC6928C9D05D00780433 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC6828C9D05D00780433 /* AppFlow.swift */; };
+		A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC6D28C9D16D00780433 /* OnboardingFlow.swift */; };
+		A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7028C9D21B00780433 /* AppStepper.swift */; };
+		A74ACC7328C9DFB100780433 /* AppStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7228C9DFB100780433 /* AppStep.swift */; };
+		A74ACC7528C9E0D900780433 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7428C9E0D900780433 /* OnboardingStep.swift */; };
+		A74ACC7728C9EE6E00780433 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7628C9EE6E00780433 /* NavigationController.swift */; };
 		A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75806EA28C4E75A0073D03A /* Assets.xcassets */; };
 		A75806ED28C4E93E0073D03A /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806EC28C4E93E0073D03A /* splash.png */; };
 		A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806EE28C4EEDA0073D03A /* UIColor++.swift */; };
@@ -94,7 +102,6 @@
 		A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0728C7129300D663D2 /* TextDetailDashboardView.swift */; };
 		A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0928C7159B00D663D2 /* TypingMode.swift */; };
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
-		A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295BA28C4E1A500242836 /* SceneDelegate.swift */; };
 		A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */; };
 		A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7F295D028C4E1C100242836 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -118,6 +125,12 @@
 		A74ACC3A28C8C6F000780433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterUseCase.swift; sourceTree = "<group>"; };
 		A74ACC5828C8FD0300780433 /* OnboardingCharacterViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterViewReactor.swift; sourceTree = "<group>"; };
+		A74ACC6828C9D05D00780433 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
+		A74ACC6D28C9D16D00780433 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
+		A74ACC7028C9D21B00780433 /* AppStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStepper.swift; sourceTree = "<group>"; };
+		A74ACC7228C9DFB100780433 /* AppStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStep.swift; sourceTree = "<group>"; };
+		A74ACC7428C9E0D900780433 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		A74ACC7628C9EE6E00780433 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -180,7 +193,6 @@
 		A7B4CD0928C7159B00D663D2 /* TypingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingMode.swift; sourceTree = "<group>"; };
 		A7F295B528C4E1A500242836 /* Tadak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F295B828C4E1A500242836 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A7F295BA28C4E1A500242836 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A7F295C428C4E1A600242836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7F295C628C4E1A600242836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tadak/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
 		A7F295CF28C4E1C100242836 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -192,13 +204,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74ACC6728C9CCED00780433 /* RxRelay in Frameworks */,
+				A74ACC6528C9CCED00780433 /* RxCocoa in Frameworks */,
 				A75806F828C4F3A80073D03A /* SnapKit in Frameworks */,
 				A74ACC3E28C8C84900780433 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				A78B129B28C7C59C0015BBA1 /* Lottie in Frameworks */,
+				A74ACC5F28C9B73B00780433 /* RxFlow in Frameworks */,
 				A74ACC5728C8FC6800780433 /* ReactorKit in Frameworks */,
 				A74ACC4428C8C84900780433 /* FirebaseRemoteConfig in Frameworks */,
 				A74ACC4228C8C84900780433 /* FirebaseFirestore in Frameworks */,
-				A74ACC5C28C9025C00780433 /* RxCocoa in Frameworks */,
 				A74ACC4028C8C84900780433 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +231,7 @@
 		A72E757A28C5FFB60028CE8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A74ACC7628C9EE6E00780433 /* NavigationController.swift */,
 				A72E757828C5FD7A0028CE8D /* TadakTextField.swift */,
 				A72E757F28C612E10028CE8D /* TextButton.swift */,
 				A7B4CCE428C6738100D663D2 /* BorderedButton.swift */,
@@ -280,6 +295,7 @@
 		A74ACC4528C8CA4E00780433 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A74ACC6A28C9D06100780433 /* Flows */,
 				A72E757A28C5FFB60028CE8D /* Views */,
 				A758072C28C50EF60073D03A /* Protocol */,
 			);
@@ -300,6 +316,25 @@
 				A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		A74ACC6A28C9D06100780433 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC7228C9DFB100780433 /* AppStep.swift */,
+				A74ACC6828C9D05D00780433 /* AppFlow.swift */,
+				A74ACC7028C9D21B00780433 /* AppStepper.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		A74ACC6F28C9D18F00780433 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC7428C9E0D900780433 /* OnboardingStep.swift */,
+				A74ACC6D28C9D16D00780433 /* OnboardingFlow.swift */,
+			);
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		A75806F028C4EEE00073D03A /* Extensions */ = {
@@ -331,6 +366,7 @@
 		A75806F328C4F1400073D03A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				A74ACC6F28C9D18F00780433 /* Flows */,
 				A758073128C5196F0073D03A /* Character */,
 				A72E757528C5F77F0028CE8D /* Nickname */,
 			);
@@ -538,7 +574,6 @@
 			isa = PBXGroup;
 			children = (
 				A7F295B828C4E1A500242836 /* AppDelegate.swift */,
-				A7F295BA28C4E1A500242836 /* SceneDelegate.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -546,6 +581,7 @@
 		A7F295D328C4E58500242836 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A74ACC4528C8CA4E00780433 /* Common */,
 				A75806F228C4F1390073D03A /* Splash */,
 				A75806F328C4F1400073D03A /* Onboarding */,
 				A72E758B28C646230028CE8D /* TadakMain */,
@@ -554,7 +590,6 @@
 				A7B4CD0628C70E9500D663D2 /* TextDetail */,
 				A78B127528C735140015BBA1 /* ComposeParticipants */,
 				A78B128F28C79D680015BBA1 /* Typing */,
-				A74ACC4528C8CA4E00780433 /* Common */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -600,7 +635,9 @@
 				A74ACC4128C8C84900780433 /* FirebaseFirestore */,
 				A74ACC4328C8C84900780433 /* FirebaseRemoteConfig */,
 				A74ACC5628C8FC6800780433 /* ReactorKit */,
-				A74ACC5B28C9025C00780433 /* RxCocoa */,
+				A74ACC5E28C9B73B00780433 /* RxFlow */,
+				A74ACC6428C9CCED00780433 /* RxCocoa */,
+				A74ACC6628C9CCED00780433 /* RxRelay */,
 			);
 			productName = Tadak;
 			productReference = A7F295B528C4E1A500242836 /* Tadak.app */;
@@ -636,7 +673,8 @@
 				A78B129928C7C59C0015BBA1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A74ACC5528C8FC6800780433 /* XCRemoteSwiftPackageReference "ReactorKit" */,
-				A74ACC5A28C9025C00780433 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A74ACC5D28C9B73B00780433 /* XCRemoteSwiftPackageReference "RxFlow" */,
+				A74ACC6328C9CCED00780433 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = A7F295B628C4E1A500242836 /* Products */;
 			projectDirPath = "";
@@ -712,6 +750,7 @@
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */,
 				A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */,
+				A74ACC7728C9EE6E00780433 /* NavigationController.swift in Sources */,
 				A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
@@ -730,20 +769,24 @@
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
+				A74ACC7328C9DFB100780433 /* AppStep.swift in Sources */,
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
 				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
+				A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
+				A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */,
+				A74ACC7528C9E0D900780433 /* OnboardingStep.swift in Sources */,
 				A78B129528C7A99C0015BBA1 /* TypingSheet.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */,
 				A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */,
-				A7F295BB28C4E1A500242836 /* SceneDelegate.swift in Sources */,
 				A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */,
 				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
+				A74ACC6928C9D05D00780433 /* AppFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,7 +1027,15 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		A74ACC5A28C9025C00780433 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		A74ACC5D28C9B73B00780433 /* XCRemoteSwiftPackageReference "RxFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		A74ACC6328C9CCED00780433 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -1036,10 +1087,20 @@
 			package = A74ACC5528C8FC6800780433 /* XCRemoteSwiftPackageReference "ReactorKit" */;
 			productName = ReactorKit;
 		};
-		A74ACC5B28C9025C00780433 /* RxCocoa */ = {
+		A74ACC5E28C9B73B00780433 /* RxFlow */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A74ACC5A28C9025C00780433 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = A74ACC5D28C9B73B00780433 /* XCRemoteSwiftPackageReference "RxFlow" */;
+			productName = RxFlow;
+		};
+		A74ACC6428C9CCED00780433 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74ACC6328C9CCED00780433 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
+		};
+		A74ACC6628C9CCED00780433 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74ACC6328C9CCED00780433 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
 		};
 		A75806F728C4F3A80073D03A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

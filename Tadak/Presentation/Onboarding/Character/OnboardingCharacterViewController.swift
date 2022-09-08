@@ -15,8 +15,6 @@ final class OnboardingCharacterViewController: UIViewController, View {
     // MARK: Properties
     var disposeBag = DisposeBag()
     
-    private var dataSource = (1...20).shuffled().shuffled().shuffled().map { $0 }
-    
     private let collectionView = OnboardingCharacterCollectionView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
@@ -51,10 +49,6 @@ final class OnboardingCharacterViewController: UIViewController, View {
         
         reactor.state.map(\.items)
             .bind(to: collectionView.rx.items)
-            .disposed(by: disposeBag)
-        
-        reactor.state.compactMap(\.characterID)
-            .bind(onNext: { print("DEBUG: selected ID \($0)") })
             .disposed(by: disposeBag)
     }
 }
