@@ -7,10 +7,17 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
+import RxCocoa
+import RxFlow
+import RxKeyboard
 
-final class OnboardingNicknameViewController: UIViewController {
+final class OnboardingNicknameViewController: UIViewController, Stepper {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    var steps = PublishRelay<Step>()
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -72,7 +79,8 @@ final class OnboardingNicknameViewController: UIViewController {
         titleLabel.text = "별명짓기"
         descriptionLabel.text = "별명을 입력해주세요 (2~6 글자)"
         registerButton.title = "등록하기"
-        characterButton.setImage(UIImage.character(11), for: .normal)
+        
+        scrollView.keyboardDismissMode = .onDrag
     }
     
     private func layout() {
@@ -116,5 +124,58 @@ final class OnboardingNicknameViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(20)
         }
+    }
+    
+    
+}
+
+// MARK: - Bind
+extension OnboardingNicknameViewController: View {
+    func bind(reactor: OnboardingNicknameViewReactor) {
+        
+        // MARK: Action
+        characterButton.rx.tap
+            .map(OnboardingNicknameViewReactor.Action.characterButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        textField.rx.text.orEmpty
+            .map(OnboardingNicknameViewReactor.Action.nicknameText)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        registerButton.rx.tap
+            .map(OnboardingNicknameViewReactor.Action.registerButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.state.map(\.characterID)
+            .map(UIImage.character)
+            .bind(to: characterButton.rx.image(for: .normal))
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.viewShouldPopToRootView)
+            .filter { $0 }
+            .map { _ in OnboardingStep.onboardingCharacterReselected }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.validate)
+            .bind(to: registerButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.correctedText)
+            .bind(to: textField.rx.text)
+            .disposed(by: disposeBag)
+        
+        // MARK: View
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [weak self] keyboardHeight in
+                guard let scrollView = self?.scrollView else { return }
+                scrollView.contentInset.bottom = keyboardHeight
+                scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+            })
+            .disposed(by: disposeBag)
     }
 }

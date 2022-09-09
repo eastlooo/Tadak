@@ -8,22 +8,22 @@
 import UIKit
 import SnapKit
 
-final class BorderedButton: UIControl {
+final class BorderedButton: UIButton {
     
     // MARK: Properties
     var title: String? {
-        didSet { titleLabel.text = title }
+        didSet { buttonTitleLabel.text = title }
     }
     
     var titleFont: UIFont? {
-        didSet { titleLabel.font = titleFont }
+        didSet { buttonTitleLabel.font = titleFont }
     }
     
     override var isEnabled: Bool {
         didSet { updateButtonState() }
     }
     
-    private let titleLabel = UILabel()
+    private let buttonTitleLabel = UILabel()
     
     // MARK: Lifecycle
     override init(frame: CGRect) {
@@ -49,14 +49,14 @@ final class BorderedButton: UIControl {
         self.layer.cornerRadius = 10
         self.layer.cornerCurve = .continuous
         
-        self.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
+        self.addSubview(buttonTitleLabel)
+        buttonTitleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
     
     private func updateButtonState() {
-        titleLabel.textColor = isEnabled ? .white : .customNavy
+        buttonTitleLabel.textColor = isEnabled ? .white : .customNavy
         self.backgroundColor = isEnabled ? .customNavy : .white
     }
 }

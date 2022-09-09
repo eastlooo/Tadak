@@ -23,10 +23,6 @@
 		A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A228C66A680028CE8D /* TadakListViewController.swift */; };
 		A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */; };
 		A74ACC3B28C8C6F000780433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A74ACC3A28C8C6F000780433 /* GoogleService-Info.plist */; };
-		A74ACC3E28C8C84900780433 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC3D28C8C84900780433 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		A74ACC4028C8C84900780433 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC3F28C8C84900780433 /* FirebaseAuth */; };
-		A74ACC4228C8C84900780433 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC4128C8C84900780433 /* FirebaseFirestore */; };
-		A74ACC4428C8C84900780433 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC4328C8C84900780433 /* FirebaseRemoteConfig */; };
 		A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */; };
 		A74ACC5728C8FC6800780433 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC5628C8FC6800780433 /* ReactorKit */; };
 		A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC5828C8FD0300780433 /* OnboardingCharacterViewReactor.swift */; };
@@ -39,6 +35,23 @@
 		A74ACC7328C9DFB100780433 /* AppStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7228C9DFB100780433 /* AppStep.swift */; };
 		A74ACC7528C9E0D900780433 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7428C9E0D900780433 /* OnboardingStep.swift */; };
 		A74ACC7728C9EE6E00780433 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7628C9EE6E00780433 /* NavigationController.swift */; };
+		A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7828C9F2D600780433 /* OnboardingNicknameViewReactor.swift */; };
+		A74ACC7B28C9F38500780433 /* OnboardingNicknameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC7A28C9F38500780433 /* OnboardingNicknameUseCase.swift */; };
+		A74ACC7E28CA0FAC00780433 /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC7D28CA0FAC00780433 /* RxKeyboard */; };
+		A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */; };
+		A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC8728CA2E6100780433 /* FirebaseError.swift */; };
+		A74ACC8F28CA353D00780433 /* Result++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC8E28CA353D00780433 /* Result++.swift */; };
+		A74ACC9428CA585000780433 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC9328CA585000780433 /* Endpoint.swift */; };
+		A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC9528CA590100780433 /* RequestResponsable.swift */; };
+		A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC9828CA5AA100780433 /* APIEndpoints.swift */; };
+		A74ACC9C28CA5E3900780433 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC9B28CA5E3900780433 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		A74ACC9E28CA5E3900780433 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC9D28CA5E3900780433 /* FirebaseDatabase */; };
+		A74ACCA028CA5E3900780433 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC9F28CA5E3900780433 /* FirebaseRemoteConfig */; };
+		A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACCA328CA6B1200780433 /* Encodable++.swift */; };
+		A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACCA528CA75AE00780433 /* DataSnapshot++.swift */; };
+		A74ACCA828CA760400780433 /* Dictionary++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACCA728CA760400780433 /* Dictionary++.swift */; };
+		A74ACCAA28CB018B00780433 /* AnyArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACCA928CB018B00780433 /* AnyArray.swift */; };
+		A74ACCAD28CB0A3C00780433 /* FirebaseDatabaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACCAC28CB0A3C00780433 /* FirebaseDatabaseRepository.swift */; };
 		A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75806EA28C4E75A0073D03A /* Assets.xcassets */; };
 		A75806ED28C4E93E0073D03A /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A75806EC28C4E93E0073D03A /* splash.png */; };
 		A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75806EE28C4EEDA0073D03A /* UIColor++.swift */; };
@@ -86,6 +99,7 @@
 		A78B129D28C7C69C0015BBA1 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = A78B129C28C7C69C0015BBA1 /* countdown.json */; };
 		A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129F28C8BFD80015BBA1 /* Composition.swift */; };
 		A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B12A128C8C2140015BBA1 /* TadakUser.swift */; };
+		A793962428CB318300D28D9F /* RegisterUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793962328CB318300D28D9F /* RegisterUserDTO.swift */; };
 		A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE428C6738100D663D2 /* BorderedButton.swift */; };
 		A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */; };
 		A7B4CCF028C681C200D663D2 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B4CCE928C681C200D663D2 /* crown.png */; };
@@ -131,6 +145,19 @@
 		A74ACC7228C9DFB100780433 /* AppStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStep.swift; sourceTree = "<group>"; };
 		A74ACC7428C9E0D900780433 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		A74ACC7628C9EE6E00780433 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		A74ACC7828C9F2D600780433 /* OnboardingNicknameViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameViewReactor.swift; sourceTree = "<group>"; };
+		A74ACC7A28C9F38500780433 /* OnboardingNicknameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameUseCase.swift; sourceTree = "<group>"; };
+		A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseService.swift; sourceTree = "<group>"; };
+		A74ACC8728CA2E6100780433 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
+		A74ACC8E28CA353D00780433 /* Result++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result++.swift"; sourceTree = "<group>"; };
+		A74ACC9328CA585000780433 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		A74ACC9528CA590100780433 /* RequestResponsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponsable.swift; sourceTree = "<group>"; };
+		A74ACC9828CA5AA100780433 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		A74ACCA328CA6B1200780433 /* Encodable++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable++.swift"; sourceTree = "<group>"; };
+		A74ACCA528CA75AE00780433 /* DataSnapshot++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSnapshot++.swift"; sourceTree = "<group>"; };
+		A74ACCA728CA760400780433 /* Dictionary++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary++.swift"; sourceTree = "<group>"; };
+		A74ACCA928CB018B00780433 /* AnyArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyArray.swift; sourceTree = "<group>"; };
+		A74ACCAC28CB0A3C00780433 /* FirebaseDatabaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseRepository.swift; sourceTree = "<group>"; };
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -176,6 +203,7 @@
 		A78B129C28C7C69C0015BBA1 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		A78B129F28C8BFD80015BBA1 /* Composition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
 		A78B12A128C8C2140015BBA1 /* TadakUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakUser.swift; sourceTree = "<group>"; };
+		A793962328CB318300D28D9F /* RegisterUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserDTO.swift; sourceTree = "<group>"; };
 		A7B4CCE428C6738100D663D2 /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListCell.swift; sourceTree = "<group>"; };
 		A7B4CCE928C681C200D663D2 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
@@ -205,15 +233,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A74ACC6728C9CCED00780433 /* RxRelay in Frameworks */,
+				A74ACC7E28CA0FAC00780433 /* RxKeyboard in Frameworks */,
 				A74ACC6528C9CCED00780433 /* RxCocoa in Frameworks */,
 				A75806F828C4F3A80073D03A /* SnapKit in Frameworks */,
-				A74ACC3E28C8C84900780433 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				A78B129B28C7C59C0015BBA1 /* Lottie in Frameworks */,
 				A74ACC5F28C9B73B00780433 /* RxFlow in Frameworks */,
+				A74ACC9E28CA5E3900780433 /* FirebaseDatabase in Frameworks */,
 				A74ACC5728C8FC6800780433 /* ReactorKit in Frameworks */,
-				A74ACC4428C8C84900780433 /* FirebaseRemoteConfig in Frameworks */,
-				A74ACC4228C8C84900780433 /* FirebaseFirestore in Frameworks */,
-				A74ACC4028C8C84900780433 /* FirebaseAuth in Frameworks */,
+				A74ACC9C28CA5E3900780433 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				A74ACCA028CA5E3900780433 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */,
+				A74ACC7828C9F2D600780433 /* OnboardingNicknameViewReactor.swift */,
 			);
 			path = Nickname;
 			sourceTree = "<group>";
@@ -314,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */,
+				A74ACC7A28C9F38500780433 /* OnboardingNicknameUseCase.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -337,12 +367,85 @@
 			path = Flows;
 			sourceTree = "<group>";
 		};
+		A74ACC8128CA2A5800780433 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		A74ACC8228CA2A6800780433 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC8928CA2E6600780433 /* Common */,
+				A74ACC9228CA583300780433 /* Endpoint */,
+				A74ACC8128CA2A5800780433 /* Firebase */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		A74ACC8928CA2E6600780433 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC8728CA2E6100780433 /* FirebaseError.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A74ACC8A28CA2FF500780433 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC8B28CA300300780433 /* Repositories */,
+				A74ACC9728CA5A8500780433 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A74ACC8B28CA300300780433 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACCAC28CB0A3C00780433 /* FirebaseDatabaseRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		A74ACC9228CA583300780433 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC9528CA590100780433 /* RequestResponsable.swift */,
+				A74ACC9328CA585000780433 /* Endpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		A74ACC9728CA5A8500780433 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A793962628CB341500D28D9F /* Endpoints */,
+				A793962528CB318A00D28D9F /* DTO+Mapping */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A74ACCAB28CB019000780433 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACCA928CB018B00780433 /* AnyArray.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		A75806F028C4EEE00073D03A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A75806EE28C4EEDA0073D03A /* UIColor++.swift */,
 				A758072428C4F83D0073D03A /* UIImage++.swift */,
 				A72E75A028C659A30028CE8D /* UIFont++.swift */,
+				A74ACC8E28CA353D00780433 /* Result++.swift */,
+				A74ACCA328CA6B1200780433 /* Encodable++.swift */,
+				A74ACCA728CA760400780433 /* Dictionary++.swift */,
+				A74ACCA528CA75AE00780433 /* DataSnapshot++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -351,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				A75806F028C4EEE00073D03A /* Extensions */,
+				A74ACCAB28CB019000780433 /* Protocols */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -466,6 +570,22 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		A793962528CB318A00D28D9F /* DTO+Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				A793962328CB318300D28D9F /* RegisterUserDTO.swift */,
+			);
+			path = "DTO+Mapping";
+			sourceTree = "<group>";
+		};
+		A793962628CB341500D28D9F /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC9828CA5AA100780433 /* APIEndpoints.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		A7B4CCE828C681A500D663D2 /* Reward */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +684,8 @@
 				A7F295D228C4E57B00242836 /* AppDelegate */,
 				A7F295D328C4E58500242836 /* Presentation */,
 				A7B4CD0C28C7161500D663D2 /* Domain */,
+				A74ACC8A28CA2FF500780433 /* Data */,
+				A74ACC8228CA2A6800780433 /* Infrastructure */,
 				A75806F128C4EEEB0073D03A /* Utils */,
 				A7F295D428C4E5C000242836 /* Resource */,
 			);
@@ -630,14 +752,14 @@
 			packageProductDependencies = (
 				A75806F728C4F3A80073D03A /* SnapKit */,
 				A78B129A28C7C59C0015BBA1 /* Lottie */,
-				A74ACC3D28C8C84900780433 /* FirebaseAnalyticsWithoutAdIdSupport */,
-				A74ACC3F28C8C84900780433 /* FirebaseAuth */,
-				A74ACC4128C8C84900780433 /* FirebaseFirestore */,
-				A74ACC4328C8C84900780433 /* FirebaseRemoteConfig */,
 				A74ACC5628C8FC6800780433 /* ReactorKit */,
 				A74ACC5E28C9B73B00780433 /* RxFlow */,
 				A74ACC6428C9CCED00780433 /* RxCocoa */,
 				A74ACC6628C9CCED00780433 /* RxRelay */,
+				A74ACC7D28CA0FAC00780433 /* RxKeyboard */,
+				A74ACC9B28CA5E3900780433 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				A74ACC9D28CA5E3900780433 /* FirebaseDatabase */,
+				A74ACC9F28CA5E3900780433 /* FirebaseRemoteConfig */,
 			);
 			productName = Tadak;
 			productReference = A7F295B528C4E1A500242836 /* Tadak.app */;
@@ -671,10 +793,11 @@
 			packageReferences = (
 				A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A78B129928C7C59C0015BBA1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A74ACC5528C8FC6800780433 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				A74ACC5D28C9B73B00780433 /* XCRemoteSwiftPackageReference "RxFlow" */,
 				A74ACC6328C9CCED00780433 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A74ACC7C28CA0FAC00780433 /* XCRemoteSwiftPackageReference "RxKeyboard" */,
+				A74ACC9A28CA5E3900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = A7F295B628C4E1A500242836 /* Products */;
 			projectDirPath = "";
@@ -752,7 +875,9 @@
 				A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */,
 				A74ACC7728C9EE6E00780433 /* NavigationController.swift in Sources */,
 				A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */,
+				A74ACCAA28CB018B00780433 /* AnyArray.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
+				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */,
@@ -764,17 +889,28 @@
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
 				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
+				A74ACCAD28CB0A3C00780433 /* FirebaseDatabaseRepository.swift in Sources */,
 				A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */,
 				A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */,
+				A74ACC9428CA585000780433 /* Endpoint.swift in Sources */,
+				A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A74ACC7328C9DFB100780433 /* AppStep.swift in Sources */,
+				A793962428CB318300D28D9F /* RegisterUserDTO.swift in Sources */,
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
+				A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */,
+				A74ACC7B28C9F38500780433 /* OnboardingNicknameUseCase.swift in Sources */,
+				A74ACC8F28CA353D00780433 /* Result++.swift in Sources */,
 				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
+				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
 				A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */,
+				A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */,
+				A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */,
+				A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
 				A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */,
 				A74ACC7528C9E0D900780433 /* OnboardingStep.swift in Sources */,
@@ -787,6 +923,7 @@
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 				A74ACC6928C9D05D00780433 /* AppFlow.swift in Sources */,
+				A74ACCA828CA760400780433 /* Dictionary++.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,14 +1148,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		A74ACC5528C8FC6800780433 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
@@ -1043,6 +1172,22 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		A74ACC7C28CA0FAC00780433 /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		A74ACC9A28CA5E3900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		A75806F628C4F3A80073D03A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1062,26 +1207,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A74ACC3D28C8C84900780433 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		A74ACC3F28C8C84900780433 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		A74ACC4128C8C84900780433 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		A74ACC4328C8C84900780433 /* FirebaseRemoteConfig */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A74ACC3C28C8C84900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfig;
-		};
 		A74ACC5628C8FC6800780433 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A74ACC5528C8FC6800780433 /* XCRemoteSwiftPackageReference "ReactorKit" */;
@@ -1101,6 +1226,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A74ACC6328C9CCED00780433 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
+		};
+		A74ACC7D28CA0FAC00780433 /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74ACC7C28CA0FAC00780433 /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
+		};
+		A74ACC9B28CA5E3900780433 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74ACC9A28CA5E3900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		A74ACC9D28CA5E3900780433 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74ACC9A28CA5E3900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		A74ACC9F28CA5E3900780433 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74ACC9A28CA5E3900780433 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 		A75806F728C4F3A80073D03A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

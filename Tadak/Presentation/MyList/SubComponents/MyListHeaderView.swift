@@ -11,7 +11,7 @@ import SnapKit
 final class MyListHeaderView: UIView {
     
     // MARK: Properties
-    private let addButton = UIControl()
+    private let addButton = UIButton()
     private let circleBackgroundView = UIView()
     
     private let plusImageView: UIImageView = {

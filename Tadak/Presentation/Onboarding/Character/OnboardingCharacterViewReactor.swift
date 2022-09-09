@@ -9,7 +9,6 @@ import Foundation
 import ReactorKit
 import RxFlow
 import RxRelay
-import UIKit
 
 final class OnboardingCharacterViewReactor: Reactor, Stepper {
 
@@ -23,15 +22,18 @@ final class OnboardingCharacterViewReactor: Reactor, Stepper {
         let items: [Int]
     }
     
-    private let useCase: OnboardingCharacterUseCaseProtocol
     let initialState: State
     var steps = PublishRelay<Step>()
+    
+    private let useCase: OnboardingCharacterUseCaseProtocol
     
     init(useCase: OnboardingCharacterUseCaseProtocol) {
         self.useCase = useCase
         self.initialState = State(items: useCase.characterIDs)
     }
-    
+}
+
+extension OnboardingCharacterViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .itemSelected(indexPath):
@@ -41,7 +43,3 @@ final class OnboardingCharacterViewReactor: Reactor, Stepper {
         }
     }
 }
-
-
-
-

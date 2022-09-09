@@ -18,14 +18,17 @@ final class OnboardingFlow: Flow {
         
         switch step {
         case .newUserEntered:
-            return navigationToCharacterSelectScreen()
+            return navigateToCharacterSelectScreen()
             
         case .onboardingCharacterSelected(let withCharacterID):
             return navigateToNicknameSettingScreen(with: withCharacterID)
+            
+        case .onboardingCharacterReselected:
+            return popToCharacterSelectScreen()
         }
     }
     
-    private func navigationToCharacterSelectScreen() -> FlowContributors {
+    private func navigateToCharacterSelectScreen() -> FlowContributors {
         let useCase = OnboardingCharacterUseCase()
         let reactor = OnboardingCharacterViewReactor(useCase: useCase)
         let viewController = OnboardingCharacterViewController()
@@ -40,8 +43,21 @@ final class OnboardingFlow: Flow {
     }
     
     private func navigateToNicknameSettingScreen(with characterID: Int) -> FlowContributors {
+        let useCase = OnboardingNicknameUseCase(characterID: characterID)
+        let reactor = OnboardingNicknameViewReactor(useCase: useCase)
         let viewController = OnboardingNicknameViewController()
+        viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: viewController
+            )
+        )
+    }
+    
+    private func popToCharacterSelectScreen() -> FlowContributors {
+        rootViewController.popToRootViewController(animated: false)
         return .none
     }
 }

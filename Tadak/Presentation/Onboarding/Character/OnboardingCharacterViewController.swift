@@ -10,7 +10,7 @@ import SnapKit
 import ReactorKit
 import RxCocoa
 
-final class OnboardingCharacterViewController: UIViewController, View {
+final class OnboardingCharacterViewController: UIViewController {
     
     // MARK: Properties
     var disposeBag = DisposeBag()
@@ -40,10 +40,13 @@ final class OnboardingCharacterViewController: UIViewController, View {
             $0.bottom.equalToSuperview()
         }
     }
-    
+}
+
+// MARK: - Bind
+extension OnboardingCharacterViewController: View {
     func bind(reactor: OnboardingCharacterViewReactor) {
         collectionView.rx.itemSelected
-            .map { OnboardingCharacterViewReactor.Action.itemSelected($0) }
+            .map(OnboardingCharacterViewReactor.Action.itemSelected)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

@@ -8,15 +8,15 @@
 import UIKit
 import SnapKit
 
-final class TextButton: UIControl {
+final class TextButton: UIButton {
     
     // MARK: Properties
     var title: String? {
-        didSet { titleLabel.text = title }
+        didSet { buttonTitleLabel.text = title }
     }
     
     var titleFont: UIFont? {
-        didSet { titleLabel.font = titleFont }
+        didSet { buttonTitleLabel.font = titleFont }
     }
     
     override var isEnabled: Bool {
@@ -26,7 +26,7 @@ final class TextButton: UIControl {
     private let colorType: ColorType
     private let hasAccessory: Bool
     
-    private let titleLabel: UILabel = {
+    private let buttonTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         return label
@@ -64,8 +64,8 @@ final class TextButton: UIControl {
         self.layer.cornerRadius = 12
         self.layer.cornerCurve = .continuous
         
-        self.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
+        self.addSubview(buttonTitleLabel)
+        buttonTitleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
         
