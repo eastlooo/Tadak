@@ -11,4 +11,5 @@ enum OnboardingStep: Step {
     case newUserEntered
     case onboardingCharacterSelected(withCharacterID: Int)
     case onboardingCharacterReselected
+    case nicknameDuplicated
 }

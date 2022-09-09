@@ -25,9 +25,14 @@ final class OnboardingFlow: Flow {
             
         case .onboardingCharacterReselected:
             return popToCharacterSelectScreen()
+            
+        case .nicknameDuplicated:
+            return presentNicknameDupicatedAlert()
         }
     }
-    
+}
+
+extension OnboardingFlow {
     private func navigateToCharacterSelectScreen() -> FlowContributors {
         let useCase = OnboardingCharacterUseCase()
         let reactor = OnboardingCharacterViewReactor(useCase: useCase)
@@ -58,6 +63,16 @@ final class OnboardingFlow: Flow {
     
     private func popToCharacterSelectScreen() -> FlowContributors {
         rootViewController.popToRootViewController(animated: false)
+        return .none
+    }
+    
+    private func presentNicknameDupicatedAlert() -> FlowContributors {
+        let message = "이미 사용 중인 별명이에요"
+        let alert = AlertController()
+        let alertAction = AlertAction(title: "확인", style: .default)
+        alert.alertMessage = message
+        alert.addAction(alertAction)
+        self.rootViewController.present(alert, animated: false)
         return .none
     }
 }

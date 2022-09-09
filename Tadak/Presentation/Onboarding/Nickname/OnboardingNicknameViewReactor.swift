@@ -72,7 +72,16 @@ extension OnboardingNicknameViewReactor {
             state.validate = validation
             
         case .checkNicknameDuplication(let result):
-            print("DEBUG: result \(result)")
+            switch result {
+            case .success(let duplication):
+                if duplication {
+                    steps.accept(OnboardingStep.nicknameDuplicated)
+                }
+                
+            case .failure(let error):
+                print("ERROR: \(error.localizedDescription)")
+            }
+            
             
         default:
             break

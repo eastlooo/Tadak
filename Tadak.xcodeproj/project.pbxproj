@@ -85,6 +85,8 @@
 		A78987D828CB66B40045D71C /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D728CB66B40045D71C /* Loader.swift */; };
 		A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D928CB70DC0045D71C /* UIWindow++.swift */; };
 		A78987E028CB7F560045D71C /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = A78987DF28CB7F560045D71C /* loader.json */; };
+		A78987E228CBA1410045D71C /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987E128CBA1410045D71C /* AlertController.swift */; };
+		A78987EB28CBA8340045D71C /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987EA28CBA8340045D71C /* AlertAction.swift */; };
 		A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127328C735100015BBA1 /* ComposeParticipantsViewController.swift */; };
 		A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */; };
 		A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127A28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift */; };
@@ -194,6 +196,8 @@
 		A78987D728CB66B40045D71C /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A78987D928CB70DC0045D71C /* UIWindow++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow++.swift"; sourceTree = "<group>"; };
 		A78987DF28CB7F560045D71C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
+		A78987E128CBA1410045D71C /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		A78987EA28CBA8340045D71C /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		A78B127328C735100015BBA1 /* ComposeParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsViewController.swift; sourceTree = "<group>"; };
 		A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonTypeNavigationView.swift; sourceTree = "<group>"; };
 		A78B127A28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsHeaderView.swift; sourceTree = "<group>"; };
@@ -268,14 +272,13 @@
 		A72E757A28C5FFB60028CE8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A74ACC7628C9EE6E00780433 /* NavigationController.swift */,
-				A72E757828C5FD7A0028CE8D /* TadakTextField.swift */,
-				A72E757F28C612E10028CE8D /* TextButton.swift */,
-				A7B4CCE428C6738100D663D2 /* BorderedButton.swift */,
-				A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */,
-				A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */,
-				A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */,
-				A78987D728CB66B40045D71C /* Loader.swift */,
+				A78987E728CBA7C60045D71C /* Overriding */,
+				A78987E828CBA7D40045D71C /* TextField */,
+				A78987E528CBA7B40045D71C /* Button */,
+				A78987E628CBA7B90045D71C /* NavigationView */,
+				A78987E928CBA7DF0045D71C /* InputAccessoryView */,
+				A78987E428CBA79E0045D71C /* Loader */,
+				A78987E328CBA7990045D71C /* Alert */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -530,6 +533,65 @@
 				A72E758528C634920028CE8D /* SubComponents */,
 			);
 			path = Character;
+			sourceTree = "<group>";
+		};
+		A78987E328CBA7990045D71C /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				A78987E128CBA1410045D71C /* AlertController.swift */,
+				A78987EA28CBA8340045D71C /* AlertAction.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		A78987E428CBA79E0045D71C /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				A78987D728CB66B40045D71C /* Loader.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		A78987E528CBA7B40045D71C /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				A72E757F28C612E10028CE8D /* TextButton.swift */,
+				A7B4CCE428C6738100D663D2 /* BorderedButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		A78987E628CBA7B90045D71C /* NavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */,
+				A78B127828C737990015BBA1 /* ListButtonTypeNavigationView.swift */,
+			);
+			path = NavigationView;
+			sourceTree = "<group>";
+		};
+		A78987E728CBA7C60045D71C /* Overriding */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACC7628C9EE6E00780433 /* NavigationController.swift */,
+			);
+			path = Overriding;
+			sourceTree = "<group>";
+		};
+		A78987E828CBA7D40045D71C /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				A72E757828C5FD7A0028CE8D /* TadakTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		A78987E928CBA7DF0045D71C /* InputAccessoryView */ = {
+			isa = PBXGroup;
+			children = (
+				A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */,
+			);
+			path = InputAccessoryView;
 			sourceTree = "<group>";
 		};
 		A78B127528C735140015BBA1 /* ComposeParticipants */ = {
@@ -882,6 +944,7 @@
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
 				A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */,
+				A78987EB28CBA8340045D71C /* AlertAction.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */,
@@ -902,6 +965,7 @@
 				A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */,
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
+				A78987E228CBA1410045D71C /* AlertController.swift in Sources */,
 				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
 				A78987D828CB66B40045D71C /* Loader.swift in Sources */,
 				A74ACCAD28CB0A3C00780433 /* FirebaseDatabaseRepository.swift in Sources */,
