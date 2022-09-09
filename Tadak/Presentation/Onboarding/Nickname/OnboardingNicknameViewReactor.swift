@@ -7,8 +7,10 @@
 
 import Foundation
 import ReactorKit
+import RxFlow
+import RxRelay
 
-final class OnboardingNicknameViewReactor: Reactor {
+final class OnboardingNicknameViewReactor: Reactor, Stepper {
     
     enum Action {
         case characterButtonTapped(Void)
@@ -17,7 +19,6 @@ final class OnboardingNicknameViewReactor: Reactor {
     }
     
     enum Mutation {
-        case popToRootView
         case correctText(String)
         case validateText(Bool)
         case checkNicknameDuplication(Result<Bool, Error>)
@@ -26,11 +27,11 @@ final class OnboardingNicknameViewReactor: Reactor {
     
     struct State {
         let characterID: Int
-        var viewShouldPopToRootView: Bool = false
         var validate: Bool = false
         var correctedText: String = ""
     }
     
+    var steps = PublishRelay<Step>()
     let initialState: State
     private let useCase: OnboardingNicknameUseCaseProtocol
     
@@ -44,7 +45,8 @@ extension OnboardingNicknameViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .characterButtonTapped:
-            return .just(.popToRootView)
+            steps.accept(OnboardingStep.onboardingCharacterReselected)
+            return .empty()
             
         case .nicknameText(let text):
             let correctedText = useCase.correctText(text)
@@ -63,9 +65,6 @@ extension OnboardingNicknameViewReactor {
         var state = state
         
         switch mutation {
-        case .popToRootView:
-            state.viewShouldPopToRootView = true
-            
         case .correctText(let text):
             state.correctedText = text
             

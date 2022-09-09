@@ -9,14 +9,12 @@ import UIKit
 import SnapKit
 import ReactorKit
 import RxCocoa
-import RxFlow
 import RxKeyboard
 
-final class OnboardingNicknameViewController: UIViewController, Stepper {
+final class OnboardingNicknameViewController: UIViewController {
     
     // MARK: Properties
     var disposeBag = DisposeBag()
-    var steps = PublishRelay<Step>()
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -153,12 +151,6 @@ extension OnboardingNicknameViewController: View {
         reactor.state.map(\.characterID)
             .map(UIImage.character)
             .bind(to: characterButton.rx.image(for: .normal))
-            .disposed(by: disposeBag)
-        
-        reactor.state.map(\.viewShouldPopToRootView)
-            .filter { $0 }
-            .map { _ in OnboardingStep.onboardingCharacterReselected }
-            .bind(to: steps)
             .disposed(by: disposeBag)
         
         reactor.state.map(\.validate)

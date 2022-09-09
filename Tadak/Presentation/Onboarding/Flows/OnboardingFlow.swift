@@ -51,7 +51,7 @@ final class OnboardingFlow: Flow {
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
-                withNextStepper: viewController
+                withNextStepper: reactor
             )
         )
     }
