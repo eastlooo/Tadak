@@ -11,7 +11,5 @@
 		<string>NotoSansKR-Light.otf</string>
 		<string>NotoSansKR-Thin.otf</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>UIWindow(windowScene: windowScene)</string>
 </dict>
 </plist>

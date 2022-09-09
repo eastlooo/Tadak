@@ -63,11 +63,11 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
             .map { result -> Result<Bool, Error> in
                 switch result {
                 case .success:
-                    return .success(false)
+                    return .success(true)
                     
                 case .failure(let error):
                     if let error = error as? FirebaseError, error == .emptyResult {
-                        return .success(true)
+                        return .success(false)
                     } else {
                         return .failure(error)
                     }
