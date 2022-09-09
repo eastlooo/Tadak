@@ -11,7 +11,7 @@ import FirebaseDatabase
 protocol Requestable {
     var path: String { get }
     var crud: CRUD { get }
-    var bodyParameters: Encodable? { get }
+    var object: Encodable? { get }
     var sampleData: Data? { get }
 }
 

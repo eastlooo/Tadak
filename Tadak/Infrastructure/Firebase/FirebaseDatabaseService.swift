@@ -12,6 +12,7 @@ import RxSwift
 protocol FirebaseDatabaseServiceProtocol {
     func request<R: Decodable, E: RequestResponsable>(with endpoint: E) -> Observable<Result<R, Error>> where E.Response == R
     func request<E>(with endpoint: E) -> Observable<Result<Void, Error>> where E : RequestResponsable, E.Response == Void
+    func request<E>(with endpoints: [E]) -> Observable<Result<Void, Error>> where E : RequestResponsable, E.Response == Void
 }
 
 final class FirebaseDatabaseService {
@@ -21,12 +22,90 @@ final class FirebaseDatabaseService {
     init(reference: DatabaseReference = Database.database().reference()) {
         self.reference = reference
     }
+}
+
+extension FirebaseDatabaseService: FirebaseDatabaseServiceProtocol {
     
-    private static func isArray<T>(type: T.Type) -> Bool {
+    func request<R: Decodable, E: RequestResponsable>(with endpoint: E) -> Observable<Result<R, Error>> where E.Response == R {
+        
+        switch endpoint.crud {
+        case .read:
+            return readObject(path: endpoint.path)
+            
+        default:
+            return .just(.failure(FirebaseError.invalidRequest))
+        }
+    }
+    
+    func request<E>(with endpoint: E) -> Observable<Result<Void, Error>> where E : RequestResponsable, E.Response == Void {
+        
+        switch endpoint.crud {
+        case .read:
+            return readObject(path: endpoint.path)
+            
+        case .delete:
+            return deleteObject(path: endpoint.path)
+            
+        case .create:
+            guard let dictionary = try? endpoint.object?.toDictionary() else {
+                return .just(.failure(FirebaseError.failedToDictionary))
+            }
+            return createObject(dictionary, path: endpoint.path)
+            
+        case .update:
+            guard let dictionary = try? endpoint.object?.toDictionary() else {
+                return .just(.failure(FirebaseError.failedToDictionary))
+            }
+            return updateObject(dictionary, path: endpoint.path)
+        }
+    }
+    
+    func request<E>(with endpoints: [E]) -> Observable<Result<Void, Error>> where E : RequestResponsable, E.Response == Void {
+        
+        let reference = self.reference
+        
+        guard !endpoints.contains(where: { $0.crud == .read }) else {
+            return .just(.failure(FirebaseError.invalidRequest))
+        }
+        
+        var newDictionary = [String: Any]()
+        for endpoint in endpoints {
+            switch endpoint.crud {
+            case .create, .update:
+                guard let dictionary = try? endpoint.object?.toDictionary() else {
+                    return .just(.failure(FirebaseError.failedToDictionary))
+                }
+                newDictionary[endpoint.path] = dictionary
+                
+            case .delete:
+                newDictionary[endpoint.path] = nil
+                
+            default:
+                break
+            }
+        }
+        
+        return Observable<Result<Void, Error>>.create { observer in
+            reference.updateChildValues(newDictionary) { error, _ in
+                if let error = error {
+                    observer.onNext(.failure(error))
+                    return
+                }
+
+                observer.onNext(.success(Void()))
+            }
+            
+            return Disposables.create()
+        }
+    }
+}
+
+private extension FirebaseDatabaseService {
+    static func isArray<T>(type: T.Type) -> Bool {
         return T.self is AnyArray.Type
     }
     
-    private func readData<R: Decodable>(path: String) -> Observable<Result<R, Error>> {
+    func readObject<R: Decodable>(path: String) -> Observable<Result<R, Error>> {
         let reference = reference.child(path)
         
         return Observable<Result<R, Error>>.create { observer in
@@ -56,7 +135,29 @@ final class FirebaseDatabaseService {
         }
     }
     
-    private func deleteData(path: String) -> Observable<Result<Void, Error>> {
+    func readObject(path: String) -> Observable<Result<Void, Error>> {
+        let reference = reference.child(path)
+        
+        return Observable<Result<Void, Error>>.create { observer in
+            reference.getData { error, snapshot in
+                if let error = error {
+                    observer.onNext(.failure(error))
+                    return
+                }
+                
+                guard let snapshot = snapshot, !(snapshot.value is NSNull) else {
+                    observer.onNext(.failure(FirebaseError.emptyResult))
+                    return
+                }
+                
+                observer.onNext(.success(Void()))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func deleteObject(path: String) -> Observable<Result<Void, Error>> {
         let reference = reference.child(path)
         
         return Observable<Result<Void, Error>>.create { observer in
@@ -73,7 +174,7 @@ final class FirebaseDatabaseService {
         }
     }
     
-    private func createData(_ dictionary: [String: Any], path: String) -> Observable<Result<Void, Error>> {
+    func createObject(_ dictionary: [String: Any], path: String) -> Observable<Result<Void, Error>> {
         let reference = reference.child(path)
         
         return Observable<Result<Void, Error>>.create { observer in
@@ -90,7 +191,7 @@ final class FirebaseDatabaseService {
         }
     }
     
-    private func updateData(_ dictionary: [String: Any], path: String) -> Observable<Result<Void, Error>> {
+    func updateObject(_ dictionary: [String: Any], path: String) -> Observable<Result<Void, Error>> {
         let reference = reference.child(path)
 
         return Observable<Result<Void, Error>>.create { observer in
@@ -106,41 +207,26 @@ final class FirebaseDatabaseService {
             return Disposables.create()
         }
     }
-}
-
-extension FirebaseDatabaseService: FirebaseDatabaseServiceProtocol {
     
-    func request<R: Decodable, E: RequestResponsable>(with endpoint: E) -> Observable<Result<R, Error>> where E.Response == R {
+    func updateObjects(_ dictionarys: [[String: Any]], paths: [String]) -> Observable<Result<Void, Error>> {
+        let reference = self.reference
         
-        switch endpoint.crud {
-        case .read:
-            return readData(path: endpoint.path)
-            
-        default:
-            return .just(.failure(FirebaseError.invalidRequest))
+        var newDictionary = [String: Any]()
+        for index in 0..<paths.count {
+            newDictionary[paths[index]] = dictionarys[index]
         }
-    }
-    
-    func request<E>(with endpoint: E) -> Observable<Result<Void, Error>> where E : RequestResponsable, E.Response == Void {
         
-        switch endpoint.crud {
-        case .delete:
-            return deleteData(path: endpoint.path)
-            
-        case .create:
-            guard let dictionary = try? endpoint.bodyParameters?.toDictionary() else {
-                return .just(.failure(FirebaseError.failedToDictionary))
+        return Observable<Result<Void, Error>>.create { observer in
+            reference.updateChildValues(newDictionary) { error, _ in
+                if let error = error {
+                    observer.onNext(.failure(error))
+                    return
+                }
+
+                observer.onNext(.success(Void()))
             }
-            return createData(dictionary, path: endpoint.path)
             
-        case .update:
-            guard let dictionary = try? endpoint.bodyParameters?.toDictionary() else {
-                return .just(.failure(FirebaseError.failedToDictionary))
-            }
-            return updateData(dictionary, path: endpoint.path)
-            
-        default:
-            return .just(.failure(FirebaseError.invalidRequest))
+            return Disposables.create()
         }
     }
 }

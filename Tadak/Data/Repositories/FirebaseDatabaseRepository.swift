@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 protocol FirebaseDatabaseRepositoryProtocol {
+    func checkNicknameDuplication(nickname: String) -> Observable<Result<Void, Error>>
     func registerUser(uid: String, nickname: String, characterID: Int) -> Observable<Result<Void, Error>>
 }
 
@@ -24,9 +25,17 @@ final class FirebaseDatabaseRepository {
 }
 
 extension FirebaseDatabaseRepository: FirebaseDatabaseRepositoryProtocol {
-    func registerUser(uid: String, nickname: String, characterID: Int) -> Observable<Result<Void, Error>> {
-        let requestDTO = RegisterUserRequestDTO(nickname: nickname, characterID: characterID)
-        let endpoint = APIEndpoints.registerUser(with: requestDTO, uid: uid)
+    
+    func checkNicknameDuplication(nickname: String) -> Observable<Result<Void, Error>> {
+        let endpoint = APIEndpoints.readNickname(nickname: nickname)
         return service.request(with: endpoint)
+    }
+    
+    func registerUser(uid: String, nickname: String, characterID: Int) -> Observable<Result<Void, Error>> {
+        let userRequestDTO = CreateUserRequestDTO(nickname: nickname, characterID: characterID)
+        let nicknameRequestDTO = CreateNicknameRequestDTO(uid: uid)
+        let userEndpoint = APIEndpoints.createUser(with: userRequestDTO, uid: uid)
+        let nicknameEndpoint = APIEndpoints.createNickname(with: nicknameRequestDTO, nickname: nickname)
+        return service.request(with: [userEndpoint, nicknameEndpoint])
     }
 }

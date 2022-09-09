@@ -13,7 +13,7 @@ final class Endpoint<R>: RequestResponsable {
     
     var path: String
     var crud: CRUD
-    var bodyParameters: Encodable?
+    var object: Encodable?
     var sampleData: Data?
     
     init(
@@ -24,7 +24,7 @@ final class Endpoint<R>: RequestResponsable {
     ) {
         self.path = path
         self.crud = crud
-        self.bodyParameters = bodyParameters
+        self.object = bodyParameters
         self.sampleData = sampleData
     }
 }

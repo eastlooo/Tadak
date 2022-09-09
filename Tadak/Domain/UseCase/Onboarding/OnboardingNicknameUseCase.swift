@@ -14,6 +14,8 @@ protocol OnboardingNicknameUseCaseProtocol: AnyObject {
     
     func checkValidate(_ text: String) -> Bool
     func correctText(_ text: String) -> String
+    
+    func checkNicknameDuplication() -> Observable<Result<Bool, Error>>
     func register() -> Observable<Result<Void, Error>>
 }
 
@@ -54,6 +56,23 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
         let correctedText = String(text[..<endIndex])
         self.nickname = correctedText
         return correctedText
+    }
+    
+    func checkNicknameDuplication() -> Observable<Result<Bool, Error>> {
+        return firebaseDatabaseRepository.checkNicknameDuplication(nickname: nickname)
+            .map { result -> Result<Bool, Error> in
+                switch result {
+                case .success:
+                    return .success(false)
+                    
+                case .failure(let error):
+                    if let error = error as? FirebaseError, error == .emptyResult {
+                        return .success(true)
+                    } else {
+                        return .failure(error)
+                    }
+                }
+            }
     }
     
     func register() -> Observable<Result<Void, Error>> {

@@ -20,6 +20,7 @@ final class OnboardingNicknameViewReactor: Reactor {
         case popToRootView
         case correctText(String)
         case validateText(Bool)
+        case checkNicknameDuplication(Result<Bool, Error>)
         case register(Result<Void, Error>)
     }
     
@@ -54,7 +55,7 @@ extension OnboardingNicknameViewReactor {
             )
              
         case .registerButtonTapped:
-            return useCase.register().map(Mutation.register)
+            return useCase.checkNicknameDuplication().map(Mutation.checkNicknameDuplication)
         }
     }
     
@@ -71,8 +72,11 @@ extension OnboardingNicknameViewReactor {
         case .validateText(let validation):
             state.validate = validation
             
-        case .register(let result):
+        case .checkNicknameDuplication(let result):
             print("DEBUG: result \(result)")
+            
+        default:
+            break
         }
         
         return state
