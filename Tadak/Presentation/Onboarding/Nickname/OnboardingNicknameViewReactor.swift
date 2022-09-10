@@ -21,14 +21,18 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
     enum Mutation {
         case correctText(String)
         case validateText(Bool)
-        case checkNicknameDuplication(Result<Bool, Error>)
+        case checkNicknameDuplication(Bool)
         case register(Result<Void, Error>)
+        case showLoader(Bool)
+        case debugError(String)
     }
     
     struct State {
         let characterID: Int
         var validate: Bool = false
         var correctedText: String = ""
+        var loaderAppear: Bool?
+        var nicknameIsDuplicated: Bool?
     }
     
     var steps = PublishRelay<Step>()
@@ -57,7 +61,10 @@ extension OnboardingNicknameViewReactor {
             )
              
         case .registerButtonTapped:
-            return useCase.checkNicknameDuplication().map(Mutation.checkNicknameDuplication)
+            return Observable.concat([
+                .just(.showLoader(true)),
+                self.flowWithregisterButtonTapped()
+            ])
         }
     }
     
@@ -71,22 +78,39 @@ extension OnboardingNicknameViewReactor {
         case .validateText(let validation):
             state.validate = validation
             
-        case .checkNicknameDuplication(let result):
-            switch result {
-            case .success(let duplication):
-                if duplication {
-                    steps.accept(OnboardingStep.nicknameDuplicated)
-                }
-                
-            case .failure(let error):
-                print("ERROR: \(error.localizedDescription)")
+        case .checkNicknameDuplication(let duplication):
+            if duplication {
+                steps.accept(OnboardingStep.nicknameDuplicated)
             }
             
+        case .showLoader(let appear):
+            state.loaderAppear = appear
             
         default:
             break
         }
         
         return state
+    }
+}
+
+private extension OnboardingNicknameViewReactor {
+    func flowWithregisterButtonTapped() -> Observable<Mutation> {
+        let checkNicknameDuplication = useCase.checkNicknameDuplication().share()
+        let registerUser = checkNicknameDuplication.compactMap(Self.getValue).filter { !$0 }
+            .map { _ in }.flatMap(useCase.startOnboardingFlow).share()
+        
+        return Observable.merge(
+            checkNicknameDuplication.compactMap(Self.getValue).filter { $0 }.flatMap { _ in
+                Observable.of(.showLoader(false), .checkNicknameDuplication(true))
+            },
+            checkNicknameDuplication.compactMap(Self.getErrorDescription).flatMap { description in
+                Observable.of(.showLoader(false), .debugError(description))
+            },
+            registerUser.compactMap(Self.getErrorDescription).flatMap { description in
+                Observable.of(.showLoader(false), .debugError(description))
+            },
+            registerUser.compactMap(Self.getValue).map { _ in .showLoader(false) }
+        )
     }
 }

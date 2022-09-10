@@ -78,7 +78,7 @@ extension FirebaseDatabaseService: FirebaseDatabaseServiceProtocol {
                 newDictionary[endpoint.path] = dictionary
                 
             case .delete:
-                newDictionary[endpoint.path] = nil
+                newDictionary[endpoint.path] = NSNull()
                 
             default:
                 break

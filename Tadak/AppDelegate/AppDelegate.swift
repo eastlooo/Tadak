@@ -27,15 +27,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         self.coordinator.rx.willNavigate.subscribe(onNext: { flow, step in
             print("DEBUG: will navigate to flow=\(flow) and step=\(step)")
         }).disposed(by: disposeBag)
-        
+
         self.coordinator.rx.didNavigate.subscribe(onNext: { flow, step in
             print("DEBUG: did navigate to flow=\(flow) and step=\(step)")
         }).disposed(by: disposeBag)
-        
+
         let appFlow = AppFlow()
         let appStepper = OneStepper(withSingleStep: AppStep.onboardingIsRequired)
         self.coordinator.coordinate(flow: appFlow, with: appStepper)
-        
+
         Flows.use(appFlow, when: .created) { root in
             window.rootViewController = root
             window.makeKeyAndVisible()

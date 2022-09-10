@@ -19,8 +19,3 @@ struct Composition: Identifiable, Equatable {
         lhs.id == rhs.id
     }
 }
-
-struct CompositionPage {
-    let version: String
-    let compositions: [Composition]
-}

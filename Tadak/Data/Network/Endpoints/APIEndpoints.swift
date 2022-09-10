@@ -9,10 +9,25 @@ import Foundation
 
 struct APIEndpoints {
     
+    static func createNickname(with requestDTO: CreateNicknameRequestDTO, nickname: String) -> Endpoint<Void> {
+        return .init(
+            path: "nicknames/\(nickname)",
+            crud: .create,
+            bodyParameters: requestDTO
+        )
+    }
+    
     static func readNickname(nickname: String) -> Endpoint<Void> {
         return .init(
             path: "nicknames/\(nickname)",
             crud: .read
+        )
+    }
+    
+    static func deleteNickname(nickname: String) -> Endpoint<Void> {
+        return .init(
+            path: "nicknames/\(nickname)",
+            crud: .delete
         )
     }
     
@@ -24,11 +39,10 @@ struct APIEndpoints {
         )
     }
     
-    static func createNickname(with requestDTO: CreateNicknameRequestDTO, nickname: String) -> Endpoint<Void> {
+    static func deleteUser(uid: String) -> Endpoint<Void> {
         return .init(
-            path: "nicknames/\(nickname)",
-            crud: .create,
-            bodyParameters: requestDTO
+            path: "users/\(uid)",
+            crud: .delete
         )
     }
 }

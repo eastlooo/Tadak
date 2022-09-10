@@ -161,7 +161,17 @@ extension OnboardingNicknameViewController: View {
             .bind(to: textField.rx.text)
             .disposed(by: disposeBag)
         
+        reactor.state.map(\.loaderAppear)
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .bind(to: Loader.rx.show)
+            .disposed(by: disposeBag)
+        
         // MARK: View
+        registerButton.rx.tap
+            .bind(to: view.rx.endEditing)
+            .disposed(by: disposeBag)
+        
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardHeight in
                 guard let scrollView = self?.scrollView else { return }

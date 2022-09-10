@@ -16,7 +16,7 @@ protocol OnboardingNicknameUseCaseProtocol: AnyObject {
     func correctText(_ text: String) -> String
     
     func checkNicknameDuplication() -> Observable<Result<Bool, Error>>
-    func register() -> Observable<Result<Void, Error>>
+    func startOnboardingFlow() -> Observable<Result<Void, Error>>
 }
 
 final class OnboardingNicknameUseCase {
@@ -27,14 +27,14 @@ final class OnboardingNicknameUseCase {
     let characterID: Int
     var nickname: String = ""
     
-    private let firebaseDatabaseRepository: FirebaseDatabaseRepositoryProtocol
+    private let userRepository: UserRepositoryProtocol
     
     init(
         characterID: Int,
-        firebaseDatabaseRepository: FirebaseDatabaseRepositoryProtocol = FirebaseDatabaseRepository()
+        userRepository: UserRepositoryProtocol = UserRepository()
     ) {
         self.characterID = characterID
-        self.firebaseDatabaseRepository = firebaseDatabaseRepository
+        self.userRepository = userRepository
     }
 }
 
@@ -59,7 +59,7 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
     }
     
     func checkNicknameDuplication() -> Observable<Result<Bool, Error>> {
-        return firebaseDatabaseRepository.checkNicknameDuplication(nickname: nickname)
+        return userRepository.checkNicknameDuplication(nickname: nickname)
             .map { result -> Result<Bool, Error> in
                 switch result {
                 case .success:
@@ -75,12 +75,43 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
             }
     }
     
-    func register() -> Observable<Result<Void, Error>> {
+    func startOnboardingFlow() -> Observable<Result<Void, Error>> {
         let uid = UUID().uuidString
-        return firebaseDatabaseRepository.registerUser(
+        
+        // 서버에 유저 저장
+        return userRepository.createUserOnServer(
             uid: uid,
             nickname: nickname,
             characterID: characterID
         )
+        // 성공 시 로컬에 유저 저장
+            .flatMap { [weak self] result -> Observable<Result<Void, Error>> in
+                guard let self = self else { return .just(.failure(NSError()))}
+                switch result {
+                case .success:
+                    return self.userRepository.saveUserOnStorage(
+                        uid: uid,
+                        nickname: self.nickname,
+                        characterID: self.characterID
+                    )
+
+                case .failure(let error):
+                    return .just(.failure(error))
+                }
+            }
+        // 실패 시 서버에 유저 삭제
+            .flatMap { [weak self] result -> Observable<Result<Void, Error>> in
+                guard let self = self else { return .just(.failure(NSError()))}
+                switch result {
+                case .success(let value):
+                    return .just(.success(value))
+
+                case .failure:
+                    return self.userRepository.deleteUserOnServer(
+                        uid: uid,
+                        nickname: self.nickname
+                    )
+                }
+            }
     }
 }
