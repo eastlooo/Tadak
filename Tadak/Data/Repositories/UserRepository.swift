@@ -54,7 +54,12 @@ extension UserRepository: UserRepositoryProtocol {
     }
     
     func saveUserOnStorage(uid: String, nickname: String, characterID: Int) -> Observable<Result<Void, Error>> {
-        let object = TadakUserObject(uid: uid, nickname: nickname, characterID: characterID)
+        let user = TadakUser(
+            id: uid,
+            nickname: nickname,
+            characterID: characterID
+        )
+        let object = TadakUserObject(tadakUser: user)
         return storage.save(object: object)
     }
 }

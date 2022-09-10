@@ -134,6 +134,9 @@
 		A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379328CCDEC0002ACAD5 /* TadakUserObject.swift */; };
 		A7CE379A28CCF620002ACAD5 /* TadakComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379928CCF620002ACAD5 /* TadakComposition.swift */; };
 		A7CE379C28CCF631002ACAD5 /* MyComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379B28CCF631002ACAD5 /* MyComposition.swift */; };
+		A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */; };
+		A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */; };
+		A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */; };
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
 		A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */; };
 		A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7F295D028C4E1C100242836 /* InfoPlist.strings */; };
@@ -255,6 +258,9 @@
 		A7CE379328CCDEC0002ACAD5 /* TadakUserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakUserObject.swift; sourceTree = "<group>"; };
 		A7CE379928CCF620002ACAD5 /* TadakComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakComposition.swift; sourceTree = "<group>"; };
 		A7CE379B28CCF631002ACAD5 /* MyComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyComposition.swift; sourceTree = "<group>"; };
+		A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakCompositionObject.swift; sourceTree = "<group>"; };
+		A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositionObject.swift; sourceTree = "<group>"; };
+		A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionObject.swift; sourceTree = "<group>"; };
 		A7F295B528C4E1A500242836 /* Tadak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F295B828C4E1A500242836 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F295C428C4E1A600242836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -825,6 +831,9 @@
 			isa = PBXGroup;
 			children = (
 				A7CE379328CCDEC0002ACAD5 /* TadakUserObject.swift */,
+				A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */,
+				A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */,
+				A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */,
 			);
 			path = "Object+Mapping";
 			sourceTree = "<group>";
@@ -1079,6 +1088,7 @@
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A74ACC7328C9DFB100780433 /* AppStep.swift in Sources */,
+				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
 				A793962428CB318300D28D9F /* UserDTO.swift in Sources */,
 				A7CE378028CC6037002ACAD5 /* RealmStorage.swift in Sources */,
 				A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */,
@@ -1087,9 +1097,11 @@
 				A74ACC7B28C9F38500780433 /* OnboardingNicknameUseCase.swift in Sources */,
 				A74ACC8F28CA353D00780433 /* Result++.swift in Sources */,
 				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
+				A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
+				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
 				A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */,
 				A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */,
 				A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */,

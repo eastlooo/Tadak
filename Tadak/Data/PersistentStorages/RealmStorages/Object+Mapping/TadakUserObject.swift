@@ -9,15 +9,19 @@ import Foundation
 import RealmSwift
 
 final class TadakUserObject: Object {
+    
     @Persisted(primaryKey: true) var uid: String
     @Persisted var nickname: String
     @Persisted var characterID: Int
     
-    convenience init(uid: String, nickname: String, characterID: Int) {
+    convenience init(
+        tadakUser: TadakUser
+    ) {
         self.init()
-        self.uid = uid
-        self.nickname = nickname
-        self.characterID = characterID
+        
+        self.uid = tadakUser.id
+        self.nickname = tadakUser.nickname
+        self.characterID = tadakUser.characterID
     }
 }
 
