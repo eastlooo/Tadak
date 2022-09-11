@@ -22,7 +22,7 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
         case correctText(String)
         case validateText(Bool)
         case checkNicknameDuplication(Bool)
-        case register(Result<Void, Error>)
+        case registerUser(TadakUser)
         case showLoader(Bool)
         case debugError(String)
     }
@@ -86,8 +86,11 @@ extension OnboardingNicknameViewReactor {
         case .showLoader(let appear):
             state.loaderAppear = appear
             
-        default:
-            break
+        case .debugError(let description):
+            print("ERROR: \(description)")
+            
+        case .registerUser(let user):
+            steps.accept(OnboardingStep.onboardingIsFinished(user: user))
         }
         
         return state
@@ -110,7 +113,9 @@ private extension OnboardingNicknameViewReactor {
             registerUser.compactMap(Self.getErrorDescription).flatMap { description in
                 Observable.of(.showLoader(false), .debugError(description))
             },
-            registerUser.compactMap(Self.getValue).map { _ in .showLoader(false) }
+            registerUser.compactMap(Self.getValue).flatMap { user in
+                Observable.of(.showLoader(false), .registerUser(user))
+            }
         )
     }
 }

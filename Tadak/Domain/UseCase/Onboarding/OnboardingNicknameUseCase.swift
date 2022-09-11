@@ -16,7 +16,7 @@ protocol OnboardingNicknameUseCaseProtocol: AnyObject {
     func correctText(_ text: String) -> String
     
     func checkNicknameDuplication() -> Observable<Result<Bool, Error>>
-    func startOnboardingFlow() -> Observable<Result<Void, Error>>
+    func startOnboardingFlow() -> Observable<Result<TadakUser, Error>>
 }
 
 final class OnboardingNicknameUseCase {
@@ -75,8 +75,9 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
             }
     }
     
-    func startOnboardingFlow() -> Observable<Result<Void, Error>> {
+    func startOnboardingFlow() -> Observable<Result<TadakUser, Error>> {
         let uid = UUID().uuidString
+        let user = TadakUser(id: uid, nickname: nickname, characterID: characterID)
         
         // 서버에 유저 저장
         return userRepository.createUserOnServer(
@@ -94,6 +95,7 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
                         nickname: self.nickname,
                         characterID: self.characterID
                     )
+                    
 
                 case .failure(let error):
                     return .just(.failure(error))
@@ -103,14 +105,21 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
             .flatMap { [weak self] result -> Observable<Result<Void, Error>> in
                 guard let self = self else { return .just(.failure(NSError()))}
                 switch result {
-                case .success(let value):
-                    return .just(.success(value))
+                case .success:
+                    return .just(.success(Void()))
 
                 case .failure:
                     return self.userRepository.deleteUserOnServer(
                         uid: uid,
                         nickname: self.nickname
                     )
+                }
+            }
+        // 유저 데이터 리턴
+            .map { result -> Result<TadakUser, Error> in
+                switch result {
+                case .success: return .success(user)
+                case .failure(let error): return .failure(error)
                 }
             }
     }

@@ -5,13 +5,18 @@
 //  Created by 정동천 on 2022/09/08.
 //
 
+import UIKit
 import RxFlow
 
 final class OnboardingFlow: Flow {
 
     var root: Presentable { self.rootViewController }
     
-    private lazy var rootViewController = NavigationController()
+    private let rootViewController: UINavigationController
+    
+    init(rootViewController: UINavigationController) {
+        self.rootViewController = rootViewController
+    }
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? OnboardingStep else { return .none }
@@ -28,6 +33,9 @@ final class OnboardingFlow: Flow {
             
         case .nicknameDuplicated:
             return presentNicknameDupicatedAlert()
+            
+        case .onboardingIsFinished(let user):
+            return switchToMainFlow(user: user)
         }
     }
 }
@@ -74,6 +82,20 @@ extension OnboardingFlow {
         alert.addAction(alertAction)
         self.rootViewController.present(alert, animated: false)
         return .none
+    }
+    
+    private func switchToMainFlow(user: TadakUser) -> FlowContributors {
+        let mainFlow = MainFlow(rootViewController: self.rootViewController)
+        
+        Flows.use(mainFlow, when: .created) { _ in }
+        
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: mainFlow,
+                withNextStepper: OneStepper(
+                    withSingleStep: MainStep.initializationIsNeeded(user: user))
+            )
+        )
     }
 }
 

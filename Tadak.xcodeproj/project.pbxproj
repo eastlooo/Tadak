@@ -137,6 +137,10 @@
 		A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */; };
 		A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */; };
 		A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */; };
+		A7CE37A428CD0BB9002ACAD5 /* InitializationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A328CD0BB9002ACAD5 /* InitializationViewController.swift */; };
+		A7CE37A628CD0EF4002ACAD5 /* WelcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A528CD0EF4002ACAD5 /* WelcomingView.swift */; };
+		A7CE37AB28CDA99C002ACAD5 /* MainStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37AA28CDA99C002ACAD5 /* MainStep.swift */; };
+		A7CE37AD28CDA9A3002ACAD5 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37AC28CDA9A3002ACAD5 /* MainFlow.swift */; };
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
 		A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */; };
 		A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7F295D028C4E1C100242836 /* InfoPlist.strings */; };
@@ -261,6 +265,10 @@
 		A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakCompositionObject.swift; sourceTree = "<group>"; };
 		A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositionObject.swift; sourceTree = "<group>"; };
 		A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionObject.swift; sourceTree = "<group>"; };
+		A7CE37A328CD0BB9002ACAD5 /* InitializationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewController.swift; sourceTree = "<group>"; };
+		A7CE37A528CD0EF4002ACAD5 /* WelcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomingView.swift; sourceTree = "<group>"; };
+		A7CE37AA28CDA99C002ACAD5 /* MainStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStep.swift; sourceTree = "<group>"; };
+		A7CE37AC28CDA9A3002ACAD5 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		A7F295B528C4E1A500242836 /* Tadak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F295B828C4E1A500242836 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F295C428C4E1A600242836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -326,19 +334,22 @@
 			path = SubComponents;
 			sourceTree = "<group>";
 		};
-		A72E758B28C646230028CE8D /* TadakMain */ = {
+		A72E758B28C646230028CE8D /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A72E758928C6461F0028CE8D /* TadakMainViewController.swift */,
+				A7CE37A928CDA993002ACAD5 /* Flows */,
+				A7CE37A728CDA97B002ACAD5 /* Initialization */,
+				A7CE37A828CDA985002ACAD5 /* Main */,
 				A72E758E28C6475D0028CE8D /* SubComponents */,
 			);
-			path = TadakMain;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		A72E758E28C6475D0028CE8D /* SubComponents */ = {
 			isa = PBXGroup;
 			children = (
 				A72E758C28C647590028CE8D /* TadakMainBackgroundView.swift */,
+				A7CE37A528CD0EF4002ACAD5 /* WelcomingView.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -838,6 +849,31 @@
 			path = "Object+Mapping";
 			sourceTree = "<group>";
 		};
+		A7CE37A728CDA97B002ACAD5 /* Initialization */ = {
+			isa = PBXGroup;
+			children = (
+				A7CE37A328CD0BB9002ACAD5 /* InitializationViewController.swift */,
+			);
+			path = Initialization;
+			sourceTree = "<group>";
+		};
+		A7CE37A828CDA985002ACAD5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A72E758928C6461F0028CE8D /* TadakMainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A7CE37A928CDA993002ACAD5 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				A7CE37AA28CDA99C002ACAD5 /* MainStep.swift */,
+				A7CE37AC28CDA9A3002ACAD5 /* MainFlow.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
 		A7F295AC28C4E1A500242836 = {
 			isa = PBXGroup;
 			children = (
@@ -882,7 +918,7 @@
 				A74ACC4528C8CA4E00780433 /* Common */,
 				A75806F228C4F1390073D03A /* Splash */,
 				A75806F328C4F1400073D03A /* Onboarding */,
-				A72E758B28C646230028CE8D /* TadakMain */,
+				A72E758B28C646230028CE8D /* Main */,
 				A72E75A428C66AD50028CE8D /* TadakList */,
 				A7B4CCFB28C6FABD00D663D2 /* MyList */,
 				A7B4CD0628C70E9500D663D2 /* TextDetail */,
@@ -1045,6 +1081,7 @@
 			files = (
 				A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */,
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
+				A7CE37AD28CDA9A3002ACAD5 /* MainFlow.swift in Sources */,
 				A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
@@ -1081,10 +1118,12 @@
 				A78987D828CB66B40045D71C /* Loader.swift in Sources */,
 				A74ACCAD28CB0A3C00780433 /* UserRepository.swift in Sources */,
 				A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */,
+				A7CE37A628CD0EF4002ACAD5 /* WelcomingView.swift in Sources */,
 				A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */,
 				A74ACC9428CA585000780433 /* Endpoint.swift in Sources */,
 				A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
+				A7CE37AB28CDA99C002ACAD5 /* MainStep.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* TextDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A74ACC7328C9DFB100780433 /* AppStep.swift in Sources */,
@@ -1117,6 +1156,7 @@
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */,
 				A7B4CD0828C7129300D663D2 /* TextDetailDashboardView.swift in Sources */,
+				A7CE37A428CD0BB9002ACAD5 /* InitializationViewController.swift in Sources */,
 				A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */,
 				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,

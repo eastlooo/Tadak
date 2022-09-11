@@ -19,25 +19,39 @@ final class AppFlow: Flow {
         
         switch step {
         case .onboardingIsRequired:
-            return navigateToOnboardingScreen()
+            return switchToOnboardingFlow()
+            
+        case .userIsRegisterd(let user):
+            return switchToMainFlow(user: user)
         }
     }
-    
-    private func navigateToOnboardingScreen() -> FlowContributors {
-        let onboardingFlow = OnboardingFlow()
+}
+
+private extension AppFlow {
+    func switchToOnboardingFlow() -> FlowContributors {
+        let onboardingFlow = OnboardingFlow(rootViewController: self.rootViewController)
         
-        Flows.use(onboardingFlow, when: .created) { [weak self] root in
-            root.modalPresentationStyle = .fullScreen
-            DispatchQueue.main.async {
-                self?.rootViewController.present(root, animated: false)
-            }
-        }
+        Flows.use(onboardingFlow, when: .created) { _ in }
         
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: onboardingFlow,
                 withNextStepper: OneStepper(
                     withSingleStep: OnboardingStep.newUserEntered)
+            )
+        )
+    }
+    
+    func switchToMainFlow(user: TadakUser) -> FlowContributors {
+        let mainFlow = MainFlow(rootViewController: self.rootViewController)
+        
+        Flows.use(mainFlow, when: .created) { _ in }
+        
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: mainFlow,
+                withNextStepper: OneStepper(
+                    withSingleStep: MainStep.initializationIsNeeded(user: user))
             )
         )
     }
