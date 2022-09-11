@@ -8,5 +8,6 @@
 import Foundation
 
 struct CreateNicknameRequestDTO: Encodable {
+    
     let uid: String
 }

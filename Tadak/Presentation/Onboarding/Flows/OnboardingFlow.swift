@@ -13,9 +13,17 @@ final class OnboardingFlow: Flow {
     var root: Presentable { self.rootViewController }
     
     private let rootViewController: UINavigationController
+    private let userRepository: UserRepositoryProtocol
+    private let compositionRepository: CompositionRepositoryProtocol
     
-    init(rootViewController: UINavigationController) {
+    init(
+        rootViewController: UINavigationController,
+        userRepository: UserRepositoryProtocol,
+        compositionRepository: CompositionRepositoryProtocol
+    ) {
         self.rootViewController = rootViewController
+        self.userRepository = userRepository
+        self.compositionRepository = compositionRepository
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -56,7 +64,10 @@ extension OnboardingFlow {
     }
     
     private func navigateToNicknameSettingScreen(with characterID: Int) -> FlowContributors {
-        let useCase = OnboardingNicknameUseCase(characterID: characterID)
+        let useCase = OnboardingNicknameUseCase(
+            characterID: characterID,
+            userRepository: self.userRepository
+        )
         let reactor = OnboardingNicknameViewReactor(useCase: useCase)
         let viewController = OnboardingNicknameViewController()
         viewController.reactor = reactor
@@ -80,12 +91,17 @@ extension OnboardingFlow {
         let alertAction = AlertAction(title: "확인", style: .default)
         alert.alertMessage = message
         alert.addAction(alertAction)
+        alert.modalPresentationStyle = .overFullScreen
         self.rootViewController.present(alert, animated: false)
         return .none
     }
     
     private func switchToMainFlow(user: TadakUser) -> FlowContributors {
-        let mainFlow = MainFlow(rootViewController: self.rootViewController)
+        let mainFlow = MainFlow(
+            rootViewController: self.rootViewController,
+            userRepository: self.userRepository,
+            compositionRepository: self.compositionRepository
+        )
         
         Flows.use(mainFlow, when: .created) { _ in }
         
@@ -93,7 +109,7 @@ extension OnboardingFlow {
             flowContributor: .contribute(
                 withNextPresentable: mainFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: MainStep.initializationIsNeeded(user: user))
+                    withSingleStep: MainStep.initializationIsNeeded)
             )
         )
     }

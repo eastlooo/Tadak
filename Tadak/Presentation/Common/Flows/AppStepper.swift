@@ -15,18 +15,21 @@ final class AppStepper: Stepper {
     let steps = PublishRelay<Step>()
     
     private let disposeBog = DisposeBag()
+
+    private let userRepository: UserRepositoryProtocol
     
-    private let storage: Storage
-    
-    init(storage: Storage = try! RealmStorage()) {
-        self.storage = storage
+    init(userRepository: UserRepositoryProtocol) {
+        self.userRepository = userRepository
     }
 
     func readyToEmitSteps() {
-        storage.fetch(TadakUserObject.self, predicate: nil, sorted: nil)
+        userRepository.fetchUser()
             .take(1)
-            .map(\.first)
-            .map { $0?.toDomain() }
+            .map { result -> TadakUser? in
+                switch result {
+                case .success(let user): return user
+                case .failure: return nil }
+            }
             .map { user -> AppStep in
                 if let user = user { return .userIsRegisterd(user: user) }
                 return .onboardingIsRequired

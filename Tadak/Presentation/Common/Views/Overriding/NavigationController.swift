@@ -24,12 +24,12 @@ final class NavigationController: UINavigationController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     // MARK: Helpers
     private func configure() {
-        navigationBar.isHidden = true
+        setNavigationBarHidden(true, animated: false)
         interactivePopGestureRecognizer?.isEnabled = false
     }
 }

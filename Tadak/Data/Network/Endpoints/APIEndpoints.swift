@@ -9,6 +9,7 @@ import Foundation
 
 struct APIEndpoints {
     
+    // MARK: Nickname
     static func createNickname(with requestDTO: CreateNicknameRequestDTO, nickname: String) -> Endpoint<Void> {
         return .init(
             path: "nicknames/\(nickname)",
@@ -31,6 +32,7 @@ struct APIEndpoints {
         )
     }
     
+    // MARK: User
     static func createUser(with requestDTO: CreateUserRequestDTO, uid: String) -> Endpoint<Void> {
         return .init(
             path: "users/\(uid)",
@@ -39,10 +41,32 @@ struct APIEndpoints {
         )
     }
     
+    static func readUser(uid: String) -> Endpoint<ReadUserResponseDTO> {
+        return .init(
+            path: "users/\(uid)",
+            crud: .read
+        )
+    }
+    
     static func deleteUser(uid: String) -> Endpoint<Void> {
         return .init(
             path: "users/\(uid)",
             crud: .delete
+        )
+    }
+    
+    // MARK: Composition
+    static func readCompositions() -> Endpoint<[CompositionResponseDTO]> {
+        return .init(
+            path: "tadakComposition/compositions",
+            crud: .read
+        )
+    }
+    
+    static func readTadakCompositionVersion() -> Endpoint<String> {
+        return .init(
+            path: "tadakComposition/version",
+            crud: .read
         )
     }
 }

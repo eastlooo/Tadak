@@ -31,7 +31,7 @@ final class OnboardingNicknameUseCase {
     
     init(
         characterID: Int,
-        userRepository: UserRepositoryProtocol = UserRepository()
+        userRepository: UserRepositoryProtocol
     ) {
         self.characterID = characterID
         self.userRepository = userRepository
@@ -76,51 +76,31 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
     }
     
     func startOnboardingFlow() -> Observable<Result<TadakUser, Error>> {
-        let uid = UUID().uuidString
-        let user = TadakUser(id: uid, nickname: nickname, characterID: characterID)
         
-        // 서버에 유저 저장
-        return userRepository.createUserOnServer(
-            uid: uid,
-            nickname: nickname,
-            characterID: characterID
-        )
-        // 성공 시 로컬에 유저 저장
-            .flatMap { [weak self] result -> Observable<Result<Void, Error>> in
+        var userId = ""
+        let nickname = self.nickname
+        let characterID = self.characterID
+        
+        // 익명 가입
+        return userRepository.signInUserAnonymously()
+        // 성공 시 유저 서버 및 로컬에 저장
+            .flatMapSuccessCase { [weak self] uid -> Observable<Result<Void, Error>> in
+                userId = uid
                 guard let self = self else { return .just(.failure(NSError()))}
-                switch result {
-                case .success:
-                    return self.userRepository.saveUserOnStorage(
-                        uid: uid,
-                        nickname: self.nickname,
-                        characterID: self.characterID
-                    )
-                    
-
-                case .failure(let error):
-                    return .just(.failure(error))
-                }
+                return self.userRepository.createUser(
+                    uid: uid,
+                    nickname: nickname,
+                    characterID: characterID
+                )
             }
-        // 실패 시 서버에 유저 삭제
-            .flatMap { [weak self] result -> Observable<Result<Void, Error>> in
+        // 실패 시 유저 가입, 서버 및 로컬 삭제
+            .doFailureCase { [weak self] () -> Observable<Result<Void, Error>> in
                 guard let self = self else { return .just(.failure(NSError()))}
-                switch result {
-                case .success:
-                    return .just(.success(Void()))
-
-                case .failure:
-                    return self.userRepository.deleteUserOnServer(
-                        uid: uid,
-                        nickname: self.nickname
-                    )
-                }
+                return self.userRepository.deleteUser(uid: userId, nickname: nickname)
             }
         // 유저 데이터 리턴
-            .map { result -> Result<TadakUser, Error> in
-                switch result {
-                case .success: return .success(user)
-                case .failure(let error): return .failure(error)
-                }
+            .mapSuccessCase { _ -> TadakUser in
+                return .init(id: userId, nickname: nickname, characterID: characterID)
             }
     }
 }

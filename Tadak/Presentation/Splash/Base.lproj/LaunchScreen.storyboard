@@ -16,19 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="uKl-lK-VwZ">
-                                <rect key="frame" x="127" y="358.5" width="160" height="129"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="grq-KM-cnX">
+                                <rect key="frame" x="137" y="363" width="140" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="5dW-nS-iaM"/>
-                                    <constraint firstAttribute="height" constant="129" id="90G-Cf-z7u"/>
+                                    <constraint firstAttribute="width" constant="140" id="hXf-Ce-cP2"/>
+                                    <constraint firstAttribute="height" constant="110" id="jk3-RK-R5L"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="Jnu-VA-WwS"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uKl-lK-VwZ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-30" id="0t7-HG-puf"/>
-                            <constraint firstItem="uKl-lK-VwZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aho-pd-yVY"/>
+                            <constraint firstItem="grq-KM-cnX" firstAttribute="centerX" secondItem="Jnu-VA-WwS" secondAttribute="centerX" id="VIz-qj-Wim"/>
+                            <constraint firstItem="grq-KM-cnX" firstAttribute="centerY" secondItem="Jnu-VA-WwS" secondAttribute="centerY" constant="-35" id="l4h-3r-5EV"/>
                         </constraints>
                     </view>
                 </viewController>

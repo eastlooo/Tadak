@@ -8,5 +8,5 @@
 import RxFlow
 
 enum MainStep: Step {
-    case initializationIsNeeded(user: TadakUser)
+    case initializationIsNeeded
 }

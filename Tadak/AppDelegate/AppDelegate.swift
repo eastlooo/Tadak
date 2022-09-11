@@ -24,16 +24,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        self.coordinator.rx.willNavigate.subscribe(onNext: { flow, step in
-            print("DEBUG: will navigate to flow=\(flow) and step=\(step)")
-        }).disposed(by: disposeBag)
-
         self.coordinator.rx.didNavigate.subscribe(onNext: { flow, step in
             print("DEBUG: did navigate to flow=\(flow) and step=\(step)")
         }).disposed(by: disposeBag)
-
-        let appFlow = AppFlow()
-        let appStepper = AppStepper()
+        
+        let userRepository = UserRepository()
+        let compositionRepository = CompositionRepository()
+        let appFlow = AppFlow(
+            userRepository: userRepository,
+            compositionRepository: compositionRepository
+        )
+        
+        let appStepper = AppStepper(userRepository: userRepository)
         self.coordinator.coordinate(flow: appFlow, with: appStepper)
 
         Flows.use(appFlow, when: .created) { root in

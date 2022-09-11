@@ -146,8 +146,6 @@ final class AlertController: UIViewController {
     
     // MARK: Helpers
     private func configure() {
-        modalPresentationStyle = .overCurrentContext
-        
         view.backgroundColor = .clear
         contentStackView.addArrangedSubview(messageLabel)
     }
