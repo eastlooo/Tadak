@@ -36,6 +36,6 @@ final class InitializationUseCase {
 extension InitializationUseCase: InitializationUseCaseProtocol {
     
     func fetchTadakComposition() -> Observable<Result<TadakComposition, Error>> {
-        return compositionRepository.readTadakCompositionOnServer()
+        return compositionRepository.fetchTadakComposition()
     }
 }

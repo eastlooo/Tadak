@@ -85,6 +85,8 @@
 		A765903D28CE38FF000EAD7F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A765903C28CE38FF000EAD7F /* FirebaseDatabase */; };
 		A765903F28CE38FF000EAD7F /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = A765903E28CE38FF000EAD7F /* FirebaseRemoteConfig */; };
 		A765904128CE4A68000EAD7F /* ObservableType++Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904028CE4A68000EAD7F /* ObservableType++Operator.swift */; };
+		A765904328CF1406000EAD7F /* FirebaseRemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */; };
+		A765904528CF2392000EAD7F /* RemoteConfigValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = A765904428CF2392000EAD7F /* RemoteConfigValue.plist */; };
 		A78987D828CB66B40045D71C /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D728CB66B40045D71C /* Loader.swift */; };
 		A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D928CB70DC0045D71C /* UIWindow++.swift */; };
 		A78987E028CB7F560045D71C /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = A78987DF28CB7F560045D71C /* loader.json */; };
@@ -222,6 +224,8 @@
 		A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterFooterView.swift; sourceTree = "<group>"; };
 		A765903228CE3769000EAD7F /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		A765904028CE4A68000EAD7F /* ObservableType++Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType++Operator.swift"; sourceTree = "<group>"; };
+		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
+		A765904428CF2392000EAD7F /* RemoteConfigValue.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigValue.plist; sourceTree = "<group>"; };
 		A78987D728CB66B40045D71C /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A78987D928CB70DC0045D71C /* UIWindow++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow++.swift"; sourceTree = "<group>"; };
 		A78987DF28CB7F560045D71C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 			children = (
 				A765903228CE3769000EAD7F /* FirebaseAuthService.swift */,
 				A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */,
+				A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -964,6 +969,7 @@
 				A75806EA28C4E75A0073D03A /* Assets.xcassets */,
 				A7F295C628C4E1A600242836 /* Info.plist */,
 				A79B10AF28CB52410076640A /* GoogleService-Info.plist */,
+				A765904428CF2392000EAD7F /* RemoteConfigValue.plist */,
 				A7F295D028C4E1C100242836 /* InfoPlist.strings */,
 				A75806FB28C4F7DB0073D03A /* Characters */,
 				A7B4CCE828C681A500D663D2 /* Reward */,
@@ -1083,6 +1089,7 @@
 				A78B129D28C7C69C0015BBA1 /* countdown.json in Resources */,
 				A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */,
 				A758071928C4F7F70073D03A /* deer.png in Resources */,
+				A765904528CF2392000EAD7F /* RemoteConfigValue.plist in Resources */,
 				A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */,
 				A758071A28C4F7F70073D03A /* mouse.png in Resources */,
 				A72E759028C64A9C0028CE8D /* logo.png in Resources */,
@@ -1119,6 +1126,7 @@
 				A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */,
 				A7CE37B228CDC01C002ACAD5 /* InitializationUseCase.swift in Sources */,
 				A78987EB28CBA8340045D71C /* AlertAction.swift in Sources */,
+				A765904328CF1406000EAD7F /* FirebaseRemoteConfigService.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */,

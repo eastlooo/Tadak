@@ -29,15 +29,18 @@ final class UserRepository {
     
     private let databaseService: FirebaseDatabaseServiceProtocol
     private let authService: FirebaseAuthServiceProtocol
+    private let remoteConfigSevice: FirebaseRemoteConfigServiceProtocol
     private let storage: Storage?
     
     init(
         databaseService: FirebaseDatabaseServiceProtocol = FirebaseDatabaseService(),
         authService: FirebaseAuthServiceProtocol = FirebaseAuthService(),
+        remoteConfigSevice: FirebaseRemoteConfigServiceProtocol = FirebaseRemoteConfigService(),
         storage: Storage? = try? RealmStorage()
     ) {
         self.databaseService = databaseService
         self.authService = authService
+        self.remoteConfigSevice = remoteConfigSevice
         self.storage = storage
     }
 }
@@ -64,7 +67,7 @@ extension UserRepository: UserRepositoryProtocol {
         let nicknameEndpoint = APIEndpoints.createNickname(with: nicknameRequestDTO, nickname: nickname)
         
         return databaseService.request(with: [userEndpoint, nicknameEndpoint])
-            .flatMapSuccessCase { [weak self] _ in
+            .flatMapOnSuccess { [weak self] _ in
                 let user = TadakUser(
                     id: uid,
                     nickname: nickname,
@@ -91,8 +94,8 @@ extension UserRepository: UserRepositoryProtocol {
         let deleteOnAuth = authService.deleteUser()
         
         return deleteOnStorage
-            .flatMapSuccessCase { _ in deleteOnDatabase }
-            .flatMapSuccessCase { _ in deleteOnAuth }
+            .flatMapOnSuccess { _ in deleteOnDatabase }
+            .flatMapOnSuccess { _ in deleteOnAuth }
             .do { [weak self] _ in self?.user.onNext(nil) }
     }
     
@@ -100,12 +103,8 @@ extension UserRepository: UserRepositoryProtocol {
         guard let uid = authService.userID else { return .just(.success(nil)) }
         let endpoint = APIEndpoints.readUser(uid: uid)
         let requestOnSever = databaseService.request(with: endpoint)
-            .mapSuccessCase { Optional($0.toDomain()) }
-            .do { [weak self] result in
-                if case let .success(user) = result {
-                    self?.user.onNext(user)
-                }
-            }
+            .mapOnSuccess { Optional($0.toDomain()) }
+            .doOnSuccess { [weak self] user in self?.user.onNext(user) }
         
         guard let storage = self.storage else { return requestOnSever }
         

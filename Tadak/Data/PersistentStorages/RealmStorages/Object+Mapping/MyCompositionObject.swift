@@ -10,7 +10,7 @@ import RealmSwift
 
 final class MyCompositionObject: Object {
     
-    let compositions = List<CompositionObject>()
+    @Persisted var compositions = List<CompositionObject>()
     
     convenience init(
         myComposition: MyComposition

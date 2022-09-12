@@ -84,7 +84,7 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
         // 익명 가입
         return userRepository.signInUserAnonymously()
         // 성공 시 유저 서버 및 로컬에 저장
-            .flatMapSuccessCase { [weak self] uid -> Observable<Result<Void, Error>> in
+            .flatMapOnSuccess { [weak self] uid -> Observable<Result<Void, Error>> in
                 userId = uid
                 guard let self = self else { return .just(.failure(NSError()))}
                 return self.userRepository.createUser(
@@ -94,12 +94,12 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
                 )
             }
         // 실패 시 유저 가입, 서버 및 로컬 삭제
-            .doFailureCase { [weak self] () -> Observable<Result<Void, Error>> in
+            .doAnotherOnFailure { [weak self] () -> Observable<Result<Void, Error>> in
                 guard let self = self else { return .just(.failure(NSError()))}
                 return self.userRepository.deleteUser(uid: userId, nickname: nickname)
             }
         // 유저 데이터 리턴
-            .mapSuccessCase { _ -> TadakUser in
+            .mapOnSuccess { _ -> TadakUser in
                 return .init(id: userId, nickname: nickname, characterID: characterID)
             }
     }

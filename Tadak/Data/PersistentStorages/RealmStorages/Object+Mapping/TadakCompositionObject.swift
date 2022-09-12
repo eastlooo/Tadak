@@ -11,7 +11,7 @@ import RealmSwift
 final class TadakCompositionObject: Object {
     
     @Persisted(primaryKey: true) var version: String
-    let compositions = List<CompositionObject>()
+    @Persisted var compositions = List<CompositionObject>()
     
     convenience init(
         tadakComposition: TadakComposition
