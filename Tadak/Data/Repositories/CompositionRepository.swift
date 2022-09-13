@@ -10,6 +10,9 @@ import RxSwift
 
 protocol CompositionRepositoryProtocol {
     
+    var tadakComposition: BehaviorSubject<TadakComposition?> { get }
+    var myComposition: BehaviorSubject<MyComposition?> { get }
+    
     func fetchTadakComposition() -> Observable<Result<TadakComposition, Error>>
     func fetchMyComposition() -> Observable<MyComposition?>
 }

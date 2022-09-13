@@ -33,7 +33,7 @@ final class TextButton: UIButton {
     }()
     
     private lazy var accessoryImageView: UIImageView = {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold)
         let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)
         let imageView = UIImageView(image: image)
         imageView.tintColor = .white

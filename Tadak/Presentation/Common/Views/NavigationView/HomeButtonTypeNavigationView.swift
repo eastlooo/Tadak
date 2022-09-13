@@ -7,12 +7,18 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class HomeButtonTypeNavigationView: UIView {
     
     // MARK: Properties
     var title: String? {
         didSet { titleLabel.text = title }
+    }
+    
+    fileprivate var homeButtonTapped: ControlEvent<Void> {
+        return homeButton.rx.tap
     }
     
     private let titleLabel: UILabel = {
@@ -61,5 +67,12 @@ final class HomeButtonTypeNavigationView: UIView {
             $0.right.equalToSuperview().inset(14)
             $0.width.height.equalTo(44)
         }
+    }
+}
+
+// MARK: ControlEvent
+extension Reactive where Base: HomeButtonTypeNavigationView {
+    var homeButtonTapped: ControlEvent<Void> {
+        return base.homeButtonTapped
     }
 }

@@ -12,7 +12,7 @@ protocol InitializationUseCaseProtocol: AnyObject {
     
     var user: BehaviorSubject<TadakUser?> { get }
     
-    func fetchTadakComposition() -> Observable<Result<TadakComposition, Error>>
+    func fetchCompositions() -> Observable<Result<Void, Error>>
 }
 
 final class InitializationUseCase {
@@ -35,7 +35,12 @@ final class InitializationUseCase {
 
 extension InitializationUseCase: InitializationUseCaseProtocol {
     
-    func fetchTadakComposition() -> Observable<Result<TadakComposition, Error>> {
-        return compositionRepository.fetchTadakComposition()
+    func fetchCompositions() -> Observable<Result<Void, Error>> {
+        let myComposition = compositionRepository.fetchMyComposition()
+        let tadakComposition = compositionRepository.fetchTadakComposition()
+        
+        return myComposition
+            .flatMap { _ in tadakComposition }
+            .mapOnSuccess { _ -> Void in Void() }
     }
 }
