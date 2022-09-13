@@ -13,4 +13,5 @@ enum FirebaseError: LocalizedError {
     case decodeError
     case failedToDictionary
     case failedFetchRemoteConfig
+    case failedCastToDictionary
 }

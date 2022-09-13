@@ -136,11 +136,16 @@ private extension FirebaseDatabaseService {
                 
                 let data = snapshot.valueToJSON
 
-                guard let value = try? JSONDecoder().decode(R.self, from: data) else {
-                    guard let value = snapshot.value as? R else {
+                guard let value = try? Self.decode(R.self, from: data) else {
+                    guard var value = snapshot.value as? R else {
                         observer.onNext(.failure(FirebaseError.decodeError))
                         return
                     }
+                    
+                    if value is String, let stringValue = value as? String {
+                        value = stringValue.replacingOccurrences(of: "\\n", with: "\n") as! R
+                    }
+                    
                     observer.onNext(.success(value))
                     return
                 }
@@ -169,7 +174,7 @@ private extension FirebaseDatabaseService {
                 
                 let data = snapshot.listToJSON
                 
-                guard let value = try? JSONDecoder().decode([R].self, from: data) else {
+                guard let value = try? Self.decode([R].self, from: data) else {
                     observer.onNext(.failure(FirebaseError.decodeError))
                     return
                 }
@@ -274,5 +279,51 @@ private extension FirebaseDatabaseService {
             
             return Disposables.create()
         }
+    }
+    
+    // Firebase String 줄바꿈 처리
+    static func decode<T>(_ type: T.Type, from data: Data) throws -> T  where T: Decodable {
+        var jsonObject = try JSONSerialization.jsonObject(with: data)
+        
+        if type.self is AnyArray.Type {
+            guard let dictionaryList = jsonObject as? [[String: Any]] else { throw FirebaseError.failedCastToDictionary }
+            
+            var objectList = [[String: Any]]()
+            
+            for dictionary in dictionaryList {
+                var object = [String: Any]()
+                
+                for element in dictionary {
+                    if element.value is String, let value = element.value as? String {
+                        object[element.key] = value.replacingOccurrences(of: "\\n", with: "\n")
+                    } else {
+                        object[element.key] = element.value
+                    }
+                }
+                
+                objectList.append(object)
+            }
+            
+            jsonObject = objectList
+            
+        } else {
+            guard let dictionary = jsonObject as? [String: Any] else { throw FirebaseError.failedCastToDictionary }
+            
+            var object = [String: Any]()
+            
+            for element in dictionary {
+                if element.value is String, let value = element.value as? String {
+                    object[element.key] = value.replacingOccurrences(of: "\\n", with: "\n")
+                } else {
+                    object[element.key] = element.value
+                }
+            }
+            
+            jsonObject = object
+        }
+        
+        
+        let data = try JSONSerialization.data(withJSONObject: jsonObject)
+        return try JSONDecoder().decode(type, from: data)
     }
 }

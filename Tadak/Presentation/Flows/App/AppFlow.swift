@@ -56,7 +56,7 @@ private extension AppFlow {
             flowContributor: .contribute(
                 withNextPresentable: onboardingFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: TadakStep.initializationIsRequired)
+                    withSingleStep: TadakStep.onboardingIsRequired)
             )
         )
     }

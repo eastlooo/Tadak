@@ -21,8 +21,11 @@ final class ComposeParticipantsViewController: UIViewController {
         return button
     }()
     
-    private lazy var accessoryView: TadakInputAccessoryView = {
-        let accessoryView = TadakInputAccessoryView(rootView: startButton)
+    private lazy var accessoryView: KeyboardDock = {
+        let accessoryView = KeyboardDock(
+            root: startButton,
+            parent: self.view
+        )
         return accessoryView
     }()
     
@@ -42,8 +45,6 @@ final class ComposeParticipantsViewController: UIViewController {
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
-    override var inputAccessoryView: UIView? { accessoryView }
-    override var canBecomeFirstResponder: Bool { true }
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -81,12 +82,8 @@ final class ComposeParticipantsViewController: UIViewController {
             $0.left.right.bottom.equalToSuperview()
         }
         
-        view.addSubview(startButton)
-        startButton.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(24)
-            $0.bottom.equalTo(tableView.snp.bottom).offset(-30)
-            $0.height.equalTo(55)
-        }
+        // execute lazy var property
+        _ = accessoryView
     }
 }
 

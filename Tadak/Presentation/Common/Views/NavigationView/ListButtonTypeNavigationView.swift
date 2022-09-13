@@ -7,12 +7,18 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class ListButtonTypeNavigationView: UIView {
     
     // MARK: Properties
     var title: String? {
         didSet { titleLabel.text = title }
+    }
+    
+    fileprivate var listButtonTapped: ControlEvent<Void> {
+        return listButton.rx.tap
     }
     
     private let titleLabel: UILabel = {
@@ -62,5 +68,12 @@ final class ListButtonTypeNavigationView: UIView {
             $0.left.equalToSuperview().inset(28)
             $0.centerY.equalTo(listButton)
         }
+    }
+}
+
+// MARK: ControlEvent
+extension Reactive where Base: ListButtonTypeNavigationView {
+    var listButtonTapped: ControlEvent<Void> {
+        return base.listButtonTapped
     }
 }

@@ -34,8 +34,10 @@ final class TadakListFlow: Flow {
             return .end(forwardToParentFlowWithStep: TadakStep.tadakListIsComplete)
             
         case .compositionIsPicked(let typingDetail):
-            return navigateToCompositionDetailScreen(typingMode: typingDetail.typingMode,
-                                                     composition: typingDetail.composition)
+            return navigateToCompositionDetailScreen(typingDetail: typingDetail)
+            
+        case .compositionDetailIsComplete:
+            return popToRootScreen()
             
         default:
             return .none
@@ -59,10 +61,21 @@ private extension TadakListFlow {
         )
     }
     
-    func navigateToCompositionDetailScreen(typingMode: TypingMode,
-                                           composition: Composition) -> FlowContributors {
+    func navigateToCompositionDetailScreen(typingDetail: TypingDetail) -> FlowContributors {
+        let reactor = CompositionDetailViewReactor(typingDetail: typingDetail)
         let viewController = CompositionDetailViewController()
+        viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
+    }
+    
+    func popToRootScreen() -> FlowContributors {
+        _ = rootViewController.popToRootViewController(animated: false)
         return .none
     }
 }

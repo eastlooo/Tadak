@@ -16,11 +16,12 @@ final class OnboardingNicknameViewController: UIViewController {
     // MARK: Properties
     var disposeBag = DisposeBag()
     
-    private let scrollView = UIScrollView()
+    private let scrollView = ScrollView()
     private let contentView = UIView()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
+        label.text = "별명짓기"
         label.textColor = .white
         label.font = .notoSansKR(ofSize: 26.0, weight: .bold)
         return label
@@ -41,6 +42,7 @@ final class OnboardingNicknameViewController: UIViewController {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
+        label.text = "별명을 입력해주세요 (2~6 글자)"
         label.textColor = .white
         label.font = .notoSansKR(ofSize: 16.0, weight: .regular)
         return label
@@ -48,17 +50,19 @@ final class OnboardingNicknameViewController: UIViewController {
     
     private let registerButton: TextButton = {
         let button = TextButton(colorType: .coral)
+        button.title = "등록하기"
         button.titleFont = .notoSansKR(ofSize: 20, weight: .bold)
         return button
     }()
     
-    private lazy var accessoryView: TadakInputAccessoryView = {
-        let accessoryView = TadakInputAccessoryView(rootView: registerButton)
+    private lazy var keyboardDock: KeyboardDock = {
+        let accessoryView = KeyboardDock(
+            root: registerButton,
+            parent: self.view
+        )
         return accessoryView
     }()
     
-    override var inputAccessoryView: UIView? { accessoryView }
-    override var canBecomeFirstResponder: Bool { true }
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     // MARK: Lifecycle
@@ -73,12 +77,6 @@ final class OnboardingNicknameViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .customNavy
         contentView.backgroundColor = .customNavy
-        
-        titleLabel.text = "별명짓기"
-        descriptionLabel.text = "별명을 입력해주세요 (2~6 글자)"
-        registerButton.title = "등록하기"
-        
-        scrollView.keyboardDismissMode = .onDrag
     }
     
     private func layout() {
@@ -122,9 +120,10 @@ final class OnboardingNicknameViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(20)
         }
+        
+        // execute lazy var property
+        _ = keyboardDock
     }
-    
-    
 }
 
 // MARK: - Bind
@@ -173,10 +172,16 @@ extension OnboardingNicknameViewController: View {
             .disposed(by: disposeBag)
         
         RxKeyboard.instance.visibleHeight
+            .skip(1)
+            .drive(keyboardDock.rx.keyboardHeight)
+            .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardHeight in
-                guard let scrollView = self?.scrollView else { return }
-                scrollView.contentInset.bottom = keyboardHeight
-                scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight
+                guard let self = self else { return }
+                let totalHeight = keyboardHeight + self.keyboardDock.frame.height
+                self.scrollView.contentInset.bottom = totalHeight
+                self.scrollView.verticalScrollIndicatorInsets.bottom = totalHeight
             })
             .disposed(by: disposeBag)
     }

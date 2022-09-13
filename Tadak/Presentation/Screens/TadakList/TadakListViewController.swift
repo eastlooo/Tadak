@@ -87,6 +87,7 @@ final class TadakListViewController: UIViewController {
 
 // MARK: - Bind
 extension TadakListViewController: View {
+    
     func bind(reactor: TadakListViewReactor) {
         
         // MARK: Action

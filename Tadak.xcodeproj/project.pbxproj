@@ -29,6 +29,7 @@
 		A746E48728D08D63009639A7 /* TadakListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48628D08D63009639A7 /* TadakListUseCase.swift */; };
 		A746E48A28D09812009639A7 /* TadakListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48928D09812009639A7 /* TadakListTableView.swift */; };
 		A746E48C28D0B43E009639A7 /* TypingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48B28D0B43E009639A7 /* TypingDetail.swift */; };
+		A746E48E28D0BAD7009639A7 /* CompositionDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48D28D0BAD7009639A7 /* CompositionDetailViewReactor.swift */; };
 		A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */; };
 		A74ACC5728C8FC6800780433 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC5628C8FC6800780433 /* ReactorKit */; };
 		A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC5828C8FD0300780433 /* OnboardingCharacterViewReactor.swift */; };
@@ -105,7 +106,7 @@
 		A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */; };
 		A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */; };
 		A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */; };
-		A78B128C28C784F40015BBA1 /* TadakInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */; };
+		A78B128C28C784F40015BBA1 /* KeyboardDock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128B28C784F40015BBA1 /* KeyboardDock.swift */; };
 		A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */; };
 		A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129028C79F0A0015BBA1 /* TypingDashboard.swift */; };
 		A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B129228C7A0AA0015BBA1 /* ProgressBar.swift */; };
@@ -158,6 +159,7 @@
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
 		A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F295C328C4E1A600242836 /* LaunchScreen.storyboard */; };
 		A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A7F295D028C4E1C100242836 /* InfoPlist.strings */; };
+		A7F42DAE28D0FF8700049C0E /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F42DAD28D0FF8700049C0E /* ScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +185,7 @@
 		A746E48628D08D63009639A7 /* TadakListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListUseCase.swift; sourceTree = "<group>"; };
 		A746E48928D09812009639A7 /* TadakListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListTableView.swift; sourceTree = "<group>"; };
 		A746E48B28D0B43E009639A7 /* TypingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingDetail.swift; sourceTree = "<group>"; };
+		A746E48D28D0BAD7009639A7 /* CompositionDetailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionDetailViewReactor.swift; sourceTree = "<group>"; };
 		A74ACC5128C8D23400780433 /* OnboardingCharacterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterUseCase.swift; sourceTree = "<group>"; };
 		A74ACC5828C8FD0300780433 /* OnboardingCharacterViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterViewReactor.swift; sourceTree = "<group>"; };
 		A74ACC6828C9D05D00780433 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
@@ -249,7 +252,7 @@
 		A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsCell.swift; sourceTree = "<group>"; };
 		A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsNumberButton.swift; sourceTree = "<group>"; };
 		A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsFooterView.swift; sourceTree = "<group>"; };
-		A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakInputAccessoryView.swift; sourceTree = "<group>"; };
+		A78B128B28C784F40015BBA1 /* KeyboardDock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDock.swift; sourceTree = "<group>"; };
 		A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTypingViewController.swift; sourceTree = "<group>"; };
 		A78B129028C79F0A0015BBA1 /* TypingDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingDashboard.swift; sourceTree = "<group>"; };
 		A78B129228C7A0AA0015BBA1 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 		A7F295C628C4E1A600242836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tadak/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
 		A7F295CF28C4E1C100242836 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A7F295D128C4E1D400242836 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A7F42DAD28D0FF8700049C0E /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,7 +452,7 @@
 				A72E758B28C646230028CE8D /* Main */,
 				A72E75A428C66AD50028CE8D /* TadakList */,
 				A7B4CCFB28C6FABD00D663D2 /* MyList */,
-				A7B4CD0628C70E9500D663D2 /* TextDetail */,
+				A7B4CD0628C70E9500D663D2 /* CompositionDetail */,
 				A78B127528C735140015BBA1 /* ComposeParticipants */,
 				A78B128F28C79D680015BBA1 /* Typing */,
 			);
@@ -709,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				A74ACC7628C9EE6E00780433 /* NavigationController.swift */,
+				A7F42DAD28D0FF8700049C0E /* ScrollView.swift */,
 			);
 			path = Overriding;
 			sourceTree = "<group>";
@@ -724,7 +729,7 @@
 		A78987E928CBA7DF0045D71C /* InputAccessoryView */ = {
 			isa = PBXGroup;
 			children = (
-				A78B128B28C784F40015BBA1 /* TadakInputAccessoryView.swift */,
+				A78B128B28C784F40015BBA1 /* KeyboardDock.swift */,
 			);
 			path = InputAccessoryView;
 			sourceTree = "<group>";
@@ -847,13 +852,14 @@
 			path = SubComponents;
 			sourceTree = "<group>";
 		};
-		A7B4CD0628C70E9500D663D2 /* TextDetail */ = {
+		A7B4CD0628C70E9500D663D2 /* CompositionDetail */ = {
 			isa = PBXGroup;
 			children = (
 				A7B4CD0428C70E8F00D663D2 /* CompositionDetailViewController.swift */,
+				A746E48D28D0BAD7009639A7 /* CompositionDetailViewReactor.swift */,
 				A7B4CD0D28C71D0200D663D2 /* SubComponents */,
 			);
-			path = TextDetail;
+			path = CompositionDetail;
 			sourceTree = "<group>";
 		};
 		A7B4CD0B28C7160D00D663D2 /* Entities */ = {
@@ -1183,6 +1189,7 @@
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A7CE37B428CDC0F4002ACAD5 /* CompositionRepository.swift in Sources */,
 				A7CE37AD28CDA9A3002ACAD5 /* MainFlow.swift in Sources */,
+				A746E48E28D0BAD7009639A7 /* CompositionDetailViewReactor.swift in Sources */,
 				A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
 				A72E758A28C6461F0028CE8D /* TadakMainViewController.swift in Sources */,
@@ -1208,7 +1215,7 @@
 				A7CE378428CC6A5C002ACAD5 /* Storable.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */,
-				A78B128C28C784F40015BBA1 /* TadakInputAccessoryView.swift in Sources */,
+				A78B128C28C784F40015BBA1 /* KeyboardDock.swift in Sources */,
 				A746E47F28D0764D009639A7 /* TadakListFlow.swift in Sources */,
 				A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */,
 				A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */,
@@ -1220,6 +1227,7 @@
 				A7CE379A28CCF620002ACAD5 /* TadakComposition.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
 				A746E48428D08C19009639A7 /* TadakListViewReactor.swift in Sources */,
+				A7F42DAE28D0FF8700049C0E /* ScrollView.swift in Sources */,
 				A78987E228CBA1410045D71C /* AlertController.swift in Sources */,
 				A7CE378228CC69B2002ACAD5 /* Storage.swift in Sources */,
 				A7CE37AF28CDBC16002ACAD5 /* InitializationViewReactor.swift in Sources */,

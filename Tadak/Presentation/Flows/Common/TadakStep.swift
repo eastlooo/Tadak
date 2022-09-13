@@ -10,7 +10,6 @@ import RxFlow
 enum TadakStep: Step {
     
     // Global
-//    case userIsRegisterd(user: TadakUser)
     
     // Onboarding
     case onboardingIsRequired
@@ -32,4 +31,5 @@ enum TadakStep: Step {
     
     // CompositionDetail
     case compositionIsPicked(withTypingDetail: TypingDetail)
+    case compositionDetailIsComplete
 }

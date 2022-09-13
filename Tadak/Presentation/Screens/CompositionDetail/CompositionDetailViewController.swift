@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
 
 final class CompositionDetailViewController: UIViewController {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let listButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "list"), for: .normal)
@@ -34,6 +37,7 @@ final class CompositionDetailViewController: UIViewController {
     
     private let startButton: TextButton = {
         let button = TextButton(colorType: .coral)
+        button.title = "시작하기"
         button.titleFont = .notoSansKR(ofSize: 20, weight: .bold)
         return button
     }()
@@ -41,11 +45,18 @@ final class CompositionDetailViewController: UIViewController {
     private let contentsTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .clear
-        textView.textContainer.lineFragmentPadding = -10
         textView.textContainerInset = .zero
         textView.indicatorStyle = .white
         textView.isEditable = false
         return textView
+    }()
+    
+    private lazy var keyboardDock: KeyboardDock = {
+        let accessoryView = KeyboardDock(
+            root: startButton,
+            parent: self.view
+        )
+        return accessoryView
     }()
     
     private let dashboard = CompositionDetailDashboardView()
@@ -64,39 +75,13 @@ final class CompositionDetailViewController: UIViewController {
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy
-        
-        titleLabel.text = "별 헤는 밤"
-        artistLabel.text = "윤동주"
-        startButton.title = "시작하기"
-        
-        let contents = """
-            계절이 지나가는 하늘에는
-            가을로 가득 차 있습니다.
-
-            나는 아무 걱정도 없이
-            가을 속의 별들을 다 헬 듯합니다.
-
-            가슴 속에 하나 둘 새겨지는 별을
-            이제 다 못 헤는 것은
-            쉬이 아침이 오는 까닭이요
-            내일 밤이 남은 까닭이요
-            아직 나의 청춘이 다 하지 않은 까닭입니다.
-        """
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 2
-        contentsTextView.attributedText = NSAttributedString(
-            string: contents,
-            attributes: [
-                .foregroundColor: UIColor.white,
-                .font: UIFont.notoSansKR(ofSize: 16, weight: .medium)!,
-                .paragraphStyle: paragraphStyle
-            ])
-        
-        dashboard.typingMode = .practice
         dashboard.record = 0
     }
     
     private func layout() {
+        // execute lazy var property
+        _ = keyboardDock
+        
         let titleStackView = UIStackView(arrangedSubviews: [titleLabel, artistLabel])
         titleStackView.axis = .vertical
         titleStackView.spacing = 1
@@ -122,18 +107,47 @@ final class CompositionDetailViewController: UIViewController {
             $0.left.right.equalToSuperview().inset(28)
         }
         
-        view.addSubview(startButton)
-        startButton.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(24)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-10)
-            $0.height.equalTo(55)
-        }
-        
         view.addSubview(contentsTextView)
         contentsTextView.snp.makeConstraints {
             $0.top.equalTo(dashboard.snp.bottom).offset(30)
             $0.left.right.equalTo(dashboard)
-            $0.bottom.equalTo(startButton.snp.top).offset(-10)
+            $0.bottom.equalTo(keyboardDock.snp.top).offset(-10)
         }
+    }
+    
+    private func updateTypingDetail(_ typingDetail: TypingDetail) {
+        titleLabel.text = typingDetail.composition.title
+        artistLabel.text = typingDetail.composition.artist
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 2
+        contentsTextView.attributedText = NSAttributedString(
+            string: typingDetail.composition.contents,
+            attributes: [
+                .foregroundColor: UIColor.white,
+                .font: UIFont.notoSansKR(ofSize: 16, weight: .medium)!,
+                .paragraphStyle: paragraphStyle
+            ])
+        
+        dashboard.typingMode = typingDetail.typingMode
+    }
+}
+
+// MARK: - Bind
+extension CompositionDetailViewController: View {
+    func bind(reactor: CompositionDetailViewReactor) {
+        
+        // MARK: Action
+        listButton.rx.tap
+            .map(CompositionDetailViewReactor.Action.listButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.state.map(\.typingDetail)
+            .subscribe(onNext: { [weak self] detail in
+                self?.updateTypingDetail(detail)
+            })
+            .disposed(by: disposeBag)
     }
 }
