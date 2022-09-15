@@ -14,6 +14,7 @@ final class CompositionDetailViewReactor: Reactor, Stepper {
     
     enum Action {
         case listButtonTapped(Void)
+        case startButtonTapped(Void)
     }
     
     enum Mutation {}
@@ -41,6 +42,12 @@ extension CompositionDetailViewReactor {
         switch action {
         case .listButtonTapped:
             steps.accept(TadakStep.compositionDetailIsComplete)
+            return .empty()
+            
+        case .startButtonTapped:
+            if let typingDetail = try? typingDetail$.value() {
+                steps.accept(TadakStep.typingIsRequired(withTypingDetail: typingDetail))
+            }
             return .empty()
         }
     }

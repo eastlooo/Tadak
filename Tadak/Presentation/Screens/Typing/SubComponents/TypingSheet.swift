@@ -7,12 +7,34 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class TypingSheet: UIView {
     
     // MARK: Properties
+    var typingFont: UIFont
+    
     var title: String? {
         didSet { titleLabel.text = title }
+    }
+    
+    var currentTyping: String? {
+        didSet {
+            guard let currentTyping = currentTyping else { return }
+            currentTypingLabel.attributedText = NSAttributedString(
+                string: currentTyping,
+                attributes: [.font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18])
+        }
+    }
+    
+    var nextTyping: String? {
+        didSet {
+            nextTypingLabel.text = nextTyping
+            
+            nextLabel.isHidden = (nextTyping == nil)
+            nextTypingLabel.isHidden = (nextTyping == nil)
+        }
     }
     
     private let titleLabel: UILabel = {
@@ -22,30 +44,33 @@ final class TypingSheet: UIView {
         return label
     }()
     
-    private let typingTextField: TadakTextField = {
+    fileprivate lazy var typingTextField: TadakTextField = {
         let textField = TadakTextField(appearance: .dark)
-        textField.font = .notoSansKR(ofSize: 18, weight: .medium)
+        textField.isEditingEnabled = false
+        textField.defaultTextAttributes.updateValue(0.18, forKey: .kern)
+        textField.returnKeyType = .next
+        textField.shouldReturn = false
+        textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
         return textField
     }()
     
-    private let currentTypingLabel: UILabel = {
+    private lazy var currentTypingLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .notoSansKR(ofSize: 18, weight: .medium)
         return label
     }()
     
     private let nextLabel: UILabel = {
         let label = UILabel()
+        label.text = "Next"
         label.textColor = .darkGray
         label.font = .notoSansKR(ofSize: 18, weight: .black)
         return label
     }()
     
-    private let nextTypingLabel: UILabel = {
+    private lazy var nextTypingLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.font = .notoSansKR(ofSize: 18, weight: .medium)
         return label
     }()
     
@@ -59,8 +84,9 @@ final class TypingSheet: UIView {
     }()
     
     // MARK: Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(typingFont: UIFont) {
+        self.typingFont = typingFont
+        super.init(frame: .zero)
         
         configure()
         layout()
@@ -70,13 +96,45 @@ final class TypingSheet: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Actions
+    @objc
+    private func textFieldEditingChanged(_ sender: UITextField) {
+        guard var currentTyping = currentTyping,
+              var inputText = sender.text else { return }
+        let attributedText = NSMutableAttributedString()
+        var attributes: [NSAttributedString.Key: Any] = [
+            .font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18
+        ]
+        
+        outerLoop: for _ in 0..<currentTyping.count {
+            switch inputText.count {
+            case 0:
+                attributes[.foregroundColor] = UIColor.black
+                let rest = NSAttributedString(string: currentTyping, attributes: attributes)
+                attributedText.append(rest)
+                break outerLoop
+                
+            default:
+                let character = currentTyping.removeFirst()
+                let color: UIColor = (character == inputText.removeFirst()) ? .blue
+                : (inputText.count == 0) ? .black : .red
+                attributes[.foregroundColor] = color
+                let char = NSAttributedString(string: String(character), attributes: attributes)
+                attributedText.append(char)
+                continue
+            }
+        }
+        
+        currentTypingLabel.attributedText = attributedText
+    }
+    
     // MARK: Helpers
     private func configure() {
         self.backgroundColor = .white
-        nextLabel.text = "Next"
         
-        currentTypingLabel.text = "여름장이란 애시당초에 글러서 해는 아직 중"
-        nextTypingLabel.text = "천에 있건만 장판은 벌써 훅훅 볶는다"
+        typingTextField.font = typingFont
+        currentTypingLabel.font = typingFont
+        nextTypingLabel.font = typingFont
     }
     
     private func layout() {
@@ -113,8 +171,45 @@ final class TypingSheet: UIView {
     }
 }
 
+// MARK: - Method
 extension TypingSheet {
-    override func becomeFirstResponder() -> Bool {
-        typingTextField.becomeFirstResponder()
+    override func becomeFirstResponder() -> Bool { typingTextField.becomeFirstResponder() }
+    
+    func getTextWidth(parentWidth width: CGFloat) -> CGFloat {
+        let inset = 20.0
+        let padding = typingTextField.leftView?.frame.width ?? 0
+        
+        return width - 2 * (inset + padding)
     }
+}
+
+// MARK: - Rx+Extension
+extension Reactive where Base: TypingSheet {
+    
+    // MARK: Binder
+    var title: Binder<String?> {
+        return Binder(base) { base, element in
+            base.title = element
+        }
+    }
+    
+    var currentTyping: Binder<String?> {
+        return Binder(base) { base, element in
+            base.currentTyping = element
+        }
+    }
+    
+    var nextTyping: Binder<String?> {
+        return Binder(base) { base, element in
+            base.nextTyping = element
+        }
+    }
+    
+    var isTypingEnabled: Binder<Bool> { base.typingTextField.rx.isEditingEnabled }
+    
+    // MARK: ControlEvent
+    var returnPressed: ControlEvent<Void> { base.typingTextField.rx.returnPressed }
+    
+    // MARK: ControlProperty
+    var typing: ControlProperty<String?> { base.typingTextField.rx.text }
 }

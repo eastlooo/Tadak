@@ -61,13 +61,13 @@ extension FirebaseDatabaseService: FirebaseDatabaseServiceProtocol {
             
         case .create:
             guard let dictionary = try? endpoint.object?.toDictionary() else {
-                return .just(.failure(FirebaseError.failedToDictionary))
+                return .just(.failure(FirebaseError.failedCastToDictionary))
             }
             return createObject(dictionary, path: endpoint.path)
             
         case .update:
             guard let dictionary = try? endpoint.object?.toDictionary() else {
-                return .just(.failure(FirebaseError.failedToDictionary))
+                return .just(.failure(FirebaseError.failedCastToDictionary))
             }
             return updateObject(dictionary, path: endpoint.path)
         }
@@ -86,7 +86,7 @@ extension FirebaseDatabaseService: FirebaseDatabaseServiceProtocol {
             switch endpoint.crud {
             case .create, .update:
                 guard let dictionary = try? endpoint.object?.toDictionary() else {
-                    return .just(.failure(FirebaseError.failedToDictionary))
+                    return .just(.failure(FirebaseError.failedCastToDictionary))
                 }
                 newDictionary[endpoint.path] = dictionary
                 

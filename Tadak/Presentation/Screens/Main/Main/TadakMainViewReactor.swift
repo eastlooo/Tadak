@@ -26,10 +26,10 @@ final class TadakMainViewReactor: Reactor, Stepper {
         var user: TadakUser? = nil
     }
     
-    let initialState: State
     var steps = PublishRelay<Step>()
     
     private let useCase: TadakMainUseCaseProtocol
+    let initialState: State
     
     init(useCase: TadakMainUseCaseProtocol) {
         self.useCase = useCase

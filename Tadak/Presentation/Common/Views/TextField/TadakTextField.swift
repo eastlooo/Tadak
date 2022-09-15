@@ -7,12 +7,21 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class TadakTextField: UITextField {
     
     // MARK: Properties
-    private let appearance: Appearance
+    var isPasteEnabled: Bool = false
+    var isEditingEnabled: Bool = true
+    var maxLength: Int?
+    var shouldReturn: Bool = true
     
+    fileprivate let inputString = PublishRelay<String>()
+    fileprivate let returnPressed = PublishRelay<Void>()
+    
+    private let appearance: Appearance
     
     // MARK: Lifecycle
     init(appearance: Appearance = .light) {
@@ -26,14 +35,15 @@ final class TadakTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Helpers
+    // MARK: Events
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(UIResponderStandardEditActions.paste(_:)) {
-            return false
+            return isPasteEnabled && isEditingEnabled
         }
         return super.canPerformAction(action, withSender: sender)
     }
     
+    // MARK: Helpers
     private func configure() {
         autocorrectionType = .no
         autocapitalizationType = .none
@@ -49,6 +59,8 @@ final class TadakTextField: UITextField {
         self.rightView = textFieldSpacer(padding: 22)
         self.leftViewMode = .always
         self.rightViewMode = .always
+        
+        self.delegate = self
     }
     
     private func textFieldSpacer(padding width: CGFloat) -> UIView {
@@ -56,6 +68,28 @@ final class TadakTextField: UITextField {
     }
 }
 
+// MARK: - UITextFieldDelegate
+extension TadakTextField: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if isEditingEnabled {
+            inputString.accept(string)
+        }
+        
+        if let maxLength = maxLength {
+            return (string.count <= maxLength) && isEditingEnabled
+        }
+        
+        return isEditingEnabled
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        returnPressed.accept(Void())
+        return shouldReturn
+    }
+}
+
+// MARK: - Enum
 extension TadakTextField {
     enum Appearance {
         case dark, light
@@ -80,5 +114,31 @@ extension TadakTextField {
             case .light: return .customDarkNavy
             }
         }
+    }
+}
+
+// MARK: - Rx+Extension
+extension Reactive where Base: TadakTextField {
+    
+    // MARK: Binder
+    var isEditingEnabled: Binder<Bool> {
+        return Binder(base) { textField, value in
+            textField.isEditingEnabled = value
+        }
+    }
+    
+    var maxLength: Binder<Int?> {
+        return Binder(base) { textField, value in
+            textField.maxLength = value
+        }
+    }
+    
+    // MARK: ControlEvent
+    var inputString: ControlEvent<String> {
+        return ControlEvent(events: base.inputString)
+    }
+    
+    var returnPressed: ControlEvent<Void> {
+        return ControlEvent(events: base.returnPressed)
     }
 }

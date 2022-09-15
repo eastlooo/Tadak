@@ -53,7 +53,11 @@ extension UserRepository: UserRepositoryProtocol {
     }
     
     func signInUserAnonymously() -> Observable<Result<String, Error>> {
-        authService.signInAnonymously()
+        let signIn = authService.signInAnonymously()
+        
+        return authService.signOut()
+            .flatMap { _ in signIn }
+        
     }
     
     func createUser(uid: String, nickname: String, characterID: Int) -> Observable<Result<Void, Error>> {
@@ -89,7 +93,10 @@ extension UserRepository: UserRepositoryProtocol {
         let userEndpoint = APIEndpoints.deleteUser(uid: uid)
         let nicknameEndpoint = APIEndpoints.deleteNickname(nickname: nickname)
         
-        guard let deleteOnStorage = storage?.reset() else { return .just(.failure(NSError())) }
+        guard let deleteOnStorage = storage?.reset() else {
+            return .just(.failure(FirebaseError.failedLoadStorage))
+        }
+        
         let deleteOnDatabase = databaseService.request(with: [userEndpoint, nicknameEndpoint])
         let deleteOnAuth = authService.deleteUser()
         

@@ -29,6 +29,7 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
     
     struct State {
         let characterID: Int
+        let nicknameMaxLength: Int
         var validate: Bool = false
         var correctedText: String = ""
         var loaderAppear: Bool?
@@ -41,7 +42,10 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
     
     init(useCase: OnboardingNicknameUseCaseProtocol) {
         self.useCase = useCase
-        self.initialState = State(characterID: useCase.characterID)
+        self.initialState = State(
+            characterID: useCase.characterID,
+            nicknameMaxLength: useCase.maxLength
+        )
     }
 }
 

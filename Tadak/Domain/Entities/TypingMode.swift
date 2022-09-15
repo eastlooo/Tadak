@@ -8,6 +8,7 @@
 import Foundation
 
 enum TypingMode {
+    
     case practice, official, betting
     
     var description: String {

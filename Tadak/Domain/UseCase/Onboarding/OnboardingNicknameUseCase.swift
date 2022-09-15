@@ -11,6 +11,7 @@ import RxSwift
 protocol OnboardingNicknameUseCaseProtocol: AnyObject {
     
     var characterID: Int { get }
+    var maxLength: Int { get }
     
     func checkValidate(_ text: String) -> Bool
     func correctText(_ text: String) -> String
@@ -21,8 +22,8 @@ protocol OnboardingNicknameUseCaseProtocol: AnyObject {
 
 final class OnboardingNicknameUseCase {
     
-    private let minLength: Int = 2
-    private let maxLength: Int = 6
+    var minLength: Int { 2 }
+    var maxLength: Int { 6 }
     
     let characterID: Int
     var nickname: String = ""
@@ -86,7 +87,7 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
         // 성공 시 유저 서버 및 로컬에 저장
             .flatMapOnSuccess { [weak self] uid -> Observable<Result<Void, Error>> in
                 userId = uid
-                guard let self = self else { return .just(.failure(NSError()))}
+                guard let self = self else { return .empty() }
                 return self.userRepository.createUser(
                     uid: uid,
                     nickname: nickname,
@@ -95,7 +96,7 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
             }
         // 실패 시 유저 가입, 서버 및 로컬 삭제
             .doAnotherOnFailure { [weak self] () -> Observable<Result<Void, Error>> in
-                guard let self = self else { return .just(.failure(NSError()))}
+                guard let self = self else { return .empty() }
                 return self.userRepository.deleteUser(uid: userId, nickname: nickname)
             }
         // 유저 데이터 리턴

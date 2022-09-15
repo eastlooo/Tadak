@@ -6,6 +6,7 @@
 //
 
 struct TypingDetail {
+    
     let typingMode: TypingMode
     let composition: Composition
 }

@@ -7,10 +7,15 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class TypingDashboard: UIView {
     
     // MARK: Properties
+    var elapsedTime: Int = 0 {
+        didSet { updateElapsedTime() }
+    }
+    
     private let typingSpeedLabel: UILabel = {
         let label = UILabel()
         label.font = .notoSansKR(ofSize: 40, weight: .black)
@@ -41,7 +46,7 @@ final class TypingDashboard: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     // MARK: Helpers
@@ -49,7 +54,6 @@ final class TypingDashboard: UIView {
         self.backgroundColor = .clear
         
         typingSpeedLabel.text = "496"
-        elapesdTimeLabel.text = "00:04"
         accuracyLabel.text = "97%"
     }
     
@@ -76,6 +80,26 @@ final class TypingDashboard: UIView {
         accuracyLabel.snp.makeConstraints {
             $0.centerX.equalTo(self.snp.right).offset(-offset)
             $0.centerY.equalToSuperview()
+        }
+    }
+    
+    private func updateElapsedTime() {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+        
+        let text = formatter.string(from: TimeInterval(elapsedTime))
+        elapesdTimeLabel.text = text
+    }
+}
+
+// MARK: - Binder
+extension Reactive where Base: TypingDashboard {
+    
+    var elapsedTime: Binder<Int> {
+        return Binder(base) { base, value in
+            base.elapsedTime = value
         }
     }
 }

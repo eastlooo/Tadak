@@ -8,5 +8,6 @@
 import Foundation
 
 struct MyComposition {
+    
     let compositions: [Composition]
 }

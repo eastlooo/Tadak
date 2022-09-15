@@ -143,6 +143,11 @@ extension CompositionDetailViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        startButton.rx.tap
+            .map(CompositionDetailViewReactor.Action.startButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // MARK: State
         reactor.state.map(\.typingDetail)
             .subscribe(onNext: { [weak self] detail in

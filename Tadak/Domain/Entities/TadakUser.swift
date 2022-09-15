@@ -8,6 +8,7 @@
 import Foundation
 
 struct TadakUser: Identifiable, Equatable {
+    
     typealias Identifier = String
     
     let id: Identifier

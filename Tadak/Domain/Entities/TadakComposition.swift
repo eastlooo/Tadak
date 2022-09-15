@@ -8,6 +8,7 @@
 import Foundation
 
 struct TadakComposition {
+    
     let version: String
     let compositions: [Composition]
 }

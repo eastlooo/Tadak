@@ -152,6 +152,10 @@ extension OnboardingNicknameViewController: View {
             .bind(to: characterButton.rx.image(for: .normal))
             .disposed(by: disposeBag)
         
+        reactor.state.map(\.nicknameMaxLength)
+            .bind(to: textField.rx.maxLength)
+            .disposed(by: disposeBag)
+        
         reactor.state.map(\.validate)
             .bind(to: registerButton.rx.isEnabled)
             .disposed(by: disposeBag)

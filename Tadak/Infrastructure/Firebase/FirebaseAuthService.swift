@@ -13,6 +13,7 @@ protocol FirebaseAuthServiceProtocol {
     
     var userID: String? { get }
     
+    func signOut() -> Observable<Result<Void, Error>>
     func signInAnonymously() -> Observable<Result<String, Error>>
     func deleteUser() -> Observable<Result<Void, Error>>
 }
@@ -29,6 +30,19 @@ final class FirebaseAuthService {
 }
 
 extension FirebaseAuthService: FirebaseAuthServiceProtocol {
+    
+    func signOut() -> Observable<Result<Void, Error>> {
+        return .create { [weak self] observer in
+            do {
+                try self?.auth.signOut()
+                observer.onNext(.success(Void()))
+            } catch {
+                observer.onNext(.failure(error))
+            }
+            
+            return Disposables.create()
+        }
+    }
     
     func signInAnonymously() -> Observable<Result<String, Error>> {
         return .create { [weak self] observer in
