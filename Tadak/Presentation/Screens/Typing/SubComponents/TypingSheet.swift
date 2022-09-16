@@ -19,21 +19,20 @@ final class TypingSheet: UIView {
         didSet { titleLabel.text = title }
     }
     
-    var currentTyping: String? {
+    var currentTyping: String = "" {
         didSet {
-            guard let currentTyping = currentTyping else { return }
             currentTypingLabel.attributedText = NSAttributedString(
                 string: currentTyping,
                 attributes: [.font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18])
         }
     }
     
-    var nextTyping: String? {
+    var nextTyping: String = "" {
         didSet {
             nextTypingLabel.text = nextTyping
             
-            nextLabel.isHidden = (nextTyping == nil)
-            nextTypingLabel.isHidden = (nextTyping == nil)
+            nextLabel.isHidden = nextTyping.isEmpty
+            nextTypingLabel.isHidden = nextTyping.isEmpty
         }
     }
     
@@ -99,8 +98,8 @@ final class TypingSheet: UIView {
     // MARK: Actions
     @objc
     private func textFieldEditingChanged(_ sender: UITextField) {
-        guard var currentTyping = currentTyping,
-              var inputText = sender.text else { return }
+        var inputText = sender.text ?? ""
+        var currentTyping = currentTyping
         let attributedText = NSMutableAttributedString()
         var attributes: [NSAttributedString.Key: Any] = [
             .font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18
@@ -193,13 +192,13 @@ extension Reactive where Base: TypingSheet {
         }
     }
     
-    var currentTyping: Binder<String?> {
+    var currentTyping: Binder<String> {
         return Binder(base) { base, element in
             base.currentTyping = element
         }
     }
     
-    var nextTyping: Binder<String?> {
+    var nextTyping: Binder<String> {
         return Binder(base) { base, element in
             base.nextTyping = element
         }

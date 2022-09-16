@@ -16,6 +16,14 @@ final class TypingDashboard: UIView {
         didSet { updateElapsedTime() }
     }
     
+    var accuracy: Int = 0 {
+        didSet { accuracyLabel.text = "\(accuracy)%" }
+    }
+    
+    var typingSpeed: Int = 0 {
+        didSet { typingSpeedLabel.text = "\(typingSpeed)" }
+    }
+    
     private let typingSpeedLabel: UILabel = {
         let label = UILabel()
         label.font = .notoSansKR(ofSize: 40, weight: .black)
@@ -52,9 +60,6 @@ final class TypingDashboard: UIView {
     // MARK: Helpers
     private func configure() {
         self.backgroundColor = .clear
-        
-        typingSpeedLabel.text = "496"
-        accuracyLabel.text = "97%"
     }
     
     private func layout() {
@@ -100,6 +105,18 @@ extension Reactive where Base: TypingDashboard {
     var elapsedTime: Binder<Int> {
         return Binder(base) { base, value in
             base.elapsedTime = value
+        }
+    }
+    
+    var accuracy: Binder<Int> {
+        return Binder(base) { base, value in
+            base.accuracy = value
+        }
+    }
+    
+    var typingSpeed: Binder<Int> {
+        return Binder(base) { base, value in
+            base.typingSpeed = value
         }
     }
 }

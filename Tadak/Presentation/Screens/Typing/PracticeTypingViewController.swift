@@ -95,7 +95,7 @@ extension PracticeTypingViewController: View {
         
         // MARK: Action
         Observable.just(typingAttributes)
-            .map(PracticeTypingViewReactor.Action.typingAttributesIsSet)
+            .map(PracticeTypingViewReactor.Action.typingAttributesHasSet)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -107,19 +107,12 @@ extension PracticeTypingViewController: View {
         countdownView!.rx.isFinished
             .filter { $0 }
             .map { _ in }
-            .map(PracticeTypingViewReactor.Action.countDownIsFinished)
-            .bind(to: reactor.action)
-            .disposed(by: countdownView!.disposeBag)
-        
-        countdownView!.rx.isFinished
-            .filter { $0 }
-            .map { _ in }
             .map(PracticeTypingViewReactor.Action.typingHasStarted)
             .bind(to: reactor.action)
             .disposed(by: countdownView!.disposeBag)
         
         typingSheet.rx.typing.orEmpty
-            .map(PracticeTypingViewReactor.Action.typingText)
+            .map(PracticeTypingViewReactor.Action.currentUserText)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -134,22 +127,34 @@ extension PracticeTypingViewController: View {
             .bind(to: typingSheet.rx.title)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.currentTyping)
+        reactor.state.map(\.currentOriginalText)
             .distinctUntilChanged()
             .bind(to: typingSheet.rx.currentTyping)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.nextTyping)
+        reactor.state.map(\.nextOriginalText)
             .distinctUntilChanged()
             .bind(to: typingSheet.rx.nextTyping)
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap(\.typingText)
+        reactor.state.compactMap(\.userText)
+            .distinctUntilChanged()
+            .map(\.data)
             .bind(to: typingSheet.rx.typing)
             .disposed(by: disposeBag)
         
         reactor.state.map(\.elapsedTime)
             .bind(to: dashboard.rx.elapsedTime)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.accuracy)
+            .distinctUntilChanged()
+            .bind(to: dashboard.rx.accuracy)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.typingSpeed)
+            .distinctUntilChanged()
+            .bind(to: dashboard.rx.typingSpeed)
             .disposed(by: disposeBag)
         
         // MARK: View
