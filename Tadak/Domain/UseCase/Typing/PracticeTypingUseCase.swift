@@ -140,15 +140,17 @@ private extension PracticeTypingUseCase {
             .bind(to: _abused)
             .disposed(by: disposeBag)
         
-        
-        
         let comparitive = _currentUserText.withLatestFrom(
             currentOriginalText.compactMap { $0 }
         ) { (userText: $0, correctText: $1) }
-            .filter { $0.userText.count <= $0.correctText.count }
             .map { (userText, correctText) -> (userText: String, correctText: String) in
-                let index = correctText.index(correctText.startIndex, offsetBy: userText.count)
-                return (userText, String(correctText[..<index]))
+                if userText.count <= correctText.count {
+                    let index = correctText.index(correctText.startIndex, offsetBy: userText.count)
+                    return (userText, String(correctText[..<index]))
+                } else {
+                    let index = userText.index(userText.startIndex, offsetBy: correctText.count)
+                    return (String(userText[..<index]), correctText)
+                }
             }
             .share()
         
@@ -188,34 +190,38 @@ private extension PracticeTypingUseCase {
         let storedCorrect = BehaviorRelay<(correctCount: Int, totalCount: Int)>(value: (0, 0))
         
         let correct = comparitive
-            .map { (userText, correctText) -> (correctCount: Int, totalCount: Int) in
-                guard userText.count > 1 else { return (0, 0) }
+            .map { (userText, correctText) -> (correctCount: Int, totalCount: Int, last: Bool) in
+                guard userText.count > 1 else { return (0, 0, true) }
                 
                 var userText = userText
                 var correctText = correctText
-                _ = userText.popLast()
-                _ = correctText.popLast()
-                
-                let totalCount = userText.count
+                var totalCount = userText.count - 1
                 var correctCount = 0
+                var last = false
                 
-                for _ in 0..<totalCount {
+                if userText.removeLast() == correctText.removeLast() {
+                    correctCount += 1
+                    totalCount += 1
+                    last = true
+                }
+                
+                for _ in 0..<userText.count {
                     if userText.removeLast() == correctText.removeLast() {
                         correctCount += 1
                     }
                 }
                 
-                return (correctCount, totalCount)
+                return (correctCount, totalCount, last)
             }
-            .withLatestFrom(storedCorrect) { current, stored -> (correctCount: Int, totalCount: Int) in
+            .withLatestFrom(storedCorrect) { current, stored -> (correctCount: Int, totalCount: Int, last: Bool) in
                 let correctCount = current.correctCount + stored.correctCount
                 let totalCount = current.totalCount + stored.totalCount
-                return (correctCount, totalCount)
+                return (correctCount, totalCount, current.last)
             }
             .share()
         
         correct
-            .map { correctCount, totalCount -> Int in
+            .map { correctCount, totalCount, _ -> Int in
                 guard totalCount > 0 else { return 0 }
                 return correctCount * 100 / totalCount
             }
@@ -250,6 +256,7 @@ private extension PracticeTypingUseCase {
         
         newTextIndex
             .withLatestFrom(correct)
+            .map { ($0.correctCount, $0.totalCount + ($0.last ? 0 : 1)) }
             .bind(to: storedCorrect)
             .disposed(by: disposeBag)
         

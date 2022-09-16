@@ -104,26 +104,43 @@ final class TypingSheet: UIView {
         var attributes: [NSAttributedString.Key: Any] = [
             .font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18
         ]
+        var stack = [NSAttributedString]()
+
+        let minimumCount = min(currentTyping.count, inputText.count)
+        let index = currentTyping.index(currentTyping.startIndex, offsetBy: minimumCount)
         
-        outerLoop: for _ in 0..<currentTyping.count {
-            switch inputText.count {
-            case 0:
-                attributes[.foregroundColor] = UIColor.black
-                let rest = NSAttributedString(string: currentTyping, attributes: attributes)
-                attributedText.append(rest)
-                break outerLoop
-                
-            default:
-                let character = currentTyping.removeFirst()
-                let color: UIColor = (character == inputText.removeFirst()) ? .blue
-                : (inputText.count == 0) ? .black : .red
-                attributes[.foregroundColor] = color
-                let char = NSAttributedString(string: String(character), attributes: attributes)
-                attributedText.append(char)
-                continue
-            }
+        if inputText.count < currentTyping.count {
+            let string = String(currentTyping[index...])
+            let rest = NSAttributedString(string: string, attributes: attributes)
+            stack.append(rest)
+        }
+
+        currentTyping = String(currentTyping[..<index])
+        
+        guard currentTyping.count > 0 else {
+            stack.first.map { currentTypingLabel.attributedText = $0 }
+            return
         }
         
+        let character = currentTyping.removeLast()
+        let color: UIColor = (character == inputText.removeLast()) ? .blue
+        : .black
+        attributes[.foregroundColor] = color
+        let lastChar = NSAttributedString(string: String(character), attributes: attributes)
+        stack.append(lastChar)
+        
+        for _ in 0..<currentTyping.count {
+            let character = currentTyping.removeLast()
+            let color: UIColor = (character == inputText.removeLast()) ? .blue : .red
+            attributes[.foregroundColor] = color
+            let char = NSAttributedString(string: String(character), attributes: attributes)
+            stack.append(char)
+        }
+        
+        for _ in 0..<stack.count {
+            attributedText.append(stack.removeLast())
+        }
+
         currentTypingLabel.attributedText = attributedText
     }
     
