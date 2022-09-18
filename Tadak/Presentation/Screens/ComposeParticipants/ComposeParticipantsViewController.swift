@@ -7,41 +7,24 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
 
 final class ComposeParticipantsViewController: UIViewController {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let navigationView = ListButtonTypeNavigationView()
+    private let tableView = ComposeParticipantsTableView()
     private let headerView = ComposeParticipantsHeaderView()
     private let footerView = ComposeParticipantsFooterView()
+    private lazy var accessoryView = KeyboardDock(root: startButton, parent: self.view)
     
     private let startButton: TextButton = {
         let button = TextButton(colorType: .coral)
+        button.title = "시작하기"
         button.titleFont = .notoSansKR(ofSize: 20, weight: .bold)
         return button
-    }()
-    
-    private lazy var accessoryView: KeyboardDock = {
-        let accessoryView = KeyboardDock(
-            root: startButton,
-            parent: self.view
-        )
-        return accessoryView
-    }()
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .customNavy
-        tableView.rowHeight = 60
-        tableView.separatorStyle = .none
-        tableView.indicatorStyle = .white
-        tableView.keyboardDismissMode = .onDrag
-        tableView.register(
-            ComposeParticipantsCell.self,
-            forCellReuseIdentifier: ComposeParticipantsCell.reuseIdentifier
-        )
-        tableView.dataSource = self
-        return tableView
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
@@ -59,7 +42,6 @@ final class ComposeParticipantsViewController: UIViewController {
         view.backgroundColor = .customNavy
         
         navigationView.title = "참가자 입력"
-        startButton.title = "시작하기"
         
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
@@ -87,16 +69,38 @@ final class ComposeParticipantsViewController: UIViewController {
     }
 }
 
-extension ComposeParticipantsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
+// MARK: - Bind
+extension ComposeParticipantsViewController: View {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: ComposeParticipantsCell.reuseIdentifier,
-            for: indexPath
-        ) as! ComposeParticipantsCell
-        return cell
+    func bind(reactor: ComposeParticipantsViewReactor) {
+        
+        // MARK: Action
+        navigationView.rx.listButtonTapped
+            .map(ComposeParticipantsViewReactor.Action.listButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        headerView.rx.minusButtonTapped
+            .map(ComposeParticipantsViewReactor.Action.minusButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        headerView.rx.plusButtonTapped
+            .map(ComposeParticipantsViewReactor.Action.plusButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.pulse(\.$minimumNumber)
+            .bind(to: headerView.rx.minimumNumber)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$maximumNumber)
+            .bind(to: headerView.rx.maximumNumber)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$currentNumber)
+            .bind(to: headerView.rx.currentNumber)
+            .disposed(by: disposeBag)
     }
 }

@@ -90,6 +90,8 @@ final class TadakListCell: UITableViewCell {
     }
 }
 
+
+// MARK: Bind
 extension TadakListCell {
     func bind(with composition: Composition) {
         titleLabel.text = composition.title

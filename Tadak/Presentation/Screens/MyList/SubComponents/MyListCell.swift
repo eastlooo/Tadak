@@ -47,9 +47,6 @@ final class MyListCell: UITableViewCell {
         roundedView.backgroundColor = .customLightNavy
         titleLabel.adjustsFontSizeToFitWidth = true
         artistLabel.adjustsFontSizeToFitWidth = true
-        
-        titleLabel.text = "봄날"
-        artistLabel.text = "방탄소년단"
     }
     
     private func layout() {
@@ -75,5 +72,13 @@ final class MyListCell: UITableViewCell {
             $0.left.equalTo(titleLabel)
             $0.right.lessThanOrEqualToSuperview().inset(20)
         }
+    }
+}
+
+// MARK: Bind
+extension MyListCell {
+    func bind(with composition: Composition) {
+        titleLabel.text = composition.title
+        artistLabel.text = composition.artist
     }
 }

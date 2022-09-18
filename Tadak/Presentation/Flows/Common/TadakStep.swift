@@ -27,11 +27,15 @@ enum TadakStep: Step {
     case tadakListIsComplete
     
     // MyList
-    case myCompositionIsRequired
+    case myListIsRequired
+    case myListIsComplete
     
     // CompositionDetail
     case compositionIsPicked(withTypingDetail: TypingDetail)
     case compositionDetailIsComplete
+    
+    case participantsAreRequired
+    case participantsAreComplete
     
     // Typing
     case typingIsRequired(withTypingDetail: TypingDetail)

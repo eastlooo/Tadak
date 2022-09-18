@@ -7,38 +7,30 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
 
 final class MyListViewController: UIViewController {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let navigationView = HomeButtonTypeNavigationView()
+    private let tableView = MyListTableView()
+    private let headerView = MyListHeaderView()
     
     private let practiceModeButton: BorderedButton = {
         let button = BorderedButton()
+        button.title = "연습 모드"
         button.titleFont = .notoSansKR(ofSize: 14, weight: .medium)
         return button
     }()
 
     private let bettingModeButton: BorderedButton = {
         let button = BorderedButton()
+        button.title = "내기 모드"
         button.titleFont = .notoSansKR(ofSize: 14, weight: .medium)
         return button
     }()
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .customNavy
-        tableView.showsVerticalScrollIndicator = false
-        tableView.rowHeight = 100
-        tableView.register(
-            MyListCell.self,
-            forCellReuseIdentifier: MyListCell.reuseIdentifier
-        )
-        tableView.dataSource = self
-        return tableView
-    }()
-    
-    private let headerView = MyListHeaderView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -55,8 +47,6 @@ final class MyListViewController: UIViewController {
         view.backgroundColor = .customNavy
         
         navigationView.title = "나만의 글"
-        practiceModeButton.title = "연습 모드"
-        bettingModeButton.title = "내기 모드"
         
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = 100
@@ -94,16 +84,47 @@ final class MyListViewController: UIViewController {
     }
 }
 
-extension MyListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
+// MARK: - Bind
+extension MyListViewController: View {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: MyListCell.reuseIdentifier,
-            for: indexPath
-        ) as! MyListCell
-        return cell
+    func bind(reactor: MyListViewReactor) {
+        
+        // MARK: Action
+        navigationView.rx.homeButtonTapped
+            .map(MyListViewReactor.Action.homeButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        practiceModeButton.rx.tap
+            .map { _ in TypingMode.practice }
+            .map(MyListViewReactor.Action.typingModeButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        bettingModeButton.rx.tap
+            .map { _ in TypingMode.betting }
+            .map(MyListViewReactor.Action.typingModeButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .map(MyListViewReactor.Action.itemSelected)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.state.map(\.typingMode)
+            .map { $0 != .practice }
+            .bind(to: practiceModeButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.typingMode)
+            .map { $0 != .betting }
+            .bind(to: bettingModeButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map(\.items)
+            .bind(to: tableView.rx.items)
+            .disposed(by: disposeBag)
     }
 }

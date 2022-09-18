@@ -48,7 +48,7 @@ extension TadakMainViewReactor {
             return .empty()
             
         case .myListButtonTapped:
-            steps.accept(TadakStep.myCompositionIsRequired)
+            steps.accept(TadakStep.myListIsRequired)
             return .empty()
             
         case .settingButtonTapped:

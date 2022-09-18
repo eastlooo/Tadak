@@ -39,11 +39,14 @@ final class MainFlow: Flow {
         case .tadakListIsRequired:
             return navigateToTadakListScreen()
             
-        case .myCompositionIsRequired:
+        case .myListIsRequired:
             return navigateToMyListScreen()
             
         case .tadakListIsComplete:
             return dismissTadakList()
+            
+        case .myListIsComplete:
+            return dismissMyList()
             
         default:
             return .none
@@ -112,6 +115,30 @@ extension MainFlow {
     }
     
     private func navigateToMyListScreen() -> FlowContributors {
+        let myListFlow = MyListFlow(
+            userRepository: self.userRepository,
+            compositionRepository: self.compositionRepository
+        )
+        
+        Flows.use(myListFlow, when: .created) { root in
+            root.modalPresentationStyle = .fullScreen
+            self.rootViewController.present(root, animated: false)
+        }
+        
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: myListFlow,
+                withNextStepper: OneStepper(
+                    withSingleStep: TadakStep.myListIsRequired)
+            )
+        )
+    }
+    
+    private func dismissMyList() -> FlowContributors {
+        if let myListViewController = self.rootViewController.presentedViewController {
+            myListViewController.dismiss(animated: false)
+        }
+        
         return .none
     }
 }

@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
 
 final class ComposeParticipantsCell: UITableViewCell {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let nameTextField: TadakTextField = {
         let textField = TadakTextField()
         textField.font = .notoSansKR(ofSize: 18, weight: .medium)
@@ -28,6 +31,12 @@ final class ComposeParticipantsCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.disposeBag = DisposeBag()
     }
     
     // MARK: Helpers
@@ -53,5 +62,24 @@ final class ComposeParticipantsCell: UITableViewCell {
             $0.top.bottom.equalToSuperview().inset(7.5)
             $0.left.right.equalToSuperview().inset(15)
         }
+    }
+}
+
+// MARK: Bind
+extension ComposeParticipantsCell: View {
+    
+    func bind(reactor: ComposeParticipantsCellReactor) {
+        
+        // MARK: Action
+        nameTextField.rx.text.orEmpty
+            .map(ComposeParticipantsCellReactor.Action.text)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.state.map(\.name)
+            .take(1)
+            .bind(to: nameTextField.rx.text)
+            .disposed(by: disposeBag)
     }
 }

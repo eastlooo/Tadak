@@ -31,13 +31,13 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
     }
     
     struct State {
-        let title: String
-        var currentOriginalText: String = ""
-        var nextOriginalText: String = ""
-        var userText: IdentifiableWrapper<String>? = nil
-        var elapsedTime: Int = 0
-        var accuracy: Int = 0
-        var typingSpeed: Int = 0
+        @Pulse var title: String
+        @Pulse var currentOriginalText: String = ""
+        @Pulse var nextOriginalText: String = ""
+        @Pulse var userText: String = ""
+        @Pulse var elapsedTime: Int = 0
+        @Pulse var accuracy: Int = 0
+        @Pulse var typingSpeed: Int = 0
     }
     
     var steps = PublishRelay<Step>()
@@ -97,7 +97,7 @@ extension PracticeTypingViewReactor {
             state.nextOriginalText = nextOriginalText
             
         case .setUserText(let text):
-            state.userText = .init(data: text)
+            state.userText = text
             
         case .setElapsedTime(let time):
             state.elapsedTime = time

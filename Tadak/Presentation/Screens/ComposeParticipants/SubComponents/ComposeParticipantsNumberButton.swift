@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-final class ComposeParticipantsNumberButton: UIControl {
+final class ComposeParticipantsNumberButton: UIButton {
     
     // MARK: Properties
-    private let buttonType: ButtonType
+    private let buttonStyle: ButtonStyle
     
     override var isEnabled: Bool {
         didSet { updateButtonState() }
@@ -19,9 +19,10 @@ final class ComposeParticipantsNumberButton: UIControl {
     
     private let backgroundView = UIView()
     
-    private lazy var imageView: UIImageView = {
+    private lazy var buttonImageView: UIImageView = {
         let configuration = UIImage.SymbolConfiguration(pointSize: 18, weight: .bold)
-        let image = UIImage(systemName: self.buttonType.rawValue, withConfiguration: configuration)
+        let image = UIImage(systemName: self.buttonStyle.rawValue,
+                            withConfiguration: configuration)
         let imageView = UIImageView(image: image)
         imageView.tintColor = .white
         imageView.clipsToBounds = true
@@ -29,8 +30,8 @@ final class ComposeParticipantsNumberButton: UIControl {
     }()
     
     // MARK: Lifecycle
-    init(type buttonType: ButtonType) {
-        self.buttonType = buttonType
+    init(type buttonStyle: ButtonStyle) {
+        self.buttonStyle = buttonStyle
         super.init(frame: .zero)
         
         configure()
@@ -58,8 +59,8 @@ final class ComposeParticipantsNumberButton: UIControl {
             $0.width.height.equalTo(30)
         }
         
-        backgroundView.addSubview(imageView)
-        imageView.snp.makeConstraints {
+        backgroundView.addSubview(buttonImageView)
+        buttonImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
@@ -70,7 +71,7 @@ final class ComposeParticipantsNumberButton: UIControl {
 }
 
 extension ComposeParticipantsNumberButton {
-    enum ButtonType: String {
+    enum ButtonStyle: String {
         case plus, minus
     }
 }

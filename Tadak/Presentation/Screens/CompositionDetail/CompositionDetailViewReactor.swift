@@ -46,7 +46,10 @@ extension CompositionDetailViewReactor {
             
         case .startButtonTapped:
             if let typingDetail = try? typingDetail$.value() {
-                steps.accept(TadakStep.typingIsRequired(withTypingDetail: typingDetail))
+                switch typingDetail.typingMode {
+                case .betting: steps.accept(TadakStep.participantsAreRequired)
+                default: steps.accept(TadakStep.typingIsRequired(withTypingDetail: typingDetail))
+                }
             }
             return .empty()
         }

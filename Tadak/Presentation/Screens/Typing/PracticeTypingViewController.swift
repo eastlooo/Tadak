@@ -122,38 +122,31 @@ extension PracticeTypingViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.state.map(\.title)
-            .take(1)
+        reactor.pulse(\.$title)
             .bind(to: typingSheet.rx.title)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.currentOriginalText)
-            .distinctUntilChanged()
+        reactor.pulse(\.$currentOriginalText)
             .bind(to: typingSheet.rx.currentTyping)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.nextOriginalText)
-            .distinctUntilChanged()
+        reactor.pulse(\.$nextOriginalText)
             .bind(to: typingSheet.rx.nextTyping)
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap(\.userText)
-            .distinctUntilChanged()
-            .map(\.data)
+        reactor.pulse(\.$userText)
             .bind(to: typingSheet.rx.typing)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.elapsedTime)
+        reactor.pulse(\.$elapsedTime)
             .bind(to: dashboard.rx.elapsedTime)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.accuracy)
-            .distinctUntilChanged()
+        reactor.pulse(\.$accuracy)
             .bind(to: dashboard.rx.accuracy)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.typingSpeed)
-            .distinctUntilChanged()
+        reactor.pulse(\.$typingSpeed)
             .bind(to: dashboard.rx.typingSpeed)
             .disposed(by: disposeBag)
         

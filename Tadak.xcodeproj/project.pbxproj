@@ -99,6 +99,13 @@
 		A765904728CFA3D9000EAD7F /* TadakMainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */; };
 		A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */; };
 		A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDA28D4AB4F00DD383A /* Hangul.swift */; };
+		A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDC28D4F96800DD383A /* MyListFlow.swift */; };
+		A7820EDF28D4FB5E00DD383A /* MyListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDE28D4FB5E00DD383A /* MyListViewReactor.swift */; };
+		A7820EE128D5003900DD383A /* MyListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EE028D5003900DD383A /* MyListTableView.swift */; };
+		A7820EE328D5063200DD383A /* ComposeParticipantsViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EE228D5063200DD383A /* ComposeParticipantsViewReactor.swift */; };
+		A7820EE528D5880400DD383A /* ComposeParticipantsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EE428D5880400DD383A /* ComposeParticipantsTableView.swift */; };
+		A7820EE928D5998E00DD383A /* ComposeParticipantsCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EE828D5998E00DD383A /* ComposeParticipantsCellReactor.swift */; };
+		A7820EEB28D70AD300DD383A /* ComposeParticipantsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */; };
 		A78987D828CB66B40045D71C /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D728CB66B40045D71C /* Loader.swift */; };
 		A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D928CB70DC0045D71C /* UIWindow++.swift */; };
 		A78987E028CB7F560045D71C /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = A78987DF28CB7F560045D71C /* loader.json */; };
@@ -252,6 +259,13 @@
 		A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewReactor.swift; sourceTree = "<group>"; };
 		A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableWrapper.swift; sourceTree = "<group>"; };
 		A7820EDA28D4AB4F00DD383A /* Hangul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
+		A7820EDC28D4F96800DD383A /* MyListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListFlow.swift; sourceTree = "<group>"; };
+		A7820EDE28D4FB5E00DD383A /* MyListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewReactor.swift; sourceTree = "<group>"; };
+		A7820EE028D5003900DD383A /* MyListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListTableView.swift; sourceTree = "<group>"; };
+		A7820EE228D5063200DD383A /* ComposeParticipantsViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsViewReactor.swift; sourceTree = "<group>"; };
+		A7820EE428D5880400DD383A /* ComposeParticipantsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsTableView.swift; sourceTree = "<group>"; };
+		A7820EE828D5998E00DD383A /* ComposeParticipantsCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsCellReactor.swift; sourceTree = "<group>"; };
+		A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsUseCase.swift; sourceTree = "<group>"; };
 		A78987D728CB66B40045D71C /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A78987D928CB70DC0045D71C /* UIWindow++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow++.swift"; sourceTree = "<group>"; };
 		A78987DF28CB7F560045D71C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
@@ -437,26 +451,27 @@
 				A74ACC6A28C9D06100780433 /* App */,
 				A74ACC6F28C9D18F00780433 /* Onboarding */,
 				A7CE37A928CDA993002ACAD5 /* Main */,
-				A746E47A28D075F3009639A7 /* TadakListFlow */,
-				A746E47B28D075FB009639A7 /* MyListFlow */,
-				A7F42DB128D1088200049C0E /* TypingFlow */,
+				A746E47A28D075F3009639A7 /* TadakList */,
+				A746E47B28D075FB009639A7 /* MyList */,
+				A7F42DB128D1088200049C0E /* Typing */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
 		};
-		A746E47A28D075F3009639A7 /* TadakListFlow */ = {
+		A746E47A28D075F3009639A7 /* TadakList */ = {
 			isa = PBXGroup;
 			children = (
 				A746E47E28D0764D009639A7 /* TadakListFlow.swift */,
 			);
-			path = TadakListFlow;
+			path = TadakList;
 			sourceTree = "<group>";
 		};
-		A746E47B28D075FB009639A7 /* MyListFlow */ = {
+		A746E47B28D075FB009639A7 /* MyList */ = {
 			isa = PBXGroup;
 			children = (
+				A7820EDC28D4F96800DD383A /* MyListFlow.swift */,
 			);
-			path = MyListFlow;
+			path = MyList;
 			sourceTree = "<group>";
 		};
 		A746E48228D0784A009639A7 /* Common */ = {
@@ -506,6 +521,7 @@
 				A7CE37B028CDBD19002ACAD5 /* Main */,
 				A746E48828D08D67009639A7 /* TadakList */,
 				A721EDD328D1BE92008B7353 /* Typing */,
+				A7820EEC28D70ADF00DD383A /* ComposeParticipants */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -698,6 +714,14 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
+		A7820EEC28D70ADF00DD383A /* ComposeParticipants */ = {
+			isa = PBXGroup;
+			children = (
+				A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */,
+			);
+			path = ComposeParticipants;
+			sourceTree = "<group>";
+		};
 		A78987E328CBA7990045D71C /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,6 +797,9 @@
 			isa = PBXGroup;
 			children = (
 				A78B127328C735100015BBA1 /* ComposeParticipantsViewController.swift */,
+				A7820EE228D5063200DD383A /* ComposeParticipantsViewReactor.swift */,
+				A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */,
+				A7820EE828D5998E00DD383A /* ComposeParticipantsCellReactor.swift */,
 				A78B127C28C73B600015BBA1 /* SubComponents */,
 			);
 			path = ComposeParticipants;
@@ -781,7 +808,7 @@
 		A78B127C28C73B600015BBA1 /* SubComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A78B127D28C74D540015BBA1 /* ComposeParticipantsCell.swift */,
+				A7820EE428D5880400DD383A /* ComposeParticipantsTableView.swift */,
 				A78B127A28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift */,
 				A78B128528C7738D0015BBA1 /* ComposeParticipantsFooterView.swift */,
 				A78B128328C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift */,
@@ -855,6 +882,7 @@
 			isa = PBXGroup;
 			children = (
 				A7B4CCF928C6FAB300D663D2 /* MyListViewController.swift */,
+				A7820EDE28D4FB5E00DD383A /* MyListViewReactor.swift */,
 				A7B4CD0128C6FCAD00D663D2 /* SubComponents */,
 			);
 			path = MyList;
@@ -872,6 +900,7 @@
 		A7B4CD0128C6FCAD00D663D2 /* SubComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A7820EE028D5003900DD383A /* MyListTableView.swift */,
 				A7B4CD0228C6FD9600D663D2 /* MyListHeaderView.swift */,
 				A7B4CCFC28C6FB5000D663D2 /* MyListCell.swift */,
 			);
@@ -1077,12 +1106,12 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		A7F42DB128D1088200049C0E /* TypingFlow */ = {
+		A7F42DB128D1088200049C0E /* Typing */ = {
 			isa = PBXGroup;
 			children = (
 				A7F42DAF28D1087F00049C0E /* TypingFlow.swift */,
 			);
-			path = TypingFlow;
+			path = Typing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1250,6 +1279,7 @@
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
 				A7CE378428CC6A5C002ACAD5 /* Storable.swift in Sources */,
+				A7820EE328D5063200DD383A /* ComposeParticipantsViewReactor.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */,
 				A78B128C28C784F40015BBA1 /* KeyboardDock.swift in Sources */,
@@ -1272,7 +1302,9 @@
 				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
 				A78987D828CB66B40045D71C /* Loader.swift in Sources */,
 				A74ACCAD28CB0A3C00780433 /* UserRepository.swift in Sources */,
+				A7820EDF28D4FB5E00DD383A /* MyListViewReactor.swift in Sources */,
 				A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */,
+				A7820EE128D5003900DD383A /* MyListTableView.swift in Sources */,
 				A7CE37A628CD0EF4002ACAD5 /* WelcomingView.swift in Sources */,
 				A765904128CE4A68000EAD7F /* ObservableType++Operator.swift in Sources */,
 				A721EDD228D1AEA8008B7353 /* TypingAttributes.swift in Sources */,
@@ -1286,8 +1318,11 @@
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
 				A746E48728D08D63009639A7 /* TadakListUseCase.swift in Sources */,
 				A746E48C28D0B43E009639A7 /* TypingDetail.swift in Sources */,
+				A7820EE928D5998E00DD383A /* ComposeParticipantsCellReactor.swift in Sources */,
 				A793962428CB318300D28D9F /* UserDTO.swift in Sources */,
 				A7CE378028CC6037002ACAD5 /* RealmStorage.swift in Sources */,
+				A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */,
+				A7820EEB28D70AD300DD383A /* ComposeParticipantsUseCase.swift in Sources */,
 				A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */,
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
 				A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */,
@@ -1325,6 +1360,7 @@
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 				A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */,
 				A74ACC6928C9D05D00780433 /* AppFlow.swift in Sources */,
+				A7820EE528D5880400DD383A /* ComposeParticipantsTableView.swift in Sources */,
 				A74ACCA828CA760400780433 /* Dictionary++.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1594,8 +1630,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		A78B129928C7C59C0015BBA1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {

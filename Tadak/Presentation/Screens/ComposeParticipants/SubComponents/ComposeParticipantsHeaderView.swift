@@ -7,15 +7,23 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class ComposeParticipantsHeaderView: UIView {
     
     // MARK: Properties
+    var minimumNumber: Int = 0
+    var maximumNumber: Int = 2
+    var currentNumber: Int = 1 {
+        didSet { updateNumber() }
+    }
+    
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.text = "2"
         label.textColor = .white
         label.font = .notoSansKR(ofSize: 80, weight: .black)
+        label.textAlignment = .center
         return label
     }()
     
@@ -28,14 +36,13 @@ final class ComposeParticipantsHeaderView: UIView {
         return label
     }()
     
-    private let minusButton = ComposeParticipantsNumberButton(type: .minus)
-    private let plusButton = ComposeParticipantsNumberButton(type: .plus)
+    fileprivate let minusButton = ComposeParticipantsNumberButton(type: .minus)
+    fileprivate let plusButton = ComposeParticipantsNumberButton(type: .plus)
     
     // MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configure()
         layout()
     }
     
@@ -44,12 +51,6 @@ final class ComposeParticipantsHeaderView: UIView {
     }
     
     // MARK: Helpers
-    private func configure() {
-        descriptionLabel.text = "인원 수를 선택해주세요\n (2~8 명)"
-        
-        minusButton.isEnabled = false
-    }
-    
     private func layout() {
         let hStackView = UIStackView(arrangedSubviews: [
             minusButton, numberLabel, plusButton
@@ -74,5 +75,47 @@ final class ComposeParticipantsHeaderView: UIView {
         numberLabel.snp.makeConstraints {
             $0.height.equalTo(72)
         }
+    }
+    
+    private func updateDescription() {
+        descriptionLabel.text = "인원 수를 선택해주세요\n (\(minimumNumber)~\(maximumNumber)명)"
+    }
+    
+    private func updateNumber() {
+        numberLabel.text = "\(currentNumber)"
+        minusButton.isEnabled = (minimumNumber != currentNumber)
+        plusButton.isEnabled = (maximumNumber != currentNumber)
+    }
+}
+
+// MARK: - Rx+Extension
+extension Reactive where Base: ComposeParticipantsHeaderView {
+    
+    // MARK: Binder
+    var minimumNumber: Binder<Int> {
+        return Binder(base) { base, value in
+            base.minimumNumber = value
+        }
+    }
+    
+    var maximumNumber: Binder<Int> {
+        return Binder(base) { base, value in
+            base.maximumNumber = value
+        }
+    }
+    
+    var currentNumber: Binder<Int> {
+        return Binder(base) { base, value in
+            base.currentNumber = value
+        }
+    }
+    
+    // MARK: ControlEvent
+    var plusButtonTapped: ControlEvent<Void> {
+        return base.plusButton.rx.tap
+    }
+    
+    var minusButtonTapped: ControlEvent<Void> {
+        return base.minusButton.rx.tap
     }
 }
