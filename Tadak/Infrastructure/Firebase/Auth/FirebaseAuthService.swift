@@ -9,15 +9,6 @@ import Foundation
 import FirebaseAuth
 import RxSwift
 
-protocol FirebaseAuthServiceProtocol {
-    
-    var userID: String? { get }
-    
-    func signOut() -> Observable<Result<Void, Error>>
-    func signInAnonymously() -> Observable<Result<String, Error>>
-    func deleteUser() -> Observable<Result<Void, Error>>
-}
-
 final class FirebaseAuthService {
     
     var userID: String? { auth.currentUser?.uid }
@@ -31,48 +22,48 @@ final class FirebaseAuthService {
 
 extension FirebaseAuthService: FirebaseAuthServiceProtocol {
     
-    func signOut() -> Observable<Result<Void, Error>> {
+    func signOut() -> Observable<Void> {
         return .create { [weak self] observer in
             do {
                 try self?.auth.signOut()
-                observer.onNext(.success(Void()))
+                observer.onNext(())
             } catch {
-                observer.onNext(.failure(error))
+                observer.onError(error)
             }
             
             return Disposables.create()
         }
     }
     
-    func signInAnonymously() -> Observable<Result<String, Error>> {
+    func signInAnonymously() -> Observable<String> {
         return .create { [weak self] observer in
             self?.auth.signInAnonymously { authResult, error in
                 if let error = error {
-                    observer.onNext(.failure(error))
+                    observer.onError(error)
                     return
                 }
                 
                 guard let uid = authResult?.user.uid else {
-                    observer.onNext(.failure(FirebaseError.emptyResult))
+                    observer.onError(FirebaseError.emptyResult)
                     return
                 }
                 
-                observer.onNext(.success(uid))
+                observer.onNext(uid)
             }
             
             return Disposables.create()
         }
     }
     
-    func deleteUser() -> Observable<Result<Void, Error>> {
+    func deleteUser() -> Observable<Void> {
         return .create { [weak self] observer in
             self?.auth.currentUser?.delete(completion: { error in
                 if let error = error {
-                    observer.onNext(.failure(error))
+                    observer.onError(error)
                     return
                 }
                 
-                observer.onNext(.success(Void()))
+                observer.onNext(Void())
             })
             
             return Disposables.create()

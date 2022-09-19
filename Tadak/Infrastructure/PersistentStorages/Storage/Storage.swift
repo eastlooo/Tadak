@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 
 protocol Storage {
-    func create<T: Storable>(_ model: T.Type) -> Observable<Result<T, Error>>
-    func save(object: Storable) -> Observable<Result<Void, Error>>
-    func update(block: @escaping() -> Void) -> Observable<Result<Void, Error>>
-    func delete(object: Storable) -> Observable<Result<Void, Error>>
-    func deleteAll<T: Storable>(_ model: T.Type) -> Observable<Result<Void, Error>>
-    func reset() -> Observable<Result<Void, Error>>
+    func create<T: Storable>(_ model: T.Type) -> Observable<T>
+    func save(object: Storable) -> Observable<Void>
+    func update(block: @escaping() -> Void) -> Observable<Void>
+    func delete(object: Storable) -> Observable<Void>
+    func deleteAll<T: Storable>(_ model: T.Type) -> Observable<Void>
+    func reset() -> Observable<Void>
     func fetch<T: Storable>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?) -> Observable<[T]>
 }

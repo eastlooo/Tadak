@@ -55,13 +55,13 @@ extension TadakListViewReactor {
             return .empty()
             
         case .itemSelected(let indexPath):
-            if let composition = useCase.getComposition(index: indexPath.row),
-               let typingMode = try? typingMode$.value() {
-                let typingDetail = TypingDetail(typingMode: typingMode, composition: composition)
-                steps.accept(TadakStep.compositionIsPicked(withTypingDetail: typingDetail))
-            }
-            
-            return .empty()
+            return useCase.getComposition(index: indexPath.row)
+                .compactMap { $0 }
+                .withLatestFrom(typingMode$) { ($1, $0) }
+                .map(TypingDetail.init)
+                .map(TadakStep.compositionIsPicked)
+                .do(onNext: { [weak self] step in self?.steps.accept(step) })
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
     

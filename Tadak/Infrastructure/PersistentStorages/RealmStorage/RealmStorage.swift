@@ -50,81 +50,81 @@ final class RealmStorage {
 }
 
 extension RealmStorage: Storage {
-    func create<T>(_ model: T.Type) -> Observable<Result<T, Error>> where T : Storable {
+    func create<T>(_ model: T.Type) -> Observable<T> where T : Storable {
         guard let realm = self.realm else {
-            return .just(.failure(RealmError.failedInitialization))
+            return .error(RealmError.failedInitialization)
         }
         
-        return .create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     let newObject = realm.create(model as! Object.Type, value: [], update: .error) as! T
-                    observer.onNext(.success(newObject))
+                    observer.onNext(newObject)
                 }
             } catch {
-                observer.onNext(.failure(RealmError.failedSafeWriting))
+                observer.onError(RealmError.failedSafeWriting)
             }
             
             return Disposables.create()
         }
     }
     
-    func save(object: Storable) -> Observable<Result<Void, Error>> {
+    func save(object: Storable) -> Observable<Void> {
         guard let realm = self.realm else {
-            return .just(.failure(RealmError.failedInitialization))
+            return .error(RealmError.failedInitialization)
         }
         
         return .create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     realm.add(object as! Object)
-                    observer.onNext(.success(Void()))
+                    observer.onNext(())
                 }
             } catch {
-                observer.onNext(.failure(RealmError.failedSafeWriting))
+                observer.onError(RealmError.failedSafeWriting)
             }
             
             return Disposables.create()
         }
     }
     
-    func update(block: @escaping () -> Void) -> Observable<Result<Void, Error>> {
+    func update(block: @escaping () -> Void) -> Observable<Void> {
         return .create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     block()
-                    observer.onNext(.success(Void()))
+                    observer.onNext(())
                 }
             } catch {
-                observer.onNext(.failure(RealmError.failedSafeWriting))
+                observer.onError(RealmError.failedSafeWriting)
             }
             
             return Disposables.create()
         }
     }
     
-    func delete(object: Storable) -> Observable<Result<Void, Error>> {
+    func delete(object: Storable) -> Observable<Void> {
         guard let realm = self.realm else {
-            return .just(.failure(RealmError.failedInitialization))
+            return .error(RealmError.failedInitialization)
         }
         
         return .create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     realm.delete(object as! Object)
-                    observer.onNext(.success(Void()))
+                    observer.onNext(())
                 }
             } catch {
-                observer.onNext(.failure(RealmError.failedSafeWriting))
+                observer.onError(RealmError.failedSafeWriting)
             }
             
             return Disposables.create()
         }
     }
     
-    func deleteAll<T>(_ model: T.Type) -> Observable<Result<Void, Error>> where T : Storable {
+    func deleteAll<T>(_ model: T.Type) -> Observable<Void> where T : Storable {
         guard let realm = self.realm else {
-            return .just(.failure(RealmError.failedInitialization))
+            return .error(RealmError.failedInitialization)
         }
         
         return .create { [weak self] observer in
@@ -136,19 +136,19 @@ extension RealmStorage: Storage {
                         realm.delete(object)
                     }
                     
-                    observer.onNext(.success(Void()))
+                    observer.onNext(())
                 }
             } catch {
-                observer.onNext(.failure(RealmError.failedSafeWriting))
+                observer.onError(RealmError.failedSafeWriting)
             }
             
             return Disposables.create()
         }
     }
         
-    func reset() -> Observable<Result<Void, Error>> {
+    func reset() -> Observable<Void> {
         guard let realm = self.realm else {
-            return .just(.failure(RealmError.failedInitialization))
+            return .error(RealmError.failedInitialization)
         }
         
         return .create { [weak self] observer in
@@ -156,10 +156,10 @@ extension RealmStorage: Storage {
                 try self?.safeWrite {
                     realm.deleteAll()
                     
-                    observer.onNext(.success(Void()))
+                    observer.onNext(())
                 }
             } catch {
-                observer.onNext(.failure(RealmError.failedSafeWriting))
+                observer.onError(RealmError.failedSafeWriting)
             }
             
             return Disposables.create()

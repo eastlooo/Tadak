@@ -48,7 +48,6 @@
 		A74ACC7E28CA0FAC00780433 /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = A74ACC7D28CA0FAC00780433 /* RxKeyboard */; };
 		A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */; };
 		A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC8728CA2E6100780433 /* FirebaseError.swift */; };
-		A74ACC8F28CA353D00780433 /* Result++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC8E28CA353D00780433 /* Result++.swift */; };
 		A74ACC9428CA585000780433 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC9328CA585000780433 /* Endpoint.swift */; };
 		A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC9528CA590100780433 /* RequestResponsable.swift */; };
 		A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74ACC9828CA5AA100780433 /* APIEndpoints.swift */; };
@@ -106,6 +105,10 @@
 		A7820EE528D5880400DD383A /* ComposeParticipantsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EE428D5880400DD383A /* ComposeParticipantsTableView.swift */; };
 		A7820EE928D5998E00DD383A /* ComposeParticipantsCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EE828D5998E00DD383A /* ComposeParticipantsCellReactor.swift */; };
 		A7820EEB28D70AD300DD383A /* ComposeParticipantsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */; };
+		A7820EEE28D755A700DD383A /* FirebaseAuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EED28D755A700DD383A /* FirebaseAuthServiceProtocol.swift */; };
+		A7820EF228D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EF128D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift */; };
+		A7820EF528D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EF428D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift */; };
+		A7820EF928D76D2E00DD383A /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EF828D76D2E00DD383A /* UserRepositoryProtocol.swift */; };
 		A78987D828CB66B40045D71C /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D728CB66B40045D71C /* Loader.swift */; };
 		A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78987D928CB70DC0045D71C /* UIWindow++.swift */; };
 		A78987E028CB7F560045D71C /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = A78987DF28CB7F560045D71C /* loader.json */; };
@@ -213,7 +216,6 @@
 		A74ACC7A28C9F38500780433 /* OnboardingNicknameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameUseCase.swift; sourceTree = "<group>"; };
 		A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseService.swift; sourceTree = "<group>"; };
 		A74ACC8728CA2E6100780433 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
-		A74ACC8E28CA353D00780433 /* Result++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result++.swift"; sourceTree = "<group>"; };
 		A74ACC9328CA585000780433 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		A74ACC9528CA590100780433 /* RequestResponsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponsable.swift; sourceTree = "<group>"; };
 		A74ACC9828CA5AA100780433 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
@@ -266,6 +268,10 @@
 		A7820EE428D5880400DD383A /* ComposeParticipantsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsTableView.swift; sourceTree = "<group>"; };
 		A7820EE828D5998E00DD383A /* ComposeParticipantsCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsCellReactor.swift; sourceTree = "<group>"; };
 		A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsUseCase.swift; sourceTree = "<group>"; };
+		A7820EED28D755A700DD383A /* FirebaseAuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthServiceProtocol.swift; sourceTree = "<group>"; };
+		A7820EF128D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseServiceProtocol.swift; sourceTree = "<group>"; };
+		A7820EF428D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigServiceProtocol.swift; sourceTree = "<group>"; };
+		A7820EF828D76D2E00DD383A /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A78987D728CB66B40045D71C /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A78987D928CB70DC0045D71C /* UIWindow++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow++.swift"; sourceTree = "<group>"; };
 		A78987DF28CB7F560045D71C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
@@ -555,9 +561,9 @@
 		A74ACC8128CA2A5800780433 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				A765903228CE3769000EAD7F /* FirebaseAuthService.swift */,
-				A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */,
-				A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */,
+				A7820EEF28D7672800DD383A /* Auth */,
+				A7820EF028D7673100DD383A /* Database */,
+				A7820EF328D7676800DD383A /* RemoteConfig */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -595,8 +601,8 @@
 		A74ACC8B28CA300300780433 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				A74ACCAC28CB0A3C00780433 /* UserRepository.swift */,
-				A7CE37B328CDC0F4002ACAD5 /* CompositionRepository.swift */,
+				A7820EF628D76CF500DD383A /* User */,
+				A7820EF728D76D1F00DD383A /* Composition */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -627,25 +633,21 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		A75806F028C4EEE00073D03A /* Extensions */ = {
+		A75806F028C4EEE00073D03A /* Foundation+Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A75806EE28C4EEDA0073D03A /* UIColor++.swift */,
-				A758072428C4F83D0073D03A /* UIImage++.swift */,
-				A72E75A028C659A30028CE8D /* UIFont++.swift */,
-				A74ACC8E28CA353D00780433 /* Result++.swift */,
 				A74ACCA328CA6B1200780433 /* Encodable++.swift */,
 				A74ACCA728CA760400780433 /* Dictionary++.swift */,
-				A74ACCA528CA75AE00780433 /* DataSnapshot++.swift */,
-				A78987D928CB70DC0045D71C /* UIWindow++.swift */,
 			);
-			path = Extensions;
+			path = "Foundation+Extensions";
 			sourceTree = "<group>";
 		};
 		A75806F128C4EEEB0073D03A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				A75806F028C4EEE00073D03A /* Extensions */,
+				A75806F028C4EEE00073D03A /* Foundation+Extensions */,
+				A7820EFB28D876AB00DD383A /* UIKit+Extensions */,
+				A7820EFA28D8769500DD383A /* Firebase+Extensions */,
 				A78987EC28CBB7240045D71C /* Rx+Extensions */,
 				A74ACCAB28CB019000780433 /* Protocols */,
 			);
@@ -720,6 +722,69 @@
 				A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */,
 			);
 			path = ComposeParticipants;
+			sourceTree = "<group>";
+		};
+		A7820EEF28D7672800DD383A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A7820EED28D755A700DD383A /* FirebaseAuthServiceProtocol.swift */,
+				A765903228CE3769000EAD7F /* FirebaseAuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		A7820EF028D7673100DD383A /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A7820EF128D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift */,
+				A74ACC8528CA2BC100780433 /* FirebaseDatabaseService.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		A7820EF328D7676800DD383A /* RemoteConfig */ = {
+			isa = PBXGroup;
+			children = (
+				A7820EF428D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift */,
+				A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */,
+			);
+			path = RemoteConfig;
+			sourceTree = "<group>";
+		};
+		A7820EF628D76CF500DD383A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A7820EF828D76D2E00DD383A /* UserRepositoryProtocol.swift */,
+				A74ACCAC28CB0A3C00780433 /* UserRepository.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		A7820EF728D76D1F00DD383A /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				A7CE37B328CDC0F4002ACAD5 /* CompositionRepository.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		A7820EFA28D8769500DD383A /* Firebase+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A74ACCA528CA75AE00780433 /* DataSnapshot++.swift */,
+			);
+			path = "Firebase+Extensions";
+			sourceTree = "<group>";
+		};
+		A7820EFB28D876AB00DD383A /* UIKit+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A75806EE28C4EEDA0073D03A /* UIColor++.swift */,
+				A758072428C4F83D0073D03A /* UIImage++.swift */,
+				A72E75A028C659A30028CE8D /* UIFont++.swift */,
+				A78987D928CB70DC0045D71C /* UIWindow++.swift */,
+			);
+			path = "UIKit+Extensions";
 			sourceTree = "<group>";
 		};
 		A78987E328CBA7990045D71C /* Alert */ = {
@@ -1313,6 +1378,7 @@
 				A74ACC9428CA585000780433 /* Endpoint.swift in Sources */,
 				A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
+				A7820EF228D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
@@ -1327,13 +1393,13 @@
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
 				A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */,
 				A74ACC7B28C9F38500780433 /* OnboardingNicknameUseCase.swift in Sources */,
-				A74ACC8F28CA353D00780433 /* Result++.swift in Sources */,
 				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
 				A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
 				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
+				A7820EF528D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift in Sources */,
 				A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */,
 				A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */,
 				A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */,
@@ -1358,7 +1424,9 @@
 				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
+				A7820EEE28D755A700DD383A /* FirebaseAuthServiceProtocol.swift in Sources */,
 				A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */,
+				A7820EF928D76D2E00DD383A /* UserRepositoryProtocol.swift in Sources */,
 				A74ACC6928C9D05D00780433 /* AppFlow.swift in Sources */,
 				A7820EE528D5880400DD383A /* ComposeParticipantsTableView.swift in Sources */,
 				A74ACCA828CA760400780433 /* Dictionary++.swift in Sources */,

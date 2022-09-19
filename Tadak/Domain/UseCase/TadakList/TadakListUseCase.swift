@@ -12,29 +12,23 @@ protocol TadakListUseCaseProtocol: AnyObject {
     
     var tadakComposition: BehaviorSubject<TadakComposition?> { get }
     
-    func getComposition(index: Int) -> Composition?
+    func getComposition(index: Int) -> Observable<Composition?>
 }
 
 final class TadakListUseCase {
     
-    var tadakComposition: BehaviorSubject<TadakComposition?> { tadakComposition$ }
-    
-    private let tadakComposition$: BehaviorSubject<TadakComposition?>
+    var tadakComposition: BehaviorSubject<TadakComposition?>
     
     init(
         compositionRepository: CompositionRepositoryProtocol
     ) {
-        self.tadakComposition$ = compositionRepository.tadakComposition
+        self.tadakComposition = compositionRepository.tadakComposition
     }
 }
 
 extension TadakListUseCase: TadakListUseCaseProtocol {
     
-    func getComposition(index: Int) -> Composition? {
-        guard let tadakComposition = try? tadakComposition.value() else {
-            return nil
-        }
-        
-        return tadakComposition.compositions[index]
+    func getComposition(index: Int) -> Observable<Composition?> {
+        return tadakComposition.map { $0?.compositions[index] }
     }
 }

@@ -10,20 +10,19 @@ import RxSwift
 
 protocol TadakMainUseCaseProtocol: AnyObject {
     
-    var user: BehaviorSubject<TadakUser?> { get }
+    var user: Observable<TadakUser?> { get }
 }
 
 final class TadakMainUseCase: TadakMainUseCaseProtocol {
     
-    var user: BehaviorSubject<TadakUser?> { user$ }
+    let user: Observable<TadakUser?>
     
-    private let user$: BehaviorSubject<TadakUser?>
     private let userRepository: UserRepositoryProtocol
     
     init(
         userRepository: UserRepositoryProtocol
     ) {
-        self.user$ = userRepository.user
+        self.user = userRepository.user
         self.userRepository = userRepository
     }
 }

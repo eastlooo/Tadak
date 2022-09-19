@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIWindow {
+    
     static var keyWindow: UIWindow? {
         UIApplication
             .shared

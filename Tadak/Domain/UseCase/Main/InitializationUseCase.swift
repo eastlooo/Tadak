@@ -10,16 +10,15 @@ import RxSwift
 
 protocol InitializationUseCaseProtocol: AnyObject {
     
-    var user: BehaviorSubject<TadakUser?> { get }
+    var user: Observable<TadakUser?> { get }
     
-    func fetchCompositions() -> Observable<Result<Void, Error>>
+    func fetchCompositions() -> Observable<Void>
 }
 
 final class InitializationUseCase {
     
-    var user: BehaviorSubject<TadakUser?> { user$ }
+    let user: Observable<TadakUser?>
     
-    private let user$: BehaviorSubject<TadakUser?>
     private let userRepository: UserRepositoryProtocol
     private let compositionRepository: CompositionRepositoryProtocol
     
@@ -27,7 +26,7 @@ final class InitializationUseCase {
         userRepository: UserRepositoryProtocol,
         compositionRepository: CompositionRepositoryProtocol
     ) {
-        self.user$ = userRepository.user
+        self.user = userRepository.user
         self.userRepository = userRepository
         self.compositionRepository = compositionRepository
     }
@@ -35,12 +34,12 @@ final class InitializationUseCase {
 
 extension InitializationUseCase: InitializationUseCaseProtocol {
     
-    func fetchCompositions() -> Observable<Result<Void, Error>> {
+    func fetchCompositions() -> Observable<Void> {
         let myComposition = compositionRepository.fetchMyComposition()
         let tadakComposition = compositionRepository.fetchTadakComposition()
         
         return myComposition
             .flatMap { _ in tadakComposition }
-            .mapOnSuccess { _ -> Void in Void() }
+            .map { _ in }
     }
 }

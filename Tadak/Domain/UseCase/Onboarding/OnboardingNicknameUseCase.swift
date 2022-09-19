@@ -16,14 +16,14 @@ protocol OnboardingNicknameUseCaseProtocol: AnyObject {
     func checkValidate(_ text: String) -> Bool
     func correctText(_ text: String) -> String
     
-    func checkNicknameDuplication() -> Observable<Result<Bool, Error>>
-    func startOnboardingFlow() -> Observable<Result<TadakUser, Error>>
+    func checkNicknameDuplication() -> Observable<Bool>
+    func startOnboardingFlow() -> Observable<TadakUser>
 }
 
 final class OnboardingNicknameUseCase {
     
-    var minLength: Int { 2 }
-    var maxLength: Int { 6 }
+    let minLength: Int = 2
+    let maxLength: Int = 6
     
     let characterID: Int
     var nickname: String = ""
@@ -59,49 +59,44 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
         return correctedText
     }
     
-    func checkNicknameDuplication() -> Observable<Result<Bool, Error>> {
-        return userRepository.checkNicknameDuplication(nickname: nickname)
-            .map { result -> Result<Bool, Error> in
-                switch result {
-                case .success:
-                    return .success(true)
-                    
-                case .failure(let error):
-                    if let error = error as? FirebaseError, error == .emptyResult {
-                        return .success(false)
-                    } else {
-                        return .failure(error)
-                    }
+    func checkNicknameDuplication() -> Observable<Bool> {
+        return userRepository.checkNickname(nickname: nickname)
+            .map { _ in true }
+            .catch { error -> Observable<Bool> in
+                if let error = error as? FirebaseError, error == .emptyResult {
+                    return .just(false)
+                } else {
+                    return .error(error)
                 }
             }
+            .retry()
     }
     
-    func startOnboardingFlow() -> Observable<Result<TadakUser, Error>> {
+    func startOnboardingFlow() -> Observable<TadakUser> {
         
-        var userId = ""
+        lazy var uid = ""
         let nickname = self.nickname
         let characterID = self.characterID
+        let repository = self.userRepository
         
         // 익명 가입
-        return userRepository.signInUserAnonymously()
+        return repository.signInUserAnonymously()
         // 성공 시 유저 서버 및 로컬에 저장
-            .flatMapOnSuccess { [weak self] uid -> Observable<Result<Void, Error>> in
-                userId = uid
-                guard let self = self else { return .empty() }
-                return self.userRepository.createUser(
-                    uid: uid,
-                    nickname: nickname,
-                    characterID: characterID
-                )
-            }
+            .do { uid = $0 }
+            .map { ($0, nickname, characterID) }
+            .flatMap(repository.createUser)
+            .retry()
         // 실패 시 유저 가입, 서버 및 로컬 삭제
-            .doAnotherOnFailure { [weak self] () -> Observable<Result<Void, Error>> in
-                guard let self = self else { return .empty() }
-                return self.userRepository.deleteUser(uid: userId, nickname: nickname)
-            }
-        // 유저 데이터 리턴
-            .mapOnSuccess { _ -> TadakUser in
-                return .init(id: userId, nickname: nickname, characterID: characterID)
+            .catch { error -> Observable<TadakUser> in
+                return repository.deleteUser(uid: uid, nickname: nickname)
+                    .map { _ in
+                        return TadakUser(
+                            id: uid,
+                            nickname: nickname,
+                            characterID: characterID
+                        )
+                    }
+                    .retry()
             }
     }
 }

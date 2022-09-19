@@ -16,7 +16,7 @@ final class InitializationViewReactor: Reactor, Stepper {
     
     enum Mutation {
         case setUser(TadakUser)
-        case fetchCompositions(Result<Void, Error>)
+        case fetchCompositions(Void)
     }
     
     struct State {
@@ -45,24 +45,27 @@ extension InitializationViewReactor {
         case .setUser(let user):
             state.user = user
             
-        case .fetchCompositions(let result):
-            switch result {
-            case .success:
-                steps.accept(TadakStep.initializationIsComplete)
-                
-            case .failure(let error):
-                print("ERROR: \(error)")
-            }
+        case .fetchCompositions:
+            steps.accept(TadakStep.initializationIsComplete)
         }
         
         return state
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        
+        let setUser = useCase.user
+            .compactMap { $0 }
+            .map(Mutation.setUser)
+        
+        let fetchCompositions = useCase.fetchCompositions()
+            .map(Mutation.fetchCompositions)
+            .debugError()
+        
         return .merge(
             mutation,
-            useCase.user.compactMap { $0 }.map(Mutation.setUser),
-            useCase.fetchCompositions().map(Mutation.fetchCompositions)
+            setUser,
+            fetchCompositions
         )
     }
 }

@@ -24,16 +24,13 @@ final class AppStepper: Stepper {
 
     func readyToEmitSteps() {
         userRepository.fetchUser()
-            .take(1)
-            .map { result -> TadakUser? in
-                switch result {
-                case .success(let user): return user
-                case .failure: return nil }
-            }
+            .retry(2)
+            .catchAndReturn(nil)
             .map { user -> TadakStep in
                 if let _ = user { return .initializationIsRequired }
                 return .onboardingIsRequired
             }
+            .take(1)
             .bind(to: self.steps)
             .disposed(by: disposeBog)
     }
