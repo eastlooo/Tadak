@@ -46,6 +46,7 @@ final class ComposeParticipantsViewController: UIViewController {
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
         headerView.frame.size.height = 230
+        headerView.frame.size.width = UIScreen.main.bounds.width
         footerView.frame.size.height = 160
         
         startButton.isEnabled = false
@@ -90,17 +91,34 @@ extension ComposeParticipantsViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        startButton.rx.tap
+            .map(ComposeParticipantsViewReactor.Action.startButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // MARK: State
+        reactor.pulse(\.$items)
+            .bind(to: tableView.rx.items)
+            .disposed(by: disposeBag)
+        
         reactor.pulse(\.$minimumNumber)
+            .compactMap { $0 }
             .bind(to: headerView.rx.minimumNumber)
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$maximumNumber)
+            .compactMap { $0 }
             .bind(to: headerView.rx.maximumNumber)
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$currentNumber)
+            .compactMap { $0 }
             .bind(to: headerView.rx.currentNumber)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$isValidate)
+            .distinctUntilChanged()
+            .bind(to: startButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }

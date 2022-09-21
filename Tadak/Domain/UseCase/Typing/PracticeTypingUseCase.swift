@@ -19,6 +19,7 @@ protocol PracticeTypingUseCaseProtocol: AnyObject {
     var elapesdTime: Observable<Int> { get }
     var accuracy: Observable<Int> { get }
     var typingSpeed: Observable<Int> { get }
+    var progression: Observable<Double> { get }
     var currentOriginalText: Observable<String> { get }
     var nextOriginalText: Observable<String> { get }
     var userTextToBeUpdated: Observable<String> { get }
@@ -38,6 +39,7 @@ final class PracticeTypingUseCase {
     var elapesdTime: Observable<Int> { _elapesdTime.asObservable() }
     var accuracy: Observable<Int> { _accuracy.asObservable() }
     var typingSpeed: Observable<Int> { _typingSpeed.asObservable() }
+    var progression: Observable<Double> { _progression.asObservable() }
     var currentOriginalText: Observable<String> { _currentOriginalText.asObservable() }
     var nextOriginalText: Observable<String> { _nextOriginalText.asObservable() }
     var userTextToBeUpdated: Observable<String> { _userTextToBeUpdated.asObservable() }
@@ -49,6 +51,7 @@ final class PracticeTypingUseCase {
     private let _elapesdTime  : BehaviorRelay<Int> = .init(value: 0)
     private let _accuracy: BehaviorRelay<Int> = .init(value: 0)
     private let _typingSpeed: BehaviorRelay<Int> = .init(value: 0)
+    private let _progression: BehaviorRelay<Double> = .init(value: 0)
     private let _abused = PublishRelay<Void>()
     private let _returnPressed = PublishSubject<Void>()
     
@@ -140,6 +143,7 @@ private extension PracticeTypingUseCase {
             .bind(to: _abused)
             .disposed(by: disposeBag)
         
+        // Compare Input Text with Orginal Text upto minimum index
         let comparitive = _currentUserText.withLatestFrom(
             currentOriginalText.compactMap { $0 }
         ) { (userText: $0, correctText: $1) }
@@ -228,6 +232,23 @@ private extension PracticeTypingUseCase {
             .bind(to: _accuracy)
             .disposed(by: disposeBag)
         
+        // Calculate Progression
+        let totalNumOfChar = _originalTextList
+            .map { $0.joined().count }
+            .filter { $0 > 0 }
+        
+        comparitive
+            .map(\.userText.count)
+            .withLatestFrom(storedCorrect.map(\.totalCount)) { $0 + $1 }
+            .withLatestFrom(totalNumOfChar) { input, total -> Double in
+                let share = Double(input) / Double(total)
+                // 소수점 셋 째 자리에서 올림
+                return ceil(share * 100) / 100
+            }
+            .bind(to: _progression)
+            .disposed(by: disposeBag)
+        
+        // New Text Line
         let newUserText = Observable.merge(
             _currentUserText
                 .withLatestFrom(_currentOriginalText) { input, original -> (text: String, new: String)? in

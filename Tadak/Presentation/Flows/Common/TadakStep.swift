@@ -34,7 +34,7 @@ enum TadakStep: Step {
     case compositionIsPicked(withTypingDetail: TypingDetail)
     case compositionDetailIsComplete
     
-    case participantsAreRequired
+    case participantsAreRequired(withTypingDetail: TypingDetail)
     case participantsAreComplete
     
     // Typing

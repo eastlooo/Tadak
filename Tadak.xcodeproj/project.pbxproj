@@ -96,6 +96,7 @@
 		A765904328CF1406000EAD7F /* FirebaseRemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */; };
 		A765904528CF2392000EAD7F /* RemoteConfigValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = A765904428CF2392000EAD7F /* RemoteConfigValue.plist */; };
 		A765904728CFA3D9000EAD7F /* TadakMainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */; };
+		A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */; };
 		A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */; };
 		A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDA28D4AB4F00DD383A /* Hangul.swift */; };
 		A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDC28D4F96800DD383A /* MyListFlow.swift */; };
@@ -259,6 +260,7 @@
 		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
 		A765904428CF2392000EAD7F /* RemoteConfigValue.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigValue.plist; sourceTree = "<group>"; };
 		A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewReactor.swift; sourceTree = "<group>"; };
+		A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTypingViewController.swift; sourceTree = "<group>"; };
 		A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableWrapper.swift; sourceTree = "<group>"; };
 		A7820EDA28D4AB4F00DD383A /* Hangul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
 		A7820EDC28D4F96800DD383A /* MyListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListFlow.swift; sourceTree = "<group>"; };
@@ -716,6 +718,30 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
+		A77F81B828DAF4E40040CB0A /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */,
+				A7F42DB228D1105200049C0E /* PracticeTypingViewReactor.swift */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		A77F81B928DAF4F00040CB0A /* Betting */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */,
+			);
+			path = Betting;
+			sourceTree = "<group>";
+		};
+		A77F81BA28DAF4F80040CB0A /* Official */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Official;
+			sourceTree = "<group>";
+		};
 		A7820EEC28D70ADF00DD383A /* ComposeParticipants */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,8 +910,9 @@
 		A78B128F28C79D680015BBA1 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
-				A78B128D28C79D620015BBA1 /* PracticeTypingViewController.swift */,
-				A7F42DB228D1105200049C0E /* PracticeTypingViewReactor.swift */,
+				A77F81B828DAF4E40040CB0A /* Practice */,
+				A77F81BA28DAF4F80040CB0A /* Official */,
+				A77F81B928DAF4F00040CB0A /* Betting */,
 				A78B129628C7A9B30015BBA1 /* SubComponents */,
 			);
 			path = Typing;
@@ -1404,6 +1431,7 @@
 				A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */,
 				A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */,
 				A746E48128D077DB009639A7 /* TadakStep.swift in Sources */,
+				A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */,
 				A7CE378E28CCCFAC002ACAD5 /* RealmError.swift in Sources */,
 				A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */,
 				A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */,

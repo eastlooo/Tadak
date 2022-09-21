@@ -18,6 +18,7 @@ final class ComposeParticipantsCell: UITableViewCell {
         let textField = TadakTextField()
         textField.font = .notoSansKR(ofSize: 18, weight: .medium)
         textField.textAlignment = .center
+        textField.isSpaceEnabled = false
         return textField
     }()
     
@@ -45,7 +46,7 @@ final class ComposeParticipantsCell: UITableViewCell {
         self.backgroundColor = .clear
         contentView.backgroundColor = .clear
         
-        let placeholder = "이름을 입력해주세요 (2~6글자)"
+        let placeholder = "이름을 입력해주세요"
         nameTextField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [
@@ -71,15 +72,21 @@ extension ComposeParticipantsCell: View {
     func bind(reactor: ComposeParticipantsCellReactor) {
         
         // MARK: Action
-        nameTextField.rx.text.orEmpty
-            .map(ComposeParticipantsCellReactor.Action.text)
+        nameTextField.rx.controlEvent(.editingChanged)
+            .asObservable()
+            .withLatestFrom(nameTextField.rx.text.orEmpty)
+            .map(ComposeParticipantsCellReactor.Action.changedText)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.state.map(\.name)
+        reactor.pulse(\.$name)
             .take(1)
             .bind(to: nameTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$maxLength)
+            .bind(to: nameTextField.rx.maxLength)
             .disposed(by: disposeBag)
     }
 }

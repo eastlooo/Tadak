@@ -50,13 +50,14 @@ final class KeyboardDock: UIView {
         parentView.addSubview(self)
         self.snp.makeConstraints {
             $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(parentView.safeAreaLayoutGuide)
-            $0.height.equalTo(85)
+            $0.bottom.equalToSuperview()
         }
         
         self.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.left.right.equalToSuperview()
+            $0.bottom.equalTo(parentView.safeAreaLayoutGuide)
+            $0.height.equalTo(85)
         }
         
         contentView.addSubview(divider)
@@ -83,7 +84,7 @@ extension KeyboardDock {
         
         parentView.setNeedsLayout()
         UIView.animate(withDuration: 0.4) {
-            self.snp.updateConstraints {
+            self.contentView.snp.updateConstraints {
                 $0.bottom.equalTo(parentView.safeAreaLayoutGuide).offset(-bottomOffset)
             }
             

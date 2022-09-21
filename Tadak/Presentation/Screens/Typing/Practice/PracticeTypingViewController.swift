@@ -143,11 +143,18 @@ extension PracticeTypingViewController: View {
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$accuracy)
+            .distinctUntilChanged()
             .bind(to: dashboard.rx.accuracy)
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$typingSpeed)
             .bind(to: dashboard.rx.typingSpeed)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$progression)
+            .distinctUntilChanged()
+            .map { CGFloat($0) }
+            .bind(to: progressBar.rx.progression)
             .disposed(by: disposeBag)
         
         // MARK: View

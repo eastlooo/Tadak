@@ -37,6 +37,11 @@ final class TypingFlow: Flow {
                     composition: typingDetail.composition
                 )
                 
+            case .betting:
+                return navigateToBettingTypingScreen(
+                    composition: typingDetail.composition
+                )
+                
             default:
                 return .none
             }
@@ -66,5 +71,11 @@ private extension TypingFlow {
                 withNextStepper: reactor
             )
         )
+    }
+    
+    func navigateToBettingTypingScreen(composition: Composition) -> FlowContributors {
+        let viewController = BettingTypingViewController()
+        self.rootViewController.viewControllers = [viewController]
+        return .none
     }
 }

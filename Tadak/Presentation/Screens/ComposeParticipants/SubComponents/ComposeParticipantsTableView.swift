@@ -51,7 +51,7 @@ extension ComposeParticipantsTableView: UITableViewDataSource {
             withIdentifier: ComposeParticipantsCell.reuseIdentifier,
             for: indexPath
         ) as! ComposeParticipantsCell
-        cell.bind(reactor: items[indexPath.row])
+        cell.reactor = items[indexPath.row]
         return cell
     }
 }

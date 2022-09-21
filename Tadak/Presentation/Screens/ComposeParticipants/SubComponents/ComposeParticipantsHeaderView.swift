@@ -14,7 +14,11 @@ final class ComposeParticipantsHeaderView: UIView {
     
     // MARK: Properties
     var minimumNumber: Int = 0
-    var maximumNumber: Int = 2
+    
+    var maximumNumber: Int = 2 {
+        didSet { updateDescription() }
+    }
+    
     var currentNumber: Int = 1 {
         didSet { updateNumber() }
     }
@@ -57,7 +61,7 @@ final class ComposeParticipantsHeaderView: UIView {
         ])
         hStackView.axis = .horizontal
         hStackView.distribution = .fillProportionally
-        hStackView.spacing = 9
+        hStackView.spacing = -5
         hStackView.alignment = .bottom
         
         let vStackView = UIStackView(arrangedSubviews: [hStackView, descriptionLabel])
@@ -73,12 +77,12 @@ final class ComposeParticipantsHeaderView: UIView {
         }
         
         numberLabel.snp.makeConstraints {
-            $0.height.equalTo(72)
+            $0.height.equalTo(84)
         }
     }
     
     private func updateDescription() {
-        descriptionLabel.text = "인원 수를 선택해주세요\n (\(minimumNumber)~\(maximumNumber)명)"
+        descriptionLabel.text = "인원 수를 선택해주세요\n *최대 \(maximumNumber)명*"
     }
     
     private func updateNumber() {

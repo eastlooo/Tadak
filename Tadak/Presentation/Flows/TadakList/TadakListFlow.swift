@@ -41,8 +41,8 @@ final class TadakListFlow: Flow {
         case .compositionDetailIsComplete:
             return popToRootScreen()
             
-        case .participantsAreRequired:
-            return navigateToParticipantsScreen()
+        case .participantsAreRequired(let typingDetail):
+            return navigateToParticipantsScreen(typingDetail: typingDetail)
             
         case .participantsAreComplete:
             return popToRootScreen()
@@ -90,9 +90,12 @@ private extension TadakListFlow {
         return .none
     }
     
-    func navigateToParticipantsScreen() -> FlowContributors {
+    func navigateToParticipantsScreen(typingDetail: TypingDetail) -> FlowContributors {
         let useCase = ComposeParticipantsUseCase()
-        let reactor = ComposeParticipantsViewReactor(useCase: useCase)
+        let reactor = ComposeParticipantsViewReactor(
+            typingDetail: typingDetail,
+            useCase: useCase
+        )
         let viewController = ComposeParticipantsViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)

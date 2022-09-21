@@ -28,6 +28,7 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         case setElapsedTime(Int)
         case setAccuracy(Int)
         case setTypingSpeed(Int)
+        case setProgression(Double)
     }
     
     struct State {
@@ -38,6 +39,7 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         @Pulse var elapsedTime: Int = 0
         @Pulse var accuracy: Int = 0
         @Pulse var typingSpeed: Int = 0
+        @Pulse var progression: Double = 0
     }
     
     var steps = PublishRelay<Step>()
@@ -107,6 +109,9 @@ extension PracticeTypingViewReactor {
             
         case .setTypingSpeed(let speed):
             state.typingSpeed = speed
+            
+        case .setProgression(let progression):
+            state.progression = progression
         }
         
         return state
@@ -129,6 +134,7 @@ extension PracticeTypingViewReactor {
         let setElapsedTime = useCase.elapesdTime.map(Mutation.setElapsedTime)
         let setAccuracy = useCase.accuracy.map(Mutation.setAccuracy)
         let setTypingSpeed = useCase.typingSpeed.map(Mutation.setTypingSpeed)
+        let setProgression = useCase.progression.map(Mutation.setProgression)
         
         return .merge(
             mutation,
@@ -137,7 +143,8 @@ extension PracticeTypingViewReactor {
             setElapsedTime,
             setUserText,
             setAccuracy,
-            setTypingSpeed
+            setTypingSpeed,
+            setProgression
         )
     }
 }

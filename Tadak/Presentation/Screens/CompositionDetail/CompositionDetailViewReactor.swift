@@ -24,12 +24,12 @@ final class CompositionDetailViewReactor: Reactor, Stepper {
     }
     
     var steps = PublishRelay<Step>()
-    private let typingDetail$: BehaviorSubject<TypingDetail>
+    private let _typingDetail: BehaviorSubject<TypingDetail>
     
     let initialState: State
     
     init(typingDetail: TypingDetail) {
-        self.typingDetail$ = .init(value: typingDetail)
+        self._typingDetail = .init(value: typingDetail)
         self.initialState = State(typingDetail: typingDetail)
     }
     
@@ -45,13 +45,9 @@ extension CompositionDetailViewReactor {
             return .empty()
             
         case .startButtonTapped:
-            if let typingDetail = try? typingDetail$.value() {
-                switch typingDetail.typingMode {
-                case .betting: steps.accept(TadakStep.participantsAreRequired)
-                default: steps.accept(TadakStep.typingIsRequired(withTypingDetail: typingDetail))
-                }
-            }
-            return .empty()
+            return _typingDetail.map(TadakStep.participantsAreRequired)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
 }

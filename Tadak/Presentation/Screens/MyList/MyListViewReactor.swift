@@ -54,7 +54,7 @@ extension MyListViewReactor {
             typingMode$.onNext(typingMode)
             return .empty()
             
-        case .itemSelected(let indexPath):
+        case .itemSelected:
 //            if let composition = useCase.getComposition(index: indexPath.row),
 //               let typingMode = try? typingMode$.value() {
 //                let typingDetail = TypingDetail(typingMode: typingMode, composition: composition)

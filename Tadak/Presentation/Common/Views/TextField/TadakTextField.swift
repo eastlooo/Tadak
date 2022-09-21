@@ -15,6 +15,7 @@ final class TadakTextField: UITextField {
     // MARK: Properties
     var isPasteEnabled: Bool = false
     var isEditingEnabled: Bool = true
+    var isSpaceEnabled: Bool = true
     var maxLength: Int?
     var shouldReturn: Bool = true
     
@@ -43,6 +44,29 @@ final class TadakTextField: UITextField {
         return super.canPerformAction(action, withSender: sender)
     }
     
+    // MARK: Actions
+    @objc
+    private func textFieldEditingChanged(_ sender: UITextField) {
+        guard var text = sender.text else { return }
+        
+        if !isSpaceEnabled {
+            text = text.replacingOccurrences(of: " ", with: "")
+            sender.text = text
+        }
+        
+        if let maxLength = maxLength, text.count > maxLength {
+            // 글자 수 제한
+            let index = text.index(text.startIndex, offsetBy: maxLength)
+            let slicedText = String(text[..<index])
+            sender.text = slicedText + " "
+            
+            // 입력 포지션 마지막으로 이동
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                sender.text = slicedText
+            }
+        }
+    }
+    
     // MARK: Helpers
     private func configure() {
         autocorrectionType = .no
@@ -61,6 +85,10 @@ final class TadakTextField: UITextField {
         self.rightViewMode = .always
         
         self.delegate = self
+        
+        self.addTarget(self,
+                       action: #selector(textFieldEditingChanged),
+                       for: .editingChanged)
     }
     
     private func textFieldSpacer(padding width: CGFloat) -> UIView {
@@ -74,10 +102,6 @@ extension TadakTextField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if isEditingEnabled {
             inputString.accept(string)
-        }
-        
-        if let maxLength = maxLength {
-            return (string.count <= maxLength) && isEditingEnabled
         }
         
         return isEditingEnabled

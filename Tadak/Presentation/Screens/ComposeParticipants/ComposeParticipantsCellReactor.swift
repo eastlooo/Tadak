@@ -11,7 +11,7 @@ import ReactorKit
 final class ComposeParticipantsCellReactor: Reactor {
     
     enum Action {
-        case text(String)
+        case changedText(String)
     }
     
     enum Mutation {
@@ -19,13 +19,17 @@ final class ComposeParticipantsCellReactor: Reactor {
     }
     
     struct State {
-        var name: String = ""
+        @Pulse var name: String = ""
+        @Pulse var maxLength: Int
     }
     
+    var disposeBag = DisposeBag()
+    
+    let name = PublishSubject<String>()
     let initialState: State
     
-    init() {
-        self.initialState = State()
+    init(maxLength: Int) {
+        self.initialState = State(maxLength: maxLength)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -35,7 +39,7 @@ extension ComposeParticipantsCellReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .text(let name):
+        case .changedText(let name):
             return .just(Mutation.setName(name))
         }
     }
@@ -44,10 +48,16 @@ extension ComposeParticipantsCellReactor {
         var state = state
         
         switch mutation {
-        case .setName(let name):
-            state.name = name
+        case .setName(let text):
+            state.name = text
         }
         
         return state
+    }
+    
+    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        let setName = name.map(Mutation.setName)
+        
+        return .merge(mutation, setName)
     }
 }

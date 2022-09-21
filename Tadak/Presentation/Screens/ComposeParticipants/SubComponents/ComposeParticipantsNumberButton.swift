@@ -45,11 +45,13 @@ final class ComposeParticipantsNumberButton: UIButton {
     // MARK: Helpers
     private func configure() {
         updateButtonState()
+        backgroundView.isUserInteractionEnabled = false
+        buttonImageView.isUserInteractionEnabled = false
     }
     
     private func layout() {
         self.snp.makeConstraints {
-            $0.width.height.equalTo(44)
+            $0.width.height.equalTo(60)
         }
         
         backgroundView.layer.cornerRadius = 15
