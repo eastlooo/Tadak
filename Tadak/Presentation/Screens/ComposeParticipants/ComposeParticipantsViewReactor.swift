@@ -74,8 +74,12 @@ extension ComposeParticipantsViewReactor {
             return .empty()
             
         case .startButtonTapped:
-            steps.accept(TadakStep.typingIsRequired(withTypingDetail: typingDetail))
-            return .empty()
+            let typingDetail = typingDetail
+            return useCase.names
+                .map(typingDetail.setParticipants)
+                .map(TadakStep.typingIsRequired)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
     

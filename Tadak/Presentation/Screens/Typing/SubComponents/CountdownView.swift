@@ -14,7 +14,7 @@ import RxCocoa
 final class CountdownView: UIView {
     
     // MARK: Properties
-    let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     fileprivate let isFinished: BehaviorRelay<Bool> = .init(value: false)
     
@@ -97,10 +97,42 @@ final class CountdownView: UIView {
             .bind(onNext: { print("DEBUG: timer \($0)") })
             .disposed(by: disposeBag)
     }
+    
+    fileprivate func hide() {
+        animationView.stop()
+        animationView.isHidden = true
+        self.isHidden = true
+        self.disposeBag = DisposeBag()
+    }
+    
+    fileprivate func reset() {
+        startButton.isHidden = false
+        timerValue.accept(3)
+        startCountdown.accept(false)
+        isFinished.accept(false)
+        bind()
+        
+        self.isHidden = false
+    }
 }
 
-// MARK: - ControlEvent
+// MARK: - Rx+Extension
 extension Reactive where Base: CountdownView {
+    
+    // MARK: Binder
+    var hide: Binder<Void> {
+        return Binder(base) { base, _ in
+            base.hide()
+        }
+    }
+    
+    var reset: Binder<Void> {
+        return Binder(base) { base, _ in
+            base.reset()
+        }
+    }
+    
+    // MARK: ControlEvent
     var isFinished: ControlEvent<Bool> {
         return ControlEvent(events: base.isFinished)
     }

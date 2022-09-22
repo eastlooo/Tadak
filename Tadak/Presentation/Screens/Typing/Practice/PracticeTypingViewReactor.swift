@@ -45,14 +45,14 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
     var steps = PublishRelay<Step>()
     private let disposeBag = DisposeBag()
     
-    private let useCase: PracticeTypingUseCaseProtocol
+    private let useCase: TypingUseCaseProtocol
     private let composition: Composition
     let initialState: State
     
-    init(useCase: PracticeTypingUseCaseProtocol) {
+    init(useCase: TypingUseCaseProtocol) {
         self.useCase = useCase
         self.composition = useCase.composition
-        self.initialState = State(title: useCase.composition.title)
+        self.initialState = State(title: composition.title)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -71,7 +71,7 @@ extension PracticeTypingViewReactor {
             return .empty()
             
         case .typingHasStarted:
-            useCase.startTyping()
+            useCase.start()
             return .empty()
             
         case .currentUserText(let text):

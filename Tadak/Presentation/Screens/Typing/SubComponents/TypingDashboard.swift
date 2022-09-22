@@ -63,10 +63,6 @@ final class TypingDashboard: UIView {
     }
     
     private func layout() {
-        self.snp.makeConstraints {
-            $0.height.equalTo(85)
-        }
-        
         self.addSubview(typingSpeedLabel)
         typingSpeedLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()

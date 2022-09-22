@@ -55,13 +55,8 @@ final class OnboardingNicknameViewController: UIViewController {
         return button
     }()
     
-    private lazy var keyboardDock: KeyboardDock = {
-        let accessoryView = KeyboardDock(
-            root: registerButton,
-            parent: self.view
-        )
-        return accessoryView
-    }()
+    private lazy var keyboardDock = KeyboardDock(root: registerButton,
+                                                 parent: self.view)
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -183,9 +178,9 @@ extension OnboardingNicknameViewController: View {
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardHeight in
                 guard let self = self else { return }
-                let totalHeight = keyboardHeight + self.keyboardDock.frame.height
-                self.scrollView.contentInset.bottom = totalHeight
-                self.scrollView.verticalScrollIndicatorInsets.bottom = totalHeight
+                let inset = self.keyboardDock.frame.height
+                self.scrollView.contentInset.bottom = inset
+                self.scrollView.verticalScrollIndicatorInsets.bottom = inset
             })
             .disposed(by: disposeBag)
     }

@@ -45,7 +45,16 @@ extension CompositionDetailViewReactor {
             return .empty()
             
         case .startButtonTapped:
-            return _typingDetail.map(TadakStep.participantsAreRequired)
+            return _typingDetail
+                .map { detail -> TadakStep in
+                    switch detail.typingMode {
+                    case .betting:
+                        return .participantsAreRequired(withTypingDetail: detail)
+                        
+                    default:
+                        return .typingIsRequired(withTypingDetail: detail)
+                    }
+                }
                 .do { [weak self] step in self?.steps.accept(step) }
                 .flatMap { _ in Observable<Mutation>.empty() }
         }

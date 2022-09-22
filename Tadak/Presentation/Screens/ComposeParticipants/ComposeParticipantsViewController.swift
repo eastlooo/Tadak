@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import ReactorKit
+import RxKeyboard
 
 final class ComposeParticipantsViewController: UIViewController {
     
@@ -27,6 +28,9 @@ final class ComposeParticipantsViewController: UIViewController {
         return button
     }()
     
+    private lazy var keyboardDock = KeyboardDock(root: startButton,
+                                                 parent: self.view)
+    
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     // MARK: Lifecycle
@@ -45,9 +49,10 @@ final class ComposeParticipantsViewController: UIViewController {
         
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
-        headerView.frame.size.height = 230
         headerView.frame.size.width = UIScreen.main.bounds.width
-        footerView.frame.size.height = 160
+        footerView.frame.size.width = UIScreen.main.bounds.width
+        headerView.frame.size.height = 230
+        footerView.frame.size.height = 30
         
         startButton.isEnabled = false
     }
@@ -119,6 +124,20 @@ extension ComposeParticipantsViewController: View {
         reactor.pulse(\.$isValidate)
             .distinctUntilChanged()
             .bind(to: startButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        // MARK: View
+        RxKeyboard.instance.visibleHeight
+            .skip(1)
+            .drive(keyboardDock.rx.keyboardHeight)
+            .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.isHidden
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let inset = self.keyboardDock.frame.height
+                self.tableView.contentInset.bottom = inset
+            })
             .disposed(by: disposeBag)
     }
 }

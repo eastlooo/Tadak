@@ -10,8 +10,12 @@ import Foundation
 struct Hangul {
     
     private static var hangulSet: CharacterSet {
-        CharacterSet(charactersIn: ("ㄱ".unicodeScalars.first!)...("ㅎ".unicodeScalars.first!)).union(
-            CharacterSet(charactersIn: ("가".unicodeScalars.first!)...("힣".unicodeScalars.first!))
+        CharacterSet(
+            charactersIn: ("ㄱ".unicodeScalars.first!)...("ㅎ".unicodeScalars.first!)
+        ).union(
+            CharacterSet(
+                charactersIn: ("가".unicodeScalars.first!)...("힣".unicodeScalars.first!)
+            )
         )
     }
     

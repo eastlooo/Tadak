@@ -108,7 +108,9 @@ extension MainFlow {
     
     private func dismissTadakList() -> FlowContributors {
         if let tadakListViewController = self.rootViewController.presentedViewController {
-            tadakListViewController.dismiss(animated: false)
+            DispatchQueue.main.async {
+                tadakListViewController.dismiss(animated: false)
+            }
         }
         
         return .none

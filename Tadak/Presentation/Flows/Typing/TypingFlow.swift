@@ -33,14 +33,14 @@ final class TypingFlow: Flow {
         case .typingIsRequired(let typingDetail):
             switch typingDetail.typingMode {
             case .practice:
-                return navigateToPracticeTypingScreen(
-                    composition: typingDetail.composition
-                )
+                let composition = typingDetail.composition
+                return navigateToPracticeTypingScreen(composition: composition)
                 
             case .betting:
-                return navigateToBettingTypingScreen(
-                    composition: typingDetail.composition
-                )
+                let composition = typingDetail.composition
+                let participants = typingDetail.names
+                return navigateToBettingTypingScreen(composition: composition,
+                                                     participants: participants)
                 
             default:
                 return .none
@@ -60,7 +60,7 @@ final class TypingFlow: Flow {
 private extension TypingFlow {
     
     func navigateToPracticeTypingScreen(composition: Composition) -> FlowContributors {
-        let useCase = PracticeTypingUseCase(composition: composition)
+        let useCase = TypingUseCase(composition: composition)
         let reactor = PracticeTypingViewReactor(useCase: useCase)
         let viewController = PracticeTypingViewController()
         viewController.reactor = reactor
@@ -73,9 +73,20 @@ private extension TypingFlow {
         )
     }
     
-    func navigateToBettingTypingScreen(composition: Composition) -> FlowContributors {
+    func navigateToBettingTypingScreen(composition: Composition, participants: [String]) -> FlowContributors {
+        let typingseCase = TypingUseCase(composition: composition)
+        let recordUseCase = BettingRecordUseCase(participants: participants)
+        let reactor = BettingTypingViewReactor(
+            typingUseCase: typingseCase,
+            recordUseCase: recordUseCase)
         let viewController = BettingTypingViewController()
+        viewController.reactor = reactor
         self.rootViewController.viewControllers = [viewController]
-        return .none
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
     }
 }

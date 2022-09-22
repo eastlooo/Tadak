@@ -1,5 +1,5 @@
 //
-//  PracticeTypingUseCase.swift
+//  TypingUseCase.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/14.
@@ -9,29 +9,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol PracticeTypingUseCaseProtocol: AnyObject {
+final class TypingUseCase {
     
-    var composition: Composition { get }
-    
-    var returnPressed: AnyObserver<Void> { get }
-    var currentUserText: AnyObserver<String> { get }
-    
-    var elapesdTime: Observable<Int> { get }
-    var accuracy: Observable<Int> { get }
-    var typingSpeed: Observable<Int> { get }
-    var progression: Observable<Double> { get }
-    var currentOriginalText: Observable<String> { get }
-    var nextOriginalText: Observable<String> { get }
-    var userTextToBeUpdated: Observable<String> { get }
-    var abused: Observable<Void> { get }
-    
-    func startTyping()
-    func updateTypingAttributes(_ attributes: TypingAttributes)
-}
-
-final class PracticeTypingUseCase {
-    
-    var composition: Composition { _composition }
+    let composition: Composition
     
     var returnPressed: AnyObserver<Void> { _returnPressed.asObserver() }
     var currentUserText: AnyObserver<String> { _currentUserText.asObserver() }
@@ -39,21 +19,25 @@ final class PracticeTypingUseCase {
     var elapesdTime: Observable<Int> { _elapesdTime.asObservable() }
     var accuracy: Observable<Int> { _accuracy.asObservable() }
     var typingSpeed: Observable<Int> { _typingSpeed.asObservable() }
+    var acceleration: Observable<Int> { _acceleration.asObservable() }
     var progression: Observable<Double> { _progression.asObservable() }
     var currentOriginalText: Observable<String> { _currentOriginalText.asObservable() }
     var nextOriginalText: Observable<String> { _nextOriginalText.asObservable() }
     var userTextToBeUpdated: Observable<String> { _userTextToBeUpdated.asObservable() }
     var abused: Observable<Void> { _abused.asObservable() }
+    var finished: Observable<Void> { _finished.asObservable() }
     
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     private var isRunningTyping: BehaviorRelay<Bool> = .init(value: false)
     
     private let _elapesdTime  : BehaviorRelay<Int> = .init(value: 0)
     private let _accuracy: BehaviorRelay<Int> = .init(value: 0)
     private let _typingSpeed: BehaviorRelay<Int> = .init(value: 0)
+    private let _acceleration: BehaviorRelay<Int> = .init(value: 0)
     private let _progression: BehaviorRelay<Double> = .init(value: 0)
     private let _abused = PublishRelay<Void>()
     private let _returnPressed = PublishSubject<Void>()
+    private let _finished = PublishRelay<Void>()
     
     // OriginalText
     private let _originalTextList: BehaviorRelay<[String]> = .init(value: [])
@@ -66,10 +50,8 @@ final class PracticeTypingUseCase {
     private let _userTextToBeUpdated = PublishRelay<String>()
     private let _textIndex: BehaviorRelay<Int> = .init(value: 0)
     
-    private let _composition: Composition
-    
     init(composition: Composition) {
-        self._composition = composition
+        self.composition = composition
         
         bind()
     }
@@ -77,21 +59,35 @@ final class PracticeTypingUseCase {
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
 }
 
-extension PracticeTypingUseCase: PracticeTypingUseCaseProtocol {
+extension TypingUseCase: TypingUseCaseProtocol {
     
-    func startTyping() {
+    func start() {
         guard !isRunningTyping.value else { return }
         
         isRunningTyping.accept(true)
+    }
+    
+    func reset() {
+        let originalTextList = _originalTextList.value
         
-        let loop = Driver<Int>.interval(.seconds(1)).map { _ in }
+        DispatchQueue.main.async {
+            self.disposeBag = DisposeBag()
+            
+            self._elapesdTime.accept(0)
+            self._accuracy.accept(0)
+            self._typingSpeed.accept(0)
+            self._userTextList.accept([])
+            self._currentOriginalText.accept("")
+            self._nextOriginalText.accept("")
+            self._acceleration.accept(0)
+            self._progression.accept(0)
+            self._currentUserText.onNext("")
+            self._textIndex.accept(0)
+            self._userTextToBeUpdated.accept("")
         
-        loop.asObservable()
-            .withLatestFrom(isRunningTyping)
-            .filter { $0 }
-            .withLatestFrom(_elapesdTime) { $1 + 1 }
-            .bind(to: _elapesdTime)
-            .disposed(by: disposeBag)
+            self.bind()
+            self._originalTextList.accept(originalTextList)
+        }
     }
     
     func updateTypingAttributes(_ attributes: TypingAttributes) {
@@ -99,11 +95,26 @@ extension PracticeTypingUseCase: PracticeTypingUseCaseProtocol {
         let typingList = attributes.seperateContents(contents)
         _originalTextList.accept(typingList)
     }
+    
+    func getRecord() -> Observable<Record> {
+        return Observable
+            .combineLatest(_elapesdTime, _typingSpeed, _accuracy)
+            .map(Record.init)
+    }
 }
 
-private extension PracticeTypingUseCase {
+private extension TypingUseCase {
     
     func bind() {
+        // Set ElapsedTime
+        Driver<Int>.interval(.seconds(1))
+            .asObservable()
+            .withLatestFrom(isRunningTyping)
+            .filter { $0 }
+            .withLatestFrom(_elapesdTime) { $1 + 1 }
+            .bind(to: _elapesdTime)
+            .disposed(by: disposeBag)
+        
         let doneUserText = PublishRelay<String>()
         
         doneUserText.asObservable()
@@ -144,9 +155,8 @@ private extension PracticeTypingUseCase {
             .disposed(by: disposeBag)
         
         // Compare Input Text with Orginal Text upto minimum index
-        let comparitive = _currentUserText.withLatestFrom(
-            currentOriginalText.compactMap { $0 }
-        ) { (userText: $0, correctText: $1) }
+        let comparitive = _currentUserText
+            .withLatestFrom(currentOriginalText) { (userText: $0, correctText: $1) }
             .map { (userText, correctText) -> (userText: String, correctText: String) in
                 if userText.count <= correctText.count {
                     let index = correctText.index(correctText.startIndex, offsetBy: userText.count)
@@ -188,6 +198,37 @@ private extension PracticeTypingUseCase {
                 return count * 60 / time
             }
             .bind(to: _typingSpeed)
+            .disposed(by: disposeBag)
+        
+        // Calculate Acceleration
+        let storedCountEverySecond = BehaviorRelay<Int>(value: 0)
+        let divider = 3
+        let accelerationBuffer = BehaviorRelay<[Int]>(value: Array<Int>(repeating: 0, count: divider * 2))
+        
+        let acceleration = Driver<Int>.interval(.milliseconds(1000/divider)).asObservable()
+            .withLatestFrom(storedCountEverySecond)
+            .withLatestFrom(lettersCount) { ($1 - $0) * 60 * divider }
+            .withLatestFrom(_typingSpeed) { (speed: $0, diff: $0-$1) }
+            .map(\.diff)
+            .share()
+        
+        acceleration
+            .withLatestFrom(lettersCount)
+            .bind(to: storedCountEverySecond)
+            .disposed(by: disposeBag)
+        
+        let newAccelerations = acceleration
+            .withLatestFrom(accelerationBuffer) { Array($1[1...]) + [$0] }
+            .share()
+        
+        newAccelerations
+            .bind(to: accelerationBuffer)
+            .disposed(by: disposeBag)
+        
+        _elapesdTime
+            .withLatestFrom(newAccelerations)
+            .map { $0.reduce(0, +) / $0.count }
+            .bind(to: _acceleration)
             .disposed(by: disposeBag)
         
         // Caculate Accuracy
@@ -303,8 +344,13 @@ private extension PracticeTypingUseCase {
         // Tying End
         _textIndex
             .withLatestFrom(_originalTextList) { ($0, $1) }
-            .filter { $0 == $1.count }
-            .skip(1)
+            .filter { $1.count > 0 }
+            .filter { $0 >= $1.count }
+            .map { _ in }
+            .bind(to: _finished)
+            .disposed(by: disposeBag)
+        
+        _finished
             .map { _ in false }
             .bind(to: isRunningTyping)
             .disposed(by: disposeBag)

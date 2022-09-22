@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A721EDD228D1AEA8008B7353 /* TypingAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */; };
-		A721EDD528D1BEA1008B7353 /* PracticeTypingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD428D1BEA1008B7353 /* PracticeTypingUseCase.swift */; };
+		A721EDD528D1BEA1008B7353 /* TypingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD428D1BEA1008B7353 /* TypingUseCase.swift */; };
 		A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD628D1C59C008B7353 /* Rx+UIViewController.swift */; };
 		A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */; };
 		A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E757828C5FD7A0028CE8D /* TadakTextField.swift */; };
@@ -97,6 +97,14 @@
 		A765904528CF2392000EAD7F /* RemoteConfigValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = A765904428CF2392000EAD7F /* RemoteConfigValue.plist */; };
 		A765904728CFA3D9000EAD7F /* TadakMainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */; };
 		A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */; };
+		A77F81BE28DAFC800040CB0A /* BettingTypingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BD28DAFC800040CB0A /* BettingTypingViewReactor.swift */; };
+		A77F81C028DB1AD10040CB0A /* SpeedDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BF28DB1AD10040CB0A /* SpeedDashboard.swift */; };
+		A77F81C228DB1B560040CB0A /* paperplane.json in Resources */ = {isa = PBXBuildFile; fileRef = A77F81C128DB1B560040CB0A /* paperplane.json */; };
+		A77F81C428DC37F30040CB0A /* TypingUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81C328DC37F30040CB0A /* TypingUseCaseProtocol.swift */; };
+		A77F81CB28DC3E3E0040CB0A /* BettingRecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81CA28DC3E3E0040CB0A /* BettingRecordUseCase.swift */; };
+		A77F81CD28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81CC28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift */; };
+		A77F81CF28DC412D0040CB0A /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81CE28DC412D0040CB0A /* Record.swift */; };
+		A77F81D328DC48EF0040CB0A /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81D228DC48EF0040CB0A /* Ranking.swift */; };
 		A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */; };
 		A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDA28D4AB4F00DD383A /* Hangul.swift */; };
 		A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDC28D4F96800DD383A /* MyListFlow.swift */; };
@@ -182,7 +190,7 @@
 
 /* Begin PBXFileReference section */
 		A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingAttributes.swift; sourceTree = "<group>"; };
-		A721EDD428D1BEA1008B7353 /* PracticeTypingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTypingUseCase.swift; sourceTree = "<group>"; };
+		A721EDD428D1BEA1008B7353 /* TypingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingUseCase.swift; sourceTree = "<group>"; };
 		A721EDD628D1C59C008B7353 /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
 		A72E757328C5F77A0028CE8D /* OnboardingNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNicknameViewController.swift; sourceTree = "<group>"; };
 		A72E757828C5FD7A0028CE8D /* TadakTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakTextField.swift; sourceTree = "<group>"; };
@@ -261,6 +269,14 @@
 		A765904428CF2392000EAD7F /* RemoteConfigValue.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigValue.plist; sourceTree = "<group>"; };
 		A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewReactor.swift; sourceTree = "<group>"; };
 		A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTypingViewController.swift; sourceTree = "<group>"; };
+		A77F81BD28DAFC800040CB0A /* BettingTypingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTypingViewReactor.swift; sourceTree = "<group>"; };
+		A77F81BF28DB1AD10040CB0A /* SpeedDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedDashboard.swift; sourceTree = "<group>"; };
+		A77F81C128DB1B560040CB0A /* paperplane.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = paperplane.json; sourceTree = "<group>"; };
+		A77F81C328DC37F30040CB0A /* TypingUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A77F81CA28DC3E3E0040CB0A /* BettingRecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingRecordUseCase.swift; sourceTree = "<group>"; };
+		A77F81CC28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingRecordUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A77F81CE28DC412D0040CB0A /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A77F81D228DC48EF0040CB0A /* Ranking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
 		A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableWrapper.swift; sourceTree = "<group>"; };
 		A7820EDA28D4AB4F00DD383A /* Hangul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
 		A7820EDC28D4F96800DD383A /* MyListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListFlow.swift; sourceTree = "<group>"; };
@@ -371,7 +387,8 @@
 		A721EDD328D1BE92008B7353 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
-				A721EDD428D1BEA1008B7353 /* PracticeTypingUseCase.swift */,
+				A77F81C328DC37F30040CB0A /* TypingUseCaseProtocol.swift */,
+				A721EDD428D1BEA1008B7353 /* TypingUseCase.swift */,
 			);
 			path = Typing;
 			sourceTree = "<group>";
@@ -528,8 +545,9 @@
 				A74ACC5028C8D21B00780433 /* Onboarding */,
 				A7CE37B028CDBD19002ACAD5 /* Main */,
 				A746E48828D08D67009639A7 /* TadakList */,
-				A721EDD328D1BE92008B7353 /* Typing */,
 				A7820EEC28D70ADF00DD383A /* ComposeParticipants */,
+				A721EDD328D1BE92008B7353 /* Typing */,
+				A77F81C928DC3D9C0040CB0A /* BettingRecord */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -731,6 +749,7 @@
 			isa = PBXGroup;
 			children = (
 				A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */,
+				A77F81BD28DAFC800040CB0A /* BettingTypingViewReactor.swift */,
 			);
 			path = Betting;
 			sourceTree = "<group>";
@@ -740,6 +759,15 @@
 			children = (
 			);
 			path = Official;
+			sourceTree = "<group>";
+		};
+		A77F81C928DC3D9C0040CB0A /* BettingRecord */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81CC28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift */,
+				A77F81CA28DC3E3E0040CB0A /* BettingRecordUseCase.swift */,
+			);
+			path = BettingRecord;
 			sourceTree = "<group>";
 		};
 		A7820EEC28D70ADF00DD383A /* ComposeParticipants */ = {
@@ -923,6 +951,7 @@
 			children = (
 				A78B129228C7A0AA0015BBA1 /* ProgressBar.swift */,
 				A78B129028C79F0A0015BBA1 /* TypingDashboard.swift */,
+				A77F81BF28DB1AD10040CB0A /* SpeedDashboard.swift */,
 				A78B129428C7A99C0015BBA1 /* TypingSheet.swift */,
 				A78B129728C7C42E0015BBA1 /* CountdownView.swift */,
 			);
@@ -934,6 +963,7 @@
 			children = (
 				A78987DF28CB7F560045D71C /* loader.json */,
 				A78B129C28C7C69C0015BBA1 /* countdown.json */,
+				A77F81C128DB1B560040CB0A /* paperplane.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1021,6 +1051,8 @@
 				A7CE379B28CCF631002ACAD5 /* MyComposition.swift */,
 				A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */,
 				A7820EDA28D4AB4F00DD383A /* Hangul.swift */,
+				A77F81CE28DC412D0040CB0A /* Record.swift */,
+				A77F81D228DC48EF0040CB0A /* Ranking.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1323,6 +1355,7 @@
 				A7B4CCF128C681C200D663D2 /* clover.png in Resources */,
 				A758071E28C4F7F70073D03A /* frog.png in Resources */,
 				A758071B28C4F7F70073D03A /* chameleon.png in Resources */,
+				A77F81C228DB1B560040CB0A /* paperplane.json in Resources */,
 				A758071628C4F7F70073D03A /* octopus.png in Resources */,
 				A758071D28C4F7F70073D03A /* prawn.png in Resources */,
 				A72E759928C658440028CE8D /* NotoSansKR-Bold.otf in Resources */,
@@ -1356,6 +1389,7 @@
 				A765904728CFA3D9000EAD7F /* TadakMainViewReactor.swift in Sources */,
 				A78987EB28CBA8340045D71C /* AlertAction.swift in Sources */,
 				A765904328CF1406000EAD7F /* FirebaseRemoteConfigService.swift in Sources */,
+				A77F81C428DC37F30040CB0A /* TypingUseCaseProtocol.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A746E47828D06A0F009639A7 /* TadakMainUseCase.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
@@ -1386,6 +1420,7 @@
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
 				A7CE379A28CCF620002ACAD5 /* TadakComposition.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
+				A77F81BE28DAFC800040CB0A /* BettingTypingViewReactor.swift in Sources */,
 				A746E48428D08C19009639A7 /* TadakListViewReactor.swift in Sources */,
 				A7F42DAE28D0FF8700049C0E /* ScrollView.swift in Sources */,
 				A78987E228CBA1410045D71C /* AlertController.swift in Sources */,
@@ -1423,6 +1458,7 @@
 				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
 				A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
+				A77F81CB28DC3E3E0040CB0A /* BettingRecordUseCase.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
 				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
@@ -1435,7 +1471,9 @@
 				A7CE378E28CCCFAC002ACAD5 /* RealmError.swift in Sources */,
 				A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */,
 				A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */,
+				A77F81CD28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift in Sources */,
 				A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */,
+				A77F81CF28DC412D0040CB0A /* Record.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
 				A793962828CB49E500D28D9F /* NicknameDTO.swift in Sources */,
 				A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */,
@@ -1443,7 +1481,8 @@
 				A7CE378C28CCCCA0002ACAD5 /* RealmConfigurationType.swift in Sources */,
 				A78B129528C7A99C0015BBA1 /* TypingSheet.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
-				A721EDD528D1BEA1008B7353 /* PracticeTypingUseCase.swift in Sources */,
+				A77F81D328DC48EF0040CB0A /* Ranking.swift in Sources */,
+				A721EDD528D1BEA1008B7353 /* TypingUseCase.swift in Sources */,
 				A7B4CCFD28C6FB5000D663D2 /* MyListCell.swift in Sources */,
 				A789F49F28CDD69500C248A7 /* CompostionDTO.swift in Sources */,
 				A7B4CD0828C7129300D663D2 /* CompositionDetailDashboardView.swift in Sources */,
@@ -1455,6 +1494,7 @@
 				A7820EEE28D755A700DD383A /* FirebaseAuthServiceProtocol.swift in Sources */,
 				A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */,
 				A7820EF928D76D2E00DD383A /* UserRepositoryProtocol.swift in Sources */,
+				A77F81C028DB1AD10040CB0A /* SpeedDashboard.swift in Sources */,
 				A74ACC6928C9D05D00780433 /* AppFlow.swift in Sources */,
 				A7820EE528D5880400DD383A /* ComposeParticipantsTableView.swift in Sources */,
 				A74ACCA828CA760400780433 /* Dictionary++.swift in Sources */,

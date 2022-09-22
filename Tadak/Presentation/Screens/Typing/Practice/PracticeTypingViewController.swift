@@ -27,8 +27,8 @@ final class PracticeTypingViewController: UIViewController {
     private let navigationView = HomeButtonTypeNavigationView()
     private let progressBar = ProgressBar()
     private let dashboard = TypingDashboard()
+    private let countdownView = CountdownView()
     private lazy var typingSheet = TypingSheet(typingFont: typingFont)
-    private var countdownView: CountdownView? = CountdownView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -43,7 +43,6 @@ final class PracticeTypingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        progressBar.progression = 0.2
         _ = typingSheet.becomeFirstResponder()
     }
     
@@ -73,10 +72,11 @@ final class PracticeTypingViewController: UIViewController {
         dashboard.snp.makeConstraints {
             $0.top.equalTo(progressBar.snp.bottom)
             $0.left.right.equalToSuperview()
+            $0.height.equalTo(85)
         }
         
-        view.addSubview(countdownView!)
-        countdownView!.snp.makeConstraints {
+        view.addSubview(countdownView)
+        countdownView.snp.makeConstraints {
             $0.edges.equalTo(dashboard)
         }
         
@@ -104,12 +104,12 @@ extension PracticeTypingViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        countdownView!.rx.isFinished
+        countdownView.rx.isFinished
             .filter { $0 }
             .map { _ in }
             .map(PracticeTypingViewReactor.Action.typingHasStarted)
             .bind(to: reactor.action)
-            .disposed(by: countdownView!.disposeBag)
+            .disposed(by: disposeBag)
         
         typingSheet.rx.typing.orEmpty
             .map(PracticeTypingViewReactor.Action.currentUserText)
@@ -158,16 +158,14 @@ extension PracticeTypingViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: View
-        countdownView!.rx.isFinished
+        countdownView.rx.isFinished
             .filter { $0 }
             .delay(.seconds(1), scheduler: MainScheduler.instance)
-            .bind(onNext: { [weak self] _ in
-                self?.countdownView?.removeFromSuperview()
-                self?.countdownView = nil
-            })
-            .disposed(by: countdownView!.disposeBag)
+            .map { _ in }
+            .bind(to: countdownView.rx.hide)
+            .disposed(by: disposeBag)
         
-        countdownView!.rx.isFinished
+        countdownView.rx.isFinished
             .filter { $0 }
             .bind(to: typingSheet.rx.isTypingEnabled)
             .disposed(by: disposeBag)

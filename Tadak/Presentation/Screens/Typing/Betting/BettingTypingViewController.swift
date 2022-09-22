@@ -26,9 +26,9 @@ final class BettingTypingViewController: UIViewController {
     
     private let navigationView = HomeButtonTypeNavigationView()
     private let progressBar = ProgressBar()
-    private let dashboard = TypingDashboard()
+    private let dashboard = SpeedDashboard()
+    private let countdownView = CountdownView()
     private lazy var typingSheet = TypingSheet(typingFont: typingFont)
-    private var countdownView: CountdownView? = CountdownView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -43,7 +43,6 @@ final class BettingTypingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        progressBar.progression = 0.2
         _ = typingSheet.becomeFirstResponder()
     }
     
@@ -51,7 +50,7 @@ final class BettingTypingViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .customNavy
         
-        navigationView.title = "연습 모드"
+        navigationView.title = "내기 모드"
         typingSheet.typingFont = typingFont
     }
     
@@ -73,10 +72,11 @@ final class BettingTypingViewController: UIViewController {
         dashboard.snp.makeConstraints {
             $0.top.equalTo(progressBar.snp.bottom)
             $0.left.right.equalToSuperview()
+            $0.height.equalTo(85)
         }
         
-        view.addSubview(countdownView!)
-        countdownView!.snp.makeConstraints {
+        view.addSubview(countdownView)
+        countdownView.snp.makeConstraints {
             $0.edges.equalTo(dashboard)
         }
         
@@ -91,38 +91,38 @@ final class BettingTypingViewController: UIViewController {
 // MARK: - Bind
 extension BettingTypingViewController: View {
     
-    func bind(reactor: PracticeTypingViewReactor) {
+    func bind(reactor: BettingTypingViewReactor) {
         
         // MARK: Action
         Observable.just(typingAttributes)
-            .map(PracticeTypingViewReactor.Action.typingAttributesHasSet)
+            .map(BettingTypingViewReactor.Action.typingAttributesHasSet)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         navigationView.rx.homeButtonTapped
-            .map(PracticeTypingViewReactor.Action.homeButtonTapped)
+            .map(BettingTypingViewReactor.Action.homeButtonTapped)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        countdownView!.rx.isFinished
+        countdownView.rx.isFinished
             .filter { $0 }
             .map { _ in }
-            .map(PracticeTypingViewReactor.Action.typingHasStarted)
+            .map(BettingTypingViewReactor.Action.typingHasStarted)
             .bind(to: reactor.action)
-            .disposed(by: countdownView!.disposeBag)
+            .disposed(by: disposeBag)
         
         typingSheet.rx.typing.orEmpty
-            .map(PracticeTypingViewReactor.Action.currentUserText)
+            .map(BettingTypingViewReactor.Action.currentUserText)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         typingSheet.rx.returnPressed
-            .map(PracticeTypingViewReactor.Action.returnPressed)
+            .map(BettingTypingViewReactor.Action.returnPressed)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.pulse(\.$title)
+        reactor.pulse(\.$participant)
             .bind(to: typingSheet.rx.title)
             .disposed(by: disposeBag)
         
@@ -138,17 +138,8 @@ extension BettingTypingViewController: View {
             .bind(to: typingSheet.rx.typing)
             .disposed(by: disposeBag)
         
-        reactor.pulse(\.$elapsedTime)
-            .bind(to: dashboard.rx.elapsedTime)
-            .disposed(by: disposeBag)
-        
-        reactor.pulse(\.$accuracy)
-            .distinctUntilChanged()
-            .bind(to: dashboard.rx.accuracy)
-            .disposed(by: disposeBag)
-        
-        reactor.pulse(\.$typingSpeed)
-            .bind(to: dashboard.rx.typingSpeed)
+        reactor.pulse(\.$acceleration)
+            .bind(to: dashboard.rx.acceleration)
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$progression)
@@ -157,17 +148,27 @@ extension BettingTypingViewController: View {
             .bind(to: progressBar.rx.progression)
             .disposed(by: disposeBag)
         
+        reactor.pulse(\.$shouldReset)
+            .filter { $0 }
+            .map { !$0 }
+            .bind(to: typingSheet.rx.isTypingEnabled)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$shouldReset)
+            .filter { $0 }
+            .map { _ in }
+            .bind(to: countdownView.rx.reset)
+            .disposed(by: disposeBag)
+        
         // MARK: View
-        countdownView!.rx.isFinished
+        countdownView.rx.isFinished
             .filter { $0 }
             .delay(.seconds(1), scheduler: MainScheduler.instance)
-            .bind(onNext: { [weak self] _ in
-                self?.countdownView?.removeFromSuperview()
-                self?.countdownView = nil
-            })
-            .disposed(by: countdownView!.disposeBag)
+            .map { _ in }
+            .bind(to: countdownView.rx.hide)
+            .disposed(by: disposeBag)
         
-        countdownView!.rx.isFinished
+        countdownView.rx.isFinished
             .filter { $0 }
             .bind(to: typingSheet.rx.isTypingEnabled)
             .disposed(by: disposeBag)
