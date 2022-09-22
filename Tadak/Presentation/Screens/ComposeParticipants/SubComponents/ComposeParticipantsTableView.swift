@@ -32,10 +32,7 @@ final class ComposeParticipantsTableView: UITableView {
         self.showsVerticalScrollIndicator = false
         self.separatorStyle = .none
         self.rowHeight = 60
-        self.register(
-            ComposeParticipantsCell.self,
-            forCellReuseIdentifier: ComposeParticipantsCell.reuseIdentifier
-        )
+        self.register(ComposeParticipantsCell.self)
     }
 }
 
@@ -47,10 +44,7 @@ extension ComposeParticipantsTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: ComposeParticipantsCell.reuseIdentifier,
-            for: indexPath
-        ) as! ComposeParticipantsCell
+        let cell = tableView.dequeReusableCell(ComposeParticipantsCell.self, for: indexPath)
         cell.reactor = items[indexPath.row]
         return cell
     }

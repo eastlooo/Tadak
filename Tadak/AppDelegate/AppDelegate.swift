@@ -27,14 +27,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         self.coordinator.rx.didNavigate.subscribe(onNext: { flow, step in
             print("DEBUG: did navigate to flow=\(flow) and step=\(step)")
         }).disposed(by: disposeBag)
-        
+
         let userRepository = UserRepository()
         let compositionRepository = CompositionRepository()
         let appFlow = AppFlow(
             userRepository: userRepository,
             compositionRepository: compositionRepository
         )
-        
+
         let appStepper = AppStepper(userRepository: userRepository)
         self.coordinator.coordinate(flow: appFlow, with: appStepper)
 

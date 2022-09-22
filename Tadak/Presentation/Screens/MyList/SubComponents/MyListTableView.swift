@@ -32,10 +32,7 @@ final class MyListTableView: UITableView {
         self.showsVerticalScrollIndicator = false
         self.separatorStyle = .none
         self.rowHeight = 100
-        self.register(
-            MyListCell.self,
-            forCellReuseIdentifier: MyListCell.reuseIdentifier
-        )
+        self.register(MyListCell.self)
     }
 }
 
@@ -47,10 +44,7 @@ extension MyListTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: TadakListCell.reuseIdentifier,
-            for: indexPath
-        ) as! MyListCell
+        let cell = tableView.dequeReusableCell(MyListCell.self, for: indexPath)
         cell.bind(with: items[indexPath.row])
         return cell
     }

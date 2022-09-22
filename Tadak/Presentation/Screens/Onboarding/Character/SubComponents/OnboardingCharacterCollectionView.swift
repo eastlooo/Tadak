@@ -31,16 +31,9 @@ final class OnboardingCharacterCollectionView: UICollectionView {
         self.showsVerticalScrollIndicator = false
         self.collectionViewLayout = createCompositionalLayout()
         
-        self.register(
-            OnboardingCharacterHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: OnboardingCharacterHeaderView.reuseIdentifier)
-        self.register(
-            OnboardingCharacterCell.self,
-            forCellWithReuseIdentifier: OnboardingCharacterCell.reuseIdentifier
-        )
-        self.register(OnboardingCharacterFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: OnboardingCharacterFooterView.reuseIdentifier)
+        self.register(OnboardingCharacterCell.self)
+        self.register(OnboardingCharacterHeaderView.self, kind: .header)
+        self.register(OnboardingCharacterFooterView.self, kind: .footer)
     }
     
     private func createCompositionalLayout() -> UICollectionViewLayout {
@@ -68,10 +61,7 @@ extension OnboardingCharacterCollectionView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: OnboardingCharacterCell.reuseIdentifier,
-            for: indexPath
-        ) as! OnboardingCharacterCell
+        let cell = collectionView.dequeueReusableCell(OnboardingCharacterCell.self, for: indexPath)
         cell.bind(items[indexPath.item])
         return cell
     }
@@ -79,19 +69,19 @@ extension OnboardingCharacterCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: OnboardingCharacterHeaderView.reuseIdentifier,
+            let headerView = collectionView.dequeueReusableSectionHeaderView(
+                OnboardingCharacterHeaderView.self,
                 for: indexPath
-            ) as! OnboardingCharacterHeaderView
+            )
+            
             return headerView
             
         case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(
-                ofKind: UICollectionView.elementKindSectionFooter,
-                withReuseIdentifier: OnboardingCharacterFooterView.reuseIdentifier,
+            let footerView = collectionView.dequeueReusableSectionFooterView(
+                OnboardingCharacterFooterView.self,
                 for: indexPath
-            ) as! OnboardingCharacterFooterView
+            )
+            
             return footerView
             
         default: return UICollectionReusableView()

@@ -32,10 +32,7 @@ final class TadakListTableView: UITableView {
         self.showsVerticalScrollIndicator = false
         self.separatorStyle = .none
         self.rowHeight = 100
-        self.register(
-            TadakListCell.self,
-            forCellReuseIdentifier: TadakListCell.reuseIdentifier
-        )
+        self.register(TadakListCell.self)
     }
 }
 
@@ -47,10 +44,7 @@ extension TadakListTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: TadakListCell.reuseIdentifier,
-            for: indexPath
-        ) as! TadakListCell
+        let cell = tableView.dequeReusableCell(TadakListCell.self, for: indexPath)
         cell.bind(with: items[indexPath.row])
         return cell
     }

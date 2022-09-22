@@ -83,7 +83,7 @@
 		A758072328C4F7F70073D03A /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = A758070F28C4F7F70073D03A /* turtle.png */; };
 		A758072528C4F83D0073D03A /* UIImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072428C4F83D0073D03A /* UIImage++.swift */; };
 		A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */; };
-		A758072928C501C50073D03A /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072828C501C50073D03A /* ReusableCell.swift */; };
+		A758072928C501C50073D03A /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072828C501C50073D03A /* ReusableView.swift */; };
 		A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */; };
 		A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */; };
 		A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */; };
@@ -96,6 +96,8 @@
 		A765904328CF1406000EAD7F /* FirebaseRemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */; };
 		A765904528CF2392000EAD7F /* RemoteConfigValue.plist in Resources */ = {isa = PBXBuildFile; fileRef = A765904428CF2392000EAD7F /* RemoteConfigValue.plist */; };
 		A765904728CFA3D9000EAD7F /* TadakMainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */; };
+		A77A09FB28DCBE6C0032F61F /* BettingPodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A09FA28DCBE6C0032F61F /* BettingPodiumView.swift */; };
+		A77A09FD28DCD0CC0032F61F /* BettingResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A09FC28DCD0CC0032F61F /* BettingResultCell.swift */; };
 		A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */; };
 		A77F81BE28DAFC800040CB0A /* BettingTypingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BD28DAFC800040CB0A /* BettingTypingViewReactor.swift */; };
 		A77F81C028DB1AD10040CB0A /* SpeedDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81BF28DB1AD10040CB0A /* SpeedDashboard.swift */; };
@@ -105,6 +107,12 @@
 		A77F81CD28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81CC28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift */; };
 		A77F81CF28DC412D0040CB0A /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81CE28DC412D0040CB0A /* Record.swift */; };
 		A77F81D328DC48EF0040CB0A /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81D228DC48EF0040CB0A /* Ranking.swift */; };
+		A77F81D728DCAF440040CB0A /* BettingResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81D628DCAF440040CB0A /* BettingResultViewController.swift */; };
+		A77F81D928DCB0E50040CB0A /* BettingResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81D828DCB0E50040CB0A /* BettingResultTableView.swift */; };
+		A77F81DC28DCB36B0040CB0A /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F81DB28DCB36B0040CB0A /* PodiumView.swift */; };
+		A77F81E128DCB9F80040CB0A /* winner-first.png in Resources */ = {isa = PBXBuildFile; fileRef = A77F81DE28DCB9F80040CB0A /* winner-first.png */; };
+		A77F81E228DCB9F80040CB0A /* winner-third.png in Resources */ = {isa = PBXBuildFile; fileRef = A77F81DF28DCB9F80040CB0A /* winner-third.png */; };
+		A77F81E328DCB9F80040CB0A /* winner-second.png in Resources */ = {isa = PBXBuildFile; fileRef = A77F81E028DCB9F80040CB0A /* winner-second.png */; };
 		A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */; };
 		A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDA28D4AB4F00DD383A /* Hangul.swift */; };
 		A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDC28D4F96800DD383A /* MyListFlow.swift */; };
@@ -259,7 +267,7 @@
 		A758070F28C4F7F70073D03A /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
 		A758072428C4F83D0073D03A /* UIImage++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage++.swift"; sourceTree = "<group>"; };
 		A758072628C4FAEC0073D03A /* OnboardingCharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterCell.swift; sourceTree = "<group>"; };
-		A758072828C501C50073D03A /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		A758072828C501C50073D03A /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterHeaderView.swift; sourceTree = "<group>"; };
 		A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterCollectionView.swift; sourceTree = "<group>"; };
 		A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterFooterView.swift; sourceTree = "<group>"; };
@@ -268,6 +276,8 @@
 		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
 		A765904428CF2392000EAD7F /* RemoteConfigValue.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigValue.plist; sourceTree = "<group>"; };
 		A765904628CFA3D9000EAD7F /* TadakMainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainViewReactor.swift; sourceTree = "<group>"; };
+		A77A09FA28DCBE6C0032F61F /* BettingPodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingPodiumView.swift; sourceTree = "<group>"; };
+		A77A09FC28DCD0CC0032F61F /* BettingResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingResultCell.swift; sourceTree = "<group>"; };
 		A77F81BB28DAF5120040CB0A /* BettingTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTypingViewController.swift; sourceTree = "<group>"; };
 		A77F81BD28DAFC800040CB0A /* BettingTypingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingTypingViewReactor.swift; sourceTree = "<group>"; };
 		A77F81BF28DB1AD10040CB0A /* SpeedDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedDashboard.swift; sourceTree = "<group>"; };
@@ -277,6 +287,12 @@
 		A77F81CC28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingRecordUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A77F81CE28DC412D0040CB0A /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		A77F81D228DC48EF0040CB0A /* Ranking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
+		A77F81D628DCAF440040CB0A /* BettingResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingResultViewController.swift; sourceTree = "<group>"; };
+		A77F81D828DCB0E50040CB0A /* BettingResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingResultTableView.swift; sourceTree = "<group>"; };
+		A77F81DB28DCB36B0040CB0A /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
+		A77F81DE28DCB9F80040CB0A /* winner-first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-first.png"; sourceTree = "<group>"; };
+		A77F81DF28DCB9F80040CB0A /* winner-third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-third.png"; sourceTree = "<group>"; };
+		A77F81E028DCB9F80040CB0A /* winner-second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-second.png"; sourceTree = "<group>"; };
 		A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableWrapper.swift; sourceTree = "<group>"; };
 		A7820EDA28D4AB4F00DD383A /* Hangul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
 		A7820EDC28D4F96800DD383A /* MyListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListFlow.swift; sourceTree = "<group>"; };
@@ -518,6 +534,7 @@
 				A7B4CD0628C70E9500D663D2 /* CompositionDetail */,
 				A78B127528C735140015BBA1 /* ComposeParticipants */,
 				A78B128F28C79D680015BBA1 /* Typing */,
+				A77F81D428DCAF1B0040CB0A /* Result */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -721,7 +738,7 @@
 		A758072C28C50EF60073D03A /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				A758072828C501C50073D03A /* ReusableCell.swift */,
+				A758072828C501C50073D03A /* ReusableView.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -768,6 +785,44 @@
 				A77F81CA28DC3E3E0040CB0A /* BettingRecordUseCase.swift */,
 			);
 			path = BettingRecord;
+			sourceTree = "<group>";
+		};
+		A77F81D428DCAF1B0040CB0A /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81D528DCAF200040CB0A /* Betting */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		A77F81D528DCAF200040CB0A /* Betting */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81D628DCAF440040CB0A /* BettingResultViewController.swift */,
+				A77F81DA28DCB0E90040CB0A /* SubComponents */,
+			);
+			path = Betting;
+			sourceTree = "<group>";
+		};
+		A77F81DA28DCB0E90040CB0A /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81D828DCB0E50040CB0A /* BettingResultTableView.swift */,
+				A77A09FC28DCD0CC0032F61F /* BettingResultCell.swift */,
+				A77A09FA28DCBE6C0032F61F /* BettingPodiumView.swift */,
+				A77F81DB28DCB36B0040CB0A /* PodiumView.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A77F81DD28DCB9E30040CB0A /* Winner */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81DE28DCB9F80040CB0A /* winner-first.png */,
+				A77F81E028DCB9F80040CB0A /* winner-second.png */,
+				A77F81DF28DCB9F80040CB0A /* winner-third.png */,
+			);
+			path = Winner;
 			sourceTree = "<group>";
 		};
 		A7820EEC28D70ADF00DD383A /* ComposeParticipants */ = {
@@ -1224,6 +1279,7 @@
 				A7F295D028C4E1C100242836 /* InfoPlist.strings */,
 				A75806FB28C4F7DB0073D03A /* Characters */,
 				A7B4CCE828C681A500D663D2 /* Reward */,
+				A77F81DD28DCB9E30040CB0A /* Winner */,
 				A78B129E28C7C6A00015BBA1 /* Lottie */,
 				A72E759128C6581C0028CE8D /* Fonts */,
 			);
@@ -1322,6 +1378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A77F81E228DCB9F80040CB0A /* winner-third.png in Resources */,
 				A758071728C4F7F70073D03A /* dog.png in Resources */,
 				A758071228C4F7F70073D03A /* hedgehog.png in Resources */,
 				A72E759A28C658440028CE8D /* NotoSansKR-Light.otf in Resources */,
@@ -1343,12 +1400,14 @@
 				A79B10B028CB52410076640A /* GoogleService-Info.plist in Resources */,
 				A7B4CCF228C681C200D663D2 /* bronze-medal.png in Resources */,
 				A75806ED28C4E93E0073D03A /* splash.png in Resources */,
+				A77F81E328DCB9F80040CB0A /* winner-second.png in Resources */,
 				A758071028C4F7F70073D03A /* bear.png in Resources */,
 				A758071428C4F7F70073D03A /* llama.png in Resources */,
 				A78B129D28C7C69C0015BBA1 /* countdown.json in Resources */,
 				A7F295C528C4E1A600242836 /* LaunchScreen.storyboard in Resources */,
 				A758071928C4F7F70073D03A /* deer.png in Resources */,
 				A765904528CF2392000EAD7F /* RemoteConfigValue.plist in Resources */,
+				A77F81E128DCB9F80040CB0A /* winner-first.png in Resources */,
 				A75806EB28C4E75A0073D03A /* Assets.xcassets in Resources */,
 				A758071A28C4F7F70073D03A /* mouse.png in Resources */,
 				A72E759028C64A9C0028CE8D /* logo.png in Resources */,
@@ -1403,6 +1462,7 @@
 				A7CE377328CBB78C002ACAD5 /* Rx+Loader.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
+				A77F81D928DCB0E50040CB0A /* BettingResultTableView.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
 				A7CE378428CC6A5C002ACAD5 /* Storable.swift in Sources */,
 				A7820EE328D5063200DD383A /* ComposeParticipantsViewReactor.swift in Sources */,
@@ -1432,10 +1492,13 @@
 				A7820EDF28D4FB5E00DD383A /* MyListViewReactor.swift in Sources */,
 				A78B128E28C79D620015BBA1 /* PracticeTypingViewController.swift in Sources */,
 				A7820EE128D5003900DD383A /* MyListTableView.swift in Sources */,
+				A77F81D728DCAF440040CB0A /* BettingResultViewController.swift in Sources */,
 				A7CE37A628CD0EF4002ACAD5 /* WelcomingView.swift in Sources */,
 				A765904128CE4A68000EAD7F /* ObservableType++Operator.swift in Sources */,
 				A721EDD228D1AEA8008B7353 /* TypingAttributes.swift in Sources */,
+				A77A09FD28DCD0CC0032F61F /* BettingResultCell.swift in Sources */,
 				A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */,
+				A77A09FB28DCBE6C0032F61F /* BettingPodiumView.swift in Sources */,
 				A7F42DB328D1105200049C0E /* PracticeTypingViewReactor.swift in Sources */,
 				A74ACC9428CA585000780433 /* Endpoint.swift in Sources */,
 				A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */,
@@ -1469,12 +1532,13 @@
 				A746E48128D077DB009639A7 /* TadakStep.swift in Sources */,
 				A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */,
 				A7CE378E28CCCFAC002ACAD5 /* RealmError.swift in Sources */,
+				A77F81DC28DCB36B0040CB0A /* PodiumView.swift in Sources */,
 				A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */,
 				A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */,
 				A77F81CD28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift in Sources */,
 				A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */,
 				A77F81CF28DC412D0040CB0A /* Record.swift in Sources */,
-				A758072928C501C50073D03A /* ReusableCell.swift in Sources */,
+				A758072928C501C50073D03A /* ReusableView.swift in Sources */,
 				A793962828CB49E500D28D9F /* NicknameDTO.swift in Sources */,
 				A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */,
 				A7CE377528CC50CA002ACAD5 /* Rx+UIView.swift in Sources */,
