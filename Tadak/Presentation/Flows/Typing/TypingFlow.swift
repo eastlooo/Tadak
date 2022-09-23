@@ -42,14 +42,17 @@ final class TypingFlow: Flow {
                 return navigateToBettingTypingScreen(composition: composition,
                                                      participants: participants)
                 
-            default:
+            case .official:
                 return .none
             }
             
-        case .typingIsComplete:
+        case .typingIsComplete, .practiceResultIsComplete:
             return .end(
                 forwardToParentFlowWithStep: TadakStep.tadakListIsComplete
             )
+            
+        case .practiceResultIsRequired(let practiceResult):
+            return navigateToPracticeResultScreen(practiceResult: practiceResult)
             
         default:
             return .none
@@ -82,6 +85,19 @@ private extension TypingFlow {
         let viewController = BettingTypingViewController()
         viewController.reactor = reactor
         self.rootViewController.viewControllers = [viewController]
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
+    }
+    
+    func navigateToPracticeResultScreen(practiceResult: PracticeResult) -> FlowContributors {
+        let reactor = PracticeResultViewReactor(practiceResult: practiceResult)
+        let viewController = PracticeResultViewController()
+        viewController.reactor = reactor
+        self.rootViewController.pushViewController(viewController, animated: false)
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,

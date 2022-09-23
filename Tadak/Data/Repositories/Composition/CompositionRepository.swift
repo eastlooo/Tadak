@@ -110,7 +110,7 @@ private extension CompositionRepository {
                 let object = TadakCompositionObject(tadakComposition: tadakComposition)
                 return storage.deleteAll(TadakCompositionObject.self)
                     .map { _ in object }
-                    .flatMap(storage.save)
+                    .do { _ = storage.save(object: $0) }
                     .map { _ in tadakComposition }
                     .catchAndReturn(tadakComposition)
             }

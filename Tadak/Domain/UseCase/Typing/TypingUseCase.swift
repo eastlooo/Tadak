@@ -101,6 +101,23 @@ extension TypingUseCase: TypingUseCaseProtocol {
             .combineLatest(_elapesdTime, _typingSpeed, _accuracy)
             .map(Record.init)
     }
+    
+    func getTypingTexts() -> Observable<[TypingText]> {
+        return Observable
+            .combineLatest(_originalTextList, _userTextList)
+            .map { originalList, userList -> [TypingText] in
+                let minNum = min(originalList.count, userList.count)
+                
+                var typingTexts = [TypingText]()
+                for index in 0..<minNum {
+                    let typingText = TypingText(originalText: originalList[index],
+                                                userText: userList[index])
+                    typingTexts.append(typingText)
+                }
+                
+                return typingTexts
+            }
+    }
 }
 
 private extension TypingUseCase {
@@ -330,11 +347,13 @@ private extension TypingUseCase {
         let updatedUserText = newUserText
             .compactMap { $0 }
             .observe(on: MainScheduler.asyncInstance)
-            .do { doneUserText.accept($0.text) }
-            .map(\.new)
             .share()
         
-        updatedUserText
+        updatedUserText.map(\.text)
+            .bind(to: doneUserText)
+            .disposed(by: disposeBag)
+
+        updatedUserText.map(\.new)
             .bind(onNext: { [weak self] text in
                 self?._currentUserText.onNext(text)
                 self?._userTextToBeUpdated.accept(text)
@@ -342,7 +361,8 @@ private extension TypingUseCase {
             .disposed(by: disposeBag)
         
         // Tying End
-        _textIndex
+        updatedUserText
+            .withLatestFrom(_textIndex)
             .withLatestFrom(_originalTextList) { ($0, $1) }
             .filter { $1.count > 0 }
             .filter { $0 >= $1.count }

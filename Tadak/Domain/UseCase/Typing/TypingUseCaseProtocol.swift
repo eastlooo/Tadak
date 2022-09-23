@@ -30,4 +30,5 @@ protocol TypingUseCaseProtocol: AnyObject {
     func reset()
     func updateTypingAttributes(_ attributes: TypingAttributes)
     func getRecord() -> Observable<Record>
+    func getTypingTexts() -> Observable<[TypingText]>
 }

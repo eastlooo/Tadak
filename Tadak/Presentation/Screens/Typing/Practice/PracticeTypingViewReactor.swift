@@ -53,6 +53,8 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         self.useCase = useCase
         self.composition = useCase.composition
         self.initialState = State(title: composition.title)
+        
+        bind()
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -146,5 +148,26 @@ extension PracticeTypingViewReactor {
             setTypingSpeed,
             setProgression
         )
+    }
+}
+
+private extension PracticeTypingViewReactor {
+    
+    func bind() {
+        let title = composition.title
+        let record = useCase.getRecord()
+        let typingTexts = useCase.getTypingTexts()
+        
+        let practiceResult = Observable
+            .combineLatest(record, typingTexts)
+            .map { (title, $0, $1) }
+            .map(PracticeResult.init)
+        
+        useCase.finished
+            .withLatestFrom(practiceResult)
+            .map(TadakStep.practiceResultIsRequired)
+            .take(1)
+            .bind(to: steps)
+            .disposed(by: disposeBag)
     }
 }

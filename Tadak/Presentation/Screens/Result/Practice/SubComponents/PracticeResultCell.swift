@@ -71,9 +71,9 @@ final class PracticeResultCell: UITableViewCell {
 // MARK: Bind
 extension PracticeResultCell {
     
-    func bind(originalText: String, userText: String) {
-        var originalText = originalText
-        var userText = userText
+    func bind(with typingText: TypingText) {
+        var originalText = typingText.originalText
+        var userText = typingText.userText
         
         var attributes: [NSAttributedString.Key: Any] = [
             .font: font,
@@ -83,10 +83,6 @@ extension PracticeResultCell {
         
         userTextLabel.attributedText = NSAttributedString(string: userText, attributes: attributes)
         
- 
-        
-        
-            
         let attributedText = NSMutableAttributedString()
         var stack = [NSAttributedString]()
 

@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
 
 final class PracticeResultViewController: UIViewController {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let navigationView = HomeButtonTypeNavigationView()
     private let dashboard = RecordDashboard()
     private let bottomSheet = UIView()
@@ -39,8 +42,6 @@ final class PracticeResultViewController: UIViewController {
         bottomSheet.backgroundColor = .white
         
         navigationView.title = "연습 결과"
-        dashboard.record = Record(elapsedTime: 40, typingSpeed: 496, accuracy: 97)
-        titleLabel.text = "메밀꽃 필 무렵"
     }
     
     private func layout() {
@@ -78,5 +79,31 @@ final class PracticeResultViewController: UIViewController {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.left.right.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: - Bind
+extension PracticeResultViewController: View {
+    
+    func bind(reactor: PracticeResultViewReactor) {
+        
+        // MARK: Action
+        navigationView.rx.homeButtonTapped
+            .map(PracticeResultViewReactor.Action.homeButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.pulse(\.$title)
+            .bind(to: titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$record)
+            .bind(to: dashboard.rx.record)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$items)
+            .bind(to: tableView.rx.items)
+            .disposed(by: disposeBag)
     }
 }

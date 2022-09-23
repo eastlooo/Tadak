@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class RecordDashboard: UIStackView {
     
@@ -18,7 +19,7 @@ final class RecordDashboard: UIStackView {
         let label = UILabel()
         label.text = "시간(초)"
         label.textColor = .white
-        label.font = .notoSansKR(ofSize: 16, weight: .black)
+        label.font = .notoSansKR(ofSize: 15, weight: .black)
         return label
     }()
     
@@ -33,7 +34,7 @@ final class RecordDashboard: UIStackView {
         let label = UILabel()
         label.text = "평균타수"
         label.textColor = .white
-        label.font = .notoSansKR(ofSize: 16, weight: .black)
+        label.font = .notoSansKR(ofSize: 15, weight: .black)
         return label
     }()
     
@@ -48,7 +49,7 @@ final class RecordDashboard: UIStackView {
         let label = UILabel()
         label.text = "정확도(%)"
         label.textColor = .white
-        label.font = .notoSansKR(ofSize: 16, weight: .black)
+        label.font = .notoSansKR(ofSize: 15, weight: .black)
         return label
     }()
     
@@ -103,5 +104,16 @@ final class RecordDashboard: UIStackView {
         stackView.distribution = .fillProportionally
         stackView.alignment = .center
         return stackView
+    }
+}
+
+// MARK: Rx+Extension
+extension Reactive where Base: RecordDashboard {
+    
+    // MARK: Binder
+    var record: Binder<Record> {
+        return Binder(base) { base, value in
+            base.record = value
+        }
     }
 }

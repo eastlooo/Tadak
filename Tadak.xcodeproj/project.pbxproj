@@ -113,7 +113,6 @@
 		A77F81E128DCB9F80040CB0A /* winner-first.png in Resources */ = {isa = PBXBuildFile; fileRef = A77F81DE28DCB9F80040CB0A /* winner-first.png */; };
 		A77F81E228DCB9F80040CB0A /* winner-third.png in Resources */ = {isa = PBXBuildFile; fileRef = A77F81DF28DCB9F80040CB0A /* winner-third.png */; };
 		A77F81E328DCB9F80040CB0A /* winner-second.png in Resources */ = {isa = PBXBuildFile; fileRef = A77F81E028DCB9F80040CB0A /* winner-second.png */; };
-		A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */; };
 		A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDA28D4AB4F00DD383A /* Hangul.swift */; };
 		A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDC28D4F96800DD383A /* MyListFlow.swift */; };
 		A7820EDF28D4FB5E00DD383A /* MyListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820EDE28D4FB5E00DD383A /* MyListViewReactor.swift */; };
@@ -198,6 +197,9 @@
 		A7F755B928DD98E000D434AB /* RecordDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755B828DD98E000D434AB /* RecordDashboard.swift */; };
 		A7F755BC28DDA2BC00D434AB /* PracticeResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755BB28DDA2BC00D434AB /* PracticeResultTableView.swift */; };
 		A7F755BE28DDA3A100D434AB /* PracticeResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755BD28DDA3A100D434AB /* PracticeResultCell.swift */; };
+		A7F755C028DDFCD300D434AB /* PracticeResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755BF28DDFCD300D434AB /* PracticeResultViewReactor.swift */; };
+		A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755C128DDFECD00D434AB /* TypingText.swift */; };
+		A7F755C828DE03AB00D434AB /* PracticeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755C728DE03AB00D434AB /* PracticeResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -297,7 +299,6 @@
 		A77F81DE28DCB9F80040CB0A /* winner-first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-first.png"; sourceTree = "<group>"; };
 		A77F81DF28DCB9F80040CB0A /* winner-third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-third.png"; sourceTree = "<group>"; };
 		A77F81E028DCB9F80040CB0A /* winner-second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winner-second.png"; sourceTree = "<group>"; };
-		A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableWrapper.swift; sourceTree = "<group>"; };
 		A7820EDA28D4AB4F00DD383A /* Hangul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
 		A7820EDC28D4F96800DD383A /* MyListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListFlow.swift; sourceTree = "<group>"; };
 		A7820EDE28D4FB5E00DD383A /* MyListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewReactor.swift; sourceTree = "<group>"; };
@@ -382,6 +383,9 @@
 		A7F755B828DD98E000D434AB /* RecordDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDashboard.swift; sourceTree = "<group>"; };
 		A7F755BB28DDA2BC00D434AB /* PracticeResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResultTableView.swift; sourceTree = "<group>"; };
 		A7F755BD28DDA3A100D434AB /* PracticeResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResultCell.swift; sourceTree = "<group>"; };
+		A7F755BF28DDFCD300D434AB /* PracticeResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResultViewReactor.swift; sourceTree = "<group>"; };
+		A7F755C128DDFECD00D434AB /* TypingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingText.swift; sourceTree = "<group>"; };
+		A7F755C728DE03AB00D434AB /* PracticeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -690,6 +694,7 @@
 		A75806F128C4EEEB0073D03A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A7820EDA28D4AB4F00DD383A /* Hangul.swift */,
 				A75806F028C4EEE00073D03A /* Foundation+Extensions */,
 				A7820EFB28D876AB00DD383A /* UIKit+Extensions */,
 				A7820EFA28D8769500DD383A /* Firebase+Extensions */,
@@ -1106,17 +1111,10 @@
 		A7B4CD0B28C7160D00D663D2 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				A7B4CD0928C7159B00D663D2 /* TypingMode.swift */,
-				A746E48B28D0B43E009639A7 /* TypingDetail.swift */,
-				A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */,
-				A78B12A128C8C2140015BBA1 /* TadakUser.swift */,
-				A78B129F28C8BFD80015BBA1 /* Composition.swift */,
-				A7CE379928CCF620002ACAD5 /* TadakComposition.swift */,
-				A7CE379B28CCF631002ACAD5 /* MyComposition.swift */,
-				A7820ED828D49D8100DD383A /* IdentifiableWrapper.swift */,
-				A7820EDA28D4AB4F00DD383A /* Hangul.swift */,
-				A77F81CE28DC412D0040CB0A /* Record.swift */,
-				A77F81D228DC48EF0040CB0A /* Ranking.swift */,
+				A7F755C428DE016B00D434AB /* Typing */,
+				A7F755C328DE016500D434AB /* User */,
+				A7F755C528DE017300D434AB /* Composition */,
+				A7F755C628DE022800D434AB /* Result */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1307,6 +1305,7 @@
 			isa = PBXGroup;
 			children = (
 				A7F755B628DD96F500D434AB /* PracticeResultViewController.swift */,
+				A7F755BF28DDFCD300D434AB /* PracticeResultViewReactor.swift */,
 				A7F755BA28DD98ED00D434AB /* SubComponents */,
 			);
 			path = Practice;
@@ -1320,6 +1319,45 @@
 				A7F755B828DD98E000D434AB /* RecordDashboard.swift */,
 			);
 			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A7F755C328DE016500D434AB /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A78B12A128C8C2140015BBA1 /* TadakUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		A7F755C428DE016B00D434AB /* Typing */ = {
+			isa = PBXGroup;
+			children = (
+				A7B4CD0928C7159B00D663D2 /* TypingMode.swift */,
+				A746E48B28D0B43E009639A7 /* TypingDetail.swift */,
+				A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */,
+				A7F755C128DDFECD00D434AB /* TypingText.swift */,
+			);
+			path = Typing;
+			sourceTree = "<group>";
+		};
+		A7F755C528DE017300D434AB /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				A78B129F28C8BFD80015BBA1 /* Composition.swift */,
+				A7CE379928CCF620002ACAD5 /* TadakComposition.swift */,
+				A7CE379B28CCF631002ACAD5 /* MyComposition.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		A7F755C628DE022800D434AB /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				A77F81CE28DC412D0040CB0A /* Record.swift */,
+				A77F81D228DC48EF0040CB0A /* Ranking.swift */,
+				A7F755C728DE03AB00D434AB /* PracticeResult.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1499,6 +1537,7 @@
 				A78B128C28C784F40015BBA1 /* KeyboardDock.swift in Sources */,
 				A7F755B728DD96F500D434AB /* PracticeResultViewController.swift in Sources */,
 				A746E47F28D0764D009639A7 /* TadakListFlow.swift in Sources */,
+				A7F755C828DE03AB00D434AB /* PracticeResult.swift in Sources */,
 				A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */,
 				A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */,
 				A7CE378628CC6E78002ACAD5 /* Sorted.swift in Sources */,
@@ -1537,6 +1576,7 @@
 				A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
+				A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */,
 				A746E48728D08D63009639A7 /* TadakListUseCase.swift in Sources */,
 				A746E48C28D0B43E009639A7 /* TypingDetail.swift in Sources */,
 				A7820EE928D5998E00DD383A /* ComposeParticipantsCellReactor.swift in Sources */,
@@ -1544,6 +1584,7 @@
 				A7CE378028CC6037002ACAD5 /* RealmStorage.swift in Sources */,
 				A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */,
 				A7820EEB28D70AD300DD383A /* ComposeParticipantsUseCase.swift in Sources */,
+				A7F755C028DDFCD300D434AB /* PracticeResultViewReactor.swift in Sources */,
 				A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */,
 				A78B128628C7738D0015BBA1 /* ComposeParticipantsFooterView.swift in Sources */,
 				A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */,
@@ -1567,7 +1608,6 @@
 				A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */,
 				A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */,
 				A77F81CD28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift in Sources */,
-				A7820ED928D49D8100DD383A /* IdentifiableWrapper.swift in Sources */,
 				A77F81CF28DC412D0040CB0A /* Record.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableView.swift in Sources */,
 				A793962828CB49E500D28D9F /* NicknameDTO.swift in Sources */,
