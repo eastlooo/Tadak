@@ -194,6 +194,10 @@
 		A7F42DAE28D0FF8700049C0E /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F42DAD28D0FF8700049C0E /* ScrollView.swift */; };
 		A7F42DB028D1087F00049C0E /* TypingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F42DAF28D1087F00049C0E /* TypingFlow.swift */; };
 		A7F42DB328D1105200049C0E /* PracticeTypingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F42DB228D1105200049C0E /* PracticeTypingViewReactor.swift */; };
+		A7F755B728DD96F500D434AB /* PracticeResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755B628DD96F500D434AB /* PracticeResultViewController.swift */; };
+		A7F755B928DD98E000D434AB /* RecordDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755B828DD98E000D434AB /* RecordDashboard.swift */; };
+		A7F755BC28DDA2BC00D434AB /* PracticeResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755BB28DDA2BC00D434AB /* PracticeResultTableView.swift */; };
+		A7F755BE28DDA3A100D434AB /* PracticeResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755BD28DDA3A100D434AB /* PracticeResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -374,6 +378,10 @@
 		A7F42DAD28D0FF8700049C0E /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		A7F42DAF28D1087F00049C0E /* TypingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingFlow.swift; sourceTree = "<group>"; };
 		A7F42DB228D1105200049C0E /* PracticeTypingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTypingViewReactor.swift; sourceTree = "<group>"; };
+		A7F755B628DD96F500D434AB /* PracticeResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResultViewController.swift; sourceTree = "<group>"; };
+		A7F755B828DD98E000D434AB /* RecordDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDashboard.swift; sourceTree = "<group>"; };
+		A7F755BB28DDA2BC00D434AB /* PracticeResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResultTableView.swift; sourceTree = "<group>"; };
+		A7F755BD28DDA3A100D434AB /* PracticeResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -790,6 +798,7 @@
 		A77F81D428DCAF1B0040CB0A /* Result */ = {
 			isa = PBXGroup;
 			children = (
+				A7F755B528DD96DF00D434AB /* Practice */,
 				A77F81D528DCAF200040CB0A /* Betting */,
 			);
 			path = Result;
@@ -1294,6 +1303,25 @@
 			path = Typing;
 			sourceTree = "<group>";
 		};
+		A7F755B528DD96DF00D434AB /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				A7F755B628DD96F500D434AB /* PracticeResultViewController.swift */,
+				A7F755BA28DD98ED00D434AB /* SubComponents */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		A7F755BA28DD98ED00D434AB /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A7F755BB28DDA2BC00D434AB /* PracticeResultTableView.swift */,
+				A7F755BD28DDA3A100D434AB /* PracticeResultCell.swift */,
+				A7F755B828DD98E000D434AB /* RecordDashboard.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1469,6 +1497,7 @@
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */,
 				A78B128C28C784F40015BBA1 /* KeyboardDock.swift in Sources */,
+				A7F755B728DD96F500D434AB /* PracticeResultViewController.swift in Sources */,
 				A746E47F28D0764D009639A7 /* TadakListFlow.swift in Sources */,
 				A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */,
 				A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */,
@@ -1504,6 +1533,7 @@
 				A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7820EF228D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift in Sources */,
+				A7F755BC28DDA2BC00D434AB /* PracticeResultTableView.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
@@ -1533,6 +1563,7 @@
 				A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */,
 				A7CE378E28CCCFAC002ACAD5 /* RealmError.swift in Sources */,
 				A77F81DC28DCB36B0040CB0A /* PodiumView.swift in Sources */,
+				A7F755BE28DDA3A100D434AB /* PracticeResultCell.swift in Sources */,
 				A74ACCA628CA75AE00780433 /* DataSnapshot++.swift in Sources */,
 				A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */,
 				A77F81CD28DC3E500040CB0A /* BettingRecordUseCaseProtocol.swift in Sources */,
@@ -1552,6 +1583,7 @@
 				A7B4CD0828C7129300D663D2 /* CompositionDetailDashboardView.swift in Sources */,
 				A7CE37A428CD0BB9002ACAD5 /* InitializationViewController.swift in Sources */,
 				A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */,
+				A7F755B928DD98E000D434AB /* RecordDashboard.swift in Sources */,
 				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,

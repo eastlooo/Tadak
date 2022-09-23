@@ -23,7 +23,10 @@ final class TypingSheet: UIView {
         didSet {
             currentTypingLabel.attributedText = NSAttributedString(
                 string: currentTyping,
-                attributes: [.font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18])
+                attributes: [.font: typingFont,
+                             .foregroundColor: UIColor.black,
+                             .kern: 0.18]
+            )
         }
     }
     

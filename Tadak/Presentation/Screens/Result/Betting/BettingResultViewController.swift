@@ -31,7 +31,6 @@ final class BettingResultViewController: UIViewController {
         
         navigationView.title = "내기 결과"
         podiumView.setPodium(first: "김종국", second: "유재석")
-//        podiumView.setPodium(first: "김종국", second: "유재석", third: "하하")
     }
     
     private func layout() {

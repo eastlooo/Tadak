@@ -24,9 +24,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        self.coordinator.rx.didNavigate.subscribe(onNext: { flow, step in
-            print("DEBUG: did navigate to flow=\(flow) and step=\(step)")
-        }).disposed(by: disposeBag)
+        self.coordinator.rx.didNavigate
+            .subscribe(onNext: { flow, step in
+                print("DEBUG: did navigate to flow=\(flow) and step=\(step)")
+            })
+            .disposed(by: disposeBag)
 
         let userRepository = UserRepository()
         let compositionRepository = CompositionRepository()

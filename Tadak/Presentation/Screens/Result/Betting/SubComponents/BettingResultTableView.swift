@@ -79,10 +79,7 @@ final class BettingResultTableView: UITableView {
         self.showsVerticalScrollIndicator = false
         self.separatorStyle = .none
         self.rowHeight = 68
-        self.register(
-            BettingResultCell.self,
-            forCellReuseIdentifier: BettingResultCell.reuseIdentifier
-        )
+        self.register(BettingResultCell.self)
         
         self.tableHeaderView = UIView()
         self.tableHeaderView?.frame.size.height = 22
