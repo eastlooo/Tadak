@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import ReactorKit
 
 final class BettingResultViewController: UIViewController {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let navigationView = HomeButtonTypeNavigationView()
     private let podiumView = BettingPodiumView()
     private let tableView = BettingResultTableView()
@@ -30,7 +33,6 @@ final class BettingResultViewController: UIViewController {
         view.backgroundColor = .customNavy
         
         navigationView.title = "내기 결과"
-        podiumView.setPodium(first: "김종국", second: "유재석")
     }
     
     private func layout() {
@@ -53,5 +55,33 @@ final class BettingResultViewController: UIViewController {
             $0.top.equalTo(podiumView.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: - Bind
+extension BettingResultViewController: View {
+    
+    func bind(reactor: BettingResultViewReactor) {
+        
+        // MARK: Action
+        navigationView.rx.homeButtonTapped
+            .map(BettingResultViewReactor.Action.homeButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // MARK: State
+        reactor.pulse(\.$items)
+            .bind(to: tableView.rx.items)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$topTwo)
+            .compactMap { $0 }
+            .bind(onNext: podiumView.setPodium)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$topThree)
+            .compactMap { $0 }
+            .bind(onNext: podiumView.setPodium)
+            .disposed(by: disposeBag)
     }
 }

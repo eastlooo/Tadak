@@ -41,6 +41,12 @@ final class ComposeParticipantsViewController: UIViewController {
         layout()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.contentInset.bottom = keyboardDock.frame.height
+    }
+    
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy

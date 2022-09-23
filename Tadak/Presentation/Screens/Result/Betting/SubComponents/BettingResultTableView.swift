@@ -11,8 +11,8 @@ import RxSwift
 final class BettingResultTableView: UITableView {
     
     // MARK: Properties
-    var items: [Ranking] = [
-        Ranking(
+    var items: [Rank] = [
+        Rank(
             order: 1,
             name: "김종국",
             record: Record(
@@ -21,7 +21,7 @@ final class BettingResultTableView: UITableView {
                 accuracy: 100
             )
         ),
-        Ranking(
+        Rank(
             order: 2,
             name: "유재석",
             record: Record(
@@ -30,7 +30,7 @@ final class BettingResultTableView: UITableView {
                 accuracy: 100
             )
         ),
-        Ranking(
+        Rank(
             order: 3,
             name: "하하",
             record: Record(
@@ -39,7 +39,7 @@ final class BettingResultTableView: UITableView {
                 accuracy: 99
             )
         ),
-        Ranking(
+        Rank(
             order: 4,
             name: "송지효",
             record: Record(
@@ -48,7 +48,7 @@ final class BettingResultTableView: UITableView {
                 accuracy: 97
             )
         ),
-        Ranking(
+        Rank(
             order: 5,
             name: "양세찬",
             record: Record(
@@ -108,7 +108,7 @@ extension BettingResultTableView: UITableViewDataSource {
 
 // MARK: Binder
 extension Reactive where Base: BettingResultTableView {
-    var items: Binder<[Ranking]> {
+    var items: Binder<[Rank]> {
         return Binder(base) { base, element in
             base.items = element
             base.reloadData()

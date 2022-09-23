@@ -44,4 +44,6 @@ enum TadakStep: Step {
     // Result
     case practiceResultIsRequired(withPracticeResult: PracticeResult)
     case practiceResultIsComplete
+    case bettingResultIsRequired(withRanking: [Rank])
+    case bettingResultIsComplete
 }

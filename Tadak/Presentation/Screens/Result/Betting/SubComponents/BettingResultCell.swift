@@ -101,7 +101,7 @@ final class BettingResultCell: UITableViewCell {
 // MARK: Bind
 extension BettingResultCell {
     
-    func bind(with ranking: Ranking) {
+    func bind(with ranking: Rank) {
         rankLabel.text = "\(ranking.order)"
         nameLabel.text = ranking.name
         speedLabel.text = "\(ranking.record.typingSpeed)"

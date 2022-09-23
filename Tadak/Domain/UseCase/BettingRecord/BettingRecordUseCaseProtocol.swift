@@ -14,5 +14,5 @@ protocol BettingRecordUseCaseProtocol {
     var finished: Observable<Void> { get }
     
     func updateRecord(participant: String, record: Record)
-    func getRankingTable() -> Observable<[Ranking]>
+    func getRankingTable() -> Observable<[Rank]>
 }

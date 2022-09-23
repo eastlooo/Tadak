@@ -159,7 +159,8 @@ private extension BettingTypingViewReactor {
     func bind() {
         recordUseCase.finished
             .withLatestFrom(recordUseCase.getRankingTable())
-            .bind(onNext: { print("DEBUG: \($0)") })
+            .map(TadakStep.bettingResultIsRequired)
+            .bind(to: steps)
             .disposed(by: disposeBag)
     }
 }

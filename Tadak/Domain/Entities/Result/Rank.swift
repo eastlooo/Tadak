@@ -1,5 +1,5 @@
 //
-//  Ranking.swift
+//  Rank.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ranking {
+struct Rank {
     
     let order: Int
     let name: String

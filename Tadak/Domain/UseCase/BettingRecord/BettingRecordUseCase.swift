@@ -47,9 +47,9 @@ extension BettingRecordUseCase: BettingRecordUseCaseProtocol {
         _newRecord.accept((participant, record))
     }
     
-    func getRankingTable() -> Observable<[Ranking]> {
+    func getRankingTable() -> Observable<[Rank]> {
         return _records
-            .map { records -> [Ranking] in
+            .map { records -> [Rank] in
                 records
                     .sorted { lhs, rhs in
                         if lhs.record.accuracy == rhs.record.accuracy {
@@ -59,7 +59,7 @@ extension BettingRecordUseCase: BettingRecordUseCaseProtocol {
                     }
                     .enumerated()
                     .map { ($0.offset+1, $0.element.participant, $0.element.record) }
-                    .map(Ranking.init)
+                    .map(Rank.init)
             }
     }
 }
