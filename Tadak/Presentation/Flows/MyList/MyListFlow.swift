@@ -28,17 +28,20 @@ final class MyListFlow: Flow {
         
         switch step {
         case .myListIsRequired:
-            return navigateToTadakListScreen()
+            return navigateToMyListScreen()
             
         case .myListIsComplete:
             return .end(
                 forwardToParentFlowWithStep: TadakStep.myListIsComplete
             )
             
+        case .makeCompositionIsRequired:
+            return navigateToMakeCompositionScreen()
+            
         case .compositionIsPicked(let typingDetail):
             return navigateToCompositionDetailScreen(typingDetail: typingDetail)
             
-        case .compositionDetailIsComplete:
+        case .makeCompositionIsComplete, .compositionDetailIsComplete:
             return popToRootScreen()
             
         case .typingIsRequired(let typingDetail):
@@ -52,10 +55,22 @@ final class MyListFlow: Flow {
 
 private extension MyListFlow {
     
-    func navigateToTadakListScreen() -> FlowContributors {
-        
+    func navigateToMyListScreen() -> FlowContributors {
         let reactor = MyListViewReactor()
         let viewController = MyListViewController()
+        viewController.reactor = reactor
+        self.rootViewController.pushViewController(viewController, animated: false)
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
+    }
+    
+    func navigateToMakeCompositionScreen() -> FlowContributors {
+        let reactor = MakeCompositionViewReactor()
+        let viewController = MakeCompositionViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
         return .one(

@@ -201,6 +201,16 @@
 		A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755C128DDFECD00D434AB /* TypingText.swift */; };
 		A7F755C828DE03AB00D434AB /* PracticeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755C728DE03AB00D434AB /* PracticeResult.swift */; };
 		A7F755CD28DE1AD400D434AB /* BettingResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755CC28DE1AD400D434AB /* BettingResultViewReactor.swift */; };
+		A7F755CF28DE275D00D434AB /* MakeCompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */; };
+		A7F755D228DEE82800D434AB /* MakeCompositionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */; };
+		A7F755D428DEEBBE00D434AB /* MakeCompositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D328DEEBBE00D434AB /* MakeCompositionUseCase.swift */; };
+		A7F755D728DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D628DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift */; };
+		A7F755D928DEEECE00D434AB /* OfficialTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */; };
+		A7F755DB28DEEED500D434AB /* OfficialTypingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */; };
+		A7F755DF28DEF1E000D434AB /* OfficialSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */; };
+		A7F755E128DEF1EB00D434AB /* OfficialFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755E028DEF1EB00D434AB /* OfficialFailureViewController.swift */; };
+		A7F755E328DEF38000D434AB /* backgroundprize.json in Resources */ = {isa = PBXBuildFile; fileRef = A7F755E228DEF38000D434AB /* backgroundprize.json */; };
+		A7F755E928DF011A00D434AB /* sademotion.json in Resources */ = {isa = PBXBuildFile; fileRef = A7F755E828DF011A00D434AB /* sademotion.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -388,6 +398,16 @@
 		A7F755C128DDFECD00D434AB /* TypingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingText.swift; sourceTree = "<group>"; };
 		A7F755C728DE03AB00D434AB /* PracticeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeResult.swift; sourceTree = "<group>"; };
 		A7F755CC28DE1AD400D434AB /* BettingResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingResultViewReactor.swift; sourceTree = "<group>"; };
+		A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionViewController.swift; sourceTree = "<group>"; };
+		A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionViewReactor.swift; sourceTree = "<group>"; };
+		A7F755D328DEEBBE00D434AB /* MakeCompositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionUseCase.swift; sourceTree = "<group>"; };
+		A7F755D628DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialTypingViewController.swift; sourceTree = "<group>"; };
+		A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialTypingViewReactor.swift; sourceTree = "<group>"; };
+		A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSuccessViewController.swift; sourceTree = "<group>"; };
+		A7F755E028DEF1EB00D434AB /* OfficialFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialFailureViewController.swift; sourceTree = "<group>"; };
+		A7F755E228DEF38000D434AB /* backgroundprize.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = backgroundprize.json; sourceTree = "<group>"; };
+		A7F755E828DF011A00D434AB /* sademotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sademotion.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -545,6 +565,7 @@
 				A72E758B28C646230028CE8D /* Main */,
 				A72E75A428C66AD50028CE8D /* TadakList */,
 				A7B4CCFB28C6FABD00D663D2 /* MyList */,
+				A7F755D028DE276100D434AB /* MakeComposition */,
 				A7B4CD0628C70E9500D663D2 /* CompositionDetail */,
 				A78B127528C735140015BBA1 /* ComposeParticipants */,
 				A78B128F28C79D680015BBA1 /* Typing */,
@@ -579,6 +600,7 @@
 				A7820EEC28D70ADF00DD383A /* ComposeParticipants */,
 				A721EDD328D1BE92008B7353 /* Typing */,
 				A77F81C928DC3D9C0040CB0A /* BettingRecord */,
+				A7F755D528DEEBC400D434AB /* MakeComposition */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -789,6 +811,8 @@
 		A77F81BA28DAF4F80040CB0A /* Official */ = {
 			isa = PBXGroup;
 			children = (
+				A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */,
+				A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */,
 			);
 			path = Official;
 			sourceTree = "<group>";
@@ -806,6 +830,7 @@
 			isa = PBXGroup;
 			children = (
 				A7F755B528DD96DF00D434AB /* Practice */,
+				A7F755DD28DEF19600D434AB /* Official */,
 				A77F81D528DCAF200040CB0A /* Betting */,
 			);
 			path = Result;
@@ -1036,6 +1061,8 @@
 				A78987DF28CB7F560045D71C /* loader.json */,
 				A78B129C28C7C69C0015BBA1 /* countdown.json */,
 				A77F81C128DB1B560040CB0A /* paperplane.json */,
+				A7F755E228DEF38000D434AB /* backgroundprize.json */,
+				A7F755E828DF011A00D434AB /* sademotion.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -1363,6 +1390,33 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
+		A7F755D028DE276100D434AB /* MakeComposition */ = {
+			isa = PBXGroup;
+			children = (
+				A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */,
+				A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */,
+			);
+			path = MakeComposition;
+			sourceTree = "<group>";
+		};
+		A7F755D528DEEBC400D434AB /* MakeComposition */ = {
+			isa = PBXGroup;
+			children = (
+				A7F755D628DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift */,
+				A7F755D328DEEBBE00D434AB /* MakeCompositionUseCase.swift */,
+			);
+			path = MakeComposition;
+			sourceTree = "<group>";
+		};
+		A7F755DD28DEF19600D434AB /* Official */ = {
+			isa = PBXGroup;
+			children = (
+				A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */,
+				A7F755E028DEF1EB00D434AB /* OfficialFailureViewController.swift */,
+			);
+			path = Official;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1460,6 +1514,7 @@
 				A72E759828C658440028CE8D /* NotoSansKR-Black.otf in Resources */,
 				A758072328C4F7F70073D03A /* turtle.png in Resources */,
 				A758072128C4F7F70073D03A /* giraffe.png in Resources */,
+				A7F755E328DEF38000D434AB /* backgroundprize.json in Resources */,
 				A7B4CCF428C681C200D663D2 /* gold-medal.png in Resources */,
 				A7B4CCF328C681C200D663D2 /* silver-medal.png in Resources */,
 				A758071828C4F7F70073D03A /* dinosaur.png in Resources */,
@@ -1488,6 +1543,7 @@
 				A758071D28C4F7F70073D03A /* prawn.png in Resources */,
 				A72E759928C658440028CE8D /* NotoSansKR-Bold.otf in Resources */,
 				A758072028C4F7F70073D03A /* tiger.png in Resources */,
+				A7F755E928DF011A00D434AB /* sademotion.json in Resources */,
 				A7F295CE28C4E1C100242836 /* InfoPlist.strings in Resources */,
 				A72E759B28C658440028CE8D /* NotoSansKR-Thin.otf in Resources */,
 				A758071C28C4F7F70073D03A /* chick.png in Resources */,
@@ -1507,6 +1563,7 @@
 				A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */,
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A7CE37B428CDC0F4002ACAD5 /* CompositionRepository.swift in Sources */,
+				A7F755E128DEF1EB00D434AB /* OfficialFailureViewController.swift in Sources */,
 				A7CE37AD28CDA9A3002ACAD5 /* MainFlow.swift in Sources */,
 				A746E48E28D0BAD7009639A7 /* CompositionDetailViewReactor.swift in Sources */,
 				A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */,
@@ -1530,10 +1587,12 @@
 				A74ACCAA28CB018B00780433 /* AnyArray.swift in Sources */,
 				A7CE377328CBB78C002ACAD5 /* Rx+Loader.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
+				A7F755D728DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift in Sources */,
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
 				A77F81D928DCB0E50040CB0A /* BettingResultTableView.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
 				A7CE378428CC6A5C002ACAD5 /* Storable.swift in Sources */,
+				A7F755CF28DE275D00D434AB /* MakeCompositionViewController.swift in Sources */,
 				A7820EE328D5063200DD383A /* ComposeParticipantsViewReactor.swift in Sources */,
 				A72E757428C5F77A0028CE8D /* OnboardingNicknameViewController.swift in Sources */,
 				A74ACC5228C8D23400780433 /* OnboardingCharacterUseCase.swift in Sources */,
@@ -1566,6 +1625,7 @@
 				A77F81D728DCAF440040CB0A /* BettingResultViewController.swift in Sources */,
 				A7CE37A628CD0EF4002ACAD5 /* WelcomingView.swift in Sources */,
 				A765904128CE4A68000EAD7F /* ObservableType++Operator.swift in Sources */,
+				A7F755D228DEE82800D434AB /* MakeCompositionViewReactor.swift in Sources */,
 				A721EDD228D1AEA8008B7353 /* TypingAttributes.swift in Sources */,
 				A77A09FD28DCD0CC0032F61F /* BettingResultCell.swift in Sources */,
 				A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */,
@@ -1581,6 +1641,7 @@
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
 				A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */,
 				A746E48728D08D63009639A7 /* TadakListUseCase.swift in Sources */,
+				A7F755DF28DEF1E000D434AB /* OfficialSuccessViewController.swift in Sources */,
 				A746E48C28D0B43E009639A7 /* TypingDetail.swift in Sources */,
 				A7820EE928D5998E00DD383A /* ComposeParticipantsCellReactor.swift in Sources */,
 				A793962428CB318300D28D9F /* UserDTO.swift in Sources */,
@@ -1597,6 +1658,7 @@
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A77F81CB28DC3E3E0040CB0A /* BettingRecordUseCase.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
+				A7F755D428DEEBBE00D434AB /* MakeCompositionUseCase.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
 				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
 				A7820EF528D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift in Sources */,
@@ -1617,6 +1679,7 @@
 				A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */,
 				A7CE377528CC50CA002ACAD5 /* Rx+UIView.swift in Sources */,
 				A7CE378C28CCCCA0002ACAD5 /* RealmConfigurationType.swift in Sources */,
+				A7F755DB28DEEED500D434AB /* OfficialTypingViewReactor.swift in Sources */,
 				A78B129528C7A99C0015BBA1 /* TypingSheet.swift in Sources */,
 				A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */,
 				A77F81D328DC48EF0040CB0A /* Rank.swift in Sources */,
@@ -1631,6 +1694,7 @@
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 				A7820EEE28D755A700DD383A /* FirebaseAuthServiceProtocol.swift in Sources */,
+				A7F755D928DEEECE00D434AB /* OfficialTypingViewController.swift in Sources */,
 				A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */,
 				A7820EF928D76D2E00DD383A /* UserRepositoryProtocol.swift in Sources */,
 				A77F81C028DB1AD10040CB0A /* SpeedDashboard.swift in Sources */,

@@ -19,7 +19,6 @@ final class ComposeParticipantsViewController: UIViewController {
     private let tableView = ComposeParticipantsTableView()
     private let headerView = ComposeParticipantsHeaderView()
     private let footerView = ComposeParticipantsFooterView()
-    private lazy var accessoryView = KeyboardDock(root: startButton, parent: self.view)
     
     private let startButton: TextButton = {
         let button = TextButton(colorType: .coral)
@@ -75,9 +74,6 @@ final class ComposeParticipantsViewController: UIViewController {
             $0.top.equalTo(navigationView.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
-        
-        // execute lazy var property
-        _ = accessoryView
     }
 }
 

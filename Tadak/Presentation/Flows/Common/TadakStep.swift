@@ -30,6 +30,10 @@ enum TadakStep: Step {
     case myListIsRequired
     case myListIsComplete
     
+    // MakeComposition
+    case makeCompositionIsRequired
+    case makeCompositionIsComplete
+    
     // CompositionDetail
     case compositionIsPicked(withTypingDetail: TypingDetail)
     case compositionDetailIsComplete

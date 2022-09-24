@@ -1,8 +1,8 @@
 //
-//  PracticeTypingViewReactor.swift
+//  OfficialTypingViewReactor.swift
 //  Tadak
 //
-//  Created by 정동천 on 2022/09/14.
+//  Created by 정동천 on 2022/09/24.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import ReactorKit
 import RxFlow
 import RxCocoa
 
-final class PracticeTypingViewReactor: Reactor, Stepper {
+final class OfficialTypingViewReactor: Reactor, Stepper {
     
     enum Action {
         case homeButtonTapped(Void)
@@ -18,6 +18,7 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         case typingHasStarted(Void)
         case currentUserText(String)
         case returnPressed(Void)
+        case abused
     }
     
     enum Mutation {
@@ -59,7 +60,7 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
 }
 
-extension PracticeTypingViewReactor {
+extension OfficialTypingViewReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
@@ -81,6 +82,10 @@ extension PracticeTypingViewReactor {
             
         case .returnPressed(let pressed):
             useCase.returnPressed.onNext(pressed)
+            return .empty()
+            
+        case .abused:
+            print("DEBUG: abused..")
             return .empty()
         }
     }
@@ -114,7 +119,15 @@ extension PracticeTypingViewReactor {
         return state
     }
     
+    func transform(action: Observable<Action>) -> Observable<Action> {
+        
+        let abused = useCase.abused.map { _ in Action.abused }
+        
+        return .merge(action, abused)
+    }
+    
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        
         let setCurrentOriginalText = useCase.currentOriginalText
             .map(Mutation.setCurrentOriginalText)
         let setNextOriginalText = useCase.nextOriginalText
@@ -138,7 +151,7 @@ extension PracticeTypingViewReactor {
     }
 }
 
-private extension PracticeTypingViewReactor {
+private extension OfficialTypingViewReactor {
     
     func bind() {
         let title = composition.title

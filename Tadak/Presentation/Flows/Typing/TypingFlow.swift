@@ -36,14 +36,17 @@ final class TypingFlow: Flow {
                 let composition = typingDetail.composition
                 return navigateToPracticeTypingScreen(composition: composition)
                 
+            case .official:
+                let composition = typingDetail.composition
+                return navigateToOfficialTypingScreen(composition: composition)
+                
             case .betting:
                 let composition = typingDetail.composition
                 let participants = typingDetail.names
-                return navigateToBettingTypingScreen(composition: composition,
-                                                     participants: participants)
-                
-            case .official:
-                return .none
+                return navigateToBettingTypingScreen(
+                    composition: composition,
+                    participants: participants
+                )
             }
             
         case .typingIsComplete, .practiceResultIsComplete, .bettingResultIsComplete:
@@ -69,6 +72,20 @@ private extension TypingFlow {
         let useCase = TypingUseCase(composition: composition)
         let reactor = PracticeTypingViewReactor(useCase: useCase)
         let viewController = PracticeTypingViewController()
+        viewController.reactor = reactor
+        self.rootViewController.viewControllers = [viewController]
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
+    }
+    
+    func navigateToOfficialTypingScreen(composition: Composition) -> FlowContributors {
+        let useCase = TypingUseCase(composition: composition)
+        let reactor = OfficialTypingViewReactor(useCase: useCase)
+        let viewController = OfficialTypingViewController()
         viewController.reactor = reactor
         self.rootViewController.viewControllers = [viewController]
         return .one(

@@ -112,6 +112,11 @@ extension MyListViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        headerView.rx.addButtonTapped
+            .map(MyListViewReactor.Action.addButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // MARK: State
         reactor.state.map(\.typingMode)
             .map { $0 != .practice }

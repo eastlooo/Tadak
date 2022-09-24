@@ -16,6 +16,7 @@ final class MyListViewReactor: Reactor, Stepper {
         case homeButtonTapped(Void)
         case typingModeButtonTapped(TypingMode)
         case itemSelected(IndexPath)
+        case addButtonTapped(Void)
     }
     
     enum Mutation {
@@ -31,11 +32,9 @@ final class MyListViewReactor: Reactor, Stepper {
     var steps = PublishRelay<Step>()
     private let typingMode$: BehaviorSubject<TypingMode> = .init(value: .practice)
     
-//    private let useCase: TadakListUseCaseProtocol
     let initialState: State
     
     init() {
-//        self.useCase = useCase
         self.initialState = State()
     }
     
@@ -60,7 +59,10 @@ extension MyListViewReactor {
 //                let typingDetail = TypingDetail(typingMode: typingMode, composition: composition)
 //                steps.accept(TadakStep.compositionIsPicked(withTypingDetail: typingDetail))
 //            }
+            return .empty()
             
+        case .addButtonTapped:
+            steps.accept(TadakStep.makeCompositionIsRequired)
             return .empty()
         }
     }

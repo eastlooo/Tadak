@@ -51,13 +51,7 @@ final class CompositionDetailViewController: UIViewController {
         return textView
     }()
     
-    private lazy var keyboardDock: KeyboardDock = {
-        let accessoryView = KeyboardDock(
-            root: startButton,
-            parent: self.view
-        )
-        return accessoryView
-    }()
+    private lazy var keyboardDock = KeyboardDock(root: startButton, parent: self.view)
     
     private let dashboard = CompositionDetailDashboardView()
     

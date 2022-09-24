@@ -7,11 +7,13 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class MyListHeaderView: UIView {
     
     // MARK: Properties
-    private let addButton = UIButton()
+    fileprivate let addButton = UIButton()
     private let circleBackgroundView = UIView()
     
     private let plusImageView: UIImageView = {
@@ -39,6 +41,7 @@ final class MyListHeaderView: UIView {
         self.backgroundColor = .clear
         addButton.backgroundColor = .customDarkCloud
         circleBackgroundView.backgroundColor = .customNavy
+        circleBackgroundView.isUserInteractionEnabled = false
     }
     
     private func layout() {
@@ -64,4 +67,9 @@ final class MyListHeaderView: UIView {
             $0.center.equalToSuperview()
         }
     }
+}
+
+extension Reactive where Base: MyListHeaderView {
+    
+    var addButtonTapped: ControlEvent<Void> { base.addButton.rx.tap }
 }
