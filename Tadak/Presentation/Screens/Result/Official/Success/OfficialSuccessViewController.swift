@@ -1,5 +1,5 @@
 //
-//  OfficialFailureViewController.swift
+//  OfficialSuccessViewController.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/24.
@@ -8,17 +8,20 @@
 import UIKit
 import SnapKit
 import Lottie
+import ReactorKit
 
-final class OfficialFailureViewController: UIViewController {
+final class OfficialSuccessViewController: UIViewController {
     
     // MARK: Properties
+    var disposeBag = DisposeBag()
+    
     private let navigationView = HomeButtonTypeNavigationView()
     private let bottomSheet = UIView()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "틀렸어요.."
-        label.textColor = .customPumpkin
+        label.text = "축하드려요!"
+        label.textColor = .customCoral
         label.font = .notoSansKR(ofSize: 26, weight: .black)
         return label
     }()
@@ -40,15 +43,21 @@ final class OfficialFailureViewController: UIViewController {
     
     private let animationView: AnimationView = {
         let configuration = LottieConfiguration(renderingEngine: .coreAnimation)
-        let animationView = AnimationView(name: "sademotion", configuration: configuration)
+        let animationView = AnimationView(name: "backgroundprize", configuration: configuration)
         animationView.loopMode = .repeat(.greatestFiniteMagnitude)
         animationView.play()
         return animationView
     }()
     
-    private let retryButton: TextButton = {
-        let button = TextButton(colorType: .pumpkin)
-        button.title = "재도전"
+    private let prizeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let shareButton: TextButton = {
+        let button = TextButton(colorType: .coral)
+        button.title = "공유하기"
         button.titleFont = .notoSansKR(ofSize: 20, weight: .bold)
         return button
     }()
@@ -69,7 +78,7 @@ final class OfficialFailureViewController: UIViewController {
         bottomSheet.backgroundColor = .white
         
         navigationView.title = "공식 기록"
-        speedLabel.text = "496"
+        prizeImageView.image = UIImage.reward(4)
     }
     
     private func layout() {
@@ -98,14 +107,19 @@ final class OfficialFailureViewController: UIViewController {
         
         bottomSheet.addSubview(animationView)
         animationView.snp.makeConstraints {
-            $0.centerY.equalToSuperview().offset(-40)
-            $0.left.right.equalToSuperview().inset(60)
+            $0.centerY.equalToSuperview().offset(-50)
+            $0.left.right.equalToSuperview().inset(-30)
             $0.height.equalTo(animationView.snp.width)
+        }
+        
+        animationView.addSubview(prizeImageView)
+        prizeImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(140)
         }
         
         bottomSheet.addSubview(speedLabel)
         speedLabel.snp.makeConstraints {
-            $0.top.equalTo(animationView.snp.bottom).offset(10)
+            $0.top.equalTo(prizeImageView.snp.bottom).offset(75)
             $0.centerX.equalToSuperview()
         }
         
@@ -115,11 +129,32 @@ final class OfficialFailureViewController: UIViewController {
             $0.bottom.equalTo(speedLabel).offset(-7)
         }
         
-        bottomSheet.addSubview(retryButton)
-        retryButton.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(24)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15)
+        bottomSheet.addSubview(shareButton)
+        shareButton.snp.makeConstraints {
+            $0.left.right.equalToSuperview().inset(30)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
             $0.height.equalTo(55)
         }
+    }
+}
+
+extension OfficialSuccessViewController: View {
+    
+    func bind(reactor: OfficialSuccessViewReactor) {
+        
+        // MARK: Action
+        navigationView.rx.homeButtonTapped
+            .map(OfficialSuccessViewReactor.Action.homeButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        shareButton.rx.tap
+            .map(OfficialSuccessViewReactor.Action.shareButtonTapped)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$tyingSpeed)
+            .bind(to: speedLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }

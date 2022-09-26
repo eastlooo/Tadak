@@ -26,6 +26,7 @@ final class TypingUseCase {
     var userTextToBeUpdated: Observable<String> { _userTextToBeUpdated.asObservable() }
     var abused: Observable<Void> { _abused.asObservable() }
     var finished: Observable<Void> { _finished.asObservable() }
+    var wrong: Observable<Void> { _wrong.asObservable() }
     
     private var disposeBag = DisposeBag()
     private var isRunningTyping: BehaviorRelay<Bool> = .init(value: false)
@@ -38,6 +39,7 @@ final class TypingUseCase {
     private let _abused = PublishRelay<Void>()
     private let _returnPressed = PublishSubject<Void>()
     private let _finished = PublishRelay<Void>()
+    private let _wrong = PublishRelay<Void>()
     
     // OriginalText
     private let _originalTextList: BehaviorRelay<[String]> = .init(value: [])
@@ -73,6 +75,7 @@ extension TypingUseCase: TypingUseCaseProtocol {
         DispatchQueue.main.async {
             self.disposeBag = DisposeBag()
             
+            self.isRunningTyping.accept(false)
             self._elapesdTime.accept(0)
             self._accuracy.accept(0)
             self._typingSpeed.accept(0)
@@ -354,10 +357,19 @@ private extension TypingUseCase {
             .disposed(by: disposeBag)
 
         updatedUserText.map(\.new)
-            .bind(onNext: { [weak self] text in
-                self?._currentUserText.onNext(text)
-                self?._userTextToBeUpdated.accept(text)
-            })
+            .bind(to: _currentUserText)
+            .disposed(by: disposeBag)
+        
+        updatedUserText.map(\.new)
+            .bind(to: _userTextToBeUpdated)
+            .disposed(by: disposeBag)
+        
+        // Check wrong
+        updatedUserText
+            .withLatestFrom(_accuracy)
+            .filter { $0 < 100 }
+            .map { _ in }
+            .bind(to: _wrong)
             .disposed(by: disposeBag)
         
         // Tying End

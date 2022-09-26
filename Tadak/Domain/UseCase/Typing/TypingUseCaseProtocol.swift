@@ -25,6 +25,7 @@ protocol TypingUseCaseProtocol: AnyObject {
     var userTextToBeUpdated: Observable<String> { get }
     var abused: Observable<Void> { get }
     var finished: Observable<Void> { get }
+    var wrong: Observable<Void> { get }
     
     func start()
     func reset()

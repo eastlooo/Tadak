@@ -121,6 +121,11 @@ extension OfficialTypingViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        self.rx.viewDidDisappear
+            .map(OfficialTypingViewReactor.Action.viewDidDisappear)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // MARK: State
         reactor.pulse(\.$title)
             .bind(to: typingSheet.rx.title)
@@ -155,6 +160,18 @@ extension OfficialTypingViewController: View {
             .distinctUntilChanged()
             .map { CGFloat($0) }
             .bind(to: progressBar.rx.progression)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$shouldReset)
+            .filter { $0 }
+            .map { !$0 }
+            .bind(to: typingSheet.rx.isTypingEnabled)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$shouldReset)
+            .filter { $0 }
+            .map { _ in }
+            .bind(to: countdownView.rx.reset)
             .disposed(by: disposeBag)
         
         // MARK: View

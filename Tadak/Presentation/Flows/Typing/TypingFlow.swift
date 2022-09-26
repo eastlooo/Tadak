@@ -57,8 +57,17 @@ final class TypingFlow: Flow {
         case .practiceResultIsRequired(let practiceResult):
             return navigateToPracticeResultScreen(practiceResult: practiceResult)
             
+        case .officialSuccessIsRequired(let typingSpeed):
+            return navigateToOfficialSuccessScreen(typingSpeed: typingSpeed)
+            
+        case .officialFailureIsRequired(let typingSpeed):
+            return navigateToOfficialFailureScreen(typingSpeed: typingSpeed)
+            
         case .bettingResultIsRequired(let ranking):
             return navigateToBettingResultScreen(ranking: ranking)
+            
+        case .typingIsRequiredAgain:
+            return popCurrentScreen()
             
         default:
             return .none
@@ -126,6 +135,32 @@ private extension TypingFlow {
         )
     }
     
+    func navigateToOfficialSuccessScreen(typingSpeed: Int) -> FlowContributors {
+        let reactor = OfficialSuccessViewReactor(tyingSpeed: typingSpeed)
+        let viewController = OfficialSuccessViewController()
+        viewController.reactor = reactor
+        self.rootViewController.pushViewController(viewController, animated: false)
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
+    }
+    
+    func navigateToOfficialFailureScreen(typingSpeed: Int) -> FlowContributors {
+        let reactor = OfficialFailureViewReactor(tyingSpeed: typingSpeed)
+        let viewController = OfficialFailureViewController()
+        viewController.reactor = reactor
+        self.rootViewController.pushViewController(viewController, animated: false)
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
+    }
+    
     func navigateToBettingResultScreen(ranking: [Rank]) -> FlowContributors {
         let reactor = BettingResultViewReactor(ranking: ranking)
         let viewController = BettingResultViewController()
@@ -137,5 +172,10 @@ private extension TypingFlow {
                 withNextStepper: reactor
             )
         )
+    }
+    
+    func popCurrentScreen() -> FlowContributors {
+        self.rootViewController.popViewController(animated: false)
+        return .none
     }
 }

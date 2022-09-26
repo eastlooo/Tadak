@@ -18,6 +18,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         case typingHasStarted(Void)
         case currentUserText(String)
         case returnPressed(Void)
+        case viewDidDisappear(Bool)
         case abused
     }
     
@@ -29,6 +30,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         case setAccuracy(Int)
         case setTypingSpeed(Int)
         case setProgression(Double)
+        case reset(Bool)
     }
     
     struct State {
@@ -40,12 +42,13 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         @Pulse var accuracy: Int = 0
         @Pulse var typingSpeed: Int = 0
         @Pulse var progression: Double = 0
+        @Pulse var shouldReset: Bool = false
     }
     
     var steps = PublishRelay<Step>()
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
-    private let useCase: TypingUseCaseProtocol
+    private var useCase: TypingUseCaseProtocol
     private let composition: Composition
     let initialState: State
     
@@ -84,6 +87,9 @@ extension OfficialTypingViewReactor {
             useCase.returnPressed.onNext(pressed)
             return .empty()
             
+        case .viewDidDisappear:
+            return .just(.reset(true))
+            
         case .abused:
             print("DEBUG: abused..")
             return .empty()
@@ -114,6 +120,12 @@ extension OfficialTypingViewReactor {
             
         case .setProgression(let progression):
             state.progression = progression
+            
+        case .reset(let reset):
+            useCase.reset()
+            disposeBag = DisposeBag()
+            bind()
+            state.shouldReset = reset
         }
         
         return state
@@ -153,19 +165,19 @@ extension OfficialTypingViewReactor {
 
 private extension OfficialTypingViewReactor {
     
-    func bind() {
-        let title = composition.title
-        let record = useCase.getRecord()
-        let typingTexts = useCase.getTypingTexts()
-        
-        let practiceResult = Observable
-            .combineLatest(record, typingTexts)
-            .map { (title, $0, $1) }
-            .map(PracticeResult.init)
-        
+    func bind() {        
         useCase.finished
-            .withLatestFrom(practiceResult)
-            .map(TadakStep.practiceResultIsRequired)
+            .withLatestFrom(useCase.accuracy)
+            .filter { $0 == 100 }
+            .withLatestFrom(useCase.typingSpeed)
+            .map(TadakStep.officialSuccessIsRequired)
+            .take(1)
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
+        useCase.wrong
+            .withLatestFrom(useCase.typingSpeed)
+            .map(TadakStep.officialFailureIsRequired)
             .take(1)
             .bind(to: steps)
             .disposed(by: disposeBag)

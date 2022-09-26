@@ -36,6 +36,18 @@ extension Reactive where Base: UIViewController {
         return ControlEvent(events: source)
     }
     
+    var viewWillDisappear: ControlEvent<Bool> {
+        let source = methodInvoked(#selector(Base.viewWillDisappear))
+            .map { $0.first as? Bool ?? false }
+        return ControlEvent(events: source)
+    }
+    
+    var viewDidDisappear: ControlEvent<Bool> {
+        let source = methodInvoked(#selector(Base.viewDidDisappear))
+            .map { $0.first as? Bool ?? false }
+        return ControlEvent(events: source)
+    }
+    
     var touchesBegan: ControlEvent<Void> {
         let source = methodInvoked(#selector(Base.touchesBegan))
             .map { _ in }

@@ -50,4 +50,8 @@ enum TadakStep: Step {
     case practiceResultIsComplete
     case bettingResultIsRequired(withRanking: [Rank])
     case bettingResultIsComplete
+    case officialSuccessIsRequired(withTypingSpeed: Int)
+    case officialFailureIsRequired(withTypingSpeed: Int)
+    
+    case typingIsRequiredAgain
 }
