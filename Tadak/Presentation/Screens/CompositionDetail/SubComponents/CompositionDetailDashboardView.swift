@@ -72,7 +72,7 @@ final class CompositionDetailDashboardView: UIView {
         topDivider.backgroundColor = .white
         bottomDivider.backgroundColor = .white
         
-        rewardImageView.image = .reward(1)
+        rewardImageView.image = UIImage.reward(score: 1)
     }
     
     private func layout() {

@@ -53,7 +53,7 @@ final class OnboardingFlow: Flow {
 
 extension OnboardingFlow {
     private func navigateToCharacterSelectScreen() -> FlowContributors {
-        let useCase = OnboardingCharacterUseCase()
+        let useCase = OnboardingUseCase(userRepository: self.userRepository)
         let reactor = OnboardingCharacterViewReactor(useCase: useCase)
         let viewController = OnboardingCharacterViewController()
         viewController.reactor = reactor
@@ -67,11 +67,8 @@ extension OnboardingFlow {
     }
     
     private func navigateToNicknameSettingScreen(with characterID: Int) -> FlowContributors {
-        let useCase = OnboardingNicknameUseCase(
-            characterID: characterID,
-            userRepository: self.userRepository
-        )
-        let reactor = OnboardingNicknameViewReactor(useCase: useCase)
+        let useCase = OnboardingUseCase(userRepository: self.userRepository)
+        let reactor = OnboardingNicknameViewReactor(characterID: characterID, useCase: useCase)
         let viewController = OnboardingNicknameViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)

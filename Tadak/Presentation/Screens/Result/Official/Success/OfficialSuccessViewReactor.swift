@@ -20,7 +20,7 @@ final class OfficialSuccessViewReactor: Reactor, Stepper {
     enum Mutation {}
     
     struct State {
-        @Pulse var tyingSpeed: String
+        @Pulse var tyingSpeed: Int
     }
     
     var steps = PublishRelay<Step>()
@@ -29,7 +29,7 @@ final class OfficialSuccessViewReactor: Reactor, Stepper {
     
     init(tyingSpeed: Int) {
        
-        self.initialState = State(tyingSpeed: "\(tyingSpeed)")
+        self.initialState = State(tyingSpeed: tyingSpeed)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }

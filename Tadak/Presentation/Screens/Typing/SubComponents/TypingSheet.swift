@@ -170,7 +170,7 @@ final class TypingSheet: UIView {
         typingTextField.layer.cornerRadius = 22.5
         self.addSubview(typingTextField)
         typingTextField.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(120)
+            $0.top.equalToSuperview().inset(113)
             $0.left.right.equalToSuperview().inset(20)
             $0.height.equalTo(45)
         }

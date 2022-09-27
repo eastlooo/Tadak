@@ -31,6 +31,7 @@ final class BettingTypingViewReactor: Reactor, Stepper {
     }
     
     struct State {
+        @Pulse var title: String
         @Pulse var participant: String = ""
         @Pulse var currentOriginalText: String = ""
         @Pulse var nextOriginalText: String = ""
@@ -55,7 +56,7 @@ final class BettingTypingViewReactor: Reactor, Stepper {
         self.typingUseCase = typingUseCase
         self.recordUseCase = recordUseCase
         self.composition = typingUseCase.composition
-        self.initialState = State()
+        self.initialState = State(title: composition.title)
         
         bind()
     }

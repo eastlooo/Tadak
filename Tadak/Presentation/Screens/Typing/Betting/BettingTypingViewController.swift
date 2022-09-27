@@ -50,7 +50,7 @@ final class BettingTypingViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .customNavy
         
-        navigationView.title = "내기 모드"
+//        navigationView.title = "내기 모드"
         typingSheet.typingFont = typingFont
     }
     
@@ -63,7 +63,7 @@ final class BettingTypingViewController: UIViewController {
         
         view.addSubview(progressBar)
         progressBar.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(10)
+            $0.top.equalTo(navigationView.snp.bottom).offset(2)
             $0.left.right.equalToSuperview()
             $0.height.equalTo(5)
         }
@@ -122,8 +122,12 @@ extension BettingTypingViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.pulse(\.$participant)
+        reactor.pulse(\.$title)
             .bind(to: typingSheet.rx.title)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$participant)
+            .bind(to: navigationView.rx.title)
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$currentOriginalText)

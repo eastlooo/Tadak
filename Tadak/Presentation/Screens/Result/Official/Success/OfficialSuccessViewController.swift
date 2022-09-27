@@ -78,7 +78,6 @@ final class OfficialSuccessViewController: UIViewController {
         bottomSheet.backgroundColor = .white
         
         navigationView.title = "공식 기록"
-        prizeImageView.image = UIImage.reward(4)
     }
     
     private func layout() {
@@ -154,7 +153,13 @@ extension OfficialSuccessViewController: View {
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$tyingSpeed)
+            .map(String.init)
             .bind(to: speedLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$tyingSpeed)
+            .map(UIImage.reward)
+            .bind(to: prizeImageView.rx.image)
             .disposed(by: disposeBag)
     }
 }

@@ -50,7 +50,7 @@ final class PracticeTypingViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .customNavy
         
-        navigationView.title = "연습 모드"
+        navigationView.title = "연습모드"
         typingSheet.typingFont = typingFont
     }
     
@@ -63,7 +63,7 @@ final class PracticeTypingViewController: UIViewController {
         
         view.addSubview(progressBar)
         progressBar.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(10)
+            $0.top.equalTo(navigationView.snp.bottom).offset(2)
             $0.left.right.equalToSuperview()
             $0.height.equalTo(5)
         }

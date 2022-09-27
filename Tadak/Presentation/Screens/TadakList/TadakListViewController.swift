@@ -20,21 +20,21 @@ final class TadakListViewController: UIViewController {
     private let practiceModeButton: BorderedButton = {
         let button = BorderedButton()
         button.title = "연습 모드"
-        button.titleFont = .notoSansKR(ofSize: 14, weight: .medium)
+        button.titleFont = .notoSansKR(ofSize: 14, weight: .bold)
         return button
     }()
     
     private let officialModeButton: BorderedButton = {
         let button = BorderedButton()
         button.title = "실전 모드"
-        button.titleFont = .notoSansKR(ofSize: 14, weight: .medium)
+        button.titleFont = .notoSansKR(ofSize: 14, weight: .bold)
         return button
     }()
     
     private let bettingModeButton: BorderedButton = {
         let button = BorderedButton()
         button.title = "내기 모드"
-        button.titleFont = .notoSansKR(ofSize: 14, weight: .medium)
+        button.titleFont = .notoSansKR(ofSize: 14, weight: .bold)
         return button
     }()
     
@@ -71,7 +71,7 @@ final class TadakListViewController: UIViewController {
         
         view.addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(10)
+            $0.top.equalTo(navigationView.snp.bottom).offset(5)
             $0.left.right.equalToSuperview().inset(24)
             $0.height.equalTo(45)
         }

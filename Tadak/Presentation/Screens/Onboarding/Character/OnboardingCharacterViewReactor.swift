@@ -25,19 +25,20 @@ final class OnboardingCharacterViewReactor: Reactor, Stepper {
     let initialState: State
     var steps = PublishRelay<Step>()
     
-    private let useCase: OnboardingCharacterUseCaseProtocol
+    private let useCase: OnboardingUseCaseProtocol
     
-    init(useCase: OnboardingCharacterUseCaseProtocol) {
+    init(useCase: OnboardingUseCaseProtocol) {
         self.useCase = useCase
         self.initialState = State(items: useCase.characterIDs)
     }
 }
 
 extension OnboardingCharacterViewReactor {
+    
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .itemSelected(indexPath):
-            let characterID = useCase.findCharacterID(index: indexPath.row)
+            let characterID = useCase.getCharacterId(at: indexPath.row)
             steps.accept(TadakStep.onboardingCharacterSelected(withCharacterID: characterID))
             return .empty()
         }

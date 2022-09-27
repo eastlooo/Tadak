@@ -63,7 +63,7 @@ final class OfficialTypingViewController: UIViewController {
         
         view.addSubview(progressBar)
         progressBar.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(10)
+            $0.top.equalTo(navigationView.snp.bottom).offset(2)
             $0.left.right.equalToSuperview()
             $0.height.equalTo(5)
         }

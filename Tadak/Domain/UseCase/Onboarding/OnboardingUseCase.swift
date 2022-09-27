@@ -1,5 +1,5 @@
 //
-//  OnboardingNicknameUseCase.swift
+//  OnboardingUseCase.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/08.
@@ -8,52 +8,44 @@
 import Foundation
 import RxSwift
 
-protocol OnboardingNicknameUseCaseProtocol: AnyObject {
+final class OnboardingUseCase {
     
-    var characterID: Int { get }
-    var maxLength: Int { get }
+    let characterIDs: [Int]
+    let nicknameMinLength: Int = 2
+    let nicknameMaxLength: Int = 6
     
-    func checkValidate(_ text: String) -> Bool
-    func correctText(_ text: String) -> String
-    
-    func checkNicknameDuplication() -> Observable<Bool>
-    func startOnboardingFlow() -> Observable<TadakUser>
-}
-
-final class OnboardingNicknameUseCase {
-    
-    let minLength: Int = 2
-    let maxLength: Int = 6
-    
-    let characterID: Int
+    var characterID: Int?
     var nickname: String = ""
     
     private let userRepository: UserRepositoryProtocol
     
     init(
-        characterID: Int,
         userRepository: UserRepositoryProtocol
     ) {
-        self.characterID = characterID
+        self.characterIDs = (1...20).shuffled().shuffled().shuffled().map { $0 }
         self.userRepository = userRepository
     }
 }
 
-extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
+extension OnboardingUseCase: OnboardingUseCaseProtocol {
+    
+    func getCharacterId(at index: Int) -> Int {
+        characterIDs[index]
+    }
     
     func checkValidate(_ text: String) -> Bool {
-        text.count >= minLength && text.count <= maxLength
+        text.count >= nicknameMinLength && text.count <= nicknameMaxLength
     }
     
     func correctText(_ text: String) -> String {
         let text = text.trimmingCharacters(in: .whitespaces)
-        guard text.count > maxLength else {
+        guard text.count > nicknameMaxLength else {
             self.nickname = text
             return text
         }
         
         let startIndex = text.startIndex
-        let endIndex = text.index(startIndex, offsetBy: maxLength)
+        let endIndex = text.index(startIndex, offsetBy: nicknameMaxLength)
         let correctedText = String(text[..<endIndex])
         self.nickname = correctedText
         return correctedText
@@ -74,9 +66,9 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
     
     func startOnboardingFlow() -> Observable<TadakUser> {
         
+        guard let characterID = self.characterID else { return .error(NSError())}
         lazy var uid = ""
         let nickname = self.nickname
-        let characterID = self.characterID
         let repository = self.userRepository
         
         // 익명 가입
@@ -85,7 +77,13 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
             .do { uid = $0 }
             .map { ($0, nickname, characterID) }
             .flatMap(repository.createUser)
-            .retry()
+            .do { user in
+                AnalyticsManager.setUserID(user.id)
+                AnalyticsManager.log(
+                    UserEvent.register(nickname: nickname, characterID: characterID)
+                )
+            }
+            .retry(2)
         // 실패 시 유저 가입, 서버 및 로컬 삭제
             .catch { error -> Observable<TadakUser> in
                 return repository.deleteUser(uid: uid, nickname: nickname)
@@ -96,7 +94,7 @@ extension OnboardingNicknameUseCase: OnboardingNicknameUseCaseProtocol {
                             characterID: characterID
                         )
                     }
-                    .retry()
+                    .retry(2)
             }
     }
 }

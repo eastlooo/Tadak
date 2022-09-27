@@ -54,7 +54,7 @@ final class TadakListCell: UITableViewCell {
         titleLabel.adjustsFontSizeToFitWidth = true
         artistLabel.adjustsFontSizeToFitWidth = true
         
-        rewardImageView.image = UIImage.reward(1)
+        rewardImageView.image = UIImage.reward(score: 1)
     }
     
     private func layout() {

@@ -56,7 +56,9 @@ final class BorderedButton: UIButton {
     }
     
     private func updateButtonState() {
-        buttonTitleLabel.textColor = isEnabled ? .white : .customNavy
-        self.backgroundColor = isEnabled ? .customNavy : .white
+        UIView.animate(withDuration: 0.1) {
+            self.buttonTitleLabel.textColor = self.isEnabled ? .white : .customNavy
+            self.backgroundColor = self.isEnabled ? .clear : .white
+        }
     }
 }

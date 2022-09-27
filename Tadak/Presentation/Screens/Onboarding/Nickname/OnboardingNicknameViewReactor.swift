@@ -38,13 +38,17 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
     
     var steps = PublishRelay<Step>()
     let initialState: State
-    private let useCase: OnboardingNicknameUseCaseProtocol
+    private let useCase: OnboardingUseCaseProtocol
     
-    init(useCase: OnboardingNicknameUseCaseProtocol) {
+    init(
+        characterID: Int,
+        useCase: OnboardingUseCaseProtocol
+    ) {
+        useCase.characterID = characterID
         self.useCase = useCase
         self.initialState = State(
-            characterID: useCase.characterID,
-            nicknameMaxLength: useCase.maxLength
+            characterID: characterID,
+            nicknameMaxLength: useCase.nicknameMaxLength
         )
     }
 }

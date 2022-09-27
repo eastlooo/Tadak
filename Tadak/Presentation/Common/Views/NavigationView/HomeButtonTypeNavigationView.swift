@@ -53,7 +53,7 @@ final class HomeButtonTypeNavigationView: UIView {
     
     private func layout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(55)
+            $0.height.equalTo(65)
         }
         
         self.addSubview(titleLabel)

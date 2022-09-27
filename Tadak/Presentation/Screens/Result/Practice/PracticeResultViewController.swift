@@ -59,12 +59,12 @@ final class PracticeResultViewController: UIViewController {
         dashboard.snp.makeConstraints {
             $0.top.equalTo(navigationView.snp.bottom)
             $0.left.right.equalToSuperview().inset(20)
-            $0.height.equalTo(130)
+            $0.height.equalTo(110)
         }
         
         view.addSubview(bottomSheet)
         bottomSheet.snp.makeConstraints {
-            $0.top.equalTo(dashboard.snp.bottom)
+            $0.top.equalTo(dashboard.snp.bottom).offset(10)
             $0.left.right.bottom.equalToSuperview()
         }
         

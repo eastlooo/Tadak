@@ -14,17 +14,38 @@ final class ListButtonTypeNavigationView: UIView {
     
     // MARK: Properties
     var title: String? {
-        didSet { titleLabel.text = title }
+        didSet {
+            titleLabel.isHidden = (title == nil)
+            titleLabel.text = title
+        }
+    }
+    
+    var subtitle: String? {
+        didSet {
+            subtitleLabel.isHidden = (subtitle == nil)
+            subtitleLabel.text = subtitle
+        }
     }
     
     fileprivate var listButtonTapped: ControlEvent<Void> {
         return listButton.rx.tap
     }
     
+    private let titleAlignment: TitleAlignment
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .notoSansKR(ofSize: 26.0, weight: .black)
+        label.font = .notoSansKR(ofSize: 24.0, weight: .bold)
         label.textColor = .white
+        label.isHidden = true
+        return label
+    }()
+    
+    private let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .notoSansKR(ofSize: 18.0, weight: .medium)
+        label.textColor = .white
+        label.isHidden = true
         return label
     }()
     
@@ -35,8 +56,9 @@ final class ListButtonTypeNavigationView: UIView {
     }()
     
     // MARK: Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(titleAlignment: TitleAlignment = .left) {
+        self.titleAlignment = titleAlignment
+        super.init(frame: .zero)
         
         configure()
         layout()
@@ -52,8 +74,14 @@ final class ListButtonTypeNavigationView: UIView {
     }
     
     private func layout() {
+        let titleStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        titleStackView.axis = .vertical
+        titleStackView.spacing = 1
+        titleStackView.distribution = .fillProportionally
+        titleStackView.alignment = .leading
+        
         self.snp.makeConstraints {
-            $0.height.equalTo(72)
+            $0.height.equalTo(80)
         }
         
         self.addSubview(listButton)
@@ -63,16 +91,29 @@ final class ListButtonTypeNavigationView: UIView {
             $0.width.height.equalTo(44)
         }
         
-        self.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(28)
+        self.addSubview(titleStackView)
+        titleStackView.snp.makeConstraints {
             $0.centerY.equalTo(listButton)
+            
+            switch titleAlignment {
+            case .left: $0.left.equalToSuperview().inset(28)
+            case .center: $0.centerX.equalToSuperview()
+            }
         }
     }
 }
 
-// MARK: ControlEvent
+extension ListButtonTypeNavigationView {
+    
+    enum TitleAlignment {
+        case center, left
+    }
+}
+
+// MARK: - Rx+Extension
 extension Reactive where Base: ListButtonTypeNavigationView {
+    
+    // MARK: ControlEvent
     var listButtonTapped: ControlEvent<Void> {
         return base.listButtonTapped
     }

@@ -8,42 +8,26 @@
 import UIKit.UIImage
 
 extension UIImage {
-    static func character(_ number: Int) -> UIImage? {
-        switch number {
-        case 1: return UIImage(named: "axolotl.png")
-        case 2: return UIImage(named: "bear.png")
-        case 3: return UIImage(named: "chameleon.png")
-        case 4: return UIImage(named: "chick.png")
-        case 5: return UIImage(named: "deer.png")
-        case 6: return UIImage(named: "dinosaur.png")
-        case 7: return UIImage(named: "dog.png")
-        case 8: return UIImage(named: "frog.png")
-        case 9: return UIImage(named: "giraffe.png")
-        case 10: return UIImage(named: "hedgehog.png")
-        case 11: return UIImage(named: "lion.png")
-        case 12: return UIImage(named: "llama.png")
-        case 13: return UIImage(named: "mouse.png")
-        case 14: return UIImage(named: "octopus.png")
-        case 15: return UIImage(named: "prawn.png")
-        case 16: return UIImage(named: "rabbit.png")
-        case 17: return UIImage(named: "raccoon.png")
-        case 18: return UIImage(named: "sheep.png")
-        case 19: return UIImage(named: "tiger.png")
-        case 20: return UIImage(named: "turtle.png")
-        default: return nil
-        }
+    static func character(_ id: Int) -> UIImage? {
+        let character = AnimalCharacter(rawValue: id)
+        return character.flatMap { UIImage(named: "\($0.name).png") }
     }
     
-    static func reward(_ number: Int) -> UIImage? {
-        switch number {
-        case 1: return UIImage(named: "clover.png")
-        case 2: return UIImage(named: "bronze-medal.png")
-        case 3: return UIImage(named: "silver-medal.png")
-        case 4: return UIImage(named: "gold-medal.png")
-        case 5: return UIImage(named: "gold-trophy.png")
-        case 6: return UIImage(named: "diamond.png")
-        case 7: return UIImage(named: "crown.png")
+    static func reward(score: Int) -> UIImage? {
+        
+        switch score {
+        case 0..<100: return image(.clover)
+        case 100..<200: return UIImage(named: "bronze-medal.png")
+        case 200..<350: return UIImage(named: "silver-medal.png")
+        case 350..<500: return UIImage(named: "gold-medal.png")
+        case 500..<650: return UIImage(named: "gold-trophy.png")
+        case 650..<800: return UIImage(named: "diamond.png")
+        case 800...: return UIImage(named: "crown.png")
         default: return nil
+        }
+        
+        func image(_ reward: Reward) -> UIImage? {
+            return UIImage(named: reward.rawValue)
         }
     }
 }

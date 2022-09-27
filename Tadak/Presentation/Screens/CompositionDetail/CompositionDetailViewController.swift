@@ -14,26 +14,9 @@ final class CompositionDetailViewController: UIViewController {
     // MARK: Properties
     var disposeBag = DisposeBag()
     
-    private let listButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "list"), for: .normal)
-        button.contentMode = .center
-        return button
-    }()
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .notoSansKR(ofSize: 24, weight: .bold)
-        label.textColor = .white
-        return label
-    }()
-    
-    private let artistLabel: UILabel = {
-        let label = UILabel()
-        label.font = .notoSansKR(ofSize: 18, weight: .medium)
-        label.textColor = .white
-        return label
-    }()
+    private let navigationView = ListButtonTypeNavigationView()
+    private let dashboard = CompositionDetailDashboardView()
+    private lazy var keyboardDock = KeyboardDock(root: startButton, parent: self.view)
     
     private let startButton: TextButton = {
         let button = TextButton(colorType: .coral)
@@ -51,10 +34,6 @@ final class CompositionDetailViewController: UIViewController {
         return textView
     }()
     
-    private lazy var keyboardDock = KeyboardDock(root: startButton, parent: self.view)
-    
-    private let dashboard = CompositionDetailDashboardView()
-    
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     // MARK: Lifecycle
@@ -64,7 +43,6 @@ final class CompositionDetailViewController: UIViewController {
         configure()
         layout()
     }
-    
     
     // MARK: Helpers
     private func configure() {
@@ -76,29 +54,16 @@ final class CompositionDetailViewController: UIViewController {
         // execute lazy var property
         _ = keyboardDock
         
-        let titleStackView = UIStackView(arrangedSubviews: [titleLabel, artistLabel])
-        titleStackView.axis = .vertical
-        titleStackView.spacing = 1
-        titleStackView.distribution = .fillProportionally
-        titleStackView.alignment = .leading
-        
-        view.addSubview(listButton)
-        listButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(26)
-            $0.right.equalToSuperview().inset(26)
-            $0.width.height.equalTo(44)
-        }
-        
-        view.addSubview(titleStackView)
-        titleStackView.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(28)
-            $0.centerY.equalTo(listButton)
+        view.addSubview(navigationView)
+        navigationView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.left.right.equalToSuperview()
         }
         
         view.addSubview(dashboard)
         dashboard.snp.makeConstraints {
-            $0.top.equalTo(titleStackView.snp.bottom).offset(30)
-            $0.left.right.equalToSuperview().inset(28)
+            $0.top.equalTo(navigationView.snp.bottom).offset(25)
+            $0.left.right.equalToSuperview().inset(22)
         }
         
         view.addSubview(contentsTextView)
@@ -110,16 +75,18 @@ final class CompositionDetailViewController: UIViewController {
     }
     
     private func updateTypingDetail(_ typingDetail: TypingDetail) {
-        titleLabel.text = typingDetail.composition.title
-        artistLabel.text = typingDetail.composition.artist
+        navigationView.title = typingDetail.composition.title
+        navigationView.subtitle = typingDetail.composition.artist
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2
+        paragraphStyle.alignment = .left
+        
         contentsTextView.attributedText = NSAttributedString(
             string: typingDetail.composition.contents,
             attributes: [
                 .foregroundColor: UIColor.white,
-                .font: UIFont.notoSansKR(ofSize: 16, weight: .medium)!,
+                .font: UIFont.notoSansKR(ofSize: 17, weight: .medium)!,
                 .paragraphStyle: paragraphStyle
             ])
         
@@ -133,7 +100,7 @@ extension CompositionDetailViewController: View {
     func bind(reactor: CompositionDetailViewReactor) {
         
         // MARK: Action
-        listButton.rx.tap
+        navigationView.rx.listButtonTapped
             .map(CompositionDetailViewReactor.Action.listButtonTapped)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -145,9 +112,7 @@ extension CompositionDetailViewController: View {
         
         // MARK: State
         reactor.state.map(\.typingDetail)
-            .subscribe(onNext: { [weak self] detail in
-                self?.updateTypingDetail(detail)
-            })
+            .subscribe(onNext: updateTypingDetail)
             .disposed(by: disposeBag)
     }
 }
