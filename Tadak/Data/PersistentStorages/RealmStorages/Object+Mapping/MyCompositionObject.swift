@@ -24,6 +24,7 @@ final class MyCompositionObject: Object {
 }
 
 extension MyCompositionObject {
+    
     func toDomain() -> MyComposition {
         return .init(
             compositions: self.compositions.map { $0.toDomain() }

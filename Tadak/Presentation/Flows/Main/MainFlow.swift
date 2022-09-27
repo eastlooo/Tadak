@@ -42,11 +42,8 @@ final class MainFlow: Flow {
         case .myListIsRequired:
             return navigateToMyListScreen()
             
-        case .tadakListIsComplete:
-            return dismissTadakList()
-            
-        case .myListIsComplete:
-            return dismissMyList()
+        case .listIsComplete:
+            return dismissPresentedScreen()
             
         default:
             return .none
@@ -106,10 +103,10 @@ extension MainFlow {
         )
     }
     
-    private func dismissTadakList() -> FlowContributors {
-        if let tadakListViewController = self.rootViewController.presentedViewController {
+    private func dismissPresentedScreen() -> FlowContributors {
+        if let viewController = self.rootViewController.presentedViewController {
             DispatchQueue.main.async {
-                tadakListViewController.dismiss(animated: false)
+                viewController.dismiss(animated: false)
             }
         }
         
@@ -134,13 +131,5 @@ extension MainFlow {
                     withSingleStep: TadakStep.myListIsRequired)
             )
         )
-    }
-    
-    private func dismissMyList() -> FlowContributors {
-        if let myListViewController = self.rootViewController.presentedViewController {
-            myListViewController.dismiss(animated: false)
-        }
-        
-        return .none
     }
 }

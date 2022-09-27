@@ -8,15 +8,6 @@
 import Foundation
 import RxSwift
 
-protocol CompositionRepositoryProtocol {
-    
-    var tadakComposition: BehaviorSubject<TadakComposition?> { get }
-    var myComposition: BehaviorSubject<MyComposition?> { get }
-    
-    func fetchTadakComposition() -> Observable<TadakComposition>
-    func fetchMyComposition() -> Observable<MyComposition?>
-}
-
 final class CompositionRepository {
     
     let tadakComposition: BehaviorSubject<TadakComposition?> = .init(value: nil)
@@ -40,7 +31,6 @@ final class CompositionRepository {
 extension CompositionRepository: CompositionRepositoryProtocol {
     
     func fetchTadakComposition() -> Observable<TadakComposition> {
-        
         let minimumVersion = checkTadakCompositionMinimumVersion()
         let requestOnServer = readTadakCompositionOnServer()
         
@@ -71,6 +61,65 @@ extension CompositionRepository: CompositionRepositoryProtocol {
         return storage.fetch(MyCompositionObject.self, predicate: nil, sorted: nil)
             .map { $0.first }
             .map { $0?.toDomain() }
+            .do { [weak self] myComposition in
+                self?.myComposition.onNext(myComposition)
+            }
+    }
+    
+    func appendMyComposition(_ compostion: Composition) -> Observable<Void> {
+        guard let storage = self.storage else { return .error(RealmError.failedInitialization) }
+        
+        let compositionObject = CompositionObject(composition: compostion)
+        
+        let myCompositonObject = storage.fetch(MyCompositionObject.self, predicate: nil, sorted: nil)
+            .map { $0.first }
+            .flatMap { object -> Observable<MyCompositionObject> in
+                if let object = object {
+                    return .just(object)
+                }
+                
+                return storage.create(MyCompositionObject.self)
+            }
+        
+        return myCompositonObject
+            .flatMap { object -> Observable<MyComposition> in
+                return storage
+                    .update {
+                        object.compositions.append(compositionObject)
+                    }
+                    .map { _ in object.toDomain() }
+            }
+            .do { [weak self] myComposition in
+                self?.myComposition.onNext(myComposition)
+            }
+            .map { _ in }
+    }
+    
+    func removeMyComposition(_ compostion: Composition) -> Observable<Void> {
+        guard let storage = self.storage else { return .error(RealmError.failedInitialization) }
+        
+        let id = compostion.id
+        
+        let myCompositonObject = storage.fetch(MyCompositionObject.self, predicate: nil, sorted: nil)
+            .compactMap { $0.first }
+        
+        return myCompositonObject
+            .flatMap { object -> Observable<MyComposition> in
+                return storage
+                    .update {
+                        object.compositions
+                            .filter { $0.id == id  }
+                            .first
+                            .flatMap { object.compositions.firstIndex(of: $0) }
+                            .flatMap { object.compositions.remove(at: $0) }
+                    }
+                    .map { _ in object.toDomain() }
+            }
+            .observe(on: MainScheduler.asyncInstance)
+            .do { [weak self] myComposition in
+                self?.myComposition.onNext(myComposition)
+            }
+            .map { _ in }
     }
 }
 

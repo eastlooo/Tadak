@@ -49,7 +49,7 @@ final class MyListViewController: UIViewController {
         navigationView.title = "나만의 글"
         
         tableView.tableHeaderView = headerView
-        headerView.frame.size.height = 100
+        headerView.frame.size.height = 91.5
         
         practiceModeButton.isEnabled = false
     }
@@ -117,18 +117,23 @@ extension MyListViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        tableView.rx.deleteItem
+            .map(MyListViewReactor.Action.deleteItem)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // MARK: State
-        reactor.state.map(\.typingMode)
+        reactor.pulse(\.$typingMode)
             .map { $0 != .practice }
             .bind(to: practiceModeButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.typingMode)
+        reactor.pulse(\.$typingMode)
             .map { $0 != .betting }
             .bind(to: bettingModeButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.items)
+        reactor.pulse(\.$items)
             .bind(to: tableView.rx.items)
             .disposed(by: disposeBag)
     }

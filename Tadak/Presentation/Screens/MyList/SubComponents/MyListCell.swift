@@ -55,8 +55,9 @@ final class MyListCell: UITableViewCell {
         
         contentView.addSubview(roundedView)
         roundedView.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(17)
+            $0.top.equalToSuperview().inset(8.5)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(8.5)
         }
         
         roundedView.addSubview(titleLabel)

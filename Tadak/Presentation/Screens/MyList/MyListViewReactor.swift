@@ -16,6 +16,7 @@ final class MyListViewReactor: Reactor, Stepper {
         case homeButtonTapped(Void)
         case typingModeButtonTapped(TypingMode)
         case itemSelected(IndexPath)
+        case deleteItem(IndexPath)
         case addButtonTapped(Void)
     }
     
@@ -25,16 +26,18 @@ final class MyListViewReactor: Reactor, Stepper {
     }
     
     struct State {
-        var typingMode: TypingMode = .practice
-        var items: [Composition] = []
+        @Pulse var typingMode: TypingMode = .practice
+        @Pulse var items: [Composition] = []
     }
     
     var steps = PublishRelay<Step>()
-    private let typingMode$: BehaviorSubject<TypingMode> = .init(value: .practice)
+    private let _typingMode: BehaviorSubject<TypingMode> = .init(value: .practice)
     
+    private let useCase: CompositionUseCaseProtocol
     let initialState: State
     
-    init() {
+    init(useCase: CompositionUseCaseProtocol) {
+        self.useCase = useCase
         self.initialState = State()
     }
     
@@ -46,20 +49,29 @@ extension MyListViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .homeButtonTapped:
-            steps.accept(TadakStep.myListIsComplete)
+            steps.accept(TadakStep.listIsComplete)
             return .empty()
             
         case .typingModeButtonTapped(let typingMode):
-            typingMode$.onNext(typingMode)
+            _typingMode.onNext(typingMode)
             return .empty()
             
-        case .itemSelected:
-//            if let composition = useCase.getComposition(index: indexPath.row),
-//               let typingMode = try? typingMode$.value() {
-//                let typingDetail = TypingDetail(typingMode: typingMode, composition: composition)
-//                steps.accept(TadakStep.compositionIsPicked(withTypingDetail: typingDetail))
-//            }
-            return .empty()
+        case .itemSelected(let indexPath):
+            let composition = useCase.selectedMyComposition(index: indexPath.row)
+                .compactMap { $0 }
+            
+            return composition
+                .withLatestFrom(_typingMode) { ($1, $0) }
+                .map(TypingDetail.init)
+                .map(TadakStep.compositionIsPicked)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
+                .take(1)
+            
+        case .deleteItem(let indexPath):
+            return useCase.removeMyComposition(index: indexPath.row)
+                .flatMap { _ in Observable<Mutation>.empty() }
+                .take(1)
             
         case .addButtonTapped:
             steps.accept(TadakStep.makeCompositionIsRequired)
@@ -82,13 +94,16 @@ extension MyListViewReactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        let setItems = useCase.myComposition
+            .compactMap { $0?.compositions }
+            .map(Mutation.setItems)
+        
+        let setTypingMode = _typingMode.map(Mutation.setTypingMode)
+        
         return .merge(
             mutation,
-//            useCase.tadakComposition
-//                .compactMap { $0?.compositions }
-//                .map(Mutation.setItems),
-            typingMode$
-                .map(Mutation.setTypingMode)
+            setItems,
+            setTypingMode
         )
     }
 }

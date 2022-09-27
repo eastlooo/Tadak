@@ -53,7 +53,7 @@ final class MyListHeaderView: UIView {
         self.addSubview(addButton)
         addButton.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(17)
+            $0.bottom.equalToSuperview().inset(8.5)
         }
         
         addButton.addSubview(circleBackgroundView)

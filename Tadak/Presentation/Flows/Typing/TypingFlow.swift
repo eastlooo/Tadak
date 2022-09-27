@@ -51,7 +51,7 @@ final class TypingFlow: Flow {
             
         case .typingIsComplete, .practiceResultIsComplete, .bettingResultIsComplete:
             return .end(
-                forwardToParentFlowWithStep: TadakStep.tadakListIsComplete
+                forwardToParentFlowWithStep: TadakStep.listIsComplete
             )
             
         case .practiceResultIsRequired(let practiceResult):

@@ -7,11 +7,14 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class MyListTableView: UITableView {
     
     // MARK: Properties
     var items: [Composition] = []
+    
+    fileprivate let _delete = PublishRelay<IndexPath>()
     
     // MARK: Lifecycle
     init() {
@@ -27,6 +30,7 @@ final class MyListTableView: UITableView {
     // MARK: Helpers
     private func configure() {
         self.dataSource = self
+        self.delegate = self
         
         self.backgroundColor = .customNavy
         self.showsVerticalScrollIndicator = false
@@ -50,12 +54,36 @@ extension MyListTableView: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension MyListTableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "지우기") { [weak self] action, view, completion in
+            self?.items.remove(at: indexPath.row)
+            self?._delete.accept(indexPath)
+            self?.deleteRows(at: [indexPath], with: .fade)
+            
+            completion(true)
+        }
+        
+        delete.image = UIImage(named: "trash")
+        delete.backgroundColor = .customNavy
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+}
+
 // MARK: Binder
 extension Reactive where Base: MyListTableView {
+    
     var items: Binder<[Composition]> {
-        return Binder(base) { base, element in
-            base.items = element
+        return Binder(base) { base, items in
+            base.items = items
             base.reloadData()
         }
+    }
+    
+    var deleteItem: ControlEvent<IndexPath> {
+        return ControlEvent(events: base._delete)
     }
 }

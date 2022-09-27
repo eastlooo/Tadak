@@ -50,6 +50,7 @@ final class RealmStorage {
 }
 
 extension RealmStorage: Storage {
+    
     func create<T>(_ model: T.Type) -> Observable<T> where T : Storable {
         guard let realm = self.realm else {
             return .error(RealmError.failedInitialization)
@@ -74,7 +75,7 @@ extension RealmStorage: Storage {
             return .error(RealmError.failedInitialization)
         }
         
-        return .create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     realm.add(object as! Object)
@@ -89,7 +90,7 @@ extension RealmStorage: Storage {
     }
     
     func update(block: @escaping () -> Void) -> Observable<Void> {
-        return .create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     block()
@@ -108,7 +109,7 @@ extension RealmStorage: Storage {
             return .error(RealmError.failedInitialization)
         }
         
-        return .create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     realm.delete(object as! Object)
@@ -127,7 +128,7 @@ extension RealmStorage: Storage {
             return .error(RealmError.failedInitialization)
         }
         
-        return .create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     let objects = realm.objects(model as! Object.Type)
@@ -151,7 +152,7 @@ extension RealmStorage: Storage {
             return .error(RealmError.failedInitialization)
         }
         
-        return .create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
                     realm.deleteAll()

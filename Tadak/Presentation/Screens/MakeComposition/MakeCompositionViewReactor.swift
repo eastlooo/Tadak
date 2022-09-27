@@ -31,9 +31,11 @@ final class MakeCompositionViewReactor: Reactor, Stepper {
     private let disposeBag = DisposeBag()
     var steps = PublishRelay<Step>()
     
+    private let useCase: MakeCompositionUseCaseProtocol
     let initialState: State
     
-    init() {
+    init(useCase: MakeCompositionUseCaseProtocol) {
+        self.useCase = useCase
         self.initialState = State()
     }
     
@@ -49,19 +51,44 @@ extension MakeCompositionViewReactor {
             return .empty()
             
         case .saveButtonTapped:
-            return .empty()
+            return useCase.saveComposition()
+                .map { _ in TadakStep.makeCompositionIsComplete }
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
+                .take(1)
             
         case .titleText(let title):
-            _ = title
+            useCase.title.onNext(title)
             return .empty()
             
         case .artistText(let artist):
-            _ = artist
+            useCase.artist.onNext(artist)
             return .empty()
             
         case .contentsText(let contents):
-            _ = contents
+            useCase.contents.onNext(contents)
             return .empty()
         }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        
+        switch mutation {
+        case .setValidate(let validate):
+            state.isValidate = validate
+        }
+        
+        return state
+    }
+    
+    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        let setValidate = useCase.checkValidate()
+            .map(Mutation.setValidate)
+        
+        return Observable.merge(
+            mutation,
+            setValidate
+        )
     }
 }

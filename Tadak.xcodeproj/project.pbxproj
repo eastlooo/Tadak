@@ -29,7 +29,7 @@
 		A746E47F28D0764D009639A7 /* TadakListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E47E28D0764D009639A7 /* TadakListFlow.swift */; };
 		A746E48128D077DB009639A7 /* TadakStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48028D077DB009639A7 /* TadakStep.swift */; };
 		A746E48428D08C19009639A7 /* TadakListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48328D08C19009639A7 /* TadakListViewReactor.swift */; };
-		A746E48728D08D63009639A7 /* TadakListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48628D08D63009639A7 /* TadakListUseCase.swift */; };
+		A746E48728D08D63009639A7 /* CompositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48628D08D63009639A7 /* CompositionUseCase.swift */; };
 		A746E48A28D09812009639A7 /* TadakListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48928D09812009639A7 /* TadakListTableView.swift */; };
 		A746E48C28D0B43E009639A7 /* TypingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48B28D0B43E009639A7 /* TypingDetail.swift */; };
 		A746E48E28D0BAD7009639A7 /* CompositionDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48D28D0BAD7009639A7 /* CompositionDetailViewReactor.swift */; };
@@ -149,6 +149,8 @@
 		A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B12A128C8C2140015BBA1 /* TadakUser.swift */; };
 		A78E6B5D28E18D5300347640 /* OfficialSuccessViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E6B5C28E18D5300347640 /* OfficialSuccessViewReactor.swift */; };
 		A78E6B6028E18D6600347640 /* OfficialFailureViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E6B5F28E18D6600347640 /* OfficialFailureViewReactor.swift */; };
+		A78E6B6328E1D78800347640 /* CompositionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E6B6228E1D78800347640 /* CompositionRepositoryProtocol.swift */; };
+		A78E6B6528E1E77B00347640 /* CompositionUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E6B6428E1E77B00347640 /* CompositionUseCaseProtocol.swift */; };
 		A793962428CB318300D28D9F /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793962328CB318300D28D9F /* UserDTO.swift */; };
 		A793962828CB49E500D28D9F /* NicknameDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793962728CB49E500D28D9F /* NicknameDTO.swift */; };
 		A79B10B028CB52410076640A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A79B10AF28CB52410076640A /* GoogleService-Info.plist */; };
@@ -238,7 +240,7 @@
 		A746E47E28D0764D009639A7 /* TadakListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListFlow.swift; sourceTree = "<group>"; };
 		A746E48028D077DB009639A7 /* TadakStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakStep.swift; sourceTree = "<group>"; };
 		A746E48328D08C19009639A7 /* TadakListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListViewReactor.swift; sourceTree = "<group>"; };
-		A746E48628D08D63009639A7 /* TadakListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListUseCase.swift; sourceTree = "<group>"; };
+		A746E48628D08D63009639A7 /* CompositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionUseCase.swift; sourceTree = "<group>"; };
 		A746E48928D09812009639A7 /* TadakListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListTableView.swift; sourceTree = "<group>"; };
 		A746E48B28D0B43E009639A7 /* TypingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingDetail.swift; sourceTree = "<group>"; };
 		A746E48D28D0BAD7009639A7 /* CompositionDetailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionDetailViewReactor.swift; sourceTree = "<group>"; };
@@ -347,6 +349,8 @@
 		A78B12A128C8C2140015BBA1 /* TadakUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakUser.swift; sourceTree = "<group>"; };
 		A78E6B5C28E18D5300347640 /* OfficialSuccessViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSuccessViewReactor.swift; sourceTree = "<group>"; };
 		A78E6B5F28E18D6600347640 /* OfficialFailureViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialFailureViewReactor.swift; sourceTree = "<group>"; };
+		A78E6B6228E1D78800347640 /* CompositionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A78E6B6428E1E77B00347640 /* CompositionUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A793962328CB318300D28D9F /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		A793962728CB49E500D28D9F /* NicknameDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameDTO.swift; sourceTree = "<group>"; };
 		A79B10AF28CB52410076640A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -578,12 +582,13 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		A746E48828D08D67009639A7 /* TadakList */ = {
+		A746E48828D08D67009639A7 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
-				A746E48628D08D63009639A7 /* TadakListUseCase.swift */,
+				A78E6B6428E1E77B00347640 /* CompositionUseCaseProtocol.swift */,
+				A746E48628D08D63009639A7 /* CompositionUseCase.swift */,
 			);
-			path = TadakList;
+			path = Composition;
 			sourceTree = "<group>";
 		};
 		A74ACC4528C8CA4E00780433 /* Common */ = {
@@ -600,7 +605,7 @@
 			children = (
 				A74ACC5028C8D21B00780433 /* Onboarding */,
 				A7CE37B028CDBD19002ACAD5 /* Main */,
-				A746E48828D08D67009639A7 /* TadakList */,
+				A746E48828D08D67009639A7 /* Composition */,
 				A7820EEC28D70ADF00DD383A /* ComposeParticipants */,
 				A721EDD328D1BE92008B7353 /* Typing */,
 				A77F81C928DC3D9C0040CB0A /* BettingRecord */,
@@ -918,6 +923,7 @@
 		A7820EF728D76D1F00DD383A /* Composition */ = {
 			isa = PBXGroup;
 			children = (
+				A78E6B6228E1D78800347640 /* CompositionRepositoryProtocol.swift */,
 				A7CE37B328CDC0F4002ACAD5 /* CompositionRepository.swift */,
 			);
 			path = Composition;
@@ -1583,6 +1589,7 @@
 			files = (
 				A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */,
 				A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */,
+				A78E6B6328E1D78800347640 /* CompositionRepositoryProtocol.swift in Sources */,
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A78E6B6028E18D6600347640 /* OfficialFailureViewReactor.swift in Sources */,
 				A7CE37B428CDC0F4002ACAD5 /* CompositionRepository.swift in Sources */,
@@ -1664,13 +1671,14 @@
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
 				A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */,
-				A746E48728D08D63009639A7 /* TadakListUseCase.swift in Sources */,
+				A746E48728D08D63009639A7 /* CompositionUseCase.swift in Sources */,
 				A7F755DF28DEF1E000D434AB /* OfficialSuccessViewController.swift in Sources */,
 				A746E48C28D0B43E009639A7 /* TypingDetail.swift in Sources */,
 				A7820EE928D5998E00DD383A /* ComposeParticipantsCellReactor.swift in Sources */,
 				A793962428CB318300D28D9F /* UserDTO.swift in Sources */,
 				A7CE378028CC6037002ACAD5 /* RealmStorage.swift in Sources */,
 				A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */,
+				A78E6B6528E1E77B00347640 /* CompositionUseCaseProtocol.swift in Sources */,
 				A7820EEB28D70AD300DD383A /* ComposeParticipantsUseCase.swift in Sources */,
 				A7F755C028DDFCD300D434AB /* PracticeResultViewReactor.swift in Sources */,
 				A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */,

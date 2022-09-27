@@ -22,13 +22,10 @@ enum TadakStep: Step {
     case initializationIsRequired
     case initializationIsComplete
     
-    // TadakList
+    // List
     case tadakListIsRequired
-    case tadakListIsComplete
-    
-    // MyList
     case myListIsRequired
-    case myListIsComplete
+    case listIsComplete
     
     // MakeComposition
     case makeCompositionIsRequired

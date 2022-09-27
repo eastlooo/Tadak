@@ -65,6 +65,8 @@ final class MakeCompositionViewController: UIViewController {
     
     private let contentsTextView: UITextView = {
         let textView = UITextView()
+        textView.tintColor = .customDarkNavy
+        textView.backgroundColor = .white
         textView.isScrollEnabled = false
         textView.textContainerInset = .init(top: 15, left: 15, bottom: 15, right: 15)
         

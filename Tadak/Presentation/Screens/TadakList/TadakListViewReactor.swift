@@ -31,10 +31,10 @@ final class TadakListViewReactor: Reactor, Stepper {
     var steps = PublishRelay<Step>()
     private let typingMode$: BehaviorSubject<TypingMode> = .init(value: .practice)
     
-    private let useCase: TadakListUseCaseProtocol
+    private let useCase: CompositionUseCaseProtocol
     let initialState: State
     
-    init(useCase: TadakListUseCaseProtocol) {
+    init(useCase: CompositionUseCaseProtocol) {
         self.useCase = useCase
         self.initialState = State()
     }
@@ -47,7 +47,7 @@ extension TadakListViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .homeButtonTapped:
-            steps.accept(TadakStep.tadakListIsComplete)
+            steps.accept(TadakStep.listIsComplete)
             return .empty()
             
         case .typingModeButtonTapped(let typingMode):
@@ -55,13 +55,14 @@ extension TadakListViewReactor {
             return .empty()
             
         case .itemSelected(let indexPath):
-            return useCase.getComposition(index: indexPath.row)
+            return useCase.selectedTadakComposition(index: indexPath.row)
                 .compactMap { $0 }
                 .withLatestFrom(typingMode$) { ($1, $0) }
                 .map(TypingDetail.init)
                 .map(TadakStep.compositionIsPicked)
                 .do(onNext: { [weak self] step in self?.steps.accept(step) })
                 .flatMap { _ in Observable<Mutation>.empty() }
+                .take(1)
         }
     }
     

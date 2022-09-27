@@ -30,9 +30,9 @@ final class MyListFlow: Flow {
         case .myListIsRequired:
             return navigateToMyListScreen()
             
-        case .myListIsComplete:
+        case .listIsComplete:
             return .end(
-                forwardToParentFlowWithStep: TadakStep.myListIsComplete
+                forwardToParentFlowWithStep: TadakStep.listIsComplete
             )
             
         case .makeCompositionIsRequired:
@@ -41,8 +41,11 @@ final class MyListFlow: Flow {
         case .compositionIsPicked(let typingDetail):
             return navigateToCompositionDetailScreen(typingDetail: typingDetail)
             
-        case .makeCompositionIsComplete, .compositionDetailIsComplete:
+        case .makeCompositionIsComplete, .compositionDetailIsComplete, .participantsAreComplete:
             return popToRootScreen()
+            
+        case .participantsAreRequired(let typingDetail):
+            return navigateToParticipantsScreen(typingDetail: typingDetail)
             
         case .typingIsRequired(let typingDetail):
             return navigateToTypingScreen(typingDetail: typingDetail)
@@ -56,7 +59,8 @@ final class MyListFlow: Flow {
 private extension MyListFlow {
     
     func navigateToMyListScreen() -> FlowContributors {
-        let reactor = MyListViewReactor()
+        let useCase = CompositionUseCase(compositionRepository: compositionRepository)
+        let reactor = MyListViewReactor(useCase: useCase)
         let viewController = MyListViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -69,7 +73,8 @@ private extension MyListFlow {
     }
     
     func navigateToMakeCompositionScreen() -> FlowContributors {
-        let reactor = MakeCompositionViewReactor()
+        let useCase = MakeCompositionUseCase(compositionRepository: compositionRepository)
+        let reactor = MakeCompositionViewReactor(useCase: useCase)
         let viewController = MakeCompositionViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -97,6 +102,23 @@ private extension MyListFlow {
     func popToRootScreen() -> FlowContributors {
         _ = rootViewController.popToRootViewController(animated: false)
         return .none
+    }
+    
+    func navigateToParticipantsScreen(typingDetail: TypingDetail) -> FlowContributors {
+        let useCase = ComposeParticipantsUseCase()
+        let reactor = ComposeParticipantsViewReactor(
+            typingDetail: typingDetail,
+            useCase: useCase
+        )
+        let viewController = ComposeParticipantsViewController()
+        viewController.reactor = reactor
+        self.rootViewController.pushViewController(viewController, animated: false)
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: viewController,
+                withNextStepper: reactor
+            )
+        )
     }
     
     func navigateToTypingScreen(typingDetail: TypingDetail) -> FlowContributors {
