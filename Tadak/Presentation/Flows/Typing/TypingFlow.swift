@@ -54,6 +54,11 @@ final class TypingFlow: Flow {
                 forwardToParentFlowWithStep: TadakStep.listIsComplete
             )
             
+        case .abused:
+            return .end(
+                forwardToParentFlowWithStep: step
+            )
+            
         case .practiceResultIsRequired(let practiceResult):
             return navigateToPracticeResultScreen(practiceResult: practiceResult)
             

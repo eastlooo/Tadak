@@ -19,7 +19,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         case currentUserText(String)
         case returnPressed(Void)
         case viewDidDisappear(Bool)
-        case abused
+        case abused(Abuse)
     }
     
     enum Mutation {
@@ -90,8 +90,9 @@ extension OfficialTypingViewReactor {
         case .viewDidDisappear:
             return .just(.reset(true))
             
-        case .abused:
-            print("DEBUG: abused..")
+        case .abused(let abuse):
+            AnalyticsManager.log(TypingEvent.abuse(abuse: abuse))
+            steps.accept(TadakStep.abused(withAbuse: abuse))
             return .empty()
         }
     }
@@ -132,14 +133,12 @@ extension OfficialTypingViewReactor {
     }
     
     func transform(action: Observable<Action>) -> Observable<Action> {
-        
-        let abused = useCase.abused.map { _ in Action.abused }
+        let abused = useCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
         
         return .merge(action, abused)
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        
         let setCurrentOriginalText = useCase.currentOriginalText
             .map(Mutation.setCurrentOriginalText)
         let setNextOriginalText = useCase.nextOriginalText

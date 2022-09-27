@@ -23,7 +23,7 @@ protocol TypingUseCaseProtocol: AnyObject {
     var currentOriginalText: Observable<String> { get }
     var nextOriginalText: Observable<String> { get }
     var userTextToBeUpdated: Observable<String> { get }
-    var abused: Observable<Void> { get }
+    var abused: Observable<Abuse> { get }
     var finished: Observable<Void> { get }
     var wrong: Observable<Void> { get }
     

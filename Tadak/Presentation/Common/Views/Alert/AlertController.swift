@@ -11,6 +11,10 @@ import SnapKit
 final class AlertController: UIViewController {
     
     // MARK: Properties
+    var alertTitle: String? {
+        didSet { titleLabel.text = alertTitle }
+    }
+    
     var alertMessage: String? {
         didSet { messageLabel.text = alertMessage }
     }
@@ -38,14 +42,6 @@ final class AlertController: UIViewController {
         return view
     }()
     
-    private let contentStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.alignment = .center
-        return stackView
-    }()
-    
     private let buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -54,11 +50,23 @@ final class AlertController: UIViewController {
         return stackView
     }()
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .customCoral
+        label.font = .notoSansKR(ofSize: 22.0, weight: .black)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        return label
+    }()
+    
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .customDarkNavy
         label.font = .notoSansKR(ofSize: 18.0, weight: .medium)
         label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -147,7 +155,6 @@ final class AlertController: UIViewController {
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .clear
-        contentStackView.addArrangedSubview(messageLabel)
     }
     
     private func layout() {
@@ -160,19 +167,27 @@ final class AlertController: UIViewController {
         containerView.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(36)
             $0.centerY.equalToSuperview().offset(-50)
-            $0.height.equalTo(160)
+        }
+        
+        containerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(15)
+            $0.centerX.equalToSuperview()
+            $0.left.right.greaterThanOrEqualToSuperview().inset(10)
+        }
+        
+        containerView.addSubview(messageLabel)
+        messageLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+            $0.centerX.equalToSuperview()
+            $0.left.right.greaterThanOrEqualToSuperview().inset(10)
         }
         
         containerView.addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints {
+            $0.top.equalTo(messageLabel.snp.bottom).offset(40)
             $0.left.right.bottom.equalToSuperview()
             $0.height.equalTo(55)
-        }
-        
-        containerView.addSubview(contentStackView)
-        contentStackView.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-            $0.bottom.equalTo(buttonStackView.snp.top)
         }
     }
 }

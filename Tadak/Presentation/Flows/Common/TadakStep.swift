@@ -41,6 +41,7 @@ enum TadakStep: Step {
     // Typing
     case typingIsRequired(withTypingDetail: TypingDetail)
     case typingIsComplete
+    case abused(withAbuse: Abuse)
     
     // Result
     case practiceResultIsRequired(withPracticeResult: PracticeResult)

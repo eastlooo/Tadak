@@ -86,6 +86,8 @@
 		A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */; };
 		A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */; };
 		A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */; };
+		A7652CF828E351B50023325B /* TypingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652CF728E351B50023325B /* TypingEvent.swift */; };
+		A7652CFA28E356030023325B /* Abuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652CF928E356030023325B /* Abuse.swift */; };
 		A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765903228CE3769000EAD7F /* FirebaseAuthService.swift */; };
 		A765903928CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A765903828CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A765903B28CE38FF000EAD7F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A765903A28CE38FF000EAD7F /* FirebaseAuth */; };
@@ -299,6 +301,8 @@
 		A758072A28C509210073D03A /* OnboardingCharacterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterHeaderView.swift; sourceTree = "<group>"; };
 		A758072D28C510C00073D03A /* OnboardingCharacterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterCollectionView.swift; sourceTree = "<group>"; };
 		A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterFooterView.swift; sourceTree = "<group>"; };
+		A7652CF728E351B50023325B /* TypingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingEvent.swift; sourceTree = "<group>"; };
+		A7652CF928E356030023325B /* Abuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abuse.swift; sourceTree = "<group>"; };
 		A765903228CE3769000EAD7F /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		A765904028CE4A68000EAD7F /* ObservableType++Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType++Operator.swift"; sourceTree = "<group>"; };
 		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
@@ -1227,6 +1231,7 @@
 			children = (
 				A7C1D2CF28E32B4D005D51EE /* Protocol */,
 				A7C1D2D028E32BC2005D51EE /* UserEvent.swift */,
+				A7652CF728E351B50023325B /* TypingEvent.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -1474,6 +1479,7 @@
 				A746E48B28D0B43E009639A7 /* TypingDetail.swift */,
 				A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */,
 				A7F755C128DDFECD00D434AB /* TypingText.swift */,
+				A7652CF928E356030023325B /* Abuse.swift */,
 			);
 			path = Typing;
 			sourceTree = "<group>";
@@ -1732,6 +1738,7 @@
 				A7CE378228CC69B2002ACAD5 /* Storage.swift in Sources */,
 				A7CE37AF28CDBC16002ACAD5 /* InitializationViewReactor.swift in Sources */,
 				A72E758028C612E10028CE8D /* TextButton.swift in Sources */,
+				A7652CF828E351B50023325B /* TypingEvent.swift in Sources */,
 				A78987D828CB66B40045D71C /* Loader.swift in Sources */,
 				A74ACCAD28CB0A3C00780433 /* UserRepository.swift in Sources */,
 				A7820EDF28D4FB5E00DD383A /* MyListViewReactor.swift in Sources */,
@@ -1744,6 +1751,7 @@
 				A721EDD228D1AEA8008B7353 /* TypingAttributes.swift in Sources */,
 				A77A09FD28DCD0CC0032F61F /* BettingResultCell.swift in Sources */,
 				A7C1D2C928E32362005D51EE /* AnalyticsEvent.swift in Sources */,
+				A7652CFA28E356030023325B /* Abuse.swift in Sources */,
 				A74ACC5928C8FD0300780433 /* OnboardingCharacterViewReactor.swift in Sources */,
 				A77A09FB28DCBE6C0032F61F /* BettingPodiumView.swift in Sources */,
 				A7F42DB328D1105200049C0E /* PracticeTypingViewReactor.swift in Sources */,
@@ -1899,7 +1907,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1954,7 +1962,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1979,7 +1987,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2008,7 +2016,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

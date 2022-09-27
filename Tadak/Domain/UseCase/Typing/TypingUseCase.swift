@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import GameController
 
 final class TypingUseCase {
     
@@ -24,7 +25,7 @@ final class TypingUseCase {
     var currentOriginalText: Observable<String> { _currentOriginalText.asObservable() }
     var nextOriginalText: Observable<String> { _nextOriginalText.asObservable() }
     var userTextToBeUpdated: Observable<String> { _userTextToBeUpdated.asObservable() }
-    var abused: Observable<Void> { _abused.asObservable() }
+    var abused: Observable<Abuse> { _abused.asObservable() }
     var finished: Observable<Void> { _finished.asObservable() }
     var wrong: Observable<Void> { _wrong.asObservable() }
     
@@ -36,7 +37,7 @@ final class TypingUseCase {
     private let _typingSpeed: BehaviorRelay<Int> = .init(value: 0)
     private let _acceleration: BehaviorRelay<Int> = .init(value: 0)
     private let _progression: BehaviorRelay<Double> = .init(value: 0)
-    private let _abused = PublishRelay<Void>()
+    private let _abused = PublishRelay<Abuse>()
     private let _returnPressed = PublishSubject<Void>()
     private let _finished = PublishRelay<Void>()
     private let _wrong = PublishRelay<Void>()
@@ -161,7 +162,7 @@ private extension TypingUseCase {
             .bind(to: _nextOriginalText)
             .disposed(by: disposeBag)
         
-        // Check Abusing
+        // Check Abuse
         _currentUserText
             .scan(("", false)) { prev, new -> (text: String, abused: Bool) in
                 if new.count - prev.text.count >= 2 {
@@ -170,7 +171,15 @@ private extension TypingUseCase {
                 return (new, false)
             }
             .filter(\.1)
-            .map { _ in }
+            .map { _ in Abuse.multipleInputs }
+            .bind(to: _abused)
+            .disposed(by: disposeBag)
+        
+        _elapesdTime
+            .filter { $0 > 0 }
+            .map { _ in GCKeyboard.coalesced != nil }
+            .filter { $0 }
+            .map { _ in Abuse.usingHardware }
             .bind(to: _abused)
             .disposed(by: disposeBag)
         

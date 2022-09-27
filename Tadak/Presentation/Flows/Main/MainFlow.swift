@@ -45,6 +45,9 @@ final class MainFlow: Flow {
         case .listIsComplete:
             return dismissPresentedScreen()
             
+        case .abused(let abuse):
+            return dismissAndPresentAbuseAlert(abuse)
+            
         default:
             return .none
         }
@@ -52,6 +55,7 @@ final class MainFlow: Flow {
 }
 
 extension MainFlow {
+    
     private func navigateToInitializationScreen() -> FlowContributors {
         let useCase = InitializationUseCase(
             userRepository: self.userRepository,
@@ -131,5 +135,26 @@ extension MainFlow {
                     withSingleStep: TadakStep.myListIsRequired)
             )
         )
+    }
+    
+    private func dismissAndPresentAbuseAlert(_ abuse: Abuse) -> FlowContributors {
+        let title = "알림"
+        let message = abuse.alertMessage
+        let alert = AlertController()
+        let alertAction = AlertAction(title: "확인", style: .default)
+        alert.alertTitle = title
+        alert.alertMessage = message
+        alert.addAction(alertAction)
+        alert.modalPresentationStyle = .overFullScreen
+        
+        if let viewController = self.rootViewController.presentedViewController {
+            DispatchQueue.main.async {
+                viewController.dismiss(animated: false) {
+                    self.rootViewController.present(alert, animated: false)
+                }
+            }
+        }
+        
+        return .none
     }
 }

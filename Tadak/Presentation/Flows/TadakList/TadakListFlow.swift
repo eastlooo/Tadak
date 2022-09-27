@@ -35,6 +35,11 @@ final class TadakListFlow: Flow {
                 forwardToParentFlowWithStep: TadakStep.listIsComplete
             )
             
+        case .abused:
+            return .end(
+                forwardToParentFlowWithStep: step
+            )
+            
         case .compositionIsPicked(let typingDetail):
             return navigateToCompositionDetailScreen(typingDetail: typingDetail)
             
