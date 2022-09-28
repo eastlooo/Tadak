@@ -18,22 +18,18 @@ final class TadakMainViewReactor: Reactor, Stepper {
         case settingButtonTapped(Void)
     }
     
-    enum Mutation {
-        case setUser(TadakUser)
-    }
+    enum Mutation {}
     
     struct State {
-        var user: TadakUser? = nil
+        var user: TadakUser
     }
     
     var steps = PublishRelay<Step>()
     
-    private let useCase: TadakMainUseCaseProtocol
     let initialState: State
     
-    init(useCase: TadakMainUseCaseProtocol) {
-        self.useCase = useCase
-        self.initialState = State()
+    init(user: TadakUser) {
+        self.initialState = State(user: user)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -54,23 +50,5 @@ extension TadakMainViewReactor {
         case .settingButtonTapped:
             return .empty()
         }
-    }
-    
-    func reduce(state: State, mutation: Mutation) -> State {
-        var state = state
-        
-        switch mutation {
-        case .setUser(let user):
-            state.user = user
-        }
-        
-        return state
-    }
-    
-    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        return .merge(
-            mutation,
-            useCase.user.compactMap { $0 }.map(Mutation.setUser)
-        )
     }
 }

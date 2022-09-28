@@ -1,5 +1,5 @@
 //
-//  MakeCompositionUseCaseProtocol.swift
+//  CreateCompositionUseCaseProtocol.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol MakeCompositionUseCaseProtocol {
+protocol CreateCompositionUseCaseProtocol {
     
     var titleMaxLength: Int { get }
     var artistMaxLength: Int { get }

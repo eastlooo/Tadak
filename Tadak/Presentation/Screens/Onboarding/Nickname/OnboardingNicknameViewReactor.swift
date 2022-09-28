@@ -97,8 +97,8 @@ extension OnboardingNicknameViewReactor {
         case .debugError(let description):
             print("ERROR: \(description)")
             
-        case .registerUser:
-            steps.accept(TadakStep.onboardingIsComplete)
+        case .registerUser(let user):
+            steps.accept(TadakStep.onboardingIsComplete(user: user))
         }
         
         return state

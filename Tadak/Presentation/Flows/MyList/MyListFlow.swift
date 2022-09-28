@@ -12,15 +12,12 @@ final class MyListFlow: Flow {
     var root: Presentable { self.rootViewController }
     
     private let rootViewController = NavigationController()
-    private let userRepository: UserRepositoryProtocol
-    private let compositionRepository: CompositionRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
     init(
-        userRepository: UserRepositoryProtocol,
-        compositionRepository: CompositionRepositoryProtocol
+        useCaseProvider: UseCaseProviderProtocol
     ) {
-        self.userRepository = userRepository
-        self.compositionRepository = compositionRepository
+        self.useCaseProvider = useCaseProvider
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -59,7 +56,7 @@ final class MyListFlow: Flow {
 private extension MyListFlow {
     
     func navigateToMyListScreen() -> FlowContributors {
-        let useCase = CompositionUseCase(compositionRepository: compositionRepository)
+        let useCase = useCaseProvider.makeCompositionUseCase()
         let reactor = MyListViewReactor(useCase: useCase)
         let viewController = MyListViewController()
         viewController.reactor = reactor
@@ -73,7 +70,7 @@ private extension MyListFlow {
     }
     
     func navigateToMakeCompositionScreen() -> FlowContributors {
-        let useCase = MakeCompositionUseCase(compositionRepository: compositionRepository)
+        let useCase = useCaseProvider.makeCreateCompositionUseCase()
         let reactor = MakeCompositionViewReactor(useCase: useCase)
         let viewController = MakeCompositionViewController()
         viewController.reactor = reactor
@@ -123,9 +120,8 @@ private extension MyListFlow {
     
     func navigateToTypingScreen(typingDetail: TypingDetail) -> FlowContributors {
         let typingFlow = TypingFlow(
-            rootViewController: self.rootViewController,
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
+            rootViewController: rootViewController,
+            useCaseProvider: useCaseProvider
         )
         
         Flows.use(typingFlow, when: .created) { _ in }

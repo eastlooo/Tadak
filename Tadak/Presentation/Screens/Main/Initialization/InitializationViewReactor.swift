@@ -14,58 +14,43 @@ final class InitializationViewReactor: Reactor, Stepper {
     
     enum Action {}
     
-    enum Mutation {
-        case setUser(TadakUser)
-        case fetchCompositions(Void)
-    }
+    enum Mutation {}
     
     struct State {
-        var user: TadakUser? = nil
+        var user: TadakUser
     }
     
     let initialState: State
     var steps = PublishRelay<Step>()
     
-    private let useCase: InitializationUseCaseProtocol
+    private let disposeBag = DisposeBag()
     
-    init(useCase: InitializationUseCaseProtocol) {
-        self.useCase = useCase
-        self.initialState = State()
+    private let user: TadakUser
+    private let initializationUseCase: InitializationUseCaseProtocol
+    
+    init(
+        user: TadakUser,
+        initializationUseCase: InitializationUseCaseProtocol
+    ) {
+        self.user = user
+        self.initializationUseCase = initializationUseCase
+        self.initialState = State(user: user)
+        
+        bind()
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
 }
 
-extension InitializationViewReactor {
+private extension InitializationViewReactor {
     
-    func reduce(state: State, mutation: Mutation) -> State {
-        var state = state
+    func bind() {
+        let step = TadakStep.initializationIsComplete(user: user)
         
-        switch mutation {
-        case .setUser(let user):
-            state.user = user
-            
-        case .fetchCompositions:
-            steps.accept(TadakStep.initializationIsComplete)
-        }
-        
-        return state
-    }
-    
-    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        
-        let setUser = useCase.user
-            .compactMap { $0 }
-            .map(Mutation.setUser)
-        
-        let fetchCompositions = useCase.fetchCompositions()
-            .map(Mutation.fetchCompositions)
+        initializationUseCase.fetchCompositions()
             .debugError()
-        
-        return .merge(
-            mutation,
-            setUser,
-            fetchCompositions
-        )
+            .map { _ in step }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class CompositionUseCase {
+final class CompositionUseCase: CompositionUseCaseProtocol {
     
     var tadakComposition: BehaviorSubject<TadakComposition?>
     var myComposition: BehaviorSubject<MyComposition?>
@@ -24,7 +24,7 @@ final class CompositionUseCase {
     }
 }
 
-extension CompositionUseCase: CompositionUseCaseProtocol {
+extension CompositionUseCase {
     
     func selectedTadakComposition(index: Int) -> Observable<Composition?> {
         return tadakComposition.map { $0?.compositions[index] }

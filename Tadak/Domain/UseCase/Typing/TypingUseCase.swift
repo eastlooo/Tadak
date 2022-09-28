@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import GameController
 
-final class TypingUseCase {
+final class TypingUseCase: TypingUseCaseProtocol {
     
     let composition: Composition
     
@@ -62,7 +62,7 @@ final class TypingUseCase {
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
 }
 
-extension TypingUseCase: TypingUseCaseProtocol {
+extension TypingUseCase {
     
     func start() {
         guard !isRunningTyping.value else { return }
@@ -101,8 +101,10 @@ extension TypingUseCase: TypingUseCaseProtocol {
     }
     
     func getRecord() -> Observable<Record> {
+        let id = self.composition.id
+        
         return Observable
-            .combineLatest(_elapesdTime, _typingSpeed, _accuracy)
+            .combineLatest(_elapesdTime, _typingSpeed, _accuracy) { (id, $0, $1, $2) }
             .map(Record.init)
     }
     

@@ -31,14 +31,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             .disposed(by: disposeBag)
 
-        let userRepository = UserRepository()
-        let compositionRepository = CompositionRepository()
-        let appFlow = AppFlow(
-            userRepository: userRepository,
-            compositionRepository: compositionRepository
-        )
+        let repositoryProvider = RepositoryProvider()
+        let useCaseProvider = UseCaseProvider(repositoryProvider: repositoryProvider)
+        let appFlow = AppFlow(useCaseProvider: useCaseProvider)
 
-        let appStepper = AppStepper(userRepository: userRepository)
+        let appStepper = AppStepper(useCaseProvider: useCaseProvider)
         self.coordinator.coordinate(flow: appFlow, with: appStepper)
 
         Flows.use(appFlow, when: .created) { root in

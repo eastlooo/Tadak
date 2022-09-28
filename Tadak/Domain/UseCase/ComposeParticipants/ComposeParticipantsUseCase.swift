@@ -9,21 +9,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-protocol ComposeParticipantsUseCaseProtocol: AnyObject {
-    
-    var minNumber: Observable<Int> { get }
-    var maxNumber: Observable<Int> { get }
-    var maxNameLength: Observable<Int> { get }
-    var currentNumber: Observable<Int> { get }
-    var names: Observable<[String]> { get }
-    var isValidate: Observable<Bool> { get }
-    var updateNames: AnyObserver<[String]> { get }
-    
-    func increaseNumber()
-    func decreaseNumber()
-}
-
-final class ComposeParticipantsUseCase {
+final class ComposeParticipantsUseCase: ComposeParticipantsUseCaseProtocol {
     
     var minNumber: Observable<Int> { _minNumber.asObservable() }
     var maxNumber: Observable<Int> { _maxNumber.asObservable() }
@@ -49,7 +35,7 @@ final class ComposeParticipantsUseCase {
     }
 }
 
-extension ComposeParticipantsUseCase: ComposeParticipantsUseCaseProtocol {
+extension ComposeParticipantsUseCase {
     
     func increaseNumber() {
         _increaseNumber.accept(Void())

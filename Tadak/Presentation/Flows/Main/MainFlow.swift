@@ -13,28 +13,25 @@ final class MainFlow: Flow {
     var root: Presentable { self.rootViewController }
     
     private let rootViewController: UINavigationController
-    private let userRepository: UserRepositoryProtocol
-    private let compositionRepository: CompositionRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
     init(
         rootViewController: UINavigationController,
-        userRepository: UserRepositoryProtocol,
-        compositionRepository: CompositionRepositoryProtocol
+        useCaseProvider: UseCaseProviderProtocol
     ) {
         self.rootViewController = rootViewController
-        self.userRepository = userRepository
-        self.compositionRepository = compositionRepository
+        self.useCaseProvider = useCaseProvider
     }
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? TadakStep else { return .none }
         
         switch step {
-        case .initializationIsRequired:
-            return navigateToInitializationScreen()
+        case .initializationIsRequired(let user):
+            return navigateToInitializationScreen(user: user)
             
-        case .initializationIsComplete:
-            return navigateToMainScreen()
+        case .initializationIsComplete(let user):
+            return navigateToMainScreen(user: user)
             
         case .tadakListIsRequired:
             return navigateToTadakListScreen()
@@ -56,12 +53,9 @@ final class MainFlow: Flow {
 
 extension MainFlow {
     
-    private func navigateToInitializationScreen() -> FlowContributors {
-        let useCase = InitializationUseCase(
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
-        )
-        let reactor = InitializationViewReactor(useCase: useCase)
+    private func navigateToInitializationScreen(user: TadakUser) -> FlowContributors {
+        let useCase = useCaseProvider.makeInitializationUseCase()
+        let reactor = InitializationViewReactor(user: user, initializationUseCase: useCase)
         let viewController = InitializationViewController()
         viewController.reactor = reactor
         self.rootViewController.viewControllers = [viewController]
@@ -73,9 +67,8 @@ extension MainFlow {
         )
     }
     
-    private func navigateToMainScreen() -> FlowContributors {
-        let useCase = TadakMainUseCase(userRepository: userRepository)
-        let reactor = TadakMainViewReactor(useCase: useCase)
+    private func navigateToMainScreen(user: TadakUser) -> FlowContributors {
+        let reactor = TadakMainViewReactor(user: user)
         let viewController = TadakMainViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -88,10 +81,7 @@ extension MainFlow {
     }
     
     private func navigateToTadakListScreen() -> FlowContributors {
-        let tadakListFlow = TadakListFlow(
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
-        )
+        let tadakListFlow = TadakListFlow(useCaseProvider: useCaseProvider)
         
         Flows.use(tadakListFlow, when: .created) { root in
             root.modalPresentationStyle = .fullScreen
@@ -118,10 +108,7 @@ extension MainFlow {
     }
     
     private func navigateToMyListScreen() -> FlowContributors {
-        let myListFlow = MyListFlow(
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
-        )
+        let myListFlow = MyListFlow(useCaseProvider: useCaseProvider)
         
         Flows.use(myListFlow, when: .created) { root in
             root.modalPresentationStyle = .fullScreen

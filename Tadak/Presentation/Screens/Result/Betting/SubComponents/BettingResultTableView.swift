@@ -11,53 +11,7 @@ import RxSwift
 final class BettingResultTableView: UITableView {
     
     // MARK: Properties
-    var items: [Rank] = [
-        Rank(
-            order: 1,
-            name: "김종국",
-            record: Record(
-                elapsedTime: 0,
-                typingSpeed: 612,
-                accuracy: 100
-            )
-        ),
-        Rank(
-            order: 2,
-            name: "유재석",
-            record: Record(
-                elapsedTime: 0,
-                typingSpeed: 452,
-                accuracy: 100
-            )
-        ),
-        Rank(
-            order: 3,
-            name: "하하",
-            record: Record(
-                elapsedTime: 0,
-                typingSpeed: 525,
-                accuracy: 99
-            )
-        ),
-        Rank(
-            order: 4,
-            name: "송지효",
-            record: Record(
-                elapsedTime: 0,
-                typingSpeed: 450,
-                accuracy: 97
-            )
-        ),
-        Rank(
-            order: 5,
-            name: "양세찬",
-            record: Record(
-                elapsedTime: 0,
-                typingSpeed: 700,
-                accuracy: 95
-            )
-        ),
-    ]
+    var items: [Rank] = []
     
     // MARK: Lifecycle
     init() {

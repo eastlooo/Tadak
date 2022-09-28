@@ -25,7 +25,6 @@
 		A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A028C659A30028CE8D /* UIFont++.swift */; };
 		A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A228C66A680028CE8D /* TadakListViewController.swift */; };
 		A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */; };
-		A746E47828D06A0F009639A7 /* TadakMainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E47728D06A0F009639A7 /* TadakMainUseCase.swift */; };
 		A746E47F28D0764D009639A7 /* TadakListFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E47E28D0764D009639A7 /* TadakListFlow.swift */; };
 		A746E48128D077DB009639A7 /* TadakStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48028D077DB009639A7 /* TadakStep.swift */; };
 		A746E48428D08C19009639A7 /* TadakListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746E48328D08C19009639A7 /* TadakListViewReactor.swift */; };
@@ -88,6 +87,17 @@
 		A758073028C516F10073D03A /* OnboardingCharacterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */; };
 		A7652CF828E351B50023325B /* TypingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652CF728E351B50023325B /* TypingEvent.swift */; };
 		A7652CFA28E356030023325B /* Abuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652CF928E356030023325B /* Abuse.swift */; };
+		A7652CFC28E37CFD0023325B /* RecordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652CFB28E37CFD0023325B /* RecordObject.swift */; };
+		A7652CFE28E37E680023325B /* RecordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652CFD28E37E680023325B /* RecordUseCase.swift */; };
+		A7652D0128E37E750023325B /* RecordUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0028E37E750023325B /* RecordUseCaseProtocol.swift */; };
+		A7652D0328E37EC50023325B /* RecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0228E37EC50023325B /* RecordRepository.swift */; };
+		A7652D0628E37ED00023325B /* RecordRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0528E37ED00023325B /* RecordRepositoryProtocol.swift */; };
+		A7652D0828E478DB0023325B /* RepositoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0728E478DB0023325B /* RepositoryProvider.swift */; };
+		A7652D0A28E478E20023325B /* RepositoryProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0928E478E20023325B /* RepositoryProviderProtocol.swift */; };
+		A7652D0C28E47A620023325B /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0B28E47A620023325B /* UseCaseProvider.swift */; };
+		A7652D0E28E47A670023325B /* UseCaseProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0D28E47A670023325B /* UseCaseProviderProtocol.swift */; };
+		A7652D1028E482F10023325B /* InitializationUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */; };
+		A7652D1228E488990023325B /* ComposeParticipantsUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */; };
 		A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765903228CE3769000EAD7F /* FirebaseAuthService.swift */; };
 		A765903928CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A765903828CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A765903B28CE38FF000EAD7F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A765903A28CE38FF000EAD7F /* FirebaseAuth */; };
@@ -217,8 +227,8 @@
 		A7F755CD28DE1AD400D434AB /* BettingResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755CC28DE1AD400D434AB /* BettingResultViewReactor.swift */; };
 		A7F755CF28DE275D00D434AB /* MakeCompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */; };
 		A7F755D228DEE82800D434AB /* MakeCompositionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */; };
-		A7F755D428DEEBBE00D434AB /* MakeCompositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D328DEEBBE00D434AB /* MakeCompositionUseCase.swift */; };
-		A7F755D728DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D628DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift */; };
+		A7F755D428DEEBBE00D434AB /* CreateCompositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D328DEEBBE00D434AB /* CreateCompositionUseCase.swift */; };
+		A7F755D728DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D628DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift */; };
 		A7F755D928DEEECE00D434AB /* OfficialTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */; };
 		A7F755DB28DEEED500D434AB /* OfficialTypingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */; };
 		A7F755DF28DEF1E000D434AB /* OfficialSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */; };
@@ -246,7 +256,6 @@
 		A72E75A028C659A30028CE8D /* UIFont++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont++.swift"; sourceTree = "<group>"; };
 		A72E75A228C66A680028CE8D /* TadakListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListViewController.swift; sourceTree = "<group>"; };
 		A72E75A528C66B670028CE8D /* HomeButtonTypeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonTypeNavigationView.swift; sourceTree = "<group>"; };
-		A746E47728D06A0F009639A7 /* TadakMainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakMainUseCase.swift; sourceTree = "<group>"; };
 		A746E47E28D0764D009639A7 /* TadakListFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListFlow.swift; sourceTree = "<group>"; };
 		A746E48028D077DB009639A7 /* TadakStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakStep.swift; sourceTree = "<group>"; };
 		A746E48328D08C19009639A7 /* TadakListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListViewReactor.swift; sourceTree = "<group>"; };
@@ -303,6 +312,17 @@
 		A758072F28C516F10073D03A /* OnboardingCharacterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCharacterFooterView.swift; sourceTree = "<group>"; };
 		A7652CF728E351B50023325B /* TypingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingEvent.swift; sourceTree = "<group>"; };
 		A7652CF928E356030023325B /* Abuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abuse.swift; sourceTree = "<group>"; };
+		A7652CFB28E37CFD0023325B /* RecordObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordObject.swift; sourceTree = "<group>"; };
+		A7652CFD28E37E680023325B /* RecordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUseCase.swift; sourceTree = "<group>"; };
+		A7652D0028E37E750023325B /* RecordUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A7652D0228E37EC50023325B /* RecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRepository.swift; sourceTree = "<group>"; };
+		A7652D0528E37ED00023325B /* RecordRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A7652D0728E478DB0023325B /* RepositoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProvider.swift; sourceTree = "<group>"; };
+		A7652D0928E478E20023325B /* RepositoryProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProviderProtocol.swift; sourceTree = "<group>"; };
+		A7652D0B28E47A620023325B /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
+		A7652D0D28E47A670023325B /* UseCaseProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProviderProtocol.swift; sourceTree = "<group>"; };
+		A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A765903228CE3769000EAD7F /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		A765904028CE4A68000EAD7F /* ObservableType++Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType++Operator.swift"; sourceTree = "<group>"; };
 		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
@@ -428,8 +448,8 @@
 		A7F755CC28DE1AD400D434AB /* BettingResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingResultViewReactor.swift; sourceTree = "<group>"; };
 		A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionViewController.swift; sourceTree = "<group>"; };
 		A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionViewReactor.swift; sourceTree = "<group>"; };
-		A7F755D328DEEBBE00D434AB /* MakeCompositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionUseCase.swift; sourceTree = "<group>"; };
-		A7F755D628DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A7F755D328DEEBBE00D434AB /* CreateCompositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompositionUseCase.swift; sourceTree = "<group>"; };
+		A7F755D628DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompositionUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialTypingViewController.swift; sourceTree = "<group>"; };
 		A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialTypingViewReactor.swift; sourceTree = "<group>"; };
 		A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSuccessViewController.swift; sourceTree = "<group>"; };
@@ -623,13 +643,16 @@
 		A74ACC4F28C8D20900780433 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A7652D0D28E47A670023325B /* UseCaseProviderProtocol.swift */,
+				A7652D0B28E47A620023325B /* UseCaseProvider.swift */,
 				A74ACC5028C8D21B00780433 /* Onboarding */,
-				A7CE37B028CDBD19002ACAD5 /* Main */,
+				A7CE37B028CDBD19002ACAD5 /* Initialization */,
 				A746E48828D08D67009639A7 /* Composition */,
 				A7820EEC28D70ADF00DD383A /* ComposeParticipants */,
 				A721EDD328D1BE92008B7353 /* Typing */,
 				A77F81C928DC3D9C0040CB0A /* BettingRecord */,
-				A7F755D528DEEBC400D434AB /* MakeComposition */,
+				A7F755D528DEEBC400D434AB /* CreateComposition */,
+				A7652CFF28E37E6C0023325B /* Record */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -704,8 +727,11 @@
 		A74ACC8B28CA300300780433 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A7652D0928E478E20023325B /* RepositoryProviderProtocol.swift */,
+				A7652D0728E478DB0023325B /* RepositoryProvider.swift */,
 				A7820EF628D76CF500DD383A /* User */,
 				A7820EF728D76D1F00DD383A /* Composition */,
+				A7652D0428E37EC90023325B /* Record */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -820,6 +846,24 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
+		A7652CFF28E37E6C0023325B /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				A7652D0028E37E750023325B /* RecordUseCaseProtocol.swift */,
+				A7652CFD28E37E680023325B /* RecordUseCase.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		A7652D0428E37EC90023325B /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				A7652D0528E37ED00023325B /* RecordRepositoryProtocol.swift */,
+				A7652D0228E37EC50023325B /* RecordRepository.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 		A77F81B828DAF4E40040CB0A /* Practice */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,6 +944,7 @@
 		A7820EEC28D70ADF00DD383A /* ComposeParticipants */ = {
 			isa = PBXGroup;
 			children = (
+				A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */,
 				A7820EEA28D70AD300DD383A /* ComposeParticipantsUseCase.swift */,
 			);
 			path = ComposeParticipants;
@@ -1330,6 +1375,7 @@
 				A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */,
 				A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */,
 				A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */,
+				A7652CFB28E37CFD0023325B /* RecordObject.swift */,
 			);
 			path = "Object+Mapping";
 			sourceTree = "<group>";
@@ -1360,13 +1406,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		A7CE37B028CDBD19002ACAD5 /* Main */ = {
+		A7CE37B028CDBD19002ACAD5 /* Initialization */ = {
 			isa = PBXGroup;
 			children = (
+				A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */,
 				A7CE37B128CDC01C002ACAD5 /* InitializationUseCase.swift */,
-				A746E47728D06A0F009639A7 /* TadakMainUseCase.swift */,
 			);
-			path = Main;
+			path = Initialization;
 			sourceTree = "<group>";
 		};
 		A7F295AC28C4E1A500242836 = {
@@ -1513,13 +1559,13 @@
 			path = MakeComposition;
 			sourceTree = "<group>";
 		};
-		A7F755D528DEEBC400D434AB /* MakeComposition */ = {
+		A7F755D528DEEBC400D434AB /* CreateComposition */ = {
 			isa = PBXGroup;
 			children = (
-				A7F755D628DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift */,
-				A7F755D328DEEBBE00D434AB /* MakeCompositionUseCase.swift */,
+				A7F755D628DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift */,
+				A7F755D328DEEBBE00D434AB /* CreateCompositionUseCase.swift */,
 			);
-			path = MakeComposition;
+			path = CreateComposition;
 			sourceTree = "<group>";
 		};
 		A7F755DD28DEF19600D434AB /* Official */ = {
@@ -1677,12 +1723,14 @@
 				A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */,
 				A78E6B6328E1D78800347640 /* CompositionRepositoryProtocol.swift in Sources */,
 				A7C1D2D128E32BC2005D51EE /* UserEvent.swift in Sources */,
+				A7652D0A28E478E20023325B /* RepositoryProviderProtocol.swift in Sources */,
 				A7C1D2DD28E345A3005D51EE /* Reward.swift in Sources */,
 				A72E75A128C659A30028CE8D /* UIFont++.swift in Sources */,
 				A78E6B6028E18D6600347640 /* OfficialFailureViewReactor.swift in Sources */,
 				A7CE37B428CDC0F4002ACAD5 /* CompositionRepository.swift in Sources */,
 				A7F755E128DEF1EB00D434AB /* OfficialFailureViewController.swift in Sources */,
 				A7CE37AD28CDA9A3002ACAD5 /* MainFlow.swift in Sources */,
+				A7652D0328E37EC50023325B /* RecordRepository.swift in Sources */,
 				A746E48E28D0BAD7009639A7 /* CompositionDetailViewReactor.swift in Sources */,
 				A78B129828C7C42E0015BBA1 /* CountdownView.swift in Sources */,
 				A75806EF28C4EEDA0073D03A /* UIColor++.swift in Sources */,
@@ -1695,7 +1743,6 @@
 				A77F81C428DC37F30040CB0A /* TypingUseCaseProtocol.swift in Sources */,
 				A75806F528C4F2490073D03A /* OnboardingCharacterViewController.swift in Sources */,
 				A7C1D2D428E331EB005D51EE /* AnimalCharacter.swift in Sources */,
-				A746E47828D06A0F009639A7 /* TadakMainUseCase.swift in Sources */,
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A746E48A28D09812009639A7 /* TadakListTableView.swift in Sources */,
 				A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */,
@@ -1706,8 +1753,9 @@
 				A74ACCAA28CB018B00780433 /* AnyArray.swift in Sources */,
 				A7CE377328CBB78C002ACAD5 /* Rx+Loader.swift in Sources */,
 				A7C1D2CB28E323CC005D51EE /* AnalyticsProvider.swift in Sources */,
+				A7652CFC28E37CFD0023325B /* RecordObject.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
-				A7F755D728DEEBD600D434AB /* MakeCompositionUseCaseProtocol.swift in Sources */,
+				A7F755D728DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift in Sources */,
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
 				A77F81D928DCB0E50040CB0A /* BettingResultTableView.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
@@ -1720,9 +1768,11 @@
 				A746E47F28D0764D009639A7 /* TadakListFlow.swift in Sources */,
 				A78E6B5D28E18D5300347640 /* OfficialSuccessViewReactor.swift in Sources */,
 				A7C1D2D828E33939005D51EE /* FirebaseAnalyticsProvider.swift in Sources */,
+				A7652D0128E37E750023325B /* RecordUseCaseProtocol.swift in Sources */,
 				A7F755C828DE03AB00D434AB /* PracticeResult.swift in Sources */,
 				A78B127428C735100015BBA1 /* ComposeParticipantsViewController.swift in Sources */,
 				A72E75A328C66A680028CE8D /* TadakListViewController.swift in Sources */,
+				A7652D0E28E47A670023325B /* UseCaseProviderProtocol.swift in Sources */,
 				A7CE378628CC6E78002ACAD5 /* Sorted.swift in Sources */,
 				A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */,
 				A7F42DB028D1087F00049C0E /* TypingFlow.swift in Sources */,
@@ -1760,6 +1810,7 @@
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7820EF228D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift in Sources */,
 				A7F755BC28DDA2BC00D434AB /* PracticeResultTableView.swift in Sources */,
+				A7652D0C28E47A620023325B /* UseCaseProvider.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
@@ -1774,6 +1825,7 @@
 				A7C1D2CD28E324B9005D51EE /* AnalyticsManager.swift in Sources */,
 				A7820EDD28D4F96800DD383A /* MyListFlow.swift in Sources */,
 				A78E6B6528E1E77B00347640 /* CompositionUseCaseProtocol.swift in Sources */,
+				A7652D0628E37ED00023325B /* RecordRepositoryProtocol.swift in Sources */,
 				A7820EEB28D70AD300DD383A /* ComposeParticipantsUseCase.swift in Sources */,
 				A7F755C028DDFCD300D434AB /* PracticeResultViewReactor.swift in Sources */,
 				A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */,
@@ -1785,11 +1837,12 @@
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A77F81CB28DC3E3E0040CB0A /* BettingRecordUseCase.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
-				A7F755D428DEEBBE00D434AB /* MakeCompositionUseCase.swift in Sources */,
+				A7F755D428DEEBBE00D434AB /* CreateCompositionUseCase.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
 				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
 				A7820EF528D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift in Sources */,
 				A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */,
+				A7652D0828E478DB0023325B /* RepositoryProvider.swift in Sources */,
 				A74ACC9928CA5AA100780433 /* APIEndpoints.swift in Sources */,
 				A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */,
 				A746E48128D077DB009639A7 /* TadakStep.swift in Sources */,
@@ -1803,6 +1856,7 @@
 				A77F81CF28DC412D0040CB0A /* Record.swift in Sources */,
 				A758072928C501C50073D03A /* ReusableView.swift in Sources */,
 				A793962828CB49E500D28D9F /* NicknameDTO.swift in Sources */,
+				A7652D1228E488990023325B /* ComposeParticipantsUseCaseProtocol.swift in Sources */,
 				A74ACC7128C9D21B00780433 /* AppStepper.swift in Sources */,
 				A7CE377528CC50CA002ACAD5 /* Rx+UIView.swift in Sources */,
 				A7CE378C28CCCCA0002ACAD5 /* RealmConfigurationType.swift in Sources */,
@@ -1816,12 +1870,14 @@
 				A7C1D2DB28E33F59005D51EE /* OnboardingUseCaseProtocol.swift in Sources */,
 				A7B4CD0828C7129300D663D2 /* CompositionDetailDashboardView.swift in Sources */,
 				A7CE37A428CD0BB9002ACAD5 /* InitializationViewController.swift in Sources */,
+				A7652CFE28E37E680023325B /* RecordUseCase.swift in Sources */,
 				A78B127B28C73B560015BBA1 /* ComposeParticipantsHeaderView.swift in Sources */,
 				A7F755B928DD98E000D434AB /* RecordDashboard.swift in Sources */,
 				A78B128428C768CE0015BBA1 /* ComposeParticipantsNumberButton.swift in Sources */,
 				A78B12A228C8C2140015BBA1 /* TadakUser.swift in Sources */,
 				A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */,
 				A7820EEE28D755A700DD383A /* FirebaseAuthServiceProtocol.swift in Sources */,
+				A7652D1028E482F10023325B /* InitializationUseCaseProtocol.swift in Sources */,
 				A7F755D928DEEECE00D434AB /* OfficialTypingViewController.swift in Sources */,
 				A7820EDB28D4AB4F00DD383A /* Hangul.swift in Sources */,
 				A7820EF928D76D2E00DD383A /* UserRepositoryProtocol.swift in Sources */,

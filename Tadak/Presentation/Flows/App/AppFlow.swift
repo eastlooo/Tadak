@@ -14,15 +14,12 @@ final class AppFlow: Flow {
     
     private let rootViewController = NavigationController()
     
-    private let userRepository: UserRepositoryProtocol
-    private let compositionRepository: CompositionRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
     init(
-        userRepository: UserRepositoryProtocol,
-        compositionRepository: CompositionRepositoryProtocol
+        useCaseProvider: UseCaseProviderProtocol
     ) {
-        self.userRepository = userRepository
-        self.compositionRepository = compositionRepository
+        self.useCaseProvider = useCaseProvider
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -32,8 +29,8 @@ final class AppFlow: Flow {
         case .onboardingIsRequired:
             return switchToOnboardingFlow()
             
-        case .initializationIsRequired:
-            return switchToMainFlow()
+        case .initializationIsRequired(let user):
+            return switchToMainFlow(user: user)
             
         default:
             return .none
@@ -45,9 +42,8 @@ private extension AppFlow {
     
     func switchToOnboardingFlow() -> FlowContributors {
         let onboardingFlow = OnboardingFlow(
-            rootViewController: self.rootViewController,
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
+            rootViewController: rootViewController,
+            useCaseProvider: useCaseProvider
         )
         
         Flows.use(onboardingFlow, when: .created) { _ in }
@@ -61,11 +57,10 @@ private extension AppFlow {
         )
     }
     
-    func switchToMainFlow() -> FlowContributors {
+    func switchToMainFlow(user: TadakUser) -> FlowContributors {
         let mainFlow = MainFlow(
-            rootViewController: self.rootViewController,
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
+            rootViewController: rootViewController,
+            useCaseProvider: useCaseProvider
         )
         
         Flows.use(mainFlow, when: .created) { _ in }
@@ -74,7 +69,7 @@ private extension AppFlow {
             flowContributor: .contribute(
                 withNextPresentable: mainFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: TadakStep.initializationIsRequired)
+                    withSingleStep: TadakStep.initializationIsRequired(user: user))
             )
         )
     }

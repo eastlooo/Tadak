@@ -26,6 +26,7 @@ final class TadakUserObject: Object {
 }
 
 extension TadakUserObject {
+    
     func toDomain() -> TadakUser {
         return .init(
             id: self.uid,

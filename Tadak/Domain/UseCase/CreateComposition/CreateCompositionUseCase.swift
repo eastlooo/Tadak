@@ -1,5 +1,5 @@
 //
-//  MakeCompositionUseCase.swift
+//  CreateCompositionUseCase.swift
 //  Tadak
 //
 //  Created by 정동천 on 2022/09/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class MakeCompositionUseCase {
+final class CreateCompositionUseCase: CreateCompositionUseCaseProtocol {
     
     let titleMaxLength: Int = 12
     let artistMaxLength: Int = 12
@@ -27,7 +27,7 @@ final class MakeCompositionUseCase {
     }
 }
 
-extension MakeCompositionUseCase: MakeCompositionUseCaseProtocol {
+extension CreateCompositionUseCase {
     
     func checkValidate() -> Observable<Bool> {
         return Observable

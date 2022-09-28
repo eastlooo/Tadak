@@ -15,8 +15,8 @@ final class CompositionDetailDashboardView: UIView {
         didSet { typingModeLabel.text = typingMode.description }
     }
     
-    var record: Int = 0 {
-        didSet { highestRecordValueLabel.text = "\(record)" }
+    var score: Int? {
+        didSet { updateScore() }
     }
     
     private let topDivider = UIView()
@@ -25,6 +25,7 @@ final class CompositionDetailDashboardView: UIView {
     private let rewardImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
         return imageView
     }()
     
@@ -41,7 +42,7 @@ final class CompositionDetailDashboardView: UIView {
     
     private let highestRecordLabel: UILabel = {
         let label = UILabel()
-        label.text = "최고 기록"
+        label.text = "공식 기록"
         label.textColor = .white
         label.font = .notoSansKR(ofSize: 14, weight: .bold)
         return label
@@ -52,6 +53,17 @@ final class CompositionDetailDashboardView: UIView {
         label.textColor = .white
         label.font = .notoSansKR(ofSize: 36, weight: .black)
         return label
+    }()
+    
+    private lazy var recordStackView: UIStackView = {
+        let arrangedSubviews: [UIView] = [highestRecordLabel, highestRecordValueLabel]
+        let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+        stackView.axis = .vertical
+        stackView.spacing = -8
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        stackView.isHidden = true
+        return stackView
     }()
     
     //MARK: Lifecycle
@@ -71,19 +83,9 @@ final class CompositionDetailDashboardView: UIView {
         self.backgroundColor = .customNavy
         topDivider.backgroundColor = .white
         bottomDivider.backgroundColor = .white
-        
-        rewardImageView.image = UIImage.reward(score: 1)
     }
     
     private func layout() {
-        let recordStackView = UIStackView(arrangedSubviews: [
-            highestRecordLabel, highestRecordValueLabel
-        ])
-        recordStackView.axis = .vertical
-        recordStackView.spacing = -8
-        recordStackView.alignment = .center
-        recordStackView.distribution = .fillProportionally
-        
         self.snp.makeConstraints {
             $0.height.equalTo(122)
         }
@@ -104,7 +106,7 @@ final class CompositionDetailDashboardView: UIView {
         rewardImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.left.equalToSuperview().inset(15)
-            $0.width.height.equalTo(70)
+            $0.width.height.equalTo(60)
         }
         
         typingModeLabel.layer.cornerRadius = 5
@@ -119,8 +121,18 @@ final class CompositionDetailDashboardView: UIView {
         
         self.addSubview(recordStackView)
         recordStackView.snp.makeConstraints {
-            $0.left.equalTo(rewardImageView.snp.right).offset(10)
+            $0.left.equalTo(rewardImageView.snp.right).offset(15)
             $0.bottom.equalTo(rewardImageView)
+        }
+    }
+    
+    private func updateScore() {
+        recordStackView.isHidden = (score == nil)
+        rewardImageView.isHidden = (score == nil)
+        
+        if let score = score {
+            highestRecordValueLabel.text = "\(score)"
+            rewardImageView.image = UIImage.reward(score: score)
         }
     }
 }

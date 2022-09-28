@@ -16,19 +16,22 @@ final class AppStepper: Stepper {
     
     private let disposeBog = DisposeBag()
 
-    private let userRepository: UserRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
-    init(userRepository: UserRepositoryProtocol) {
-        self.userRepository = userRepository
+    init(useCaseProvider: UseCaseProviderProtocol) {
+        self.useCaseProvider = useCaseProvider
     }
 
     func readyToEmitSteps() {
-        userRepository.fetchUser()
-            .retry(2)
-            .catchAndReturn(nil)
+        let initializeUseCase = useCaseProvider.makeInitializationUseCase()
+        
+        initializeUseCase.fetchUser()
             .map { user -> TadakStep in
-                if let _ = user { return .initializationIsRequired }
-                return .onboardingIsRequired
+                guard let user = user else {
+                    return .onboardingIsRequired
+                }
+                
+                return .initializationIsRequired(user: user)
             }
             .take(1)
             .bind(to: self.steps)

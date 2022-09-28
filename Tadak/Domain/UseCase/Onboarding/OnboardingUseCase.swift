@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class OnboardingUseCase {
+final class OnboardingUseCase: OnboardingUseCaseProtocol {
     
     let characterIDs: [Int]
     let nicknameMinLength: Int = 2
@@ -27,7 +27,7 @@ final class OnboardingUseCase {
     }
 }
 
-extension OnboardingUseCase: OnboardingUseCaseProtocol {
+extension OnboardingUseCase {
     
     func getCharacterId(at index: Int) -> Int {
         characterIDs[index]

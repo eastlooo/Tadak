@@ -16,11 +16,11 @@ enum TadakStep: Step {
     case onboardingCharacterSelected(withCharacterID: Int)
     case onboardingCharacterReselected
     case nicknameDuplicated
-    case onboardingIsComplete
+    case onboardingIsComplete(user: TadakUser)
     
     // Main
-    case initializationIsRequired
-    case initializationIsComplete
+    case initializationIsRequired(user: TadakUser)
+    case initializationIsComplete(user: TadakUser)
     
     // List
     case tadakListIsRequired
@@ -35,6 +35,7 @@ enum TadakStep: Step {
     case compositionIsPicked(withTypingDetail: TypingDetail)
     case compositionDetailIsComplete
     
+    // Participants
     case participantsAreRequired(withTypingDetail: TypingDetail)
     case participantsAreComplete
     
@@ -50,6 +51,5 @@ enum TadakStep: Step {
     case bettingResultIsComplete
     case officialSuccessIsRequired(withTypingSpeed: Int)
     case officialFailureIsRequired(withTypingSpeed: Int)
-    
     case typingIsRequiredAgain
 }

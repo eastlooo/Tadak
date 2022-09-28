@@ -13,17 +13,14 @@ final class TypingFlow: Flow {
     var root: Presentable { self.rootViewController }
     
     private let rootViewController: UINavigationController
-    private let userRepository: UserRepositoryProtocol
-    private let compositionRepository: CompositionRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
     init(
         rootViewController: UINavigationController,
-        userRepository: UserRepositoryProtocol,
-        compositionRepository: CompositionRepositoryProtocol
+        useCaseProvider: UseCaseProviderProtocol
     ) {
         self.rootViewController = rootViewController
-        self.userRepository = userRepository
-        self.compositionRepository = compositionRepository
+        self.useCaseProvider = useCaseProvider
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -83,7 +80,7 @@ final class TypingFlow: Flow {
 private extension TypingFlow {
     
     func navigateToPracticeTypingScreen(composition: Composition) -> FlowContributors {
-        let useCase = TypingUseCase(composition: composition)
+        let useCase = useCaseProvider.makeTypingUseCase(composition: composition)
         let reactor = PracticeTypingViewReactor(useCase: useCase)
         let viewController = PracticeTypingViewController()
         viewController.reactor = reactor
@@ -97,7 +94,7 @@ private extension TypingFlow {
     }
     
     func navigateToOfficialTypingScreen(composition: Composition) -> FlowContributors {
-        let useCase = TypingUseCase(composition: composition)
+        let useCase = useCaseProvider.makeTypingUseCase(composition: composition)
         let reactor = OfficialTypingViewReactor(useCase: useCase)
         let viewController = OfficialTypingViewController()
         viewController.reactor = reactor
@@ -111,8 +108,8 @@ private extension TypingFlow {
     }
     
     func navigateToBettingTypingScreen(composition: Composition, participants: [String]) -> FlowContributors {
-        let typingseCase = TypingUseCase(composition: composition)
-        let recordUseCase = BettingRecordUseCase(participants: participants)
+        let typingseCase = useCaseProvider.makeTypingUseCase(composition: composition)
+        let recordUseCase = useCaseProvider.makeBettingRecordUseCase(participants: participants)
         let reactor = BettingTypingViewReactor(
             typingUseCase: typingseCase,
             recordUseCase: recordUseCase)

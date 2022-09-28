@@ -9,6 +9,7 @@ import Foundation
 
 struct Record {
     
+    let compositionID: String
     let elapsedTime: Int
     let typingSpeed: Int
     let accuracy: Int

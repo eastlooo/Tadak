@@ -47,7 +47,7 @@ final class CompositionDetailViewController: UIViewController {
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy
-        dashboard.record = 0
+        dashboard.score = 0
     }
     
     private func layout() {

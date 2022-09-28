@@ -31,10 +31,10 @@ final class MakeCompositionViewReactor: Reactor, Stepper {
     private let disposeBag = DisposeBag()
     var steps = PublishRelay<Step>()
     
-    private let useCase: MakeCompositionUseCaseProtocol
+    private let useCase: CreateCompositionUseCaseProtocol
     let initialState: State
     
-    init(useCase: MakeCompositionUseCaseProtocol) {
+    init(useCase: CreateCompositionUseCaseProtocol) {
         self.useCase = useCase
         self.initialState = State()
     }

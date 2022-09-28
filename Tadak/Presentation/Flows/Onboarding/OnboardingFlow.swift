@@ -13,17 +13,14 @@ final class OnboardingFlow: Flow {
     var root: Presentable { self.rootViewController }
     
     private let rootViewController: UINavigationController
-    private let userRepository: UserRepositoryProtocol
-    private let compositionRepository: CompositionRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
     init(
         rootViewController: UINavigationController,
-        userRepository: UserRepositoryProtocol,
-        compositionRepository: CompositionRepositoryProtocol
+        useCaseProvider: UseCaseProviderProtocol
     ) {
         self.rootViewController = rootViewController
-        self.userRepository = userRepository
-        self.compositionRepository = compositionRepository
+        self.useCaseProvider = useCaseProvider
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -42,8 +39,8 @@ final class OnboardingFlow: Flow {
         case .nicknameDuplicated:
             return presentNicknameDupicatedAlert()
             
-        case .onboardingIsComplete:
-            return switchToMainFlow()
+        case .onboardingIsComplete(let user):
+            return switchToMainFlow(user: user)
             
         default:
             return .none
@@ -53,7 +50,7 @@ final class OnboardingFlow: Flow {
 
 extension OnboardingFlow {
     private func navigateToCharacterSelectScreen() -> FlowContributors {
-        let useCase = OnboardingUseCase(userRepository: self.userRepository)
+        let useCase = useCaseProvider.makeOnboardingUseCase()
         let reactor = OnboardingCharacterViewReactor(useCase: useCase)
         let viewController = OnboardingCharacterViewController()
         viewController.reactor = reactor
@@ -67,7 +64,7 @@ extension OnboardingFlow {
     }
     
     private func navigateToNicknameSettingScreen(with characterID: Int) -> FlowContributors {
-        let useCase = OnboardingUseCase(userRepository: self.userRepository)
+        let useCase = useCaseProvider.makeOnboardingUseCase()
         let reactor = OnboardingNicknameViewReactor(characterID: characterID, useCase: useCase)
         let viewController = OnboardingNicknameViewController()
         viewController.reactor = reactor
@@ -96,11 +93,10 @@ extension OnboardingFlow {
         return .none
     }
     
-    private func switchToMainFlow() -> FlowContributors {
+    private func switchToMainFlow(user: TadakUser) -> FlowContributors {
         let mainFlow = MainFlow(
-            rootViewController: self.rootViewController,
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
+            rootViewController: rootViewController,
+            useCaseProvider: useCaseProvider
         )
         
         Flows.use(mainFlow, when: .created) { _ in }
@@ -109,7 +105,7 @@ extension OnboardingFlow {
             flowContributor: .contribute(
                 withNextPresentable: mainFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: TadakStep.initializationIsRequired)
+                    withSingleStep: TadakStep.initializationIsRequired(user: user))
             )
         )
     }

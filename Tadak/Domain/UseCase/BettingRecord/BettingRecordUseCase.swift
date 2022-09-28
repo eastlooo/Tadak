@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-final class BettingRecordUseCase {
+final class BettingRecordUseCase: BettingRecordUseCaseProtocol {
     
     var participant: Observable<String> {
         return _currentIndex
@@ -41,7 +41,7 @@ final class BettingRecordUseCase {
     }
 }
 
-extension BettingRecordUseCase: BettingRecordUseCaseProtocol {
+extension BettingRecordUseCase {
     
     func updateRecord(participant: String, record: Record) {
         _newRecord.accept((participant, record))

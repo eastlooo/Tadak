@@ -12,15 +12,12 @@ final class TadakListFlow: Flow {
     var root: Presentable { self.rootViewController }
     
     private let rootViewController = NavigationController()
-    private let userRepository: UserRepositoryProtocol
-    private let compositionRepository: CompositionRepositoryProtocol
+    private let useCaseProvider: UseCaseProviderProtocol
     
     init(
-        userRepository: UserRepositoryProtocol,
-        compositionRepository: CompositionRepositoryProtocol
+        useCaseProvider: UseCaseProviderProtocol
     ) {
-        self.userRepository = userRepository
-        self.compositionRepository = compositionRepository
+        self.useCaseProvider = useCaseProvider
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -64,7 +61,7 @@ final class TadakListFlow: Flow {
 private extension TadakListFlow {
     
     func navigateToTadakListScreen() -> FlowContributors {
-        let useCase = CompositionUseCase(compositionRepository: compositionRepository)
+        let useCase = useCaseProvider.makeCompositionUseCase()
         let reactor = TadakListViewReactor(useCase: useCase)
         let viewController = TadakListViewController()
         viewController.reactor = reactor
@@ -114,9 +111,8 @@ private extension TadakListFlow {
     
     func navigateToTypingScreen(typingDetail: TypingDetail) -> FlowContributors {
         let typingFlow = TypingFlow(
-            rootViewController: self.rootViewController,
-            userRepository: self.userRepository,
-            compositionRepository: self.compositionRepository
+            rootViewController: rootViewController,
+            useCaseProvider: useCaseProvider
         )
         
         Flows.use(typingFlow, when: .created) { _ in }
