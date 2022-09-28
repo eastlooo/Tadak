@@ -22,12 +22,12 @@ final class MyListViewReactor: Reactor, Stepper {
     
     enum Mutation {
         case setTypingMode(TypingMode)
-        case setItems([Composition])
+        case setItems([MyComposition])
     }
     
     struct State {
         @Pulse var typingMode: TypingMode = .practice
-        @Pulse var items: [Composition] = []
+        @Pulse var items: [MyComposition] = []
     }
     
     var steps = PublishRelay<Step>()
@@ -94,7 +94,7 @@ extension MyListViewReactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        let setItems = useCase.myComposition
+        let setItems = useCase.myCompositionPage
             .compactMap { $0?.compositions }
             .map(Mutation.setItems)
         

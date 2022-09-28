@@ -12,7 +12,7 @@ import RxCocoa
 final class MyListTableView: UITableView {
     
     // MARK: Properties
-    var items: [Composition] = []
+    var items: [MyComposition] = []
     
     fileprivate let _delete = PublishRelay<IndexPath>()
     
@@ -76,7 +76,7 @@ extension MyListTableView: UITableViewDelegate {
 // MARK: Binder
 extension Reactive where Base: MyListTableView {
     
-    var items: Binder<[Composition]> {
+    var items: Binder<[MyComposition]> {
         return Binder(base) { base, items in
             base.items = items
             base.reloadData()

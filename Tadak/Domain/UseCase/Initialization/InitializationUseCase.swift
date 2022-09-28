@@ -36,10 +36,10 @@ extension InitializationUseCase {
             .catchAndReturn(nil)
     }
     
-    func fetchCompositions() -> Observable<(TadakComposition, MyComposition)> {
+    func fetchCompositionPages() -> Observable<(TadakCompositionPage, MyCompositionPage)> {
         let tadakComposition = compositionRepository.fetchTadakComposition()
         let myComposition = compositionRepository.fetchMyComposition()
-            .map { $0 ?? MyComposition(compositions: []) }
+            .map { $0 ?? MyCompositionPage(compositions: []) }
         
         return Observable.combineLatest(tadakComposition, myComposition)
     }

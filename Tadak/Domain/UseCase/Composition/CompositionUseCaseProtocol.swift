@@ -17,12 +17,12 @@ protocol CompositionUseCaseProtocol: AnyObject {
     var artist: AnyObserver<String> { get }
     var contents: AnyObserver<String> { get }
     
-    var tadakComposition: BehaviorSubject<TadakComposition?> { get }
-    var myComposition: BehaviorSubject<MyComposition?> { get }
+    var tadakCompositionPage: BehaviorSubject<TadakCompositionPage?> { get }
+    var myCompositionPage: BehaviorSubject<MyCompositionPage?> { get }
     
     func checkValidate() -> Observable<Bool>
-    func saveComposition() -> Observable<Void>
-    func selectedTadakComposition(index: Int) -> Observable<Composition?>
-    func selectedMyComposition(index: Int) -> Observable<Composition?>
+    func saveMyComposition() -> Observable<Void>
+    func selectedTadakComposition(index: Int) -> Observable<TadakComposition?>
+    func selectedMyComposition(index: Int) -> Observable<MyComposition?>
     func removeMyComposition(index: Int) -> Observable<Void>
 }

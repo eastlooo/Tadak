@@ -7,16 +7,19 @@
 
 import Foundation
 
-struct Composition: Identifiable, Equatable {
+protocol Composition: Identifiable, Equatable {
     
     typealias Identifier = String
     
-    let id: Identifier
-    let title: String
-    let artist: String
-    let contents: String
+    var id: Identifier { get }
+    var title: String { get }
+    var artist: String { get }
+    var contents: String { get }
+}
+
+extension Composition {
     
-    static func == (lhs: Composition, rhs: Composition) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id
     }
 }

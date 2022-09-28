@@ -9,13 +9,13 @@ import Foundation
 
 enum CompositionEvent: AnalyticsEvent {
     
-    case create(composition: Composition)
+    case create(composition: MyComposition)
     case delete
     
     var name: String {
         switch self {
-        case .create: return "create_composition_event"
-        case .delete: return "delete_composition_event"
+        case .create: return "create_mycomposition_event"
+        case .delete: return "delete_mycomposition_event"
         }
     }
     

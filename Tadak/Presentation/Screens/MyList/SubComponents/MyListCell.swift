@@ -78,7 +78,8 @@ final class MyListCell: UITableViewCell {
 
 // MARK: Bind
 extension MyListCell {
-    func bind(with composition: Composition) {
+    
+    func bind(with composition: MyComposition) {
         titleLabel.text = composition.title
         artistLabel.text = composition.artist
     }

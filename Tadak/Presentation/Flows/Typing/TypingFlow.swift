@@ -79,7 +79,7 @@ final class TypingFlow: Flow {
 
 private extension TypingFlow {
     
-    func navigateToPracticeTypingScreen(composition: Composition) -> FlowContributors {
+    func navigateToPracticeTypingScreen(composition: any Composition) -> FlowContributors {
         let useCase = useCaseProvider.makeTypingUseCase(composition: composition)
         let reactor = PracticeTypingViewReactor(useCase: useCase)
         let viewController = PracticeTypingViewController()
@@ -93,7 +93,7 @@ private extension TypingFlow {
         )
     }
     
-    func navigateToOfficialTypingScreen(composition: Composition) -> FlowContributors {
+    func navigateToOfficialTypingScreen(composition: any Composition) -> FlowContributors {
         let useCase = useCaseProvider.makeTypingUseCase(composition: composition)
         let reactor = OfficialTypingViewReactor(useCase: useCase)
         let viewController = OfficialTypingViewController()
@@ -107,7 +107,7 @@ private extension TypingFlow {
         )
     }
     
-    func navigateToBettingTypingScreen(composition: Composition, participants: [String]) -> FlowContributors {
+    func navigateToBettingTypingScreen(composition: any Composition, participants: [String]) -> FlowContributors {
         let typingseCase = useCaseProvider.makeTypingUseCase(composition: composition)
         let recordUseCase = useCaseProvider.makeBettingRecordUseCase(participants: participants)
         let reactor = BettingTypingViewReactor(

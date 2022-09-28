@@ -51,7 +51,7 @@ extension MakeCompositionViewReactor {
             return .empty()
             
         case .saveButtonTapped:
-            return compositionUseCase.saveComposition()
+            return compositionUseCase.saveMyComposition()
                 .map { _ in TadakStep.makeCompositionIsComplete }
                 .do { [weak self] step in self?.steps.accept(step) }
                 .flatMap { _ in Observable<Mutation>.empty() }

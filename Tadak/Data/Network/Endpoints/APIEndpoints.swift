@@ -56,7 +56,7 @@ struct APIEndpoints {
     }
     
     // MARK: Composition
-    static func readCompositions() -> Endpoint<[CompositionResponseDTO]> {
+    static func readTadakCompositions() -> Endpoint<[TadakCompositionResponseDTO]> {
         return .init(
             path: "tadakComposition/compositions",
             crud: .read

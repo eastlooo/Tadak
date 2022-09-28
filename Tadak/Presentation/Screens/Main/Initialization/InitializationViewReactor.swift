@@ -47,7 +47,7 @@ private extension InitializationViewReactor {
     func bind() {
         let step = TadakStep.initializationIsComplete(user: user)
         
-        let compositions = initializationUseCase.fetchCompositions()
+        let compositions = initializationUseCase.fetchCompositionPages()
         let records = initializationUseCase.fetchRecords()
         
         Observable.combineLatest(compositions, records)

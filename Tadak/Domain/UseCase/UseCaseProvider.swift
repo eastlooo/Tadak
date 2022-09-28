@@ -42,7 +42,7 @@ extension UseCaseProvider {
         return ComposeParticipantsUseCase()
     }
     
-    func makeTypingUseCase(composition: Composition) -> TypingUseCaseProtocol {
+    func makeTypingUseCase(composition: any Composition) -> TypingUseCaseProtocol {
         return TypingUseCase(composition: composition)
     }
     

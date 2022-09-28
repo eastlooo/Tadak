@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CompositionResponseDTO: Decodable {
+struct TadakCompositionResponseDTO: Decodable {
     
     let id: String
     let title: String
@@ -15,9 +15,9 @@ struct CompositionResponseDTO: Decodable {
     let contents: String
 }
 
-extension CompositionResponseDTO {
+extension TadakCompositionResponseDTO {
     
-    func toDomain() -> Composition {
+    func toDomain() -> TadakComposition {
         return .init(
             id: self.id,
             title: self.title,

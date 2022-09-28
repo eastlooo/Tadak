@@ -17,8 +17,8 @@ final class CompositionUseCase: CompositionUseCaseProtocol {
     var artist: AnyObserver<String> { _artist.asObserver() }
     var contents: AnyObserver<String> { _contents.asObserver() }
     
-    var tadakComposition: BehaviorSubject<TadakComposition?>
-    var myComposition: BehaviorSubject<MyComposition?>
+    var tadakCompositionPage: BehaviorSubject<TadakCompositionPage?>
+    var myCompositionPage: BehaviorSubject<MyCompositionPage?>
     
     private let _title = BehaviorSubject<String>(value: "")
     private let _artist = BehaviorSubject<String>(value: "")
@@ -30,8 +30,8 @@ final class CompositionUseCase: CompositionUseCaseProtocol {
         compositionRepository: CompositionRepositoryProtocol
     ) {
         self.compositionRepository = compositionRepository
-        self.tadakComposition = compositionRepository.tadakComposition
-        self.myComposition = compositionRepository.myComposition
+        self.tadakCompositionPage = compositionRepository.tadakCompositionPage
+        self.myCompositionPage = compositionRepository.myCompositionPage
     }
 }
 
@@ -43,31 +43,34 @@ extension CompositionUseCase {
             .map { !$0.0.isEmpty && !$0.1.isEmpty && !$0.2.isEmpty }
     }
     
-    func saveComposition() -> Observable<Void> {
+    func saveMyComposition() -> Observable<Void> {
+        let repository = compositionRepository
+        
         let composition = Observable
             .combineLatest(_title, _artist, _contents)
             .map { (UUID().uuidString, $0.0, $0.1, $0.2) }
-            .map(Composition.init)
-            .share()
+            .map(MyComposition.init)
         
         return composition
-            .flatMap(compositionRepository.appendMyComposition)
-            .withLatestFrom(composition)
-            .do { AnalyticsManager.log(CompositionEvent.create(composition: $0)) }
-            .map { _ in }
-            .retry(2)
+            .flatMap { composition -> Observable<Void> in
+                return repository.addMyComposition(composition)
+                    .do { _ in
+                        AnalyticsManager.log(CompositionEvent.create(composition: composition))
+                    }
+            }
+            .retry(2)            
     }
     
-    func selectedTadakComposition(index: Int) -> Observable<Composition?> {
-        return tadakComposition.map { $0?.compositions[index] }
+    func selectedTadakComposition(index: Int) -> Observable<TadakComposition?> {
+        return tadakCompositionPage.map { $0?.compositions[index] }
     }
     
-    func selectedMyComposition(index: Int) -> Observable<Composition?> {
-        return myComposition.map { $0?.compositions[index] }
+    func selectedMyComposition(index: Int) -> Observable<MyComposition?> {
+        return myCompositionPage.map { $0?.compositions[index] }
     }
     
     func removeMyComposition(index: Int) -> Observable<Void> {
-        return myComposition
+        return myCompositionPage
             .compactMap(\.?.compositions)
             .filter { $0.count > index }
             .map { $0[index] }

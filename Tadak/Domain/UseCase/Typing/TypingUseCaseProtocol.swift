@@ -10,7 +10,7 @@ import RxSwift
 
 protocol TypingUseCaseProtocol: AnyObject {
     
-    var composition: Composition { get }
+    var composition: any Composition { get }
     
     var returnPressed: AnyObserver<Void> { get }
     var currentUserText: AnyObserver<String> { get }

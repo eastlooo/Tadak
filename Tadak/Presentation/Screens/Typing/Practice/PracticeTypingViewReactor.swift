@@ -45,7 +45,7 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
     private let disposeBag = DisposeBag()
     
     private let useCase: TypingUseCaseProtocol
-    private let composition: Composition
+    private let composition: any Composition
     let initialState: State
     
     init(useCase: TypingUseCaseProtocol) {

@@ -12,7 +12,7 @@ import GameController
 
 final class TypingUseCase: TypingUseCaseProtocol {
     
-    let composition: Composition
+    let composition: any Composition
     
     var returnPressed: AnyObserver<Void> { _returnPressed.asObserver() }
     var currentUserText: AnyObserver<String> { _currentUserText.asObserver() }
@@ -53,7 +53,7 @@ final class TypingUseCase: TypingUseCaseProtocol {
     private let _userTextToBeUpdated = PublishRelay<String>()
     private let _textIndex: BehaviorRelay<Int> = .init(value: 0)
     
-    init(composition: Composition) {
+    init(composition: any Composition) {
         self.composition = composition
         
         bind()

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-typealias TadakListCellItem = (composition: Composition, score: Int)
+typealias TadakListCellItem = (composition: TadakComposition, score: Int)
 
 final class TadakListCell: UITableViewCell {
     

@@ -95,7 +95,7 @@ extension TadakListViewReactor {
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
         let recordUseCase = recordUseCase
         
-        let setItems = compositionUseCase.tadakComposition
+        let setItems = compositionUseCase.tadakCompositionPage
             .compactMap(\.?.compositions)
             .map { compostions -> [TadakListCellItem] in
                 compostions.map { composition -> TadakListCellItem in

@@ -46,7 +46,7 @@ final class BettingTypingViewReactor: Reactor, Stepper {
     
     private let typingUseCase: TypingUseCaseProtocol
     private let recordUseCase: BettingRecordUseCaseProtocol
-    private let composition: Composition
+    private let composition: any Composition
     let initialState: State
     
     init(

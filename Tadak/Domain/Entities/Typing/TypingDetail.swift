@@ -8,12 +8,12 @@
 struct TypingDetail {
     
     let typingMode: TypingMode
-    let composition: Composition
+    let composition: any Composition
     var names: [String]
     
     init(
         typingMode: TypingMode,
-        composition: Composition
+        composition: any Composition
     ) {
         self.typingMode = typingMode
         self.composition = composition
@@ -22,7 +22,7 @@ struct TypingDetail {
     
     init(
         typingMode: TypingMode,
-        composition: Composition,
+        composition: any Composition,
         names: [String]
     ) {
         self.typingMode = typingMode

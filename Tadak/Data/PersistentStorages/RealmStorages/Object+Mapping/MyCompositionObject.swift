@@ -2,7 +2,7 @@
 //  MyCompositionObject.swift
 //  Tadak
 //
-//  Created by 정동천 on 2022/09/11.
+//  Created by 정동천 on 2022/09/29.
 //
 
 import Foundation
@@ -10,16 +10,19 @@ import RealmSwift
 
 final class MyCompositionObject: Object {
     
-    @Persisted var compositions = List<CompositionObject>()
+    @Persisted(primaryKey: true) var id: String
+    @Persisted var title: String
+    @Persisted var artist: String
+    @Persisted var contents: String
     
     convenience init(
-        myComposition: MyComposition
+        composition: MyComposition
     ) {
         self.init()
-        
-        let compositions = myComposition.compositions
-        let objects = compositions.map(CompositionObject.init)
-        self.compositions.append(objectsIn: objects)
+        self.id = composition.id
+        self.title = composition.title
+        self.artist = composition.artist
+        self.contents = composition.contents
     }
 }
 
@@ -27,7 +30,10 @@ extension MyCompositionObject {
     
     func toDomain() -> MyComposition {
         return .init(
-            compositions: self.compositions.map { $0.toDomain() }
+            id: self.id,
+            title: self.title,
+            artist: self.artist,
+            contents: self.contents
         )
     }
 }

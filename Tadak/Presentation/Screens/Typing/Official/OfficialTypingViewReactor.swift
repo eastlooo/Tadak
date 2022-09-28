@@ -49,7 +49,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
     private var disposeBag = DisposeBag()
     
     private var useCase: TypingUseCaseProtocol
-    private let composition: Composition
+    private let composition: any Composition
     let initialState: State
     
     init(useCase: TypingUseCaseProtocol) {

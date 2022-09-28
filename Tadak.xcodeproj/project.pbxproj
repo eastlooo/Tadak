@@ -99,6 +99,10 @@
 		A7652D1028E482F10023325B /* InitializationUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */; };
 		A7652D1228E488990023325B /* ComposeParticipantsUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */; };
 		A7652D1428E4A9330023325B /* CompositionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1328E4A9330023325B /* CompositionEvent.swift */; };
+		A7652D1A28E4B2270023325B /* TadakComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1928E4B2270023325B /* TadakComposition.swift */; };
+		A7652D1C28E4B2310023325B /* MyComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1B28E4B2310023325B /* MyComposition.swift */; };
+		A7652D1E28E4B6CB0023325B /* TadakCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1D28E4B6CB0023325B /* TadakCompositionObject.swift */; };
+		A7652D2028E4B7070023325B /* MyCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1F28E4B7070023325B /* MyCompositionObject.swift */; };
 		A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765903228CE3769000EAD7F /* FirebaseAuthService.swift */; };
 		A765903928CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A765903828CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A765903B28CE38FF000EAD7F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A765903A28CE38FF000EAD7F /* FirebaseAuth */; };
@@ -201,11 +205,8 @@
 		A7CE378C28CCCCA0002ACAD5 /* RealmConfigurationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE378B28CCCCA0002ACAD5 /* RealmConfigurationType.swift */; };
 		A7CE378E28CCCFAC002ACAD5 /* RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE378D28CCCFAC002ACAD5 /* RealmError.swift */; };
 		A7CE379428CCDEC0002ACAD5 /* TadakUserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379328CCDEC0002ACAD5 /* TadakUserObject.swift */; };
-		A7CE379A28CCF620002ACAD5 /* TadakComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379928CCF620002ACAD5 /* TadakComposition.swift */; };
-		A7CE379C28CCF631002ACAD5 /* MyComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379B28CCF631002ACAD5 /* MyComposition.swift */; };
-		A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */; };
-		A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */; };
-		A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */; };
+		A7CE379E28CCF860002ACAD5 /* TadakCompositionPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379D28CCF860002ACAD5 /* TadakCompositionPageObject.swift */; };
+		A7CE37A028CCF86C002ACAD5 /* MyCompositionPageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE379F28CCF86C002ACAD5 /* MyCompositionPageObject.swift */; };
 		A7CE37A428CD0BB9002ACAD5 /* InitializationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A328CD0BB9002ACAD5 /* InitializationViewController.swift */; };
 		A7CE37A628CD0EF4002ACAD5 /* WelcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37A528CD0EF4002ACAD5 /* WelcomingView.swift */; };
 		A7CE37AD28CDA9A3002ACAD5 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37AC28CDA9A3002ACAD5 /* MainFlow.swift */; };
@@ -323,6 +324,10 @@
 		A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A7652D1328E4A9330023325B /* CompositionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionEvent.swift; sourceTree = "<group>"; };
+		A7652D1928E4B2270023325B /* TadakComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakComposition.swift; sourceTree = "<group>"; };
+		A7652D1B28E4B2310023325B /* MyComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyComposition.swift; sourceTree = "<group>"; };
+		A7652D1D28E4B6CB0023325B /* TadakCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakCompositionObject.swift; sourceTree = "<group>"; };
+		A7652D1F28E4B7070023325B /* MyCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositionObject.swift; sourceTree = "<group>"; };
 		A765903228CE3769000EAD7F /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		A765904028CE4A68000EAD7F /* ObservableType++Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType++Operator.swift"; sourceTree = "<group>"; };
 		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
@@ -418,11 +423,8 @@
 		A7CE378B28CCCCA0002ACAD5 /* RealmConfigurationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfigurationType.swift; sourceTree = "<group>"; };
 		A7CE378D28CCCFAC002ACAD5 /* RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
 		A7CE379328CCDEC0002ACAD5 /* TadakUserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakUserObject.swift; sourceTree = "<group>"; };
-		A7CE379928CCF620002ACAD5 /* TadakComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakComposition.swift; sourceTree = "<group>"; };
-		A7CE379B28CCF631002ACAD5 /* MyComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyComposition.swift; sourceTree = "<group>"; };
-		A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakCompositionObject.swift; sourceTree = "<group>"; };
-		A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositionObject.swift; sourceTree = "<group>"; };
-		A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionObject.swift; sourceTree = "<group>"; };
+		A7CE379D28CCF860002ACAD5 /* TadakCompositionPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakCompositionPageObject.swift; sourceTree = "<group>"; };
+		A7CE379F28CCF86C002ACAD5 /* MyCompositionPageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCompositionPageObject.swift; sourceTree = "<group>"; };
 		A7CE37A328CD0BB9002ACAD5 /* InitializationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewController.swift; sourceTree = "<group>"; };
 		A7CE37A528CD0EF4002ACAD5 /* WelcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomingView.swift; sourceTree = "<group>"; };
 		A7CE37AC28CDA9A3002ACAD5 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
@@ -1370,9 +1372,10 @@
 			isa = PBXGroup;
 			children = (
 				A7CE379328CCDEC0002ACAD5 /* TadakUserObject.swift */,
-				A7CE37A128CCFB6A002ACAD5 /* CompositionObject.swift */,
-				A7CE379D28CCF860002ACAD5 /* TadakCompositionObject.swift */,
-				A7CE379F28CCF86C002ACAD5 /* MyCompositionObject.swift */,
+				A7652D1D28E4B6CB0023325B /* TadakCompositionObject.swift */,
+				A7652D1F28E4B7070023325B /* MyCompositionObject.swift */,
+				A7CE379D28CCF860002ACAD5 /* TadakCompositionPageObject.swift */,
+				A7CE379F28CCF86C002ACAD5 /* MyCompositionPageObject.swift */,
 				A7652CFB28E37CFD0023325B /* RecordObject.swift */,
 			);
 			path = "Object+Mapping";
@@ -1532,8 +1535,8 @@
 			isa = PBXGroup;
 			children = (
 				A78B129F28C8BFD80015BBA1 /* Composition.swift */,
-				A7CE379928CCF620002ACAD5 /* TadakComposition.swift */,
-				A7CE379B28CCF631002ACAD5 /* MyComposition.swift */,
+				A7652D1928E4B2270023325B /* TadakComposition.swift */,
+				A7652D1B28E4B2310023325B /* MyComposition.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -1735,9 +1738,9 @@
 				A758072E28C510C00073D03A /* OnboardingCharacterCollectionView.swift in Sources */,
 				A746E48A28D09812009639A7 /* TadakListTableView.swift in Sources */,
 				A78B129328C7A0AA0015BBA1 /* ProgressBar.swift in Sources */,
-				A7CE379C28CCF631002ACAD5 /* MyComposition.swift in Sources */,
 				A72E758D28C647590028CE8D /* TadakMainBackgroundView.swift in Sources */,
 				A74ACC7728C9EE6E00780433 /* NavigationController.swift in Sources */,
+				A7652D2028E4B7070023325B /* MyCompositionObject.swift in Sources */,
 				A78B127928C737990015BBA1 /* ListButtonTypeNavigationView.swift in Sources */,
 				A74ACCAA28CB018B00780433 /* AnyArray.swift in Sources */,
 				A7CE377328CBB78C002ACAD5 /* Rx+Loader.swift in Sources */,
@@ -1745,6 +1748,7 @@
 				A7652CFC28E37CFD0023325B /* RecordObject.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
+				A7652D1E28E4B6CB0023325B /* TadakCompositionObject.swift in Sources */,
 				A77F81D928DCB0E50040CB0A /* BettingResultTableView.swift in Sources */,
 				A7652D1428E4A9330023325B /* CompositionEvent.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
@@ -1768,10 +1772,10 @@
 				A758072528C4F83D0073D03A /* UIImage++.swift in Sources */,
 				A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */,
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
-				A7CE379A28CCF620002ACAD5 /* TadakComposition.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
 				A77F81BE28DAFC800040CB0A /* BettingTypingViewReactor.swift in Sources */,
 				A746E48428D08C19009639A7 /* TadakListViewReactor.swift in Sources */,
+				A7652D1C28E4B2310023325B /* MyComposition.swift in Sources */,
 				A7F42DAE28D0FF8700049C0E /* ScrollView.swift in Sources */,
 				A78987E228CBA1410045D71C /* AlertController.swift in Sources */,
 				A7CE378228CC69B2002ACAD5 /* Storage.swift in Sources */,
@@ -1795,6 +1799,7 @@
 				A77A09FB28DCBE6C0032F61F /* BettingPodiumView.swift in Sources */,
 				A7F42DB328D1105200049C0E /* PracticeTypingViewReactor.swift in Sources */,
 				A74ACC9428CA585000780433 /* Endpoint.swift in Sources */,
+				A7652D1A28E4B2270023325B /* TadakComposition.swift in Sources */,
 				A74ACC8628CA2BC100780433 /* FirebaseDatabaseService.swift in Sources */,
 				A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */,
 				A7820EF228D7674500DD383A /* FirebaseDatabaseServiceProtocol.swift in Sources */,
@@ -1802,7 +1807,6 @@
 				A7652D0C28E47A620023325B /* UseCaseProvider.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
-				A7CE37A228CCFB6A002ACAD5 /* CompositionObject.swift in Sources */,
 				A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */,
 				A746E48728D08D63009639A7 /* CompositionUseCase.swift in Sources */,
 				A7F755DF28DEF1E000D434AB /* OfficialSuccessViewController.swift in Sources */,
@@ -1822,12 +1826,12 @@
 				A74ACC9628CA590100780433 /* RequestResponsable.swift in Sources */,
 				A74ACC7B28C9F38500780433 /* OnboardingUseCase.swift in Sources */,
 				A78B12A028C8BFD80015BBA1 /* Composition.swift in Sources */,
-				A7CE379E28CCF860002ACAD5 /* TadakCompositionObject.swift in Sources */,
+				A7CE379E28CCF860002ACAD5 /* TadakCompositionPageObject.swift in Sources */,
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A77F81CB28DC3E3E0040CB0A /* BettingRecordUseCase.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
-				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
+				A7CE37A028CCF86C002ACAD5 /* MyCompositionPageObject.swift in Sources */,
 				A7820EF528D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift in Sources */,
 				A74ACC6E28C9D16D00780433 /* OnboardingFlow.swift in Sources */,
 				A7652D0828E478DB0023325B /* RepositoryProvider.swift in Sources */,

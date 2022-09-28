@@ -10,11 +10,11 @@ import RxSwift
 
 protocol CompositionRepositoryProtocol {
     
-    var tadakComposition: BehaviorSubject<TadakComposition?> { get }
-    var myComposition: BehaviorSubject<MyComposition?> { get }
+    var tadakCompositionPage: BehaviorSubject<TadakCompositionPage?> { get }
+    var myCompositionPage: BehaviorSubject<MyCompositionPage?> { get }
     
-    func fetchTadakComposition() -> Observable<TadakComposition>
-    func fetchMyComposition() -> Observable<MyComposition?>
-    func appendMyComposition(_ compostion: Composition) -> Observable<Void>
-    func removeMyComposition(_ compostion: Composition) -> Observable<Void>
+    func fetchTadakComposition() -> Observable<TadakCompositionPage>
+    func fetchMyComposition() -> Observable<MyCompositionPage?>
+    func addMyComposition(_ compostion: MyComposition) -> Observable<Void>
+    func removeMyComposition(_ compostion: MyComposition) -> Observable<Void>
 }
