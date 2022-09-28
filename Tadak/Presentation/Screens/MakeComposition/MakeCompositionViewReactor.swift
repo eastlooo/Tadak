@@ -31,11 +31,11 @@ final class MakeCompositionViewReactor: Reactor, Stepper {
     private let disposeBag = DisposeBag()
     var steps = PublishRelay<Step>()
     
-    private let useCase: CreateCompositionUseCaseProtocol
+    private let compositionUseCase: CompositionUseCaseProtocol
     let initialState: State
     
-    init(useCase: CreateCompositionUseCaseProtocol) {
-        self.useCase = useCase
+    init(compositionUseCase: CompositionUseCaseProtocol) {
+        self.compositionUseCase = compositionUseCase
         self.initialState = State()
     }
     
@@ -51,22 +51,22 @@ extension MakeCompositionViewReactor {
             return .empty()
             
         case .saveButtonTapped:
-            return useCase.saveComposition()
+            return compositionUseCase.saveComposition()
                 .map { _ in TadakStep.makeCompositionIsComplete }
                 .do { [weak self] step in self?.steps.accept(step) }
                 .flatMap { _ in Observable<Mutation>.empty() }
                 .take(1)
             
         case .titleText(let title):
-            useCase.title.onNext(title)
+            compositionUseCase.title.onNext(title)
             return .empty()
             
         case .artistText(let artist):
-            useCase.artist.onNext(artist)
+            compositionUseCase.artist.onNext(artist)
             return .empty()
             
         case .contentsText(let contents):
-            useCase.contents.onNext(contents)
+            compositionUseCase.contents.onNext(contents)
             return .empty()
         }
     }
@@ -83,7 +83,7 @@ extension MakeCompositionViewReactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        let setValidate = useCase.checkValidate()
+        let setValidate = compositionUseCase.checkValidate()
             .map(Mutation.setValidate)
         
         return Observable.merge(

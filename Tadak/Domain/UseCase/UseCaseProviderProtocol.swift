@@ -15,6 +15,5 @@ protocol UseCaseProviderProtocol {
     func makeComposeParticipantsUseCase() -> ComposeParticipantsUseCaseProtocol
     func makeTypingUseCase(composition: Composition) -> TypingUseCaseProtocol
     func makeBettingRecordUseCase(participants: [String]) -> BettingRecordUseCaseProtocol
-    func makeCreateCompositionUseCase() -> CreateCompositionUseCaseProtocol
     func makeRecorduseCase() -> RecordUseCaseProtocol
 }

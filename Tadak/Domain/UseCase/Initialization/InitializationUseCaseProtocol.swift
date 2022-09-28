@@ -13,5 +13,6 @@ protocol InitializationUseCaseProtocol: AnyObject {
     var user: Observable<TadakUser?> { get }
     
     func fetchUser() -> Observable<TadakUser?>
-    func fetchCompositions() -> Observable<Void>
+    func fetchCompositions() -> Observable<(TadakComposition, MyComposition)>
+    func fetchRecords() -> Observable<[Record]>
 }

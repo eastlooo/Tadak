@@ -36,12 +36,16 @@ extension InitializationUseCase {
             .catchAndReturn(nil)
     }
     
-    func fetchCompositions() -> Observable<Void> {
-        let myComposition = compositionRepository.fetchMyComposition()
+    func fetchCompositions() -> Observable<(TadakComposition, MyComposition)> {
         let tadakComposition = compositionRepository.fetchTadakComposition()
+        let myComposition = compositionRepository.fetchMyComposition()
+            .map { $0 ?? MyComposition(compositions: []) }
         
-        return myComposition
-            .flatMap { _ in tadakComposition }
-            .map { _ in }
+        return Observable.combineLatest(tadakComposition, myComposition)
+    }
+    
+    func fetchRecords() -> Observable<[Record]> {
+        return recordRepository.fetchRecords()
+            .retry(2)
     }
 }

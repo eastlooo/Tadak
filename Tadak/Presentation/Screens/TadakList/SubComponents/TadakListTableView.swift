@@ -11,7 +11,7 @@ import RxSwift
 final class TadakListTableView: UITableView {
     
     // MARK: Properties
-    var items: [Composition] = []
+    var items: [TadakListCellItem] = []
     
     // MARK: Lifecycle
     init() {
@@ -52,7 +52,8 @@ extension TadakListTableView: UITableViewDataSource {
 
 // MARK: Binder
 extension Reactive where Base: TadakListTableView {
-    var items: Binder<[Composition]> {
+    
+    var items: Binder<[TadakListCellItem]> {
         return Binder(base) { base, element in
             base.items = element
             base.reloadData()

@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 import RealmSwift
 
-final class UserRepository {
+final class UserRepository: UserRepositoryProtocol {
     
     var user: Observable<TadakUser?> { _user.asObservable() }
     
@@ -34,7 +34,7 @@ final class UserRepository {
     }
 }
 
-extension UserRepository: UserRepositoryProtocol {
+extension UserRepository {
     
     func checkNickname(nickname: String) -> Observable<Void> {
         let endpoint = APIEndpoints.readNickname(nickname: nickname)

@@ -12,5 +12,5 @@ protocol RecordUseCaseProtocol {
     
     func fetchRecords() -> Observable<[Record]>
     func updateRecord(_ record: Record) -> Observable<Void>
-    func getTypingSpeed(compositionID: String) -> Observable<Int>
+    func getTypingSpeed(compositionID: String) -> Int?
 }

@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-final class RecordRepository {
+final class RecordRepository: RecordRepositoryProtocol {
     
     var records: Observable<[Record]> { _records.asObservable() }
     
@@ -24,7 +24,7 @@ final class RecordRepository {
     }
 }
 
-extension RecordRepository: RecordRepositoryProtocol {
+extension RecordRepository {
     
     func fetchRecords() -> Observable<[Record]> {
         do {
@@ -57,13 +57,17 @@ extension RecordRepository: RecordRepositoryProtocol {
                 }
                 .withLatestFrom(_records)
                 .map { [weak self] records in
+                    var records = records
+                    
                     if let index = records.firstIndex(where: {
                         $0.compositionID == id
                     }) {
-                        var records = records
                         records[index] = record
                         self?._records.accept(records)
                     }
+                    
+                    records.append(record)
+                    self?._records.accept(records)
                 }
             
         } catch { return .error(RealmError.failedInitialization) }

@@ -92,7 +92,7 @@ extension OfficialTypingViewReactor {
             
         case .abused(let abuse):
             AnalyticsManager.log(TypingEvent.abuse(abuse: abuse))
-            steps.accept(TadakStep.abused(withAbuse: abuse))
+            steps.accept(TadakStep.abused(abuse: abuse))
             return .empty()
         }
     }
@@ -133,9 +133,12 @@ extension OfficialTypingViewReactor {
     }
     
     func transform(action: Observable<Action>) -> Observable<Action> {
-        let abused = useCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
+//        let abused = useCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
         
-        return .merge(action, abused)
+        return .merge(
+            action
+//            abused
+        )
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
@@ -164,11 +167,12 @@ extension OfficialTypingViewReactor {
 
 private extension OfficialTypingViewReactor {
     
-    func bind() {        
+    func bind() {
+        let record = useCase.getRecord()
         useCase.finished
             .withLatestFrom(useCase.accuracy)
             .filter { $0 == 100 }
-            .withLatestFrom(useCase.typingSpeed)
+            .withLatestFrom(record)
             .map(TadakStep.officialSuccessIsRequired)
             .take(1)
             .bind(to: steps)

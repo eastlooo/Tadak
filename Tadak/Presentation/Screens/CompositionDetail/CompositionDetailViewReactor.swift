@@ -17,20 +17,23 @@ final class CompositionDetailViewReactor: Reactor, Stepper {
         case startButtonTapped(Void)
     }
     
-    enum Mutation {}
+    enum Mutation {
+        case setScore(Int)
+    }
     
     struct State {
         let typingDetail: TypingDetail
+        let score: Int?
     }
     
     var steps = PublishRelay<Step>()
-    private let _typingDetail: BehaviorSubject<TypingDetail>
-    
     let initialState: State
     
-    init(typingDetail: TypingDetail) {
+    private let _typingDetail: BehaviorSubject<TypingDetail>
+    
+    init(typingDetail: TypingDetail, score: Int? = nil) {
         self._typingDetail = .init(value: typingDetail)
-        self.initialState = State(typingDetail: typingDetail)
+        self.initialState = State(typingDetail: typingDetail, score: score)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -49,10 +52,10 @@ extension CompositionDetailViewReactor {
                 .map { detail -> TadakStep in
                     switch detail.typingMode {
                     case .betting:
-                        return .participantsAreRequired(withTypingDetail: detail)
+                        return .participantsAreRequired(typingDetail: detail)
                         
                     default:
-                        return .typingIsRequired(withTypingDetail: detail)
+                        return .typingIsRequired(typingDetail: detail)
                     }
                 }
                 .do { [weak self] step in self?.steps.accept(step) }

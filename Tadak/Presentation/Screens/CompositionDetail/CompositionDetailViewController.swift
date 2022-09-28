@@ -47,7 +47,6 @@ final class CompositionDetailViewController: UIViewController {
     // MARK: Helpers
     private func configure() {
         view.backgroundColor = .customNavy
-        dashboard.score = 0
     }
     
     private func layout() {
@@ -113,6 +112,10 @@ extension CompositionDetailViewController: View {
         // MARK: State
         reactor.state.map(\.typingDetail)
             .subscribe(onNext: updateTypingDetail)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap(\.score)
+            .bind(to: dashboard.rx.score)
             .disposed(by: disposeBag)
     }
 }

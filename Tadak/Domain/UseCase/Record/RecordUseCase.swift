@@ -32,14 +32,19 @@ extension RecordUseCase {
     }
     
     func updateRecord(_ record: Record) -> Observable<Void> {
-        return recordRepository.updateRecord(record)
-            .retry(2)
+        let id = record.compositionID
+        let prevScore = self.getTypingSpeed(compositionID: id) ?? 0
+        
+        guard record.typingSpeed > prevScore else { return .just(Void()) }
+        
+        return recordRepository.updateRecord(record).retry(2)
     }
     
-    func getTypingSpeed(compositionID: String) -> Observable<Int> {
-        return _records
-            .map { $0.filter { $0.compositionID == compositionID }.first }
-            .map { $0?.typingSpeed ?? 0 }
+    func getTypingSpeed(compositionID: String) -> Int? {
+        return _records.value
+            .filter { $0.compositionID == compositionID }
+            .first
+            .map(\.typingSpeed)
     }
 }
 

@@ -59,8 +59,8 @@ final class TypingFlow: Flow {
         case .practiceResultIsRequired(let practiceResult):
             return navigateToPracticeResultScreen(practiceResult: practiceResult)
             
-        case .officialSuccessIsRequired(let typingSpeed):
-            return navigateToOfficialSuccessScreen(typingSpeed: typingSpeed)
+        case .officialSuccessIsRequired(let record):
+            return navigateToOfficialSuccessScreen(record: record)
             
         case .officialFailureIsRequired(let typingSpeed):
             return navigateToOfficialFailureScreen(typingSpeed: typingSpeed)
@@ -137,8 +137,10 @@ private extension TypingFlow {
         )
     }
     
-    func navigateToOfficialSuccessScreen(typingSpeed: Int) -> FlowContributors {
-        let reactor = OfficialSuccessViewReactor(tyingSpeed: typingSpeed)
+    func navigateToOfficialSuccessScreen(record: Record) -> FlowContributors {
+        let recordUseCase = useCaseProvider.makeRecorduseCase()
+        let reactor = OfficialSuccessViewReactor(record: record,
+                                                 recordUseCase: recordUseCase)
         let viewController = OfficialSuccessViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)

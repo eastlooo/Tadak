@@ -24,12 +24,25 @@ final class OfficialSuccessViewReactor: Reactor, Stepper {
     }
     
     var steps = PublishRelay<Step>()
-    
     let initialState: State
     
-    init(tyingSpeed: Int) {
-       
-        self.initialState = State(tyingSpeed: tyingSpeed)
+    private let disposeBag = DisposeBag()
+    private let record: Record
+    private let recordUseCase: RecordUseCaseProtocol
+    
+    init(
+        record: Record,
+        recordUseCase: RecordUseCaseProtocol
+    ) {
+        self.record = record
+        self.recordUseCase = recordUseCase
+        self.initialState = State(tyingSpeed: record.typingSpeed)
+        
+        recordUseCase.updateRecord(record)
+            .bind(onNext: { _ in })
+            .disposed(by: disposeBag)
+        
+        AnalyticsManager.log(TypingEvent.resultTadakOfficial(record: record))
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }

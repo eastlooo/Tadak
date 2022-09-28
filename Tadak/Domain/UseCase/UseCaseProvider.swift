@@ -50,10 +50,6 @@ extension UseCaseProvider {
         return BettingRecordUseCase(participants: participants)
     }
     
-    func makeCreateCompositionUseCase() -> CreateCompositionUseCaseProtocol {
-        return CreateCompositionUseCase(compositionRepository: compositionRepository)
-    }
-    
     func makeRecorduseCase() -> RecordUseCaseProtocol {
         return RecordUseCase(recordRepository: recordRepository)
     }

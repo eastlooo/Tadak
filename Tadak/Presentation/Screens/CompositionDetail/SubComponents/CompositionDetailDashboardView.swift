@@ -122,7 +122,7 @@ final class CompositionDetailDashboardView: UIView {
         self.addSubview(recordStackView)
         recordStackView.snp.makeConstraints {
             $0.left.equalTo(rewardImageView.snp.right).offset(15)
-            $0.bottom.equalTo(rewardImageView)
+            $0.centerY.equalTo(rewardImageView)
         }
     }
     

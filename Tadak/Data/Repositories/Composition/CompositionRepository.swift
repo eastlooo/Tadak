@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class CompositionRepository {
+final class CompositionRepository: CompositionRepositoryProtocol {
     
     let tadakComposition: BehaviorSubject<TadakComposition?> = .init(value: nil)
     let myComposition: BehaviorSubject<MyComposition?> = .init(value: nil)
@@ -28,7 +28,7 @@ final class CompositionRepository {
     }
 }
 
-extension CompositionRepository: CompositionRepositoryProtocol {
+extension CompositionRepository {
     
     func fetchTadakComposition() -> Observable<TadakComposition> {
         let minimumVersion = checkTadakCompositionMinimumVersion()

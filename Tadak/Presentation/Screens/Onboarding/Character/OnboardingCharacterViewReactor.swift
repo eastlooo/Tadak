@@ -39,7 +39,7 @@ extension OnboardingCharacterViewReactor {
         switch action {
         case let .itemSelected(indexPath):
             let characterID = useCase.getCharacterId(at: indexPath.row)
-            steps.accept(TadakStep.onboardingCharacterSelected(withCharacterID: characterID))
+            steps.accept(TadakStep.onboardingCharacterSelected(characterID: characterID))
             return .empty()
         }
     }

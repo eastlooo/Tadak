@@ -35,7 +35,7 @@ final class MyListFlow: Flow {
         case .makeCompositionIsRequired:
             return navigateToMakeCompositionScreen()
             
-        case .compositionIsPicked(let typingDetail):
+        case .myCompositionIsPicked(let typingDetail):
             return navigateToCompositionDetailScreen(typingDetail: typingDetail)
             
         case .makeCompositionIsComplete, .compositionDetailIsComplete, .participantsAreComplete:
@@ -70,8 +70,8 @@ private extension MyListFlow {
     }
     
     func navigateToMakeCompositionScreen() -> FlowContributors {
-        let useCase = useCaseProvider.makeCreateCompositionUseCase()
-        let reactor = MakeCompositionViewReactor(useCase: useCase)
+        let compositionUseCase = useCaseProvider.makeCompositionUseCase()
+        let reactor = MakeCompositionViewReactor(compositionUseCase: compositionUseCase)
         let viewController = MakeCompositionViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -130,7 +130,7 @@ private extension MyListFlow {
             flowContributor: .contribute(
                 withNextPresentable: typingFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: TadakStep.typingIsRequired(withTypingDetail: typingDetail))
+                    withSingleStep: TadakStep.typingIsRequired(typingDetail: typingDetail))
             )
         )
     }

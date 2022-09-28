@@ -37,8 +37,9 @@ final class TadakListFlow: Flow {
                 forwardToParentFlowWithStep: step
             )
             
-        case .compositionIsPicked(let typingDetail):
-            return navigateToCompositionDetailScreen(typingDetail: typingDetail)
+        case .tadakCompositionIsPicked(let typingDetail, let score):
+            return navigateToCompositionDetailScreen(typingDetail: typingDetail,
+                                                     score: score)
             
         case .compositionDetailIsComplete:
             return popToRootScreen()
@@ -61,8 +62,12 @@ final class TadakListFlow: Flow {
 private extension TadakListFlow {
     
     func navigateToTadakListScreen() -> FlowContributors {
-        let useCase = useCaseProvider.makeCompositionUseCase()
-        let reactor = TadakListViewReactor(useCase: useCase)
+        let comositionUseCase = useCaseProvider.makeCompositionUseCase()
+        let recordUseCase = useCaseProvider.makeRecorduseCase()
+        let reactor = TadakListViewReactor(
+            compositionUseCase: comositionUseCase,
+            recordUseCase: recordUseCase
+        )
         let viewController = TadakListViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -74,8 +79,9 @@ private extension TadakListFlow {
         )
     }
     
-    func navigateToCompositionDetailScreen(typingDetail: TypingDetail) -> FlowContributors {
-        let reactor = CompositionDetailViewReactor(typingDetail: typingDetail)
+    func navigateToCompositionDetailScreen(typingDetail: TypingDetail, score: Int?) -> FlowContributors {
+        let reactor = CompositionDetailViewReactor(typingDetail: typingDetail,
+                                                   score: score)
         let viewController = CompositionDetailViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -121,7 +127,7 @@ private extension TadakListFlow {
             flowContributor: .contribute(
                 withNextPresentable: typingFlow,
                 withNextStepper: OneStepper(
-                    withSingleStep: TadakStep.typingIsRequired(withTypingDetail: typingDetail))
+                    withSingleStep: TadakStep.typingIsRequired(typingDetail: typingDetail))
             )
         )
     }

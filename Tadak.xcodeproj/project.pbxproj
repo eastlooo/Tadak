@@ -98,6 +98,7 @@
 		A7652D0E28E47A670023325B /* UseCaseProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0D28E47A670023325B /* UseCaseProviderProtocol.swift */; };
 		A7652D1028E482F10023325B /* InitializationUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */; };
 		A7652D1228E488990023325B /* ComposeParticipantsUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */; };
+		A7652D1428E4A9330023325B /* CompositionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7652D1328E4A9330023325B /* CompositionEvent.swift */; };
 		A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A765903228CE3769000EAD7F /* FirebaseAuthService.swift */; };
 		A765903928CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A765903828CE38FF000EAD7F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A765903B28CE38FF000EAD7F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A765903A28CE38FF000EAD7F /* FirebaseAuth */; };
@@ -227,8 +228,6 @@
 		A7F755CD28DE1AD400D434AB /* BettingResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755CC28DE1AD400D434AB /* BettingResultViewReactor.swift */; };
 		A7F755CF28DE275D00D434AB /* MakeCompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */; };
 		A7F755D228DEE82800D434AB /* MakeCompositionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */; };
-		A7F755D428DEEBBE00D434AB /* CreateCompositionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D328DEEBBE00D434AB /* CreateCompositionUseCase.swift */; };
-		A7F755D728DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D628DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift */; };
 		A7F755D928DEEECE00D434AB /* OfficialTypingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */; };
 		A7F755DB28DEEED500D434AB /* OfficialTypingViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */; };
 		A7F755DF28DEF1E000D434AB /* OfficialSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */; };
@@ -323,6 +322,7 @@
 		A7652D0D28E47A670023325B /* UseCaseProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProviderProtocol.swift; sourceTree = "<group>"; };
 		A7652D0F28E482F10023325B /* InitializationUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A7652D1128E488990023325B /* ComposeParticipantsUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeParticipantsUseCaseProtocol.swift; sourceTree = "<group>"; };
+		A7652D1328E4A9330023325B /* CompositionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionEvent.swift; sourceTree = "<group>"; };
 		A765903228CE3769000EAD7F /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		A765904028CE4A68000EAD7F /* ObservableType++Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType++Operator.swift"; sourceTree = "<group>"; };
 		A765904228CF1406000EAD7F /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
@@ -448,8 +448,6 @@
 		A7F755CC28DE1AD400D434AB /* BettingResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingResultViewReactor.swift; sourceTree = "<group>"; };
 		A7F755CE28DE275D00D434AB /* MakeCompositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionViewController.swift; sourceTree = "<group>"; };
 		A7F755D128DEE82800D434AB /* MakeCompositionViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCompositionViewReactor.swift; sourceTree = "<group>"; };
-		A7F755D328DEEBBE00D434AB /* CreateCompositionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompositionUseCase.swift; sourceTree = "<group>"; };
-		A7F755D628DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompositionUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A7F755D828DEEECE00D434AB /* OfficialTypingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialTypingViewController.swift; sourceTree = "<group>"; };
 		A7F755DA28DEEED500D434AB /* OfficialTypingViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialTypingViewReactor.swift; sourceTree = "<group>"; };
 		A7F755DE28DEF1E000D434AB /* OfficialSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialSuccessViewController.swift; sourceTree = "<group>"; };
@@ -651,7 +649,6 @@
 				A7820EEC28D70ADF00DD383A /* ComposeParticipants */,
 				A721EDD328D1BE92008B7353 /* Typing */,
 				A77F81C928DC3D9C0040CB0A /* BettingRecord */,
-				A7F755D528DEEBC400D434AB /* CreateComposition */,
 				A7652CFF28E37E6C0023325B /* Record */,
 			);
 			path = UseCase;
@@ -1277,6 +1274,7 @@
 				A7C1D2CF28E32B4D005D51EE /* Protocol */,
 				A7C1D2D028E32BC2005D51EE /* UserEvent.swift */,
 				A7652CF728E351B50023325B /* TypingEvent.swift */,
+				A7652D1328E4A9330023325B /* CompositionEvent.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -1559,15 +1557,6 @@
 			path = MakeComposition;
 			sourceTree = "<group>";
 		};
-		A7F755D528DEEBC400D434AB /* CreateComposition */ = {
-			isa = PBXGroup;
-			children = (
-				A7F755D628DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift */,
-				A7F755D328DEEBBE00D434AB /* CreateCompositionUseCase.swift */,
-			);
-			path = CreateComposition;
-			sourceTree = "<group>";
-		};
 		A7F755DD28DEF19600D434AB /* Official */ = {
 			isa = PBXGroup;
 			children = (
@@ -1755,9 +1744,9 @@
 				A7C1D2CB28E323CC005D51EE /* AnalyticsProvider.swift in Sources */,
 				A7652CFC28E37CFD0023325B /* RecordObject.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
-				A7F755D728DEEBD600D434AB /* CreateCompositionUseCaseProtocol.swift in Sources */,
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
 				A77F81D928DCB0E50040CB0A /* BettingResultTableView.swift in Sources */,
+				A7652D1428E4A9330023325B /* CompositionEvent.swift in Sources */,
 				A72E757928C5FD7A0028CE8D /* TadakTextField.swift in Sources */,
 				A7CE378428CC6A5C002ACAD5 /* Storable.swift in Sources */,
 				A7F755CF28DE275D00D434AB /* MakeCompositionViewController.swift in Sources */,
@@ -1837,7 +1826,6 @@
 				A7B4CCFA28C6FAB300D663D2 /* MyListViewController.swift in Sources */,
 				A77F81CB28DC3E3E0040CB0A /* BettingRecordUseCase.swift in Sources */,
 				A78B129128C79F0A0015BBA1 /* TypingDashboard.swift in Sources */,
-				A7F755D428DEEBBE00D434AB /* CreateCompositionUseCase.swift in Sources */,
 				A74ACC7928C9F2D600780433 /* OnboardingNicknameViewReactor.swift in Sources */,
 				A7CE37A028CCF86C002ACAD5 /* MyCompositionObject.swift in Sources */,
 				A7820EF528D76A7A00DD383A /* FirebaseRemoteConfigServiceProtocol.swift in Sources */,

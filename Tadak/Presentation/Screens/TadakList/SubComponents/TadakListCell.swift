@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 
+typealias TadakListCellItem = (composition: Composition, score: Int)
+
 final class TadakListCell: UITableViewCell {
     
     // MARK: Properties
@@ -93,8 +95,10 @@ final class TadakListCell: UITableViewCell {
 
 // MARK: Bind
 extension TadakListCell {
-    func bind(with composition: Composition) {
-        titleLabel.text = composition.title
-        artistLabel.text = composition.artist
+    
+    func bind(with item: TadakListCellItem) {
+        titleLabel.text = item.composition.title
+        artistLabel.text = item.composition.artist
+        rewardImageView.image = UIImage.reward(score: item.score)
     }
 }

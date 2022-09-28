@@ -63,7 +63,7 @@ extension MyListViewReactor {
             return composition
                 .withLatestFrom(_typingMode) { ($1, $0) }
                 .map(TypingDetail.init)
-                .map(TadakStep.compositionIsPicked)
+                .map(TadakStep.myCompositionIsPicked)
                 .do { [weak self] step in self?.steps.accept(step) }
                 .flatMap { _ in Observable<Mutation>.empty() }
                 .take(1)

@@ -20,22 +20,27 @@ final class TadakListViewReactor: Reactor, Stepper {
     
     enum Mutation {
         case setTypingMode(TypingMode)
-        case setItems([Composition])
+        case setItems([TadakListCellItem])
     }
     
     struct State {
         var typingMode: TypingMode = .practice
-        var items: [Composition] = []
+        var items: [TadakListCellItem] = []
     }
     
     var steps = PublishRelay<Step>()
     private let typingMode$: BehaviorSubject<TypingMode> = .init(value: .practice)
     
-    private let useCase: CompositionUseCaseProtocol
+    private let compositionUseCase: CompositionUseCaseProtocol
+    private let recordUseCase: RecordUseCaseProtocol
     let initialState: State
     
-    init(useCase: CompositionUseCaseProtocol) {
-        self.useCase = useCase
+    init(
+        compositionUseCase: CompositionUseCaseProtocol,
+        recordUseCase: RecordUseCaseProtocol
+    ) {
+        self.compositionUseCase = compositionUseCase
+        self.recordUseCase = recordUseCase
         self.initialState = State()
     }
     
@@ -55,11 +60,18 @@ extension TadakListViewReactor {
             return .empty()
             
         case .itemSelected(let indexPath):
-            return useCase.selectedTadakComposition(index: indexPath.row)
+            let recordUseCase = recordUseCase
+            
+            return compositionUseCase.selectedTadakComposition(index: indexPath.row)
                 .compactMap { $0 }
                 .withLatestFrom(typingMode$) { ($1, $0) }
                 .map(TypingDetail.init)
-                .map(TadakStep.compositionIsPicked)
+                .map { detail -> (TypingDetail, Int?) in
+                    let id = detail.composition.id
+                    let score = recordUseCase.getTypingSpeed(compositionID: id) ?? 0
+                    return (detail, score)
+                }
+                .map(TadakStep.tadakCompositionIsPicked)
                 .do(onNext: { [weak self] step in self?.steps.accept(step) })
                 .flatMap { _ in Observable<Mutation>.empty() }
                 .take(1)
@@ -81,13 +93,26 @@ extension TadakListViewReactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        let recordUseCase = recordUseCase
+        
+        let setItems = compositionUseCase.tadakComposition
+            .compactMap(\.?.compositions)
+            .map { compostions -> [TadakListCellItem] in
+                compostions.map { composition -> TadakListCellItem in
+                    let id = composition.id
+                    let score = recordUseCase.getTypingSpeed(compositionID: id) ?? 0
+                    return(composition, score)
+                }
+            }
+            .map(Mutation.setItems)
+            
+        let setTypingMode = typingMode$
+            .map(Mutation.setTypingMode)
+        
         return .merge(
             mutation,
-            useCase.tadakComposition
-                .compactMap { $0?.compositions }
-                .map(Mutation.setItems),
-            typingMode$
-                .map(Mutation.setTypingMode)
+            setItems,
+            setTypingMode
         )
     }
 }
