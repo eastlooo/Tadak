@@ -142,24 +142,24 @@ extension OnboardingNicknameViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.state.map(\.characterID)
+        reactor.pulse(\.$characterID)
             .map(UIImage.character)
             .bind(to: characterButton.rx.image(for: .normal))
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.nicknameMaxLength)
+        reactor.pulse(\.$nicknameMaxLength)
             .bind(to: textField.rx.maxLength)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.validate)
+        reactor.pulse(\.$validate)
             .bind(to: registerButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.correctedText)
+        reactor.pulse(\.$correctedText)
             .bind(to: textField.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.loaderAppear)
+        reactor.pulse(\.$loaderAppear)
             .compactMap { $0 }
             .distinctUntilChanged()
             .bind(to: Loader.rx.show)

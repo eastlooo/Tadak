@@ -24,8 +24,8 @@ final class TadakListViewReactor: Reactor, Stepper {
     }
     
     struct State {
-        var typingMode: TypingMode = .practice
-        var items: [TadakListCellItem] = []
+        @Pulse var typingMode: TypingMode = .practice
+        @Pulse var items: [TadakListCellItem] = []
     }
     
     var steps = PublishRelay<Step>()

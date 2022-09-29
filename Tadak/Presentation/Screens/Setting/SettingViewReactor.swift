@@ -53,45 +53,71 @@ final class SettingViewReactor: Reactor, Stepper {
 extension SettingViewReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
-        let canSendMail = settingUseCase.canSendMail()
         switch action {
         case .homeButtonTapped:
             steps.accept(TadakStep.settingsIsComplete)
             return .empty()
             
         case .itemSelected(let indexPath):
-            return pulse(\.$items)
-                .map { $0[indexPath.section] }
-                .map { $0[indexPath.row] }
-                .compactMap { setting -> TadakStep? in
-                    switch setting {
-                    case .profile:
-                        return nil
-                        
-                    case .clearAllData:
-                        return .resetAlertIsRequired
-                        
-                    case .contact:
-                        return canSendMail ? .contactMailIsRequired : .mailDisableAlertIsRequired
-                    }
-                }
-                .do { [weak self] step in self?.steps.accept(step) }
-                .flatMap { _ in Observable<Mutation>.empty() }
+            return mutateItemSelectedAction(indexPath: indexPath)
             
         case .reset:
-            let reset = settingUseCase.reset(user: user)
-                .debugError()
-                .do { _ in AnalyticsManager.log(UserEvent.delete) }
-                .map { TadakStep.onboardingIsRequired }
-                .do { [weak self] step in self?.steps.accept(step) }
-                .map { _ in Mutation.showLoader(false) }
-                .take(1)
-                .asDriver(onErrorJustReturn: .showLoader(false))
-            
-            return Observable.concat([
-                .just(.showLoader(true)),
-                reset.asObservable()
-            ])
+            return mutateResetAction()
         }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        
+        switch mutation {
+        case .showLoader(let show):
+            state.loaderAppear = show
+        }
+        
+        return state
+    }
+}
+
+private extension SettingViewReactor {
+    
+    func mutateItemSelectedAction(indexPath: IndexPath) -> Observable<Mutation> {
+        let canSendMail = settingUseCase.canSendMail()
+        
+        return pulse(\.$items)
+            .map { $0[indexPath.section] }
+            .map { $0[indexPath.row] }
+            .compactMap { setting -> TadakStep? in
+                switch setting {
+                case .profile:
+                    return nil
+                    
+                case .clearAllData:
+                    return .resetAlertIsRequired
+                    
+                case .contact:
+                    return canSendMail ? .contactMailIsRequired : .mailDisableAlertIsRequired
+                }
+            }
+            .do { [weak self] step in self?.steps.accept(step) }
+            .flatMap { _ in Observable<Mutation>.empty() }
+    }
+    
+    func mutateResetAction() -> Observable<Mutation> {
+        let reset = settingUseCase.reset(user: user)
+            .take(1)
+            .debugError()
+            .do { _ in AnalyticsManager.log(UserEvent.delete) }
+            .map { _ in Mutation.showLoader(false) }
+            .asDriver(onErrorJustReturn: .showLoader(false))
+        
+        let step = Observable<TadakStep>.just(.onboardingIsRequired)
+            .do { [weak self] step in self?.steps.accept(step) }
+            .flatMap { _ in Observable<Mutation>.empty() }
+        
+        return Observable.concat([
+            .just(.showLoader(true)),
+            reset.asObservable(),
+            step
+        ])
     }
 }

@@ -33,6 +33,7 @@ final class PodiumView: UIView {
     
     // MARK: Helpers
     private func configure(){
+        self.clipsToBounds = true
         self.backgroundColor = rank.matchedColor
         prizeImageView.image = UIImage(named: "winner-\(rank.rawValue)")
     }

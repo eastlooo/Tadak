@@ -54,6 +54,7 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
 }
 
 extension OnboardingNicknameViewReactor {
+    
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .characterButtonTapped:
@@ -106,6 +107,7 @@ extension OnboardingNicknameViewReactor {
 }
 
 private extension OnboardingNicknameViewReactor {
+    
     func flowWhenregisterButtonTapped() -> Observable<Mutation> {
         let existDuplication = useCase.checkNicknameDuplication()
             .take(1)

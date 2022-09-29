@@ -120,22 +120,22 @@ extension TadakListViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.state.map(\.typingMode)
+        reactor.pulse(\.$typingMode)
             .map { $0 != .practice }
             .bind(to: practiceModeButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.typingMode)
+        reactor.pulse(\.$typingMode)
             .map { $0 != .official }
             .bind(to: officialModeButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.typingMode)
+        reactor.pulse(\.$typingMode)
             .map { $0 != .betting }
             .bind(to: bettingModeButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map(\.items)
+        reactor.pulse(\.$items)
             .bind(to: tableView.rx.items)
             .disposed(by: disposeBag)
     }

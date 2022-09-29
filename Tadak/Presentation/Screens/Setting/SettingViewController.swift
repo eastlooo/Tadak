@@ -77,6 +77,12 @@ extension SettingViewController: View {
         reactor.pulse(\.$items)
             .bind(to: tableView.rx.items)
             .disposed(by: disposeBag)
+        
+        reactor.pulse(\.$loaderAppear)
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .bind(to: Loader.rx.show)
+            .disposed(by: disposeBag)
     }
 }
 

@@ -11,6 +11,9 @@
 		A70A5EF728E5D1CC00502984 /* ResetAlertReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A5EF628E5D1CC00502984 /* ResetAlertReactor.swift */; };
 		A70A5EFA28E5DE7C00502984 /* SettingUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A5EF928E5DE7C00502984 /* SettingUseCaseProtocol.swift */; };
 		A70A5EFC28E5DE8800502984 /* SettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A5EFB28E5DE8800502984 /* SettingUseCase.swift */; };
+		A70A5F0028E6093B00502984 /* TableViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A5EFF28E6093B00502984 /* TableViewAnimator.swift */; };
+		A70A5F0228E60A3100502984 /* TableAnimationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A5F0128E60A3100502984 /* TableAnimationProvider.swift */; };
+		A70A5F0428E60B5900502984 /* TableAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70A5F0328E60B5900502984 /* TableAnimation.swift */; };
 		A721EDD228D1AEA8008B7353 /* TypingAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */; };
 		A721EDD528D1BEA1008B7353 /* TypingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD428D1BEA1008B7353 /* TypingUseCase.swift */; };
 		A721EDD728D1C59C008B7353 /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A721EDD628D1C59C008B7353 /* Rx+UIViewController.swift */; };
@@ -254,6 +257,9 @@
 		A70A5EF628E5D1CC00502984 /* ResetAlertReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetAlertReactor.swift; sourceTree = "<group>"; };
 		A70A5EF928E5DE7C00502984 /* SettingUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A70A5EFB28E5DE8800502984 /* SettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUseCase.swift; sourceTree = "<group>"; };
+		A70A5EFF28E6093B00502984 /* TableViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAnimator.swift; sourceTree = "<group>"; };
+		A70A5F0128E60A3100502984 /* TableAnimationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAnimationProvider.swift; sourceTree = "<group>"; };
+		A70A5F0328E60B5900502984 /* TableAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAnimation.swift; sourceTree = "<group>"; };
 		A721EDD128D1AEA8008B7353 /* TypingAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingAttributes.swift; sourceTree = "<group>"; };
 		A721EDD428D1BEA1008B7353 /* TypingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingUseCase.swift; sourceTree = "<group>"; };
 		A721EDD628D1C59C008B7353 /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
@@ -524,6 +530,24 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		A70A5EFE28E6091C00502984 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A70A5F0528E60C4C00502984 /* TableView */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		A70A5F0528E60C4C00502984 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A70A5EFF28E6093B00502984 /* TableViewAnimator.swift */,
+				A70A5F0128E60A3100502984 /* TableAnimationProvider.swift */,
+				A70A5F0328E60B5900502984 /* TableAnimation.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		A721EDD328D1BE92008B7353 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,6 +706,7 @@
 			children = (
 				A72E757A28C5FFB60028CE8D /* Views */,
 				A758072C28C50EF60073D03A /* Protocol */,
+				A70A5EFE28E6091C00502984 /* Animations */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1803,6 +1828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A70A5F0028E6093B00502984 /* TableViewAnimator.swift in Sources */,
 				A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */,
 				A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */,
 				A78E6B6328E1D78800347640 /* CompositionRepositoryProtocol.swift in Sources */,
@@ -1905,6 +1931,7 @@
 				A7F755BC28DDA2BC00D434AB /* PracticeResultTableView.swift in Sources */,
 				A7652D0C28E47A620023325B /* UseCaseProvider.swift in Sources */,
 				A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */,
+				A70A5F0228E60A3100502984 /* TableAnimationProvider.swift in Sources */,
 				A7B4CD0328C6FD9600D663D2 /* MyListHeaderView.swift in Sources */,
 				A7F755C228DDFECD00D434AB /* TypingText.swift in Sources */,
 				A746E48728D08D63009639A7 /* CompositionUseCase.swift in Sources */,
@@ -1938,6 +1965,7 @@
 				A74ACCA428CA6B1200780433 /* Encodable++.swift in Sources */,
 				A746E48128D077DB009639A7 /* TadakStep.swift in Sources */,
 				A77F81BC28DAF5120040CB0A /* BettingTypingViewController.swift in Sources */,
+				A70A5F0428E60B5900502984 /* TableAnimation.swift in Sources */,
 				A7CE378E28CCCFAC002ACAD5 /* RealmError.swift in Sources */,
 				A77F81DC28DCB36B0040CB0A /* PodiumView.swift in Sources */,
 				A7F755BE28DDA3A100D434AB /* PracticeResultCell.swift in Sources */,

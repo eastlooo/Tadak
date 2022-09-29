@@ -140,11 +140,11 @@ extension OfficialTypingViewReactor {
     }
     
     func transform(action: Observable<Action>) -> Observable<Action> {
-//        let abused = useCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
+        let abused = useCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
         
         return .merge(
-            action
-//            abused
+            action,
+            abused
         )
     }
     

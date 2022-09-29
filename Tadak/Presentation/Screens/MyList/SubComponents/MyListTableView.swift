@@ -12,7 +12,19 @@ import RxCocoa
 final class MyListTableView: UITableView {
     
     // MARK: Properties
-    var items: [MyComposition] = []
+    var items: [MyComposition] = [] {
+        didSet {
+            self.animatedList = self.items.map { _ in true }
+            
+            DispatchQueue.main.async {
+                self.reloadData()
+            }
+        }
+    }
+    
+    var tableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 100, duration: 0.4, delay: 0.03)
+    
+    private var animatedList: [Bool] = []
     
     fileprivate let _delete = PublishRelay<IndexPath>()
     
@@ -57,6 +69,16 @@ extension MyListTableView: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MyListTableView: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard animatedList[indexPath.row] else { return }
+        
+        let animation = tableAnimation.getAnimation()
+        let animator = TableViewAnimator(animation: animation)
+        animator.animate(tableView, cell: cell, at: indexPath)
+        
+        self.animatedList[indexPath.row] = false
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "지우기") { [weak self] action, view, completion in
             self?.items.remove(at: indexPath.row)
@@ -73,16 +95,17 @@ extension MyListTableView: UITableViewDelegate {
     }
 }
 
-// MARK: Binder
+// MARK: - Rx+Extension
 extension Reactive where Base: MyListTableView {
     
+    // MARK: Binder
     var items: Binder<[MyComposition]> {
         return Binder(base) { base, items in
             base.items = items
-            base.reloadData()
         }
     }
     
+    // MARK: ControlEvent
     var deleteItem: ControlEvent<IndexPath> {
         return ControlEvent(events: base._delete)
     }

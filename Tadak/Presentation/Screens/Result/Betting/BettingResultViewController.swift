@@ -8,11 +8,14 @@
 import UIKit
 import SnapKit
 import ReactorKit
+import RxRelay
 
 final class BettingResultViewController: UIViewController {
     
     // MARK: Properties
     var disposeBag = DisposeBag()
+    
+    private let _animated = PublishRelay<Void>()
     
     private let navigationView = HomeButtonTypeNavigationView()
     private let podiumView = BettingPodiumView()
@@ -26,6 +29,14 @@ final class BettingResultViewController: UIViewController {
         
         configure()
         layout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        podiumView.animateShow { [weak self] in
+            self?._animated.accept(Void())
+        }
     }
     
     // MARK: Helpers
@@ -52,7 +63,7 @@ final class BettingResultViewController: UIViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.top.equalTo(podiumView.snp.bottom)
+            $0.top.equalTo(podiumView.snp.bottom).offset(-4)
             $0.left.right.bottom.equalToSuperview()
         }
     }
@@ -70,7 +81,9 @@ extension BettingResultViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: State
-        reactor.pulse(\.$items)
+        Observable
+            .combineLatest(_animated, reactor.pulse(\.$items))
+            .map(\.1)
             .bind(to: tableView.rx.items)
             .disposed(by: disposeBag)
         

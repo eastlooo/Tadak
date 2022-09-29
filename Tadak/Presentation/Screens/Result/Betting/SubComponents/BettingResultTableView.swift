@@ -11,7 +11,19 @@ import RxSwift
 final class BettingResultTableView: UITableView {
     
     // MARK: Properties
-    var items: [Rank] = []
+    var items: [Rank] = [] {
+        didSet {
+            self.animatedList = self.items.map { _ in true }
+            
+            DispatchQueue.main.async {
+                self.reloadData()
+            }
+        }
+    }
+    
+    var tableAnimation: TableAnimation = .fadeIn(duration: 0.8, delay: 0.05)
+    
+    private var animatedList: [Bool] = []
     
     // MARK: Lifecycle
     init() {
@@ -28,6 +40,7 @@ final class BettingResultTableView: UITableView {
     // MARK: Helpers
     private func configure() {
         self.dataSource = self
+        self.delegate = self
         
         self.backgroundColor = .white
         self.showsVerticalScrollIndicator = false
@@ -60,12 +73,27 @@ extension BettingResultTableView: UITableViewDataSource {
     }
 }
 
-// MARK: Binder
+// MARK: - UITableViewDelegate
+extension BettingResultTableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard animatedList[indexPath.row] else { return }
+        
+        let animation = tableAnimation.getAnimation()
+        let animator = TableViewAnimator(animation: animation)
+        animator.animate(tableView, cell: cell, at: indexPath)
+        
+        self.animatedList[indexPath.row] = false
+    }
+}
+
+// MARK: - Rx+Extension
 extension Reactive where Base: BettingResultTableView {
+    
+    // MARK: Binder
     var items: Binder<[Rank]> {
         return Binder(base) { base, element in
             base.items = element
-            base.reloadData()
         }
     }
 }

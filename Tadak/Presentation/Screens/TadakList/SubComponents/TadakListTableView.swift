@@ -11,7 +11,19 @@ import RxSwift
 final class TadakListTableView: UITableView {
     
     // MARK: Properties
-    var items: [TadakListCellItem] = []
+    var items: [TadakListCellItem] = [] {
+        didSet {
+            self.animatedList = self.items.map { _ in true }
+            
+            DispatchQueue.main.async {
+                self.reloadData()
+            }
+        }
+    }
+    
+    var tableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 100, duration: 0.4, delay: 0.03)
+    
+    private var animatedList: [Bool] = []
     
     // MARK: Lifecycle
     init() {
@@ -27,6 +39,7 @@ final class TadakListTableView: UITableView {
     // MARK: Helpers
     private func configure() {
         self.dataSource = self
+        self.delegate = self
         
         self.backgroundColor = .customNavy
         self.showsVerticalScrollIndicator = false
@@ -50,13 +63,27 @@ extension TadakListTableView: UITableViewDataSource {
     }
 }
 
-// MARK: Binder
+// MARK: - UITableViewDelegate
+extension TadakListTableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard animatedList[indexPath.row] else { return }
+        
+        let animation = tableAnimation.getAnimation()
+        let animator = TableViewAnimator(animation: animation)
+        animator.animate(tableView, cell: cell, at: indexPath)
+        
+        self.animatedList[indexPath.row] = false
+    }
+}
+
+// MARK: - Rx+Extension
 extension Reactive where Base: TadakListTableView {
     
+    // MARK: Binder
     var items: Binder<[TadakListCellItem]> {
         return Binder(base) { base, element in
             base.items = element
-            base.reloadData()
         }
     }
 }
