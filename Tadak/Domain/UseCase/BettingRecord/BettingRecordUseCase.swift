@@ -26,6 +26,8 @@ final class BettingRecordUseCase: BettingRecordUseCaseProtocol {
             .map { _ in }
     }
     
+    let numOfParticipants: Int
+    
     private let disposeBag = DisposeBag()
     
     private let _participants: BehaviorRelay<[String]>
@@ -35,6 +37,7 @@ final class BettingRecordUseCase: BettingRecordUseCaseProtocol {
     
     init(participants: [String]) {
         let shuffled = participants.shuffled().shuffled().shuffled()
+        self.numOfParticipants = participants.count
         self._participants = .init(value: shuffled)
         
         bind()

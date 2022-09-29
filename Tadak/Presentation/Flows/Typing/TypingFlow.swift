@@ -59,14 +59,17 @@ final class TypingFlow: Flow {
         case .practiceResultIsRequired(let practiceResult):
             return navigateToPracticeResultScreen(practiceResult: practiceResult)
             
-        case .officialSuccessIsRequired(let record):
-            return navigateToOfficialSuccessScreen(record: record)
+        case .officialSuccessIsRequired(let title, let record):
+            return navigateToOfficialSuccessScreen(title: title, record: record)
             
         case .officialFailureIsRequired(let typingSpeed):
             return navigateToOfficialFailureScreen(typingSpeed: typingSpeed)
             
-        case .bettingResultIsRequired(let ranking):
-            return navigateToBettingResultScreen(ranking: ranking)
+        case .bettingResultIsRequired(let composition, let ranking):
+            return navigateToBettingResultScreen(composition: composition, ranking: ranking)
+            
+        case .shareResultIsRequired(let title, let score):
+            return presentShareScreen(title: title, score: score)
             
         case .typingIsRequiredAgain:
             return popCurrentScreen()
@@ -137,9 +140,10 @@ private extension TypingFlow {
         )
     }
     
-    func navigateToOfficialSuccessScreen(record: Record) -> FlowContributors {
+    func navigateToOfficialSuccessScreen(title: String, record: Record) -> FlowContributors {
         let recordUseCase = useCaseProvider.makeRecorduseCase()
-        let reactor = OfficialSuccessViewReactor(record: record,
+        let reactor = OfficialSuccessViewReactor(title: title,
+                                                 record: record,
                                                  recordUseCase: recordUseCase)
         let viewController = OfficialSuccessViewController()
         viewController.reactor = reactor
@@ -165,8 +169,8 @@ private extension TypingFlow {
         )
     }
     
-    func navigateToBettingResultScreen(ranking: [Rank]) -> FlowContributors {
-        let reactor = BettingResultViewReactor(ranking: ranking)
+    func navigateToBettingResultScreen(composition: any Composition, ranking: [Rank]) -> FlowContributors {
+        let reactor = BettingResultViewReactor(composition: composition, ranking: ranking)
         let viewController = BettingResultViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
@@ -176,6 +180,17 @@ private extension TypingFlow {
                 withNextStepper: reactor
             )
         )
+    }
+    
+    func presentShareScreen(title: String, score: Int) -> FlowContributors {
+        if let visibleViewController = self.rootViewController.visibleViewController {
+            let text = "[타닥타닥]\n스마트폰 타자 측정\n\(title) - \(score)타 기록"
+            let viewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+            viewController.popoverPresentationController?.sourceView = visibleViewController.view
+            visibleViewController.present(viewController, animated: true)
+        }
+        
+        return .none
     }
     
     func popCurrentScreen() -> FlowContributors {

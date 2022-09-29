@@ -20,14 +20,14 @@ final class MyListViewController: UIViewController {
     
     private let practiceModeButton: BorderedButton = {
         let button = BorderedButton()
-        button.title = "연습 모드"
+        button.title = TypingMode.practice.description
         button.titleFont = .notoSansKR(ofSize: 14, weight: .bold)
         return button
     }()
 
     private let bettingModeButton: BorderedButton = {
         let button = BorderedButton()
-        button.title = "내기 모드"
+        button.title = TypingMode.betting.description
         button.titleFont = .notoSansKR(ofSize: 14, weight: .bold)
         return button
     }()

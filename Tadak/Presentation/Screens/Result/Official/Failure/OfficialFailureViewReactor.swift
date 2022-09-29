@@ -44,6 +44,7 @@ extension OfficialFailureViewReactor {
             return .empty()
             
         case .retryButtonTapped:
+            AnalyticsManager.log(TypingEvent.retry)
             steps.accept(TadakStep.typingIsRequiredAgain)
             return .empty()
         }

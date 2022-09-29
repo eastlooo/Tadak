@@ -27,13 +27,16 @@ final class OfficialSuccessViewReactor: Reactor, Stepper {
     let initialState: State
     
     private let disposeBag = DisposeBag()
+    private let title: String
     private let record: Record
     private let recordUseCase: RecordUseCaseProtocol
     
     init(
+        title: String,
         record: Record,
         recordUseCase: RecordUseCaseProtocol
     ) {
+        self.title = title
         self.record = record
         self.recordUseCase = recordUseCase
         self.initialState = State(tyingSpeed: record.typingSpeed)
@@ -42,7 +45,7 @@ final class OfficialSuccessViewReactor: Reactor, Stepper {
             .bind(onNext: { _ in })
             .disposed(by: disposeBag)
         
-        AnalyticsManager.log(TypingEvent.resultTadakOfficial(record: record))
+        AnalyticsManager.log(TypingEvent.resultTadakOfficial(title: title, record: record))
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -57,7 +60,8 @@ extension OfficialSuccessViewReactor {
             return .empty()
             
         case .shareButtonTapped:
-            
+            AnalyticsManager.log(TypingEvent.share)
+            steps.accept(TadakStep.shareResultIsRequired(title: title, score: record.typingSpeed))
             return .empty()
         }
     }

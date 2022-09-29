@@ -50,7 +50,7 @@ final class BettingTypingViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .customNavy
         
-//        navigationView.title = "내기 모드"
+        navigationView.title = TypingMode.betting.description
         typingSheet.typingFont = typingFont
     }
     

@@ -50,7 +50,7 @@ final class OfficialTypingViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .customNavy
         
-        navigationView.title = "실전 모드"
+        navigationView.title = TypingMode.official.description
         typingSheet.typingFont = typingFont
     }
     

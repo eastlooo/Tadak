@@ -7,7 +7,7 @@
 
 struct PracticeResult {
     
-    let title: String
+    let composition: any Composition
     let record: Record
     let typingTexts: [TypingText]
 }

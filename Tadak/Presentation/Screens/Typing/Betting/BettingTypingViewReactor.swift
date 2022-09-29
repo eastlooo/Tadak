@@ -59,6 +59,20 @@ final class BettingTypingViewReactor: Reactor, Stepper {
         self.initialState = State(title: composition.title)
         
         bind()
+        
+        let title = composition.title
+        let artist = composition.artist
+        let number = recordUseCase.numOfParticipants
+        
+        if composition is TadakComposition {
+            AnalyticsManager.log(TypingEvent.startTadakBetting(title: title,
+                                                               artist: artist,
+                                                               numOfParticipants: number))
+        } else if composition is MyComposition {
+            AnalyticsManager.log(TypingEvent.startMyBetting(title: title,
+                                                               artist: artist,
+                                                               numOfParticipants: number))
+        }
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -158,8 +172,9 @@ extension BettingTypingViewReactor {
 private extension BettingTypingViewReactor {
     
     func bind() {
+        let composition = composition
         recordUseCase.finished
-            .withLatestFrom(recordUseCase.getRankingTable())
+            .withLatestFrom(recordUseCase.getRankingTable()) { (composition, $1) }
             .map(TadakStep.bettingResultIsRequired)
             .bind(to: steps)
             .disposed(by: disposeBag)

@@ -58,6 +58,13 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         self.initialState = State(title: composition.title)
         
         bind()
+        
+        let title = composition.title
+        let artist = composition.artist
+        
+        if composition is TadakComposition {
+            AnalyticsManager.log(TypingEvent.startTadakOfficial(title: title, artist: artist))
+        }
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -168,11 +175,13 @@ extension OfficialTypingViewReactor {
 private extension OfficialTypingViewReactor {
     
     func bind() {
+        let title = composition.title
         let record = useCase.getRecord()
+        
         useCase.finished
             .withLatestFrom(useCase.accuracy)
             .filter { $0 == 100 }
-            .withLatestFrom(record)
+            .withLatestFrom(record) { (title, $1) }
             .map(TadakStep.officialSuccessIsRequired)
             .take(1)
             .bind(to: steps)

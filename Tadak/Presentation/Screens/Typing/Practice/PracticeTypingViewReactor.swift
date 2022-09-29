@@ -54,6 +54,15 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         self.initialState = State(title: composition.title)
         
         bind()
+        
+        let title = composition.title
+        let artist = composition.artist
+        
+        if composition is TadakComposition {
+            AnalyticsManager.log(TypingEvent.startTadakPractice(title: title, artist: artist))
+        } else if composition is MyComposition {
+            AnalyticsManager.log(TypingEvent.startMyPractice(title: title, artist: artist))
+        }
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -141,13 +150,13 @@ extension PracticeTypingViewReactor {
 private extension PracticeTypingViewReactor {
     
     func bind() {
-        let title = composition.title
+        let composition = composition
         let record = useCase.getRecord()
         let typingTexts = useCase.getTypingTexts()
         
         let practiceResult = Observable
             .combineLatest(record, typingTexts)
-            .map { (title, $0, $1) }
+            .map { (composition, $0, $1) }
             .map(PracticeResult.init)
         
         useCase.finished

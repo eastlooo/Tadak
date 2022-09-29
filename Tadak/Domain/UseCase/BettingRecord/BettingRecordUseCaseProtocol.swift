@@ -10,6 +10,8 @@ import RxSwift
 
 protocol BettingRecordUseCaseProtocol {
     
+    var numOfParticipants: Int { get }
+    
     var participant: Observable<String> { get }
     var finished: Observable<Void> { get }
     

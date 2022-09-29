@@ -14,7 +14,7 @@ enum TypingMode {
     var description: String {
         switch self {
         case .practice: return "연습 모드"
-        case .official: return "실전 모드"
+        case .official: return "공식 모드"
         case .betting: return "내기 모드"
         }
     }

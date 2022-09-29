@@ -29,12 +29,21 @@ final class PracticeResultViewReactor: Reactor, Stepper {
     let initialState: State
     
     init(practiceResult: PracticeResult) {
-       
         self.initialState = State(
-            title: practiceResult.title,
+            title: practiceResult.composition.title,
             record: practiceResult.record,
             items: practiceResult.typingTexts
         )
+        
+        let composition = practiceResult.composition
+        let title = composition.title
+        let record = practiceResult.record
+        
+        if composition is TadakComposition {
+            AnalyticsManager.log(TypingEvent.resultTadakPractice(title: title, record: record))
+        } else if composition is MyComposition {
+            AnalyticsManager.log(TypingEvent.resultMyPractice(title: title, record: record))
+        }
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }

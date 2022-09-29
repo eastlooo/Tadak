@@ -28,8 +28,19 @@ final class BettingResultViewReactor: Reactor, Stepper {
     
     let initialState: State
     
-    init(ranking: [Rank]) {
+    init(composition: any Composition, ranking: [Rank]) {
         self.initialState = State(items: ranking)
+        
+        let title = composition.title
+        let records = ranking.map(\.record)
+        
+        if composition is TadakComposition {
+            AnalyticsManager.log(TypingEvent.resultTadakBetting(title: title,
+                                                                records: records))
+        } else if composition is MyComposition {
+            AnalyticsManager.log(TypingEvent.resultMyBetting(title: title,
+                                                             records: records))
+        }
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
