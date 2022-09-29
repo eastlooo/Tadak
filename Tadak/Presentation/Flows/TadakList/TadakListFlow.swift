@@ -27,15 +27,8 @@ final class TadakListFlow: Flow {
         case .tadakListIsRequired:
             return navigateToTadakListScreen()
             
-        case .listIsComplete:
-            return .end(
-                forwardToParentFlowWithStep: TadakStep.listIsComplete
-            )
-            
-        case .abused:
-            return .end(
-                forwardToParentFlowWithStep: step
-            )
+        case .listIsComplete, .abused:
+            return .end(forwardToParentFlowWithStep: step)
             
         case .tadakCompositionIsPicked(let typingDetail, let score):
             return navigateToCompositionDetailScreen(typingDetail: typingDetail,
@@ -63,7 +56,7 @@ private extension TadakListFlow {
     
     func navigateToTadakListScreen() -> FlowContributors {
         let comositionUseCase = useCaseProvider.makeCompositionUseCase()
-        let recordUseCase = useCaseProvider.makeRecorduseCase()
+        let recordUseCase = useCaseProvider.makeRecordUseCase()
         let reactor = TadakListViewReactor(
             compositionUseCase: comositionUseCase,
             recordUseCase: recordUseCase

@@ -7,8 +7,10 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
-final class AlertController: UIViewController {
+class AlertController: UIViewController {
     
     // MARK: Properties
     var alertTitle: String? {
@@ -18,6 +20,8 @@ final class AlertController: UIViewController {
     var alertMessage: String? {
         didSet { messageLabel.text = alertMessage }
     }
+    
+    var autoDismissMode: Bool = true
     
     private var defaultAlertAction: AlertAction?
     private var cancelAlertAction: AlertAction?
@@ -70,7 +74,7 @@ final class AlertController: UIViewController {
         return label
     }()
     
-    private lazy var defaultButton: UIButton = {
+    fileprivate lazy var defaultButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .customCoral
         button.setTitleColor(UIColor.white, for: .normal)
@@ -79,7 +83,7 @@ final class AlertController: UIViewController {
         return button
     }()
     
-    private lazy var cancelButton: UIButton = {
+    fileprivate lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .gray
         button.setTitleColor(UIColor.white, for: .normal)
@@ -103,11 +107,35 @@ final class AlertController: UIViewController {
         animatePresentContainer()
     }
     
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        if flag {
+            UIView.animate(withDuration: 0.1) {
+                self.containerView.isHidden = true
+                self.view.layoutIfNeeded()
+            }
+            
+            dimmedView.alpha = maxDimmedAlpha
+            UIView.animate(withDuration: 0.1) {
+                self.dimmedView.alpha = 0
+            } completion: { _ in
+                super.dismiss(animated: false, completion: completion)
+            }
+        } else {
+            super.dismiss(animated: flag, completion: completion)
+        }
+    }
+    
     // MARK: Actions
     @objc
     private func defaultButtonHandler() {
-        animateDismissView { [weak self] in
-            self?.defaultAlertAction.map {
+        if autoDismissMode {
+            dismiss(animated: true) { [weak self] in
+                self?.defaultAlertAction.map {
+                    self?.defaultButtonActionHandler?($0)
+                }
+            }
+        } else {
+            defaultAlertAction.map { [weak self] in
                 self?.defaultButtonActionHandler?($0)
             }
         }
@@ -115,8 +143,14 @@ final class AlertController: UIViewController {
     
     @objc
     private func cancelButtonHandler() {
-        animateDismissView { [weak self] in
-            self?.cancelAlertAction.map {
+        if autoDismissMode {
+            dismiss(animated: true) { [weak self] in
+                self?.cancelAlertAction.map {
+                    self?.cancelButtonActionHandler?($0)
+                }
+            }
+        } else {
+            cancelAlertAction.map { [weak self] in
                 self?.cancelButtonActionHandler?($0)
             }
         }
@@ -133,22 +167,6 @@ final class AlertController: UIViewController {
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn) {
             self.containerView.isHidden = false
             self.view.layoutIfNeeded()
-        }
-    }
-    
-    private func animateDismissView(completion: (() -> Void)? = nil) {
-        UIView.animate(withDuration: 0.1) {
-            self.containerView.isHidden = true
-            self.view.layoutIfNeeded()
-        }
-        
-        dimmedView.alpha = maxDimmedAlpha
-        UIView.animate(withDuration: 0.1) {
-            self.dimmedView.alpha = 0
-        } completion: { _ in
-            self.dismiss(animated: false) {
-                completion?()
-            }
         }
     }
     
@@ -193,6 +211,7 @@ final class AlertController: UIViewController {
 }
 
 extension AlertController {
+    
     func addAction(_ action: AlertAction) {
         switch action.style {
         case .default:
@@ -209,5 +228,18 @@ extension AlertController {
                 cancelButtonActionHandler = action.handler
             }
         }
+    }
+}
+
+// MARK: Rx+Extension
+extension Reactive where Base: AlertController {
+    
+    // MARK: ControlEvent
+    var defaultButtonTapped: ControlEvent<Void> {
+        return base.defaultButton.rx.tap
+    }
+    
+    var cancelButtonTapped: ControlEvent<Void> {
+        return base.cancelButton.rx.tap
     }
 }

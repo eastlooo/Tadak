@@ -39,11 +39,17 @@ final class MainFlow: Flow {
         case .myListIsRequired:
             return navigateToMyListScreen()
             
-        case .listIsComplete:
+        case .listIsComplete, .settingsIsComplete:
             return dismissPresentedScreen()
             
         case .abused(let abuse):
             return dismissAndPresentAbuseAlert(abuse)
+            
+        case .settingsIsRequired(let user):
+            return navigateToSettingScreen(user: user)
+            
+        case .onboardingIsRequired:
+            return switchToOnboardingScreen()
             
         default:
             return .none
@@ -51,9 +57,9 @@ final class MainFlow: Flow {
     }
 }
 
-extension MainFlow {
+private extension MainFlow {
     
-    private func navigateToInitializationScreen(user: TadakUser) -> FlowContributors {
+    func navigateToInitializationScreen(user: TadakUser) -> FlowContributors {
         let useCase = useCaseProvider.makeInitializationUseCase()
         let reactor = InitializationViewReactor(user: user, initializationUseCase: useCase)
         let viewController = InitializationViewController()
@@ -67,7 +73,7 @@ extension MainFlow {
         )
     }
     
-    private func navigateToMainScreen(user: TadakUser) -> FlowContributors {
+    func navigateToMainScreen(user: TadakUser) -> FlowContributors {
         let reactor = TadakMainViewReactor(user: user)
         let viewController = TadakMainViewController()
         viewController.reactor = reactor
@@ -80,7 +86,7 @@ extension MainFlow {
         )
     }
     
-    private func navigateToTadakListScreen() -> FlowContributors {
+    func navigateToTadakListScreen() -> FlowContributors {
         let tadakListFlow = TadakListFlow(useCaseProvider: useCaseProvider)
         
         Flows.use(tadakListFlow, when: .created) { root in
@@ -97,7 +103,7 @@ extension MainFlow {
         )
     }
     
-    private func dismissPresentedScreen() -> FlowContributors {
+    func dismissPresentedScreen() -> FlowContributors {
         if let viewController = self.rootViewController.presentedViewController {
             DispatchQueue.main.async {
                 viewController.dismiss(animated: false)
@@ -107,7 +113,7 @@ extension MainFlow {
         return .none
     }
     
-    private func navigateToMyListScreen() -> FlowContributors {
+    func navigateToMyListScreen() -> FlowContributors {
         let myListFlow = MyListFlow(useCaseProvider: useCaseProvider)
         
         Flows.use(myListFlow, when: .created) { root in
@@ -124,7 +130,7 @@ extension MainFlow {
         )
     }
     
-    private func dismissAndPresentAbuseAlert(_ abuse: Abuse) -> FlowContributors {
+    func dismissAndPresentAbuseAlert(_ abuse: Abuse) -> FlowContributors {
         let title = "알림"
         let message = abuse.alertMessage
         let alert = AlertController()
@@ -143,5 +149,33 @@ extension MainFlow {
         }
         
         return .none
+    }
+    
+    func navigateToSettingScreen(user: TadakUser) -> FlowContributors {
+        let settingFlow = SettingFlow(useCaseProvider: useCaseProvider)
+        
+        Flows.use(settingFlow, when: .created) { root in
+            root.modalPresentationStyle = .fullScreen
+            self.rootViewController.present(root, animated: false)
+        }
+        
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: settingFlow,
+                withNextStepper: OneStepper(
+                    withSingleStep: TadakStep.settingsIsRequired(user: user))
+            )
+        )
+    }
+    
+    func switchToOnboardingScreen() -> FlowContributors {
+        if let viewController = self.rootViewController.presentedViewController {
+            DispatchQueue.main.async {
+                viewController.dismiss(animated: false)
+            }
+            rootViewController.viewControllers = []
+        }
+        
+        return .end(forwardToParentFlowWithStep: TadakStep.onboardingIsRequired)
     }
 }

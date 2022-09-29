@@ -48,7 +48,10 @@ extension TadakMainViewReactor {
             return .empty()
             
         case .settingButtonTapped:
-            return .empty()
+            return state.map(\.user)
+                .map(TadakStep.settingsIsRequired)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
 }

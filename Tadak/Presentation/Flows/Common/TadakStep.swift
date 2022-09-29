@@ -54,4 +54,13 @@ enum TadakStep: Step {
     case officialFailureIsRequired(typingSpeed: Int)
     case typingIsRequiredAgain
     case shareResultIsRequired(title: String, score: Int)
+    
+    // Setting
+    case settingsIsRequired(user: TadakUser)
+    case settingsIsComplete
+    case contactMailIsRequired
+    case mailDisableAlertIsRequired
+    case resetAlertIsRequired
+    case resetAlertIsComplete
+    case resetIsRequired
 }

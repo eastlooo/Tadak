@@ -28,12 +28,12 @@ final class OnboardingNicknameViewReactor: Reactor, Stepper {
     }
     
     struct State {
-        let characterID: Int
-        let nicknameMaxLength: Int
-        var validate: Bool = false
-        var correctedText: String = ""
-        var loaderAppear: Bool?
-        var nicknameIsDuplicated: Bool?
+        @Pulse var characterID: Int
+        @Pulse var nicknameMaxLength: Int
+        @Pulse var validate: Bool = false
+        @Pulse var correctedText: String = ""
+        @Pulse var loaderAppear: Bool?
+        @Pulse var nicknameIsDuplicated: Bool?
     }
     
     var steps = PublishRelay<Step>()
@@ -107,9 +107,6 @@ extension OnboardingNicknameViewReactor {
 
 private extension OnboardingNicknameViewReactor {
     func flowWhenregisterButtonTapped() -> Observable<Mutation> {
-//        let checkNicknameDuplication = useCase.checkNicknameDuplication().share()
-//        let registerUser = checkNicknameDuplication
-        
         let existDuplication = useCase.checkNicknameDuplication()
             .take(1)
             .filter { $0 }
@@ -129,25 +126,10 @@ private extension OnboardingNicknameViewReactor {
             }
             .debugError()
             .asDriver(onErrorJustReturn: .showLoader(false))
-//        let registerUser = checkNicknameDuplication.compactMap(Self.getValue).filter { !$0 }
-//            .map { _ in }.flatMap(useCase.startOnboardingFlow).share()
-//
+
         return Observable.merge(
             existDuplication.asObservable(),
             registerUser.asObservable()
         )
-//            checkNicknameDuplication.compactMap(Self.getValue).filter { $0 }.flatMap { _ in
-//                Observable.of(.showLoader(false), .checkNicknameDuplication(true))
-//            },
-//            checkNicknameDuplication.compactMap(Self.getErrorDescription).flatMap { description in
-//                Observable.of(.showLoader(false), .debugError(description))
-//            },
-//            registerUser.compactMap(Self.getErrorDescription).flatMap { description in
-//                Observable.of(.showLoader(false), .debugError(description))
-//            },
-//            registerUser.compactMap(Self.getValue).flatMap { user in
-//                Observable.of(.showLoader(false), .registerUser(user))
-//            }
-//        )
     }
 }

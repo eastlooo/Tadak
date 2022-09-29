@@ -141,7 +141,7 @@ private extension TypingFlow {
     }
     
     func navigateToOfficialSuccessScreen(title: String, record: Record) -> FlowContributors {
-        let recordUseCase = useCaseProvider.makeRecorduseCase()
+        let recordUseCase = useCaseProvider.makeRecordUseCase()
         let reactor = OfficialSuccessViewReactor(title: title,
                                                  record: record,
                                                  recordUseCase: recordUseCase)
