@@ -13,7 +13,6 @@ import RxRelay
 final class CompositionDetailViewReactor: Reactor, Stepper {
     
     enum Action {
-        case listButtonTapped(Void)
         case startButtonTapped(Void)
     }
     
@@ -22,8 +21,8 @@ final class CompositionDetailViewReactor: Reactor, Stepper {
     }
     
     struct State {
-        let typingDetail: TypingDetail
-        let score: Int?
+        @Pulse var composition: any Composition
+        @Pulse var score: Int?
     }
     
     var steps = PublishRelay<Step>()
@@ -33,7 +32,7 @@ final class CompositionDetailViewReactor: Reactor, Stepper {
     
     init(typingDetail: TypingDetail, score: Int? = nil) {
         self._typingDetail = .init(value: typingDetail)
-        self.initialState = State(typingDetail: typingDetail, score: score)
+        self.initialState = State(composition: typingDetail.composition, score: score)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -43,10 +42,6 @@ extension CompositionDetailViewReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .listButtonTapped:
-            steps.accept(TadakStep.compositionDetailIsComplete)
-            return .empty()
-            
         case .startButtonTapped:
             return _typingDetail
                 .map { detail -> TadakStep in

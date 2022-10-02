@@ -77,7 +77,8 @@ private extension TadakListFlow {
                                                    score: score)
         let viewController = CompositionDetailViewController()
         viewController.reactor = reactor
-        self.rootViewController.pushViewController(viewController, animated: false)
+        viewController.modalPresentationStyle = .overFullScreen
+        self.rootViewController.present(viewController, animated: true)
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -99,7 +100,13 @@ private extension TadakListFlow {
         )
         let viewController = ComposeParticipantsViewController()
         viewController.reactor = reactor
-        self.rootViewController.pushViewController(viewController, animated: false)
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                self.rootViewController.pushViewController(viewController, animated: false)
+            }
+        }
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -114,7 +121,11 @@ private extension TadakListFlow {
             useCaseProvider: useCaseProvider
         )
         
-        Flows.use(typingFlow, when: .created) { _ in }
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                Flows.use(typingFlow, when: .created) { _ in }
+            }
+        }
         
         return .one(
             flowContributor: .contribute(

@@ -84,8 +84,8 @@ final class TadakListCell: UITableViewCell {
         roundedView.addSubview(rewardImageView)
         rewardImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview().inset(20)
-            $0.width.height.equalTo(50)
+            $0.right.equalToSuperview().inset(23)
+            $0.width.height.equalTo(44)
             $0.left.greaterThanOrEqualTo(titleLabel.snp.right).offset(10)
             $0.left.greaterThanOrEqualTo(artistLabel.snp.right).offset(10)
         }

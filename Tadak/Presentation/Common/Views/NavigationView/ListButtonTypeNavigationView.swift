@@ -35,7 +35,7 @@ final class ListButtonTypeNavigationView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .notoSansKR(ofSize: 24.0, weight: .bold)
+        label.font = .notoSansKR(ofSize: 22.0, weight: .black)
         label.textColor = .white
         label.isHidden = true
         return label
@@ -81,7 +81,7 @@ final class ListButtonTypeNavigationView: UIView {
         titleStackView.alignment = .leading
         
         self.snp.makeConstraints {
-            $0.height.equalTo(80)
+            $0.height.equalTo(65)
         }
         
         self.addSubview(listButton)

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxFlow
 import FirebaseCore
+import GoogleMobileAds
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         AnalyticsManager.register([FirebaseAnalyticsProvider()])
         
         let window = UIWindow(frame: UIScreen.main.bounds)

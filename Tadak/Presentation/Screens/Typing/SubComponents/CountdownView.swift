@@ -29,7 +29,7 @@ final class CountdownView: UIView {
     
     private lazy var startButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "start"), for: .normal)
+        button.setImage(UIImage(named: "start_large"), for: .normal)
         button.addTarget(self, action: #selector(startButtonHandler), for: .touchUpInside)
         return button
     }()

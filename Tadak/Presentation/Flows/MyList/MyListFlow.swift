@@ -87,7 +87,8 @@ private extension MyListFlow {
         let reactor = CompositionDetailViewReactor(typingDetail: typingDetail)
         let viewController = CompositionDetailViewController()
         viewController.reactor = reactor
-        self.rootViewController.pushViewController(viewController, animated: false)
+        viewController.modalPresentationStyle = .overFullScreen
+        self.rootViewController.present(viewController, animated: true)
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -109,7 +110,13 @@ private extension MyListFlow {
         )
         let viewController = ComposeParticipantsViewController()
         viewController.reactor = reactor
-        self.rootViewController.pushViewController(viewController, animated: false)
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                self.rootViewController.pushViewController(viewController, animated: false)
+            }
+        }
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -124,7 +131,11 @@ private extension MyListFlow {
             useCaseProvider: useCaseProvider
         )
         
-        Flows.use(typingFlow, when: .created) { _ in }
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                Flows.use(typingFlow, when: .created) { _ in }
+            }
+        }
         
         return .one(
             flowContributor: .contribute(

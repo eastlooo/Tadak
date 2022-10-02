@@ -56,8 +56,7 @@ final class TadakMainViewController: UIViewController {
     }
     
     // MARK: Helpers
-    private func configure() {
-    }
+    private func configure() {}
     
     private func layout() {
         let buttonStackView = UIStackView(arrangedSubviews: [tadakListButton, myListButton])

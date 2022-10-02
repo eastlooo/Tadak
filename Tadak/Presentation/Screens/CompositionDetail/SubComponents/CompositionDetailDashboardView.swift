@@ -11,16 +11,9 @@ import SnapKit
 final class CompositionDetailDashboardView: UIView {
     
     // MARK: Properties
-    var typingMode: TypingMode = .practice {
-        didSet { typingModeLabel.text = typingMode.description }
-    }
-    
     var score: Int? {
         didSet { updateScore() }
     }
-    
-    private let topDivider = UIView()
-    private let bottomDivider = UIView()
     
     private let rewardImageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,29 +22,18 @@ final class CompositionDetailDashboardView: UIView {
         return imageView
     }()
     
-    private let typingModeLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .clear
-        label.textColor = .white
-        label.font = .notoSansKR(ofSize: 14, weight: .medium)
-        label.layer.borderColor = UIColor.white.cgColor
-        label.layer.borderWidth = 2
-        label.textAlignment = .center
-        return label
-    }()
-    
     private let highestRecordLabel: UILabel = {
         let label = UILabel()
         label.text = "공식 기록"
         label.textColor = .white
-        label.font = .notoSansKR(ofSize: 14, weight: .bold)
+        label.font = .notoSansKR(ofSize: 12, weight: .bold)
         return label
     }()
     
     private let highestRecordValueLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .notoSansKR(ofSize: 36, weight: .black)
+        label.font = .notoSansKR(ofSize: 30, weight: .black)
         return label
     }()
     
@@ -80,43 +62,15 @@ final class CompositionDetailDashboardView: UIView {
     
     // MARK: Helpers
     private func configure() {
-        self.backgroundColor = .customNavy
-        topDivider.backgroundColor = .white
-        bottomDivider.backgroundColor = .white
+        self.backgroundColor = .white.withAlphaComponent(0.05)
     }
     
     private func layout() {
-        self.snp.makeConstraints {
-            $0.height.equalTo(122)
-        }
-        
-        self.addSubview(topDivider)
-        topDivider.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-            $0.height.equalTo(1)
-        }
-        
-        self.addSubview(bottomDivider)
-        bottomDivider.snp.makeConstraints {
-            $0.bottom.left.right.equalToSuperview()
-            $0.height.equalTo(1)
-        }
-        
         self.addSubview(rewardImageView)
         rewardImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.left.equalToSuperview().inset(15)
-            $0.width.height.equalTo(60)
-        }
-        
-        typingModeLabel.layer.cornerRadius = 5
-        typingModeLabel.layer.cornerCurve = .continuous
-        self.addSubview(typingModeLabel)
-        typingModeLabel.snp.makeConstraints {
-            $0.top.equalTo(rewardImageView)
-            $0.right.equalToSuperview().inset(5)
-            $0.width.equalTo(82)
-            $0.height.equalTo(34)
+            $0.top.equalToSuperview().inset(15)
+            $0.right.equalTo(self.snp.centerX)
+            $0.width.height.equalTo(44)
         }
         
         self.addSubview(recordStackView)

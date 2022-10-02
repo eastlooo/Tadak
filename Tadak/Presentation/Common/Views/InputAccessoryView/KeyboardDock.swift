@@ -12,6 +12,10 @@ import RxSwift
 final class KeyboardDock: UIView {
     
     // MARK: Properties
+    var isDividerHidden: Bool = false {
+        didSet { divider.isHidden = isDividerHidden }
+    }
+    
     private let contentView = UIView()
     private let divider = UIView()
     
