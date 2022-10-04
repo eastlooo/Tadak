@@ -23,7 +23,7 @@
 
 ## <img width=30px src=https://user-images.githubusercontent.com/87062014/193754971-880f3386-c624-42da-98e2-980869e3af8d.png>  타닥타닥
 
-**추억의 타자연습, 이제는 모바일로 즐겨요**
+**추억의 타자연습, 이제는 모바일로 즐겨요**
 > **개인 프로젝트**  
 > **프로젝트 기간: 2022.09.04 ~ 2022.10.04**  
 > **출시일 : 2022.10.06**
@@ -59,35 +59,35 @@
 
  ### 온보딩
 
- <img src="https://user-images.githubusercontent.com/87062014/193792099-382892c1-5abf-44f0-aef3-9f089404c08a.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872081-9adb87d9-5de3-4ab5-a75c-5994a00de7c2.png">
  
  ### 메인화면
 
- <img src="https://user-images.githubusercontent.com/87062014/193792782-77bf066c-3b33-4c3d-8951-6e1224465bce.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872062-fa97e97f-3922-4bc2-9ef6-37b85786cc47.png">
  
  ### 서버 제공 글
 
- <img src="https://user-images.githubusercontent.com/87062014/193792801-6bf8b66c-7063-4751-95cc-61822085a42b.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872071-7997a08b-45fc-4e65-b2cf-784fc1bb58a8.png">
  
  ### 개인 글
 
- <img src="https://user-images.githubusercontent.com/87062014/193792813-7773170b-d2d9-402f-8a71-62f459f2d934.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872050-541acadd-f6df-4635-ad20-599b6f0fced6.png">
  
  ### 타자 - 연습모드
 
- <img src="https://user-images.githubusercontent.com/87062014/193792822-e83e7e8b-24f7-451d-9e70-450c4ac3b000.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872090-8b4e574d-ca5c-4769-83ca-f6b86f25a5bd.png">
  
  ### 타자 - 공식모드
 
- <img src="https://user-images.githubusercontent.com/87062014/193792833-57bd0f79-2040-46a9-9110-881412c93cf6.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872084-6752fc08-6965-426a-a7ad-c888d89202d3.png">
  
   ### 타자 - 내기모드
 
- <img src="https://user-images.githubusercontent.com/87062014/193792844-2f7405af-ae39-4acb-b12c-700437218342.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872087-2012735f-79c6-4f0a-971b-687685dfe538.png">
  
   ### 타자 - 설정
 
- <img src="https://user-images.githubusercontent.com/87062014/193792865-bec52e7c-02b0-49ed-9129-641139ed4d6d.png">
+ <img src="https://user-images.githubusercontent.com/87062014/193872078-378887d9-3ba4-42a5-8c86-4482fbdd2da3.png">
 
 
 <br><br><br>
