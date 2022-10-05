@@ -13,7 +13,7 @@
   ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white)
   ![Notion](https://img.shields.io/badge/Notion-181717?style=flat-square&logo=Notion&logoColor=white)
   
-  [<img width=140px src=https://user-images.githubusercontent.com/87062014/193755784-22613007-71a8-4270-b7be-ad5280bf8cbd.png>](https://apps.apple.com/us/app/id)
+  [<img width=140px src=https://user-images.githubusercontent.com/87062014/193755784-22613007-71a8-4270-b7be-ad5280bf8cbd.png>](https://apps.apple.com/app/id6443688240)
   
 </div>
 
@@ -26,7 +26,7 @@
 **추억의 타자연습, 이제는 모바일로 즐겨요**
 > **개인 프로젝트**  
 > **프로젝트 기간: 2022.09.04 ~ 2022.10.04**  
-> **출시일 : 2022.10.06**
+> **출시일 : 2022.10.05**
 
 
 <br><br><br>
