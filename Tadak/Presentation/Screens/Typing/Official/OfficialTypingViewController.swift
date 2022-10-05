@@ -8,11 +8,17 @@
 import UIKit
 import SnapKit
 import ReactorKit
+import RxRelay
+import GoogleMobileAds
 
 final class OfficialTypingViewController: UIViewController {
     
     // MARK: Properties
     var disposeBag = DisposeBag()
+    
+    private var interstitial: GADInterstitialAd?
+    
+    private let _adDisappeared = PublishRelay<Void>()
     
     private let typingFont: UIFont = .notoSansKR(ofSize: 18, weight: .bold)!
     
@@ -28,7 +34,7 @@ final class OfficialTypingViewController: UIViewController {
     private let progressBar = ProgressBar()
     private let dashboard = TypingDashboard()
     private let countdownView = CountdownView()
-    private lazy var typingSheet = TypingSheet(typingFont: typingFont)
+    private lazy var typingSheet = TypingSheet(typingFont: typingFont, typingMode: .official)
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
@@ -38,6 +44,7 @@ final class OfficialTypingViewController: UIViewController {
         
         configure()
         layout()
+        loadInterstitialAd()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,6 +93,26 @@ final class OfficialTypingViewController: UIViewController {
             $0.left.right.bottom.equalToSuperview()
         }
     }
+    
+    private func loadInterstitialAd() {
+        let adUnitID = "ca-app-pub-7391830718641055/4544220099"
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID: adUnitID,
+                               request: request) { [self] ad, error in
+            if let error = error {
+                print("ERROR: \(error)")
+                _adDisappeared.accept(Void())
+                return
+            }
+            
+            interstitial = ad
+            interstitial?.fullScreenContentDelegate = self
+        }
+    }
+    
+    private func showAd() {
+        self.interstitial?.present(fromRootViewController: self)
+    }
 }
 
 // MARK: - Bind
@@ -123,6 +150,11 @@ extension OfficialTypingViewController: View {
         
         self.rx.viewDidDisappear
             .map(OfficialTypingViewReactor.Action.viewDidDisappear)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        _adDisappeared
+            .map(OfficialTypingViewReactor.Action.adDisappeared)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -174,6 +206,13 @@ extension OfficialTypingViewController: View {
             .bind(to: countdownView.rx.reset)
             .disposed(by: disposeBag)
         
+        reactor.pulse(\.$adAppear)
+            .filter { $0 }
+            .take(1)
+            .map { _ in }
+            .bind(onNext: showAd)
+            .disposed(by: disposeBag)
+        
         // MARK: View
         countdownView.rx.isFinished
             .filter { $0 }
@@ -186,5 +225,18 @@ extension OfficialTypingViewController: View {
             .filter { $0 }
             .bind(to: typingSheet.rx.isTypingEnabled)
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - GADFullScreenContentDelegate
+extension OfficialTypingViewController: GADFullScreenContentDelegate {
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("ERROR: \(error)")
+        _adDisappeared.accept(Void())
+    }
+    
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        _adDisappeared.accept(Void())
     }
 }

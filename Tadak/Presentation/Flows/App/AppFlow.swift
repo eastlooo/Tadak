@@ -32,6 +32,9 @@ final class AppFlow: Flow {
         case .initializationIsRequired(let user):
             return switchToMainFlow(user: user)
             
+        case .networkIsDisconnected:
+            return showNetworkConnectionAlert()
+            
         default:
             return .none
         }
@@ -72,5 +75,24 @@ private extension AppFlow {
                     withSingleStep: TadakStep.initializationIsRequired(user: user))
             )
         )
+    }
+    
+    func showNetworkConnectionAlert() -> FlowContributors {
+        let title = "연결 실패"
+        let message = "네트워크 연결 후\n앱을 다시 실행해주세요"
+        let alert = AlertController()
+        let alertAction = AlertAction(title: "종료", style: .default) { _ in
+            // 강제 종료
+            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { exit(0) }
+        }
+        
+        alert.alertTitle = title
+        alert.alertMessage = message
+        alert.addAction(alertAction)
+        
+        self.rootViewController.viewControllers = [alert]
+        
+        return .none
     }
 }

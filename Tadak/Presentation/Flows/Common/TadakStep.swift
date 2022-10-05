@@ -10,6 +10,7 @@ import RxFlow
 enum TadakStep: Step {
     
     // Global
+    case networkIsDisconnected
     
     // Onboarding
     case onboardingIsRequired

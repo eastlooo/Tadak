@@ -185,6 +185,7 @@
 		A78E6B6528E1E77B00347640 /* CompositionUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E6B6428E1E77B00347640 /* CompositionUseCaseProtocol.swift */; };
 		A793962428CB318300D28D9F /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793962328CB318300D28D9F /* UserDTO.swift */; };
 		A793962828CB49E500D28D9F /* NicknameDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793962728CB49E500D28D9F /* NicknameDTO.swift */; };
+		A7B49C6028EDD89900CF0301 /* NetworkConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B49C5F28EDD89900CF0301 /* NetworkConnectionManager.swift */; };
 		A7B4CCE528C6738100D663D2 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE428C6738100D663D2 /* BorderedButton.swift */; };
 		A7B4CCE728C67A6300D663D2 /* TadakListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */; };
 		A7B4CCF028C681C200D663D2 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B4CCE928C681C200D663D2 /* crown.png */; };
@@ -304,8 +305,6 @@
 		A74ACCA728CA760400780433 /* Dictionary++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary++.swift"; sourceTree = "<group>"; };
 		A74ACCA928CB018B00780433 /* AnyArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyArray.swift; sourceTree = "<group>"; };
 		A74ACCAC28CB0A3C00780433 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		A756C44828EC50B700AF2789 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Tadak/Resource/FirebaseConfig/Dev/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		A756C44928EC50C300AF2789 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Production/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A75806EA28C4E75A0073D03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A75806EC28C4E93E0073D03A /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A75806EE28C4EEDA0073D03A /* UIColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
@@ -423,6 +422,7 @@
 		A78E6B6428E1E77B00347640 /* CompositionUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionUseCaseProtocol.swift; sourceTree = "<group>"; };
 		A793962328CB318300D28D9F /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		A793962728CB49E500D28D9F /* NicknameDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameDTO.swift; sourceTree = "<group>"; };
+		A7B49C5F28EDD89900CF0301 /* NetworkConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionManager.swift; sourceTree = "<group>"; };
 		A7B4CCE428C6738100D663D2 /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		A7B4CCE628C67A6300D663D2 /* TadakListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TadakListCell.swift; sourceTree = "<group>"; };
 		A7B4CCE928C681C200D663D2 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
@@ -465,6 +465,8 @@
 		A7CE37B128CDC01C002ACAD5 /* InitializationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCase.swift; sourceTree = "<group>"; };
 		A7CE37B328CDC0F4002ACAD5 /* CompositionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRepository.swift; sourceTree = "<group>"; };
 		A7D8884928E9B15A00B9F358 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		A7E6F62428ED2436000264D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A7E6F62728ED2451000264D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A7F295B528C4E1A500242836 /* Tadak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tadak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F295B828C4E1A500242836 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7F295C428C4E1A600242836 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -552,23 +554,6 @@
 				A70A5F0328E60B5900502984 /* TableAnimation.swift */,
 			);
 			path = TableView;
-			sourceTree = "<group>";
-		};
-		A70A5F1528E658E500502984 /* Production */ = {
-			isa = PBXGroup;
-			children = (
-				A756C44928EC50C300AF2789 /* GoogleService-Info.plist */,
-			);
-			path = Production;
-			sourceTree = "<group>";
-		};
-		A70A5F1628E658FA00502984 /* FirebaseConfig */ = {
-			isa = PBXGroup;
-			children = (
-				A756C44B28EC513500AF2789 /* Dev */,
-				A70A5F1528E658E500502984 /* Production */,
-			);
-			path = FirebaseConfig;
 			sourceTree = "<group>";
 		};
 		A721EDD328D1BE92008B7353 /* Typing */ = {
@@ -796,6 +781,7 @@
 				A74ACC8128CA2A5800780433 /* Firebase */,
 				A7CE377E28CC601C002ACAD5 /* PersistentStorages */,
 				A7C1D2C728E32341005D51EE /* Analytics */,
+				A7B49C6128EDD8AE00CF0301 /* NetworkConnection */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -855,14 +841,6 @@
 				A74ACCA928CB018B00780433 /* AnyArray.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		A756C44B28EC513500AF2789 /* Dev */ = {
-			isa = PBXGroup;
-			children = (
-				A756C44828EC50B700AF2789 /* GoogleService-Info.plist */,
-			);
-			path = Dev;
 			sourceTree = "<group>";
 		};
 		A75806F028C4EEE00073D03A /* Foundation+Extensions */ = {
@@ -1328,6 +1306,14 @@
 			path = Endpoints;
 			sourceTree = "<group>";
 		};
+		A7B49C6128EDD8AE00CF0301 /* NetworkConnection */ = {
+			isa = PBXGroup;
+			children = (
+				A7B49C5F28EDD89900CF0301 /* NetworkConnectionManager.swift */,
+			);
+			path = NetworkConnection;
+			sourceTree = "<group>";
+		};
 		A7B4CCE828C681A500D663D2 /* Reward */ = {
 			isa = PBXGroup;
 			children = (
@@ -1573,6 +1559,31 @@
 			path = BottomSheetViewController;
 			sourceTree = "<group>";
 		};
+		A7E6F62228ED241B000264D7 /* FirebaseConfig */ = {
+			isa = PBXGroup;
+			children = (
+				A7E6F62328ED2429000264D7 /* Dev */,
+				A7E6F62628ED2448000264D7 /* Production */,
+			);
+			path = FirebaseConfig;
+			sourceTree = "<group>";
+		};
+		A7E6F62328ED2429000264D7 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				A7E6F62428ED2436000264D7 /* GoogleService-Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
+		A7E6F62628ED2448000264D7 /* Production */ = {
+			isa = PBXGroup;
+			children = (
+				A7E6F62728ED2451000264D7 /* GoogleService-Info.plist */,
+			);
+			path = Production;
+			sourceTree = "<group>";
+		};
 		A7F295AC28C4E1A500242836 = {
 			isa = PBXGroup;
 			children = (
@@ -1629,7 +1640,7 @@
 				A75806EA28C4E75A0073D03A /* Assets.xcassets */,
 				A7F295C628C4E1A600242836 /* Info.plist */,
 				A765904428CF2392000EAD7F /* RemoteConfigValue.plist */,
-				A70A5F1628E658FA00502984 /* FirebaseConfig */,
+				A7E6F62228ED241B000264D7 /* FirebaseConfig */,
 				A7F295D028C4E1C100242836 /* InfoPlist.strings */,
 				A75806FB28C4F7DB0073D03A /* Characters */,
 				A7B4CCE828C681A500D663D2 /* Reward */,
@@ -1949,6 +1960,7 @@
 				A7CE377328CBB78C002ACAD5 /* Rx+Loader.swift in Sources */,
 				A7C1D2CB28E323CC005D51EE /* AnalyticsProvider.swift in Sources */,
 				A7652CFC28E37CFD0023325B /* RecordObject.swift in Sources */,
+				A7B49C6028EDD89900CF0301 /* NetworkConnectionManager.swift in Sources */,
 				A72E75A628C66B670028CE8D /* HomeButtonTypeNavigationView.swift in Sources */,
 				A74ACC8828CA2E6100780433 /* FirebaseError.swift in Sources */,
 				A7652D1E28E4B6CB0023325B /* TadakCompositionObject.swift in Sources */,
@@ -2244,7 +2256,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3CZP576P62;
 				EXCLUDED_ARCHS = "";
@@ -2260,7 +2272,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dongcheon.Tadak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2275,7 +2287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3CZP576P62;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2290,7 +2302,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dongcheon.Tadak;
 				PRODUCT_NAME = "$(TARGET_NAME)";

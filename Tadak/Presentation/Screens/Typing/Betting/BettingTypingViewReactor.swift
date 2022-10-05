@@ -18,6 +18,7 @@ final class BettingTypingViewReactor: Reactor, Stepper {
         case typingHasStarted(Void)
         case currentUserText(String)
         case returnPressed(Void)
+        case adDisappeared(Void)
     }
     
     enum Mutation {
@@ -28,6 +29,7 @@ final class BettingTypingViewReactor: Reactor, Stepper {
         case setProgression(Double)
         case setAcceleration(Int)
         case reset(Bool)
+        case showAd(Bool)
     }
     
     struct State {
@@ -39,9 +41,12 @@ final class BettingTypingViewReactor: Reactor, Stepper {
         @Pulse var progression: Double = 0
         @Pulse var acceleration: Int = 0
         @Pulse var shouldReset: Bool = false
+        @Pulse var adAppear: Bool = false
     }
     
     var steps = PublishRelay<Step>()
+    private let _rankingTable = BehaviorRelay<[Rank]?>(value: nil)
+    
     private let disposeBag = DisposeBag()
     
     private let typingUseCase: TypingUseCaseProtocol
@@ -58,20 +63,26 @@ final class BettingTypingViewReactor: Reactor, Stepper {
         self.composition = typingUseCase.composition
         self.initialState = State(title: composition.title)
         
-        bind()
-        
         let title = composition.title
         let artist = composition.artist
         let number = recordUseCase.numOfParticipants
         
         if composition is TadakComposition {
-            AnalyticsManager.log(TypingEvent.startTadakBetting(title: title,
-                                                               artist: artist,
-                                                               numOfParticipants: number))
+            AnalyticsManager.log(
+                TypingEvent.startTadakBetting(
+                    title: title,
+                    artist: artist,
+                    numOfParticipants: number
+                )
+            )
         } else if composition is MyComposition {
-            AnalyticsManager.log(TypingEvent.startMyBetting(title: title,
-                                                               artist: artist,
-                                                               numOfParticipants: number))
+            AnalyticsManager.log(
+                TypingEvent.startMyBetting(
+                    title: title,
+                    artist: artist,
+                    numOfParticipants: number
+                )
+            )
         }
     }
     
@@ -101,6 +112,17 @@ extension BettingTypingViewReactor {
         case .returnPressed(let pressed):
             typingUseCase.returnPressed.onNext(pressed)
             return .empty()
+            
+        case .adDisappeared:
+            let composition = composition
+            
+            return _rankingTable
+                .compactMap { $0 }
+                .map { (composition, $0) }
+                .map(TadakStep.bettingResultIsRequired)
+                .take(1)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
     
@@ -129,6 +151,9 @@ extension BettingTypingViewReactor {
         case .reset(let reset):
             typingUseCase.reset()
             state.shouldReset = reset
+            
+        case .showAd(let show):
+            state.adAppear = show
         }
         
         return state
@@ -156,6 +181,8 @@ extension BettingTypingViewReactor {
             .map { _ in true }
             .map(Mutation.reset)
         
+        let showAd = showAd()
+        
         return .merge(
             mutation,
             setParticipant,
@@ -164,19 +191,22 @@ extension BettingTypingViewReactor {
             setUserText,
             setProgression,
             setAcceleration,
-            reset
+            reset,
+            showAd
         )
     }
 }
 
 private extension BettingTypingViewReactor {
     
-    func bind() {
-        let composition = composition
-        recordUseCase.finished
-            .withLatestFrom(recordUseCase.getRankingTable()) { (composition, $1) }
-            .map(TadakStep.bettingResultIsRequired)
-            .bind(to: steps)
-            .disposed(by: disposeBag)
+    func showAd() -> Observable<Mutation> {
+        let rankingTable = recordUseCase.getRankingTable()
+        
+        return recordUseCase.finished
+            .withLatestFrom(rankingTable)
+            .do { [weak self] rankingTable in
+                self?._rankingTable.accept(rankingTable)
+            }
+            .map { _ in Mutation.showAd(true) }
     }
 }

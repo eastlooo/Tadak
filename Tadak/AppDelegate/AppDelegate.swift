@@ -23,6 +23,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         AnalyticsManager.register([FirebaseAnalyticsProvider()])
+        NetworkConnectionManager.startMonitoring()
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window

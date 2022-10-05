@@ -184,7 +184,7 @@ private extension TypingFlow {
     
     func presentShareScreen(title: String, score: Int) -> FlowContributors {
         if let visibleViewController = self.rootViewController.visibleViewController {
-            let text = "[타닥타닥]\n스마트폰 타자 측정\n\(title) - \(score)타 기록"
+            let text = "[타닥타닥]\n스마트폰 타자 측정\n\(title) - \(score)타 기록\nhttps://apps.apple.com/app/id6443688240"
             let viewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
             viewController.popoverPresentationController?.sourceView = visibleViewController.view
             visibleViewController.present(viewController, animated: true)

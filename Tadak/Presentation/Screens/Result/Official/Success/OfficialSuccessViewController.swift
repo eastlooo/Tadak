@@ -137,6 +137,7 @@ final class OfficialSuccessViewController: UIViewController {
     }
 }
 
+// MARK: - Bind
 extension OfficialSuccessViewController: View {
     
     func bind(reactor: OfficialSuccessViewReactor) {

@@ -20,6 +20,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         case returnPressed(Void)
         case viewDidDisappear(Bool)
         case abused(Abuse)
+        case adDisappeared(Void)
     }
     
     enum Mutation {
@@ -31,6 +32,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         case setTypingSpeed(Int)
         case setProgression(Double)
         case reset(Bool)
+        case showAd(Bool)
     }
     
     struct State {
@@ -43,9 +45,12 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
         @Pulse var typingSpeed: Int = 0
         @Pulse var progression: Double = 0
         @Pulse var shouldReset: Bool = false
+        @Pulse var adAppear: Bool = false
     }
     
     var steps = PublishRelay<Step>()
+    private let _record = BehaviorRelay<Record?>(value: nil)
+    
     private var disposeBag = DisposeBag()
     
     private var useCase: TypingUseCaseProtocol
@@ -101,6 +106,17 @@ extension OfficialTypingViewReactor {
             AnalyticsManager.log(TypingEvent.abuse(abuse: abuse))
             steps.accept(TadakStep.abused(abuse: abuse))
             return .empty()
+            
+        case .adDisappeared:
+            let title = composition.title
+            
+            return _record
+                .compactMap { $0 }
+                .map { (title, $0) }
+                .map(TadakStep.officialSuccessIsRequired)
+                .take(1)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
     
@@ -134,6 +150,9 @@ extension OfficialTypingViewReactor {
             disposeBag = DisposeBag()
             bind()
             state.shouldReset = reset
+            
+        case .showAd(let show):
+            state.adAppear = show
         }
         
         return state
@@ -158,6 +177,7 @@ extension OfficialTypingViewReactor {
         let setAccuracy = useCase.accuracy.map(Mutation.setAccuracy)
         let setTypingSpeed = useCase.typingSpeed.map(Mutation.setTypingSpeed)
         let setProgression = useCase.progression.map(Mutation.setProgression)
+        let showAd = showAd()
         
         return .merge(
             mutation,
@@ -167,7 +187,8 @@ extension OfficialTypingViewReactor {
             setUserText,
             setAccuracy,
             setTypingSpeed,
-            setProgression
+            setProgression,
+            showAd
         )
     }
 }
@@ -175,23 +196,22 @@ extension OfficialTypingViewReactor {
 private extension OfficialTypingViewReactor {
     
     func bind() {
-        let title = composition.title
-        let record = useCase.getRecord()
-        
-        useCase.finished
-            .withLatestFrom(useCase.accuracy)
-            .filter { $0 == 100 }
-            .withLatestFrom(record) { (title, $1) }
-            .map(TadakStep.officialSuccessIsRequired)
-            .take(1)
-            .bind(to: steps)
-            .disposed(by: disposeBag)
-        
         useCase.wrong
             .withLatestFrom(useCase.typingSpeed)
             .map(TadakStep.officialFailureIsRequired)
             .take(1)
             .bind(to: steps)
             .disposed(by: disposeBag)
+    }
+    
+    func showAd() -> Observable<Mutation> {
+        let record = useCase.getRecord()
+        
+        return useCase.finished
+            .withLatestFrom(useCase.accuracy)
+            .filter { $0 == 100 }
+            .withLatestFrom(record)
+            .do { [weak self] record in self?._record.accept(record) }
+            .map { _ in Mutation.showAd(true) }
     }
 }

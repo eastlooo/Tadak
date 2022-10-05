@@ -28,7 +28,7 @@ final class PracticeTypingViewController: UIViewController {
     private let progressBar = ProgressBar()
     private let dashboard = TypingDashboard()
     private let countdownView = CountdownView()
-    private lazy var typingSheet = TypingSheet(typingFont: typingFont)
+    private lazy var typingSheet = TypingSheet(typingFont: typingFont, typingMode: .practice)
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     

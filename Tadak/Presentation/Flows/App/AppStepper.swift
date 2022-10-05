@@ -23,18 +23,23 @@ final class AppStepper: Stepper {
     }
 
     func readyToEmitSteps() {
+        let networkConnection = NetworkConnectionManager.checkConnection()
         let initializeUseCase = useCaseProvider.makeInitializationUseCase()
         
-        initializeUseCase.fetchUser()
-            .map { user -> TadakStep in
-                guard let user = user else {
-                    return .onboardingIsRequired
+        if networkConnection {
+            initializeUseCase.fetchUser()
+                .map { user -> TadakStep in
+                    guard let user = user else {
+                        return .onboardingIsRequired
+                    }
+                    
+                    return .initializationIsRequired(user: user)
                 }
-                
-                return .initializationIsRequired(user: user)
-            }
-            .take(1)
-            .bind(to: self.steps)
-            .disposed(by: disposeBog)
+                .take(1)
+                .bind(to: self.steps)
+                .disposed(by: disposeBog)
+        } else {
+            steps.accept(TadakStep.networkIsDisconnected)
+        }
     }
 }

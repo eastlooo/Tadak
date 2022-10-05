@@ -14,6 +14,7 @@ final class TypingSheet: UIView {
     
     // MARK: Properties
     var typingFont: UIFont
+    private let typingMode: TypingMode
     
     var title: String? {
         didSet { titleLabel.text = title }
@@ -86,8 +87,9 @@ final class TypingSheet: UIView {
     }()
     
     // MARK: Lifecycle
-    init(typingFont: UIFont) {
+    init(typingFont: UIFont, typingMode: TypingMode) {
         self.typingFont = typingFont
+        self.typingMode = typingMode
         super.init(frame: .zero)
         
         configure()
@@ -107,6 +109,13 @@ final class TypingSheet: UIView {
         var attributes: [NSAttributedString.Key: Any] = [
             .font: typingFont, .foregroundColor: UIColor.black, .kern: 0.18
         ]
+        
+        guard typingMode != .betting else {
+            let text = NSAttributedString(string: currentTyping, attributes: attributes)
+            currentTypingLabel.attributedText = text
+            return
+        }
+        
         var stack = [NSAttributedString]()
 
         let minimumCount = min(currentTyping.count, inputText.count)
