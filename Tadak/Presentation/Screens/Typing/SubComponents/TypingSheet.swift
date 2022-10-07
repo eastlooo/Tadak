@@ -40,6 +40,12 @@ final class TypingSheet: UIView {
         }
     }
     
+    private let dimmedView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black.withAlphaComponent(0.5)
+        return view
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .customDarkNavy
@@ -159,6 +165,7 @@ final class TypingSheet: UIView {
     // MARK: Helpers
     private func configure() {
         self.backgroundColor = .white
+        self.clipsToBounds = true
         
         typingTextField.font = typingFont
         currentTypingLabel.font = typingFont
@@ -196,6 +203,11 @@ final class TypingSheet: UIView {
             $0.top.equalTo(typingTextField.snp.bottom).offset(16)
             $0.left.right.equalTo(currentTypingLabel)
         }
+        
+        self.addSubview(dimmedView)
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
 
@@ -208,6 +220,18 @@ extension TypingSheet {
         let padding = typingTextField.leftView?.frame.width ?? 0
         
         return width - 2 * (inset + padding)
+    }
+    
+    func updateTypingState(enabled: Bool) {
+        typingTextField.isEditingEnabled = enabled
+        
+        dimmedView.isHidden = !enabled
+        UIView.animate(withDuration: 0.15) {
+            let alpha: CGFloat = enabled ? 0 : 1
+            self.dimmedView.alpha = alpha
+        } completion: { _ in
+            self.dimmedView.isHidden = enabled
+        }
     }
 }
 
@@ -233,7 +257,11 @@ extension Reactive where Base: TypingSheet {
         }
     }
     
-    var isTypingEnabled: Binder<Bool> { base.typingTextField.rx.isEditingEnabled }
+    var isTypingEnabled: Binder<Bool> {
+        return Binder(base) { base, element in
+            base.updateTypingState(enabled: element)
+        }
+    }
     
     // MARK: ControlEvent
     var returnPressed: ControlEvent<Void> { base.typingTextField.rx.returnPressed }
