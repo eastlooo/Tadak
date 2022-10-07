@@ -19,7 +19,7 @@ struct Hangul {
         )
     }
     
-    private static let jongsungs = [
+    private static let jongsungs: [String] = [
         "", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ",
         "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ",
         "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ",
@@ -32,6 +32,9 @@ struct Hangul {
         "ㄽ": ["ㄹ", "ㅅ"], "ㄾ": ["ㄹ", "ㅌ"], "ㄿ": ["ㄹ", "ㅍ"],
         "ㅀ": ["ㄹ", "ㅎ"], "ㅄ": ["ㅂ", "ㅅ"]
     ]
+}
+
+extension Hangul {
     
     static func decompose(_ char: Character) -> [String] {
         guard checkHangul(char) else { return [String(char)] }

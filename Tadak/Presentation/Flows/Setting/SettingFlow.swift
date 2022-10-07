@@ -81,12 +81,16 @@ private extension SettingFlow {
     
     func presentMailDisableAlert() -> FlowContributors {
         let title = "알림"
-        let message = "해당 기기에서 Mail 앱을\n실행할 수 없어요"
+        let message = "해당 기기에서 Mail 앱을\n실행할 수 없어요\n\nnupic7@gmail.com\n으로 문의해주세요"
         let alert = AlertController()
-        let alertAction = AlertAction(title: "확인", style: .default)
+        let cancelAction = AlertAction(title: "닫기", style: .cancel)
+        let defaultAction = AlertAction(title: "메일 복사하기", style: .default) { _ in
+            UIPasteboard.general.string = "nupic7@gmail.com"
+        }
         alert.alertTitle = title
         alert.alertMessage = message
-        alert.addAction(alertAction)
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
         alert.modalPresentationStyle = .overFullScreen
         
         self.rootViewController.present(alert, animated: false)

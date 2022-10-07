@@ -79,7 +79,6 @@ class AlertController: UIViewController {
         button.backgroundColor = .customCoral
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .notoSansKR(ofSize: 16, weight: .medium)
-        button.addTarget(self, action: #selector(defaultButtonHandler), for: .touchUpInside)
         return button
     }()
     
@@ -88,7 +87,6 @@ class AlertController: UIViewController {
         button.backgroundColor = .gray
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .notoSansKR(ofSize: 16, weight: .medium)
-        button.addTarget(self, action: #selector(defaultButtonHandler), for: .touchUpInside)
         return button
     }()
     
@@ -122,37 +120,6 @@ class AlertController: UIViewController {
             }
         } else {
             super.dismiss(animated: flag, completion: completion)
-        }
-    }
-    
-    // MARK: Actions
-    @objc
-    private func defaultButtonHandler() {
-        if autoDismissMode {
-            dismiss(animated: true) { [weak self] in
-                self?.defaultAlertAction.map {
-                    self?.defaultButtonActionHandler?($0)
-                }
-            }
-        } else {
-            defaultAlertAction.map { [weak self] in
-                self?.defaultButtonActionHandler?($0)
-            }
-        }
-    }
-    
-    @objc
-    private func cancelButtonHandler() {
-        if autoDismissMode {
-            dismiss(animated: true) { [weak self] in
-                self?.cancelAlertAction.map {
-                    self?.cancelButtonActionHandler?($0)
-                }
-            }
-        } else {
-            cancelAlertAction.map { [weak self] in
-                self?.cancelButtonActionHandler?($0)
-            }
         }
     }
     
@@ -218,14 +185,32 @@ extension AlertController {
             if !buttonStackView.arrangedSubviews.contains(defaultButton) {
                 buttonStackView.addArrangedSubview(defaultButton)
                 defaultButton.setTitle(action.title, for: .normal)
-                defaultButtonActionHandler = action.handler
+                
+                defaultButton.addAction(UIAction { [weak self] _ in
+                    guard let self = self else { return }
+                    if self.autoDismissMode {
+                        self.dismiss(animated: true) {
+                            action.handler?(action)
+                        }
+                    }
+                    
+                }, for: .touchUpInside)
             }
             
         case .cancel:
             if !buttonStackView.arrangedSubviews.contains(cancelButton) {
                 buttonStackView.addArrangedSubview(cancelButton)
                 cancelButton.setTitle(action.title, for: .normal)
-                cancelButtonActionHandler = action.handler
+                
+                cancelButton.addAction(UIAction { [weak self] _ in
+                    guard let self = self else { return }
+                    if self.autoDismissMode {
+                        self.dismiss(animated: true) {
+                            action.handler?(action)
+                        }
+                    }
+                    
+                }, for: .touchUpInside)
             }
         }
     }

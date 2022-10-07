@@ -29,8 +29,17 @@ final class OnboardingNicknameViewController: UIViewController {
     
     private let characterButton: UIButton = {
         let button = UIButton()
+        button.imageEdgeInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
         button.imageView?.contentMode = .scaleAspectFit
         return button
+    }()
+    
+    private let refreshImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "refresh")
+        imageView.contentMode = .center
+        imageView.isUserInteractionEnabled = false
+        return imageView
     }()
     
     private let textField: TadakTextField = {
@@ -97,7 +106,12 @@ final class OnboardingNicknameViewController: UIViewController {
         characterButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(50)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(150)
+            $0.width.height.equalTo(190)
+        }
+        
+        characterButton.addSubview(refreshImageView)
+        refreshImageView.snp.makeConstraints {
+            $0.top.left.equalToSuperview()
         }
         
         textField.layer.cornerRadius = 25

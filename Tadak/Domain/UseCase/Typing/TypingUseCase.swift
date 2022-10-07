@@ -327,7 +327,7 @@ private extension TypingUseCase {
                     guard input.count > original.count, original.count > 0 else { return nil }
                     let index = input.index(input.startIndex, offsetBy: original.count)
                     let text = String(input[..<index])
-                    let output = String(input[index...])
+                    let output = String(input[index...]).trimmingCharacters(in: .whitespaces)
                     return (text, output)
                 },
             _returnPressed
