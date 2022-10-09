@@ -71,7 +71,7 @@
  
  ### 개인 글
 
- <img src="https://user-images.githubusercontent.com/87062014/193872050-541acadd-f6df-4635-ad20-599b6f0fced6.png">
+ <img src="https://user-images.githubusercontent.com/87062014/194746673-664d9b3c-58f4-45a2-9990-27336b46a2e8.png">
  
  ### 타자 - 연습모드
 
@@ -85,7 +85,7 @@
 
  <img src="https://user-images.githubusercontent.com/87062014/193872087-2012735f-79c6-4f0a-971b-687685dfe538.png">
  
-  ### 타자 - 설정
+  ### 설정
 
  <img src="https://user-images.githubusercontent.com/87062014/193872078-378887d9-3ba4-42a5-8c86-4482fbdd2da3.png">
 
