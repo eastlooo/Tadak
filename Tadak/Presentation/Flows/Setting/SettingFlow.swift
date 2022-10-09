@@ -37,6 +37,9 @@ final class SettingFlow: Flow {
         case .mailDisableAlertIsRequired:
             return presentMailDisableAlert()
             
+        case .writeReviewIsRequired:
+            return openWriteReviewURL()
+            
         case .resetAlertIsRequired:
             return presentResetAlertScreen()
             
@@ -96,6 +99,19 @@ private extension SettingFlow {
         alert.modalPresentationStyle = .overFullScreen
         
         self.rootViewController.present(alert, animated: false)
+        
+        return .none
+    }
+    
+    func openWriteReviewURL() -> FlowContributors {
+        if let appstoreURL = URL(string: "https://apps.apple.com/app/id6443688240"),
+           var components = URLComponents(url: appstoreURL, resolvingAgainstBaseURL: false) {
+            components.queryItems = [URLQueryItem(name: "action", value: "write-review")]
+            
+            if let writeReviewURL = components.url {
+                UIApplication.shared.open(writeReviewURL)
+            }
+        }
         
         return .none
     }

@@ -38,7 +38,7 @@ final class SettingViewReactor: Reactor, Stepper {
         settingUseCase: SettingUseCaseProtocol
     ) {
         let items: [[Setting]] = [
-            [.contact],
+            [.contact, .writeReview],
             [.clearAllData]
         ]
         
@@ -93,6 +93,9 @@ private extension SettingViewReactor {
                     
                 case .clearAllData:
                     return .resetAlertIsRequired
+                    
+                case .writeReview:
+                    return .writeReviewIsRequired
                     
                 case .contact:
                     return canSendMail ? .contactMailIsRequired : .mailDisableAlertIsRequired

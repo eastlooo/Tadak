@@ -32,7 +32,7 @@ final class SettingTableView: UITableView {
         self.backgroundColor = .customDarkNavy
         self.rowHeight = 75
         self.sectionFooterHeight = 15
-        self.separatorInset = .zero
+        self.separatorStyle = .none
         self.separatorColor = .customDarkNavy
         self.dataSource = self
         self.delegate = self

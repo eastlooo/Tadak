@@ -11,12 +11,14 @@ enum Setting {
     
     case profile(characterID: Int, nickname: String)
     case contact
+    case writeReview
     case clearAllData
     
     var title: String {
         switch self {
         case .profile(_, let nickname): return nickname
         case .contact: return "문의/피드백"
+        case .writeReview: return "앱 평가"
         case .clearAllData: return "데이터 모두 지우기"
         }
     }
@@ -25,6 +27,7 @@ enum Setting {
         switch self {
         case .profile: return "프로필 수정하기"
         case .contact: return nil
+        case .writeReview: return nil
         case .clearAllData: return nil
         }
     }
@@ -32,8 +35,7 @@ enum Setting {
     var image: UIImage? {
         switch self {
         case .profile(let id, _): return UIImage.character(id)
-        case.contact: return nil
-        case .clearAllData: return nil
+        default: return nil
         }
     }
 }

@@ -61,6 +61,7 @@ enum TadakStep: Step {
     case settingsIsComplete
     case contactMailIsRequired
     case mailDisableAlertIsRequired
+    case writeReviewIsRequired
     case resetAlertIsRequired
     case resetAlertIsComplete
     case resetIsRequired
