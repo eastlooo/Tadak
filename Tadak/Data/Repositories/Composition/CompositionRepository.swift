@@ -151,15 +151,13 @@ private extension CompositionRepository {
                 self?.tadakCompositionPage.onNext(page)
             }
         
-        
         guard let storage = self.storage else { return request }
         
         return request
             .flatMap { tadakComposition -> Observable<TadakCompositionPage> in
-                let object = TadakCompositionPageObject(tadakComposition: tadakComposition)
                 return storage.deleteAll(TadakCompositionPageObject.self)
-                    .map { _ in object }
-                    .do { _ = storage.save(object: $0) }
+                    .map { _ in TadakCompositionPageObject(tadakComposition: tadakComposition) }
+                    .flatMap(storage.save)
                     .map { _ in tadakComposition }
                     .catchAndReturn(tadakComposition)
             }

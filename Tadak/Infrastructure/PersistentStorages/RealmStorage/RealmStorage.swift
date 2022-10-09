@@ -34,7 +34,7 @@ final class RealmStorage {
                 throw RealmError.emptyInMemoryIdentifier
             }
         }
-        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         try self.realm = Realm(configuration: realmConfiguration)
     }
     
@@ -78,7 +78,7 @@ extension RealmStorage: Storage {
         return Observable.create { [weak self] observer in
             do {
                 try self?.safeWrite {
-                    realm.add(object as! Object)
+                    realm.add(object as! Object, update: .all)
                     observer.onNext(())
                 }
             } catch {
