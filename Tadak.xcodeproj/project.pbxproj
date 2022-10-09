@@ -201,6 +201,7 @@
 		A7B4CD0528C70E8F00D663D2 /* CompositionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0428C70E8F00D663D2 /* CompositionDetailViewController.swift */; };
 		A7B4CD0828C7129300D663D2 /* CompositionDetailDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0728C7129300D663D2 /* CompositionDetailDashboardView.swift */; };
 		A7B4CD0A28C7159B00D663D2 /* TypingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4CD0928C7159B00D663D2 /* TypingMode.swift */; };
+		A7C061D928F18AB300F09436 /* TypingTextScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C061D828F18AB300F09436 /* TypingTextScreen.swift */; };
 		A7C1D2C628E2D965005D51EE /* UINavigationController++.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1D2C528E2D965005D51EE /* UINavigationController++.swift */; };
 		A7C1D2C928E32362005D51EE /* AnalyticsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1D2C828E32362005D51EE /* AnalyticsEvent.swift */; };
 		A7C1D2CB28E323CC005D51EE /* AnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1D2CA28E323CC005D51EE /* AnalyticsProvider.swift */; };
@@ -438,6 +439,7 @@
 		A7B4CD0428C70E8F00D663D2 /* CompositionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionDetailViewController.swift; sourceTree = "<group>"; };
 		A7B4CD0728C7129300D663D2 /* CompositionDetailDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionDetailDashboardView.swift; sourceTree = "<group>"; };
 		A7B4CD0928C7159B00D663D2 /* TypingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingMode.swift; sourceTree = "<group>"; };
+		A7C061D828F18AB300F09436 /* TypingTextScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingTextScreen.swift; sourceTree = "<group>"; };
 		A7C1D2C528E2D965005D51EE /* UINavigationController++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController++.swift"; sourceTree = "<group>"; };
 		A7C1D2C828E32362005D51EE /* AnalyticsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEvent.swift; sourceTree = "<group>"; };
 		A7C1D2CA28E323CC005D51EE /* AnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsProvider.swift; sourceTree = "<group>"; };
@@ -1254,6 +1256,7 @@
 				A77F81BF28DB1AD10040CB0A /* SpeedDashboard.swift */,
 				A78B129428C7A99C0015BBA1 /* TypingSheet.swift */,
 				A78B129728C7C42E0015BBA1 /* CountdownView.swift */,
+				A7C061D828F18AB300F09436 /* TypingTextScreen.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -1923,6 +1926,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A70A5F0028E6093B00502984 /* TableViewAnimator.swift in Sources */,
+				A7C061D928F18AB300F09436 /* TypingTextScreen.swift in Sources */,
 				A78B127E28C74D540015BBA1 /* ComposeParticipantsCell.swift in Sources */,
 				A765903328CE3769000EAD7F /* FirebaseAuthService.swift in Sources */,
 				A78E6B6328E1D78800347640 /* CompositionRepositoryProtocol.swift in Sources */,
@@ -2256,7 +2260,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3CZP576P62;
 				EXCLUDED_ARCHS = "";
@@ -2272,7 +2276,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dongcheon.Tadak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2287,7 +2291,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3CZP576P62;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2302,7 +2306,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dongcheon.Tadak;
 				PRODUCT_NAME = "$(TARGET_NAME)";

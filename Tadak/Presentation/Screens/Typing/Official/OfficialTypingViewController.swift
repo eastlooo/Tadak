@@ -95,7 +95,7 @@ final class OfficialTypingViewController: UIViewController {
     }
     
     private func loadInterstitialAd() {
-        let adUnitID = "ca-app-pub-7391830718641055/4544220099"
+        let adUnitID = "ca-app-pub-7391830718641055/2773867063"
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: adUnitID,
                                request: request) { [self] ad, error in

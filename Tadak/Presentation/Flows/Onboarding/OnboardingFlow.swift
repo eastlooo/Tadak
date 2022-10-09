@@ -55,6 +55,7 @@ extension OnboardingFlow {
         let viewController = OnboardingCharacterViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -69,6 +70,7 @@ extension OnboardingFlow {
         let viewController = OnboardingNicknameViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -90,6 +92,7 @@ extension OnboardingFlow {
         alert.addAction(alertAction)
         alert.modalPresentationStyle = .overFullScreen
         self.rootViewController.present(alert, animated: false)
+        
         return .none
     }
     

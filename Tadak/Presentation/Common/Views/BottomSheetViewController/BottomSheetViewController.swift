@@ -78,7 +78,7 @@ class BottomSheetViewController: UIViewController {
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         if flag {
-            updateContainerHeight(-defaultHeight, animated: flag) {
+            updateContainerHeight(0, animated: flag) {
                 super.dismiss(animated: flag, completion: completion)
             }
         } else {

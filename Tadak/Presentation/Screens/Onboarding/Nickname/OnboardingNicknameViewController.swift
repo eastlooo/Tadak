@@ -46,6 +46,7 @@ final class OnboardingNicknameViewController: UIViewController {
         let textField = TadakTextField()
         textField.textAlignment = .center
         textField.font = .systemFont(ofSize: 24.0, weight: .semibold)
+        textField.isPasteEnabled = false
         return textField
     }()
     

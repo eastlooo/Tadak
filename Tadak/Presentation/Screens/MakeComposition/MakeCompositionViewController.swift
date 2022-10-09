@@ -54,14 +54,12 @@ final class MakeCompositionViewController: UIViewController {
     private let titleTextField: TadakTextField = {
         let textField = TadakTextField(appearance: .light)
         textField.font = .notoSansKR(ofSize: 16, weight: .bold)
-        textField.isPasteEnabled = true
         return textField
     }()
     
     private let artistTextField: TadakTextField = {
         let textField = TadakTextField(appearance: .light)
         textField.font = .notoSansKR(ofSize: 16, weight: .bold)
-        textField.isPasteEnabled = true
         return textField
     }()
     

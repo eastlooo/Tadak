@@ -59,7 +59,9 @@ private extension SettingFlow {
         let reactor = SettingViewReactor(user: user, settingUseCase: settingUseCase)
         let viewController = SettingViewController()
         viewController.reactor = reactor
+        
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -105,6 +107,7 @@ private extension SettingFlow {
         alert.modalPresentationStyle = .overFullScreen
         
         self.rootViewController.present(alert, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: alert,

@@ -64,6 +64,7 @@ private extension TadakListFlow {
         let viewController = TadakListViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -79,6 +80,7 @@ private extension TadakListFlow {
         viewController.reactor = reactor
         viewController.modalPresentationStyle = .overFullScreen
         self.rootViewController.present(viewController, animated: true)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -89,6 +91,7 @@ private extension TadakListFlow {
     
     func popToRootScreen() -> FlowContributors {
         _ = rootViewController.popToRootViewController(animated: false)
+        
         return .none
     }
     
@@ -121,11 +124,7 @@ private extension TadakListFlow {
             useCaseProvider: useCaseProvider
         )
         
-        if let presentedViewController = rootViewController.presentedViewController {
-            presentedViewController.dismiss(animated: true) {
-                Flows.use(typingFlow, when: .created) { _ in }
-            }
-        }
+        Flows.use(typingFlow, when: .created) { _ in }
         
         return .one(
             flowContributor: .contribute(

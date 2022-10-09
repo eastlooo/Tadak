@@ -18,6 +18,8 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         case typingHasStarted(Void)
         case currentUserText(String)
         case returnPressed(Void)
+        case viewDidDisappear(Bool)
+        case adDisappeared(Void)
     }
     
     enum Mutation {
@@ -28,6 +30,8 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         case setAccuracy(Int)
         case setTypingSpeed(Int)
         case setProgression(Double)
+        case reset(Bool)
+        case showAd(Bool)
     }
     
     struct State {
@@ -39,10 +43,12 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         @Pulse var accuracy: Int = 0
         @Pulse var typingSpeed: Int = 0
         @Pulse var progression: Double = 0
+        @Pulse var shouldReset: Bool = false
+        @Pulse var adAppear: Bool = false
     }
     
     var steps = PublishRelay<Step>()
-    private let disposeBag = DisposeBag()
+    private let _practicResult = BehaviorRelay<PracticeResult?>(value: nil)
     
     private let useCase: TypingUseCaseProtocol
     private let composition: any Composition
@@ -52,8 +58,6 @@ final class PracticeTypingViewReactor: Reactor, Stepper {
         self.useCase = useCase
         self.composition = useCase.composition
         self.initialState = State(title: composition.title)
-        
-        bind()
         
         let title = composition.title
         let artist = composition.artist
@@ -91,6 +95,19 @@ extension PracticeTypingViewReactor {
         case .returnPressed(let pressed):
             useCase.returnPressed.onNext(pressed)
             return .empty()
+            
+        case .viewDidDisappear:
+            return .just(.reset(true))
+            
+        case .adDisappeared:
+            let title = composition.title
+            
+            return _practicResult
+                .compactMap { $0 }
+                .map(TadakStep.practiceResultIsRequired)
+                .take(1)
+                .do { [weak self] step in self?.steps.accept(step) }
+                .flatMap { _ in Observable<Mutation>.empty() }
         }
     }
     
@@ -118,6 +135,13 @@ extension PracticeTypingViewReactor {
             
         case .setProgression(let progression):
             state.progression = progression
+            
+        case .reset(let reset):
+            useCase.reset()
+            state.shouldReset = reset
+            
+        case .showAd(let show):
+            state.adAppear = show
         }
         
         return state
@@ -133,6 +157,7 @@ extension PracticeTypingViewReactor {
         let setAccuracy = useCase.accuracy.map(Mutation.setAccuracy)
         let setTypingSpeed = useCase.typingSpeed.map(Mutation.setTypingSpeed)
         let setProgression = useCase.progression.map(Mutation.setProgression)
+        let showAd = showAd()
         
         return .merge(
             mutation,
@@ -142,14 +167,15 @@ extension PracticeTypingViewReactor {
             setUserText,
             setAccuracy,
             setTypingSpeed,
-            setProgression
+            setProgression,
+            showAd
         )
     }
 }
 
 private extension PracticeTypingViewReactor {
     
-    func bind() {
+    func showAd() -> Observable<Mutation> {
         let composition = composition
         let record = useCase.getRecord()
         let typingTexts = useCase.getTypingTexts()
@@ -159,11 +185,9 @@ private extension PracticeTypingViewReactor {
             .map { (composition, $0, $1) }
             .map(PracticeResult.init)
         
-        useCase.finished
+        return useCase.finished
             .withLatestFrom(practiceResult)
-            .map(TadakStep.practiceResultIsRequired)
-            .take(1)
-            .bind(to: steps)
-            .disposed(by: disposeBag)
+            .do { [weak self] result in self?._practicResult.accept(result) }
+            .map { _ in Mutation.showAd(true) }
     }
 }

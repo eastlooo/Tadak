@@ -19,6 +19,7 @@ final class ComposeParticipantsCell: UITableViewCell {
         textField.font = .notoSansKR(ofSize: 18, weight: .medium)
         textField.textAlignment = .center
         textField.isSpaceEnabled = false
+        textField.isPasteEnabled = false
         return textField
     }()
     

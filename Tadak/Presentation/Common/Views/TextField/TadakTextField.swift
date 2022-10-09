@@ -13,9 +13,14 @@ import RxCocoa
 final class TadakTextField: UITextField {
     
     // MARK: Properties
-    var isPasteEnabled: Bool = false
+    let padding: CGFloat = 22
+    var isPasteEnabled: Bool = true
+    var isCopyEnabled: Bool = true
+    var isCutEnabled: Bool = true
+    var isSelectEnabled: Bool = true
     var isEditingEnabled: Bool = true
     var isSpaceEnabled: Bool = true
+    var isDeleteEnabled: Bool = true
     var maxLength: Int?
     var shouldReturn: Bool = true
     
@@ -39,8 +44,17 @@ final class TadakTextField: UITextField {
     // MARK: Events
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(UIResponderStandardEditActions.paste(_:)) {
-            return isPasteEnabled && isEditingEnabled
+            return isPasteEnabled
+        } else if action == #selector(UIResponderStandardEditActions.copy(_:)) {
+            return isCopyEnabled
+        } else if action == #selector(UIResponderStandardEditActions.cut(_:)) {
+            return isCutEnabled
+        } else if action == #selector(UIResponderStandardEditActions.select(_:)) {
+            return isSelectEnabled
+        } else if action == #selector(UIResponderStandardEditActions.selectAll(_:)) {
+            return isSelectEnabled
         }
+        
         return super.canPerformAction(action, withSender: sender)
     }
     
@@ -79,8 +93,8 @@ final class TadakTextField: UITextField {
         self.contentVerticalAlignment = .center
         self.clipsToBounds = true
         
-        self.leftView = textFieldSpacer(padding: 22)
-        self.rightView = textFieldSpacer(padding: 22)
+        self.leftView = textFieldSpacer(padding: padding)
+        self.rightView = textFieldSpacer(padding: padding)
         self.leftViewMode = .always
         self.rightViewMode = .always
         
@@ -104,6 +118,10 @@ extension TadakTextField: UITextFieldDelegate {
             inputString.accept(string)
         }
         
+        if string.isEmpty {
+            return isDeleteEnabled && isEditingEnabled
+        }
+        
         return isEditingEnabled
     }
     
@@ -111,10 +129,16 @@ extension TadakTextField: UITextFieldDelegate {
         returnPressed.accept(Void())
         return shouldReturn
     }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        let position = textField.endOfDocument
+        textField.selectedTextRange = textField.textRange(from: position, to: position)
+    }
 }
 
 // MARK: - Enum
 extension TadakTextField {
+    
     enum Appearance {
         case dark, light
         

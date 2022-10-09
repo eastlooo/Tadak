@@ -8,11 +8,18 @@
 import UIKit
 import SnapKit
 import ReactorKit
+import RxRelay
+import GoogleMobileAds
+
 
 final class PracticeTypingViewController: UIViewController {
     
     // MARK: Properties
     var disposeBag = DisposeBag()
+    
+    private var interstitial: GADInterstitialAd?
+    
+    private let _adDisappeared = PublishRelay<Void>()
     
     private let typingFont: UIFont = .notoSansKR(ofSize: 18, weight: .bold)!
     
@@ -38,6 +45,7 @@ final class PracticeTypingViewController: UIViewController {
         
         configure()
         layout()
+        loadInterstitialAd()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,6 +94,26 @@ final class PracticeTypingViewController: UIViewController {
             $0.left.right.bottom.equalToSuperview()
         }
     }
+    
+    private func loadInterstitialAd() {
+        let adUnitID = "ca-app-pub-7391830718641055/2773867063"
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID: adUnitID,
+                               request: request) { [self] ad, error in
+            if let error = error {
+                print("ERROR: \(error)")
+                _adDisappeared.accept(Void())
+                return
+            }
+            
+            interstitial = ad
+            interstitial?.fullScreenContentDelegate = self
+        }
+    }
+    
+    private func showAd() {
+        self.interstitial?.present(fromRootViewController: self)
+    }
 }
 
 // MARK: - Bind
@@ -118,6 +146,16 @@ extension PracticeTypingViewController: View {
         
         typingSheet.rx.returnPressed
             .map(PracticeTypingViewReactor.Action.returnPressed)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        self.rx.viewDidDisappear
+            .map(PracticeTypingViewReactor.Action.viewDidDisappear)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        _adDisappeared
+            .map(PracticeTypingViewReactor.Action.adDisappeared)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -157,6 +195,13 @@ extension PracticeTypingViewController: View {
             .bind(to: progressBar.rx.progression)
             .disposed(by: disposeBag)
         
+        reactor.pulse(\.$adAppear)
+            .filter { $0 }
+            .take(1)
+            .map { _ in }
+            .bind(onNext: showAd)
+            .disposed(by: disposeBag)
+        
         // MARK: View
         countdownView.rx.isFinished
             .filter { $0 }
@@ -169,5 +214,18 @@ extension PracticeTypingViewController: View {
             .filter { $0 }
             .bind(to: typingSheet.rx.isTypingEnabled)
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - GADFullScreenContentDelegate
+extension PracticeTypingViewController: GADFullScreenContentDelegate {
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("ERROR: \(error)")
+        _adDisappeared.accept(Void())
+    }
+    
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        _adDisappeared.accept(Void())
     }
 }

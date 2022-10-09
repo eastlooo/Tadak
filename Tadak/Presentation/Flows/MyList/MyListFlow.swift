@@ -61,6 +61,7 @@ private extension MyListFlow {
         let viewController = MyListViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -75,6 +76,7 @@ private extension MyListFlow {
         let viewController = MakeCompositionViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -89,6 +91,7 @@ private extension MyListFlow {
         viewController.reactor = reactor
         viewController.modalPresentationStyle = .overFullScreen
         self.rootViewController.present(viewController, animated: true)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -99,6 +102,7 @@ private extension MyListFlow {
     
     func popToRootScreen() -> FlowContributors {
         _ = rootViewController.popToRootViewController(animated: false)
+        
         return .none
     }
     
@@ -131,11 +135,7 @@ private extension MyListFlow {
             useCaseProvider: useCaseProvider
         )
         
-        if let presentedViewController = rootViewController.presentedViewController {
-            presentedViewController.dismiss(animated: true) {
-                Flows.use(typingFlow, when: .created) { _ in }
-            }
-        }
+        Flows.use(typingFlow, when: .created) { _ in }
         
         return .one(
             flowContributor: .contribute(

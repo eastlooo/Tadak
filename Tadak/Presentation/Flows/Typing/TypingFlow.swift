@@ -87,7 +87,13 @@ private extension TypingFlow {
         let reactor = PracticeTypingViewReactor(useCase: useCase)
         let viewController = PracticeTypingViewController()
         viewController.reactor = reactor
-        self.rootViewController.viewControllers = [viewController]
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                self.rootViewController.viewControllers = [viewController]
+            }
+        }
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -101,7 +107,13 @@ private extension TypingFlow {
         let reactor = OfficialTypingViewReactor(useCase: useCase)
         let viewController = OfficialTypingViewController()
         viewController.reactor = reactor
-        self.rootViewController.viewControllers = [viewController]
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                self.rootViewController.viewControllers = [viewController]
+            }
+        }
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -118,7 +130,13 @@ private extension TypingFlow {
             recordUseCase: recordUseCase)
         let viewController = BettingTypingViewController()
         viewController.reactor = reactor
-        self.rootViewController.viewControllers = [viewController]
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true) {
+                self.rootViewController.viewControllers = [viewController]
+            }
+        }
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -132,6 +150,7 @@ private extension TypingFlow {
         let viewController = PracticeResultViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -148,6 +167,7 @@ private extension TypingFlow {
         let viewController = OfficialSuccessViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -161,6 +181,7 @@ private extension TypingFlow {
         let viewController = OfficialFailureViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -174,6 +195,7 @@ private extension TypingFlow {
         let viewController = BettingResultViewController()
         viewController.reactor = reactor
         self.rootViewController.pushViewController(viewController, animated: false)
+        
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: viewController,
@@ -195,6 +217,7 @@ private extension TypingFlow {
     
     func popCurrentScreen() -> FlowContributors {
         self.rootViewController.popViewController(animated: false)
+        
         return .none
     }
 }

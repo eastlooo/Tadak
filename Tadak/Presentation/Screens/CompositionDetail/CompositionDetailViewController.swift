@@ -87,10 +87,18 @@ final class CompositionDetailViewController: BottomSheetViewController {
         layout()
     }
     
+    // MARK: Actions
+    @objc
+    private func singleTapGestureHandler() {
+        self.dismiss(animated: true)
+    }
+    
     // MARK: Helpers
     private func configure() {
         holderView.backgroundColor = .customDarkNavy
         containerView.backgroundColor = .customNavy
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(singleTapGestureHandler))
+        dimmedView.addGestureRecognizer(tapGesture)
     }
     
     private func layout() {
