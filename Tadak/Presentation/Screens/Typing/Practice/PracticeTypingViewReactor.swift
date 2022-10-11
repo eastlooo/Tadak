@@ -100,8 +100,6 @@ extension PracticeTypingViewReactor {
             return .just(.reset(true))
             
         case .adDisappeared:
-            let title = composition.title
-            
             return _practicResult
                 .compactMap { $0 }
                 .map(TadakStep.practiceResultIsRequired)

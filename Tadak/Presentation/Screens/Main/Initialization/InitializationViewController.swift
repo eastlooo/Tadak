@@ -91,6 +91,12 @@ final class InitializationViewController: UIViewController {
 extension InitializationViewController: View {
     func bind(reactor: InitializationViewReactor) {
         
+        // MARK: Action
+        self.rx.viewDidAppear
+            .map(InitializationViewReactor.Action.viewDidAppear)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         // MARK: State
         reactor.state.map(\.user)
             .bind(to: welcomingView.rx.user)

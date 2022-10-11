@@ -17,7 +17,7 @@ final class Loader: UIView {
     private var loader: AnimationView?
     
     private var backgroundViewColor: UIColor? {
-        return .black.withAlphaComponent(0.2)
+        return .black.withAlphaComponent(0.3)
     }
     
     // MARK: Lifecycle
@@ -88,15 +88,17 @@ extension Loader {
 
 // MARK: - Extra Helpers
 private extension Loader {
+    
     func setupBackground() {
         guard backgroundView == nil else { return }
         
         let keyWindow = UIWindow.keyWindow ?? UIWindow()
-        backgroundView = UIView(frame: self.bounds)
-        keyWindow.addSubview(backgroundView!)
+        let backgroundView = UIView(frame: self.bounds)
+        self.backgroundView = backgroundView
+        keyWindow.addSubview(backgroundView)
         
-        backgroundView?.backgroundColor = backgroundViewColor
-        backgroundView?.isUserInteractionEnabled = false
+        backgroundView.backgroundColor = backgroundViewColor
+        backgroundView.isUserInteractionEnabled = true
     }
     
     func setupLoader() {
@@ -125,6 +127,7 @@ private extension Loader {
         let configuration = LottieConfiguration(renderingEngine: .coreAnimation)
         let loader = AnimationView(name: "loader", configuration: configuration)
         loader.loopMode = .repeat(.greatestFiniteMagnitude)
+        loader.isUserInteractionEnabled = true
         return loader
     }
 }

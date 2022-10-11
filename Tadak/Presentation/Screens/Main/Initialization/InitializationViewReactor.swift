@@ -12,7 +12,9 @@ import RxRelay
 
 final class InitializationViewReactor: Reactor, Stepper {
     
-    enum Action {}
+    enum Action {
+        case viewDidAppear(Bool)
+    }
     
     enum Mutation {}
     
@@ -35,25 +37,34 @@ final class InitializationViewReactor: Reactor, Stepper {
         self.user = user
         self.initializationUseCase = initializationUseCase
         self.initialState = State(user: user)
-        
-        bind()
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
 }
 
+extension InitializationViewReactor {
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+        case .viewDidAppear:
+            return initialize()
+        }
+    }
+}
+
 private extension InitializationViewReactor {
     
-    func bind() {
+    func initialize() -> Observable<Mutation> {
         let step = TadakStep.initializationIsComplete(user: user)
         
         let compositions = initializationUseCase.fetchCompositionPages()
         let records = initializationUseCase.fetchRecords()
         
-        Observable.combineLatest(compositions, records)
+        return Observable.combineLatest(compositions, records)
             .debugError()
             .map { _ in step }
-            .bind(to: steps)
-            .disposed(by: disposeBag)
+            .do { [weak self] _ in self?.steps.accept(step) }
+            .debug("qwerqwer")
+            .flatMap { _ in Observable<Mutation>.empty() }
     }
 }
