@@ -88,11 +88,7 @@ private extension TypingFlow {
         let viewController = PracticeTypingViewController()
         viewController.reactor = reactor
         
-        if let presentedViewController = rootViewController.presentedViewController {
-            presentedViewController.dismiss(animated: true) {
-                self.rootViewController.viewControllers = [viewController]
-            }
-        }
+        self.rootViewController.viewControllers = [viewController]
         
         return .one(
             flowContributor: .contribute(
@@ -108,11 +104,7 @@ private extension TypingFlow {
         let viewController = OfficialTypingViewController()
         viewController.reactor = reactor
         
-        if let presentedViewController = rootViewController.presentedViewController {
-            presentedViewController.dismiss(animated: true) {
-                self.rootViewController.viewControllers = [viewController]
-            }
-        }
+        self.rootViewController.viewControllers = [viewController]
         
         return .one(
             flowContributor: .contribute(
@@ -131,11 +123,7 @@ private extension TypingFlow {
         let viewController = BettingTypingViewController()
         viewController.reactor = reactor
         
-        if let presentedViewController = rootViewController.presentedViewController {
-            presentedViewController.dismiss(animated: true) {
-                self.rootViewController.viewControllers = [viewController]
-            }
-        }
+        self.rootViewController.viewControllers = [viewController]
         
         return .one(
             flowContributor: .contribute(

@@ -6,6 +6,7 @@
 //
 
 import RxFlow
+import RxSwift
 
 final class TadakListFlow: Flow {
     
@@ -35,7 +36,7 @@ final class TadakListFlow: Flow {
                                                      score: score)
             
         case .compositionDetailIsComplete:
-            return popToRootScreen()
+            return dismissPresentedScreen()
             
         case .participantsAreRequired(let typingDetail):
             return navigateToParticipantsScreen(typingDetail: typingDetail)
@@ -48,6 +49,23 @@ final class TadakListFlow: Flow {
             
         default:
             return .none
+        }
+    }
+    
+    func adapt(step: Step) -> Single<Step> {
+        guard let step = step as? TadakStep else { return .just(step) }
+        
+        switch step {
+        case .typingIsRequired(let typingDetail):
+            switch typingDetail.typingMode {
+            case .betting: return .just(step)
+            default: return dismissPresentedScreen(withStep: step)
+            }
+            
+        case .participantsAreRequired:
+            return dismissPresentedScreen(withStep: step)
+            
+        default: return .just(step)
         }
     }
 }
@@ -104,11 +122,7 @@ private extension TadakListFlow {
         let viewController = ComposeParticipantsViewController()
         viewController.reactor = reactor
         
-        if let presentedViewController = rootViewController.presentedViewController {
-            presentedViewController.dismiss(animated: true) {
-                self.rootViewController.pushViewController(viewController, animated: false)
-            }
-        }
+        self.rootViewController.pushViewController(viewController, animated: false)
         
         return .one(
             flowContributor: .contribute(
@@ -133,5 +147,28 @@ private extension TadakListFlow {
                     withSingleStep: TadakStep.typingIsRequired(typingDetail: typingDetail))
             )
         )
+    }
+    
+    func dismissPresentedScreen() -> FlowContributors {
+        if let presentedViewController = rootViewController.presentedViewController {
+            presentedViewController.dismiss(animated: true)
+        }
+        
+        return .none
+    }
+}
+
+private extension TadakListFlow {
+    
+    func dismissPresentedScreen(withStep step: Step) -> Single<Step> {
+        return Single.create { [weak self] single in
+            if let presentedViewController = self?.rootViewController.presentedViewController {
+                presentedViewController.dismiss(animated: true) {
+                    single(.success(step))
+                }
+            }
+            
+            return Disposables.create()
+        }
     }
 }
