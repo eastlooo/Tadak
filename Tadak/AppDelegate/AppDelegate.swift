@@ -24,6 +24,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         AnalyticsManager.register([FirebaseAnalyticsProvider()])
         NetworkConnectionManager.startMonitoring()
+        AppReviewManager.increaseSessionCount()
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window

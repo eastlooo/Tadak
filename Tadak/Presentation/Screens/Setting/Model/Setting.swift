@@ -18,7 +18,7 @@ enum Setting {
         switch self {
         case .profile(_, let nickname): return nickname
         case .contact: return "문의/피드백"
-        case .writeReview: return "앱 평가"
+        case .writeReview: return "리뷰 남기기"
         case .clearAllData: return "데이터 모두 지우기"
         }
     }

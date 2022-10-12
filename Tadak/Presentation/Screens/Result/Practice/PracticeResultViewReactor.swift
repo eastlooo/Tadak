@@ -44,6 +44,8 @@ final class PracticeResultViewReactor: Reactor, Stepper {
         } else if composition is MyComposition {
             AnalyticsManager.log(TypingEvent.resultMyPractice(title: title, record: record))
         }
+        
+        AppReviewManager.increaseActionCount()
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }

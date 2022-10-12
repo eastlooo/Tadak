@@ -104,6 +104,11 @@ extension TadakMainViewController: View {
     func bind(reactor: TadakMainViewReactor) {
         
         // MARK: Action
+        self.rx.viewDidAppear
+            .map(TadakMainViewReactor.Action.viewDidAppear)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         tadakListButton.rx.tap
             .map(TadakMainViewReactor.Action.tadakListButtonTapped)
             .bind(to: reactor.action)

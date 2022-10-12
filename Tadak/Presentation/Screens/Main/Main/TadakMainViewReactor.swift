@@ -13,6 +13,7 @@ import RxRelay
 final class TadakMainViewReactor: Reactor, Stepper {
     
     enum Action {
+        case viewDidAppear(Bool)
         case tadakListButtonTapped(Void)
         case myListButtonTapped(Void)
         case settingButtonTapped(Void)
@@ -39,6 +40,10 @@ extension TadakMainViewReactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .viewDidAppear:
+            AppReviewManager.requestReviewIfSatisfied()
+            return .empty()
+            
         case .tadakListButtonTapped:
             steps.accept(TadakStep.tadakListIsRequired)
             return .empty()

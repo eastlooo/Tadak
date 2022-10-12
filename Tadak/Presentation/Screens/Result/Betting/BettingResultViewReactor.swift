@@ -41,6 +41,8 @@ final class BettingResultViewReactor: Reactor, Stepper {
             AnalyticsManager.log(TypingEvent.resultMyBetting(title: title,
                                                              records: records))
         }
+        
+        AppReviewManager.increaseActionCount(2)
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }

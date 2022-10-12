@@ -46,6 +46,7 @@ final class OfficialSuccessViewReactor: Reactor, Stepper {
             .disposed(by: disposeBag)
         
         AnalyticsManager.log(TypingEvent.resultTadakOfficial(title: title, record: record))
+        AppReviewManager.increaseActionCount()
     }
     
     deinit { print("DEBUG: \(type(of: self)) \(#function)") }
@@ -61,6 +62,7 @@ extension OfficialSuccessViewReactor {
             
         case .shareButtonTapped:
             AnalyticsManager.log(TypingEvent.share)
+            AppReviewManager.increaseActionCount()
             steps.accept(TadakStep.shareResultIsRequired(title: title, score: record.typingSpeed))
             return .empty()
         }

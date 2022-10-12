@@ -14,6 +14,7 @@ final class SettingTableView: UITableView {
     var items: [[Setting]] = []
     
     private let headerView = SettingTableHeaderView()
+    private let footerView = SettingTableFooterView()
     
     // MARK: Lifecycle
     init() {
@@ -30,7 +31,7 @@ final class SettingTableView: UITableView {
     private func configure() {
         self.register(SettingCell.self)
         self.backgroundColor = .customDarkNavy
-        self.rowHeight = 75
+        self.rowHeight = 70
         self.sectionFooterHeight = 15
         self.separatorStyle = .none
         self.separatorColor = .customDarkNavy
@@ -39,6 +40,9 @@ final class SettingTableView: UITableView {
         
         self.tableHeaderView = headerView
         headerView.frame.size.height = 0
+        
+        self.tableFooterView = footerView
+        footerView.frame.size.height = 30
     }
 }
 
