@@ -27,6 +27,8 @@ final class ContactMailViewController: MFMailComposeViewController {
         self.setToRecipients(["nupic7@gmail.com"])
         self.setSubject("[타닥타닥] 문의/피드백")
         self.setMessageBody(message, isHTML: false)
+        
+        view.tintColor = .systemBlue
     }
     
     private func messageBody() -> String {

@@ -149,16 +149,24 @@ final class TypingTextScreen: UIView {
     }
     
     private func updateDisplayText() {
-        displayLabel.text = displayText
+        let displayText = displayText ?? ""
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: font ?? .systemFont(ofSize: 18),
+            .kern: 0.18
+        ]
+        let attrString = NSAttributedString(string: displayText, attributes: attributes)
+        
+        displayLabel.attributedText = attrString
         _displayLabelText.onNext(displayText)
         delegate?.textScreenEditingChanged(displayText)
-        proxyTextField.isDeleteEnabled = !(displayText ?? "").isEmpty
+        proxyTextField.isDeleteEnabled = !displayText.isEmpty
         
         let contentWidth = displayLabel.sizeThatFits(
             CGSize(
                 width: .greatestFiniteMagnitude,
-                height: displayLabel.frame.height)
-        ).width + 2
+                height: displayLabel.frame.height
+            )).width + 2
         
         let x = contentWidth - scrollView.bounds.width
         if x >= 0 {
