@@ -232,6 +232,7 @@
 		A7CE37B428CDC0F4002ACAD5 /* CompositionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE37B328CDC0F4002ACAD5 /* CompositionRepository.swift */; };
 		A7D3507728F6B38F00403E3C /* SettingTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3507628F6B38F00403E3C /* SettingTableFooterView.swift */; };
 		A7D3507928F6BD9700403E3C /* AppReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3507828F6BD9700403E3C /* AppReviewManager.swift */; };
+		A7D3507B28F73E8000403E3C /* CharacterHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3507A28F73E8000403E3C /* CharacterHelperView.swift */; };
 		A7D8884A28E9B15A00B9F358 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D8884928E9B15A00B9F358 /* BottomSheetViewController.swift */; };
 		A7D8884E28E9F65900B9F358 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A7D8884D28E9F65900B9F358 /* GoogleMobileAds */; };
 		A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F295B828C4E1A500242836 /* AppDelegate.swift */; };
@@ -470,6 +471,7 @@
 		A7CE37B328CDC0F4002ACAD5 /* CompositionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRepository.swift; sourceTree = "<group>"; };
 		A7D3507628F6B38F00403E3C /* SettingTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableFooterView.swift; sourceTree = "<group>"; };
 		A7D3507828F6BD9700403E3C /* AppReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewManager.swift; sourceTree = "<group>"; };
+		A7D3507A28F73E8000403E3C /* CharacterHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHelperView.swift; sourceTree = "<group>"; };
 		A7D8884928E9B15A00B9F358 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		A7E6F62428ED2436000264D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A7E6F62728ED2451000264D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -788,7 +790,7 @@
 				A7CE377E28CC601C002ACAD5 /* PersistentStorages */,
 				A7C1D2C728E32341005D51EE /* Analytics */,
 				A7B49C6128EDD8AE00CF0301 /* NetworkConnection */,
-				A7D3507828F6BD9700403E3C /* AppReviewManager.swift */,
+				A7D3507C28F7DACF00403E3C /* AppReview */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -1263,6 +1265,7 @@
 				A78B129428C7A99C0015BBA1 /* TypingSheet.swift */,
 				A78B129728C7C42E0015BBA1 /* CountdownView.swift */,
 				A7C061D828F18AB300F09436 /* TypingTextScreen.swift */,
+				A7D3507A28F73E8000403E3C /* CharacterHelperView.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -1558,6 +1561,14 @@
 				A7CE37B128CDC01C002ACAD5 /* InitializationUseCase.swift */,
 			);
 			path = Initialization;
+			sourceTree = "<group>";
+		};
+		A7D3507C28F7DACF00403E3C /* AppReview */ = {
+			isa = PBXGroup;
+			children = (
+				A7D3507828F6BD9700403E3C /* AppReviewManager.swift */,
+			);
+			path = AppReview;
 			sourceTree = "<group>";
 		};
 		A7D8884B28E9F52A00B9F358 /* BottomSheetViewController */ = {
@@ -1999,6 +2010,7 @@
 				A758072B28C509210073D03A /* OnboardingCharacterHeaderView.swift in Sources */,
 				A7F42DB028D1087F00049C0E /* TypingFlow.swift in Sources */,
 				A758072528C4F83D0073D03A /* UIImage++.swift in Sources */,
+				A7D3507B28F73E8000403E3C /* CharacterHelperView.swift in Sources */,
 				A78987DA28CB70DC0045D71C /* UIWindow++.swift in Sources */,
 				A7F295B928C4E1A500242836 /* AppDelegate.swift in Sources */,
 				A758072728C4FAEC0073D03A /* OnboardingCharacterCell.swift in Sources */,
@@ -2268,7 +2280,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3CZP576P62;
 				EXCLUDED_ARCHS = "";
@@ -2299,7 +2311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 3CZP576P62;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;

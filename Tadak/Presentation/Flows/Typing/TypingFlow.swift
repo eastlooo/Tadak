@@ -14,13 +14,16 @@ final class TypingFlow: Flow {
     
     private let rootViewController: UINavigationController
     private let useCaseProvider: UseCaseProviderProtocol
+    private let user: TadakUser
     
     init(
         rootViewController: UINavigationController,
-        useCaseProvider: UseCaseProviderProtocol
+        useCaseProvider: UseCaseProviderProtocol,
+        user: TadakUser
     ) {
         self.rootViewController = rootViewController
         self.useCaseProvider = useCaseProvider
+        self.user = user
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -83,8 +86,8 @@ final class TypingFlow: Flow {
 private extension TypingFlow {
     
     func navigateToPracticeTypingScreen(composition: any Composition) -> FlowContributors {
-        let useCase = useCaseProvider.makeTypingUseCase(composition: composition)
-        let reactor = PracticeTypingViewReactor(useCase: useCase)
+        let typingUseCase = useCaseProvider.makeTypingUseCase(composition: composition)
+        let reactor = PracticeTypingViewReactor(user: user, typingUseCase: typingUseCase)
         let viewController = PracticeTypingViewController()
         viewController.reactor = reactor
         
@@ -99,8 +102,8 @@ private extension TypingFlow {
     }
     
     func navigateToOfficialTypingScreen(composition: any Composition) -> FlowContributors {
-        let useCase = useCaseProvider.makeTypingUseCase(composition: composition)
-        let reactor = OfficialTypingViewReactor(useCase: useCase)
+        let typingUseCase = useCaseProvider.makeTypingUseCase(composition: composition)
+        let reactor = OfficialTypingViewReactor(user: user, typingUseCase: typingUseCase)
         let viewController = OfficialTypingViewController()
         viewController.reactor = reactor
         
@@ -118,6 +121,7 @@ private extension TypingFlow {
         let typingseCase = useCaseProvider.makeTypingUseCase(composition: composition)
         let recordUseCase = useCaseProvider.makeBettingRecordUseCase(participants: participants)
         let reactor = BettingTypingViewReactor(
+            user: user,
             typingUseCase: typingseCase,
             recordUseCase: recordUseCase)
         let viewController = BettingTypingViewController()

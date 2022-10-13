@@ -21,7 +21,7 @@ enum TadakStep: Step {
     
     // Main
     case initializationIsRequired(user: TadakUser)
-    case initializationIsComplete(user: TadakUser)
+    case initializationIsComplete
     
     // List
     case tadakListIsRequired

@@ -76,7 +76,6 @@ final class TypingTextScreen: UIView {
         configure()
         layout()
         bind()
-        blinkCursor()
     }
     
     required init?(coder: NSCoder) {
@@ -96,6 +95,7 @@ final class TypingTextScreen: UIView {
     private func configure() {
         self.backgroundColor = .customNavy
         cursor.backgroundColor = .customPumpkin
+        cursor.isHidden = true
         scrollView.isScrollEnabled = false
     }
     
@@ -165,31 +165,43 @@ final class TypingTextScreen: UIView {
             scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
         }
         
-        blinkCursor()
+        if proxyTextField.isFirstResponder {
+            blinkCursor(true)
+        }
     }
 }
 
 // MARK: Animations
 extension TypingTextScreen {
     
-    func blinkCursor() {
-        let key = "opacity"
-        cursor.layer.removeAnimation(forKey: key)
-        let animation = CAKeyframeAnimation(keyPath: key)
-        animation.values = [1, 1, 0, 0]
-        animation.keyTimes = [0, 0.5, 0.51, 1]
-        animation.duration = 1.2
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        animation.autoreverses = false
-        animation.repeatCount = .greatestFiniteMagnitude
-        cursor.layer.add(animation, forKey: key)
+    func blinkCursor(_ blink: Bool) {
+        cursor.isHidden = !blink
+        
+        if blink {
+            let key = "opacity"
+            cursor.layer.removeAnimation(forKey: key)
+            let animation = CAKeyframeAnimation(keyPath: key)
+            animation.values = [1, 1, 0, 0]
+            animation.keyTimes = [0, 0.5, 0.51, 1]
+            animation.duration = 1.2
+            animation.timingFunction = CAMediaTimingFunction(name: .linear)
+            animation.autoreverses = false
+            animation.repeatCount = .greatestFiniteMagnitude
+            cursor.layer.add(animation, forKey: key)
+        }
     }
 }
 
 extension TypingTextScreen {
     
     override func becomeFirstResponder() -> Bool {
-        proxyTextField.becomeFirstResponder()
+        blinkCursor(true)
+        return proxyTextField.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        blinkCursor(false)
+        return proxyTextField.resignFirstResponder()
     }
 }
 

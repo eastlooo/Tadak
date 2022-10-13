@@ -99,7 +99,8 @@ extension OnboardingFlow {
     private func switchToMainFlow(user: TadakUser) -> FlowContributors {
         let mainFlow = MainFlow(
             rootViewController: rootViewController,
-            useCaseProvider: useCaseProvider
+            useCaseProvider: useCaseProvider,
+            user: user
         )
         
         Flows.use(mainFlow, when: .created) { _ in }

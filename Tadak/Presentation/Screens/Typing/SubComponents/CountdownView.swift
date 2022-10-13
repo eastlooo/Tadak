@@ -27,7 +27,7 @@ final class CountdownView: UIView {
         return animationView
     }()
     
-    private lazy var startButton: UIButton = {
+    fileprivate lazy var startButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "start_large"), for: .normal)
         button.addTarget(self, action: #selector(startButtonHandler), for: .touchUpInside)
@@ -72,7 +72,7 @@ final class CountdownView: UIView {
         self.addSubview(startButton)
         startButton.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.width.height.equalTo(50)
+            $0.width.height.equalTo(80)
         }
     }
     
@@ -133,6 +133,10 @@ extension Reactive where Base: CountdownView {
     }
     
     // MARK: ControlEvent
+    var start: ControlEvent<Void> {
+        return base.startButton.rx.tap
+    }
+    
     var isFinished: ControlEvent<Bool> {
         return ControlEvent(events: base.isFinished)
     }

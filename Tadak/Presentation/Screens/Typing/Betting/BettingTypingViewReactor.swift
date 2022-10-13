@@ -33,6 +33,7 @@ final class BettingTypingViewReactor: Reactor, Stepper {
     }
     
     struct State {
+        @Pulse var characterID: Int
         @Pulse var title: String
         @Pulse var participant: String = ""
         @Pulse var currentOriginalText: String = ""
@@ -55,13 +56,17 @@ final class BettingTypingViewReactor: Reactor, Stepper {
     let initialState: State
     
     init(
+        user: TadakUser,
         typingUseCase: TypingUseCaseProtocol,
         recordUseCase: BettingRecordUseCaseProtocol
     ) {
         self.typingUseCase = typingUseCase
         self.recordUseCase = recordUseCase
         self.composition = typingUseCase.composition
-        self.initialState = State(title: composition.title)
+        self.initialState = State(
+            characterID: user.characterID,
+            title: composition.title
+        )
         
         let title = composition.title
         let artist = composition.artist

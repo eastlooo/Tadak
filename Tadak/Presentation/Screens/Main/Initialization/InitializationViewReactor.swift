@@ -55,16 +55,14 @@ extension InitializationViewReactor {
 private extension InitializationViewReactor {
     
     func initialize() -> Observable<Mutation> {
-        let step = TadakStep.initializationIsComplete(user: user)
+        let step = TadakStep.initializationIsComplete
         
         let compositions = initializationUseCase.fetchCompositionPages()
         let records = initializationUseCase.fetchRecords()
         
         return Observable.combineLatest(compositions, records)
             .debugError()
-            .map { _ in step }
             .do { [weak self] _ in self?.steps.accept(step) }
-            .debug("qwerqwer")
             .flatMap { _ in Observable<Mutation>.empty() }
     }
 }

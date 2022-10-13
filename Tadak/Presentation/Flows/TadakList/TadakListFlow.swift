@@ -14,11 +14,14 @@ final class TadakListFlow: Flow {
     
     private let rootViewController = NavigationController()
     private let useCaseProvider: UseCaseProviderProtocol
+    private let user: TadakUser
     
     init(
-        useCaseProvider: UseCaseProviderProtocol
+        useCaseProvider: UseCaseProviderProtocol,
+        user: TadakUser
     ) {
         self.useCaseProvider = useCaseProvider
+        self.user = user
     }
     
     func navigate(to step: Step) -> FlowContributors {
@@ -135,7 +138,8 @@ private extension TadakListFlow {
     func navigateToTypingScreen(typingDetail: TypingDetail) -> FlowContributors {
         let typingFlow = TypingFlow(
             rootViewController: rootViewController,
-            useCaseProvider: useCaseProvider
+            useCaseProvider: useCaseProvider,
+            user: user
         )
         
         Flows.use(typingFlow, when: .created) { _ in }

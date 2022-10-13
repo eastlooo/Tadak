@@ -14,24 +14,27 @@ final class MainFlow: Flow {
     
     private let rootViewController: UINavigationController
     private let useCaseProvider: UseCaseProviderProtocol
+    private let user: TadakUser
     
     init(
         rootViewController: UINavigationController,
-        useCaseProvider: UseCaseProviderProtocol
+        useCaseProvider: UseCaseProviderProtocol,
+        user: TadakUser
     ) {
         self.rootViewController = rootViewController
         self.useCaseProvider = useCaseProvider
+        self.user = user
     }
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? TadakStep else { return .none }
         
         switch step {
-        case .initializationIsRequired(let user):
-            return navigateToInitializationScreen(user: user)
+        case .initializationIsRequired:
+            return navigateToInitializationScreen()
             
-        case .initializationIsComplete(let user):
-            return navigateToMainScreen(user: user)
+        case .initializationIsComplete:
+            return navigateToMainScreen()
             
         case .tadakListIsRequired:
             return navigateToTadakListScreen()
@@ -59,7 +62,7 @@ final class MainFlow: Flow {
 
 private extension MainFlow {
     
-    func navigateToInitializationScreen(user: TadakUser) -> FlowContributors {
+    func navigateToInitializationScreen() -> FlowContributors {
         let useCase = useCaseProvider.makeInitializationUseCase()
         let reactor = InitializationViewReactor(user: user, initializationUseCase: useCase)
         let viewController = InitializationViewController()
@@ -73,7 +76,7 @@ private extension MainFlow {
         )
     }
     
-    func navigateToMainScreen(user: TadakUser) -> FlowContributors {
+    func navigateToMainScreen() -> FlowContributors {
         let reactor = TadakMainViewReactor(user: user)
         let viewController = TadakMainViewController()
         viewController.reactor = reactor
@@ -87,7 +90,7 @@ private extension MainFlow {
     }
     
     func navigateToTadakListScreen() -> FlowContributors {
-        let tadakListFlow = TadakListFlow(useCaseProvider: useCaseProvider)
+        let tadakListFlow = TadakListFlow(useCaseProvider: useCaseProvider, user: user)
         
         Flows.use(tadakListFlow, when: .created) { root in
             root.modalPresentationStyle = .fullScreen
@@ -114,7 +117,7 @@ private extension MainFlow {
     }
     
     func navigateToMyListScreen() -> FlowContributors {
-        let myListFlow = MyListFlow(useCaseProvider: useCaseProvider)
+        let myListFlow = MyListFlow(useCaseProvider: useCaseProvider, user: user)
         
         Flows.use(myListFlow, when: .created) { root in
             root.modalPresentationStyle = .fullScreen

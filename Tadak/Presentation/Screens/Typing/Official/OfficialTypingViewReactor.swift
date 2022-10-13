@@ -36,6 +36,7 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
     }
     
     struct State {
+        @Pulse var characterID: Int
         @Pulse var title: String
         @Pulse var currentOriginalText: String = ""
         @Pulse var nextOriginalText: String = ""
@@ -53,14 +54,20 @@ final class OfficialTypingViewReactor: Reactor, Stepper {
     
     private var disposeBag = DisposeBag()
     
-    private var useCase: TypingUseCaseProtocol
+    private var typingUseCase: TypingUseCaseProtocol
     private let composition: any Composition
     let initialState: State
     
-    init(useCase: TypingUseCaseProtocol) {
-        self.useCase = useCase
-        self.composition = useCase.composition
-        self.initialState = State(title: composition.title)
+    init(
+        user: TadakUser,
+        typingUseCase: TypingUseCaseProtocol
+    ) {
+        self.typingUseCase = typingUseCase
+        self.composition = typingUseCase.composition
+        self.initialState = State(
+            characterID: user.characterID,
+            title: composition.title
+        )
         
         bind()
         
@@ -84,19 +91,19 @@ extension OfficialTypingViewReactor {
             return .empty()
             
         case .typingAttributesHasSet(let attributes):
-            useCase.updateTypingAttributes(attributes)
+            typingUseCase.updateTypingAttributes(attributes)
             return .empty()
             
         case .typingHasStarted:
-            useCase.start()
+            typingUseCase.start()
             return .empty()
             
         case .currentUserText(let text):
-            useCase.currentUserText.onNext(text)
+            typingUseCase.currentUserText.onNext(text)
             return .empty()
             
         case .returnPressed(let pressed):
-            useCase.returnPressed.onNext(pressed)
+            typingUseCase.returnPressed.onNext(pressed)
             return .empty()
             
         case .viewDidDisappear:
@@ -146,7 +153,7 @@ extension OfficialTypingViewReactor {
             state.progression = progression
             
         case .reset(let reset):
-            useCase.reset()
+            typingUseCase.reset()
             disposeBag = DisposeBag()
             bind()
             state.shouldReset = reset
@@ -159,7 +166,7 @@ extension OfficialTypingViewReactor {
     }
     
     func transform(action: Observable<Action>) -> Observable<Action> {
-        let abused = useCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
+        let abused = typingUseCase.abused.map(Action.abused).observe(on: MainScheduler.asyncInstance)
         
         return .merge(
             action,
@@ -168,15 +175,15 @@ extension OfficialTypingViewReactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        let setCurrentOriginalText = useCase.currentOriginalText
+        let setCurrentOriginalText = typingUseCase.currentOriginalText
             .map(Mutation.setCurrentOriginalText)
-        let setNextOriginalText = useCase.nextOriginalText
+        let setNextOriginalText = typingUseCase.nextOriginalText
             .map(Mutation.setNextOriginalText)
-        let setUserText = useCase.userTextToBeUpdated.map(Mutation.setUserText)
-        let setElapsedTime = useCase.elapesdTime.map(Mutation.setElapsedTime)
-        let setAccuracy = useCase.accuracy.map(Mutation.setAccuracy)
-        let setTypingSpeed = useCase.typingSpeed.map(Mutation.setTypingSpeed)
-        let setProgression = useCase.progression.map(Mutation.setProgression)
+        let setUserText = typingUseCase.userTextToBeUpdated.map(Mutation.setUserText)
+        let setElapsedTime = typingUseCase.elapesdTime.map(Mutation.setElapsedTime)
+        let setAccuracy = typingUseCase.accuracy.map(Mutation.setAccuracy)
+        let setTypingSpeed = typingUseCase.typingSpeed.map(Mutation.setTypingSpeed)
+        let setProgression = typingUseCase.progression.map(Mutation.setProgression)
         let showAd = showAd()
         
         return .merge(
@@ -196,8 +203,8 @@ extension OfficialTypingViewReactor {
 private extension OfficialTypingViewReactor {
     
     func bind() {
-        useCase.wrong
-            .withLatestFrom(useCase.typingSpeed)
+        typingUseCase.wrong
+            .withLatestFrom(typingUseCase.typingSpeed)
             .map(TadakStep.officialFailureIsRequired)
             .take(1)
             .bind(to: steps)
@@ -205,10 +212,10 @@ private extension OfficialTypingViewReactor {
     }
     
     func showAd() -> Observable<Mutation> {
-        let record = useCase.getRecord()
+        let record = typingUseCase.getRecord()
         
-        return useCase.finished
-            .withLatestFrom(useCase.accuracy)
+        return typingUseCase.finished
+            .withLatestFrom(typingUseCase.accuracy)
             .filter { $0 == 100 }
             .withLatestFrom(record)
             .do { [weak self] record in self?._record.accept(record) }

@@ -35,6 +35,7 @@ final class PracticeTypingViewController: UIViewController {
     private let progressBar = ProgressBar()
     private let dashboard = TypingDashboard()
     private let countdownView = CountdownView()
+    private let helperView = CharacterHelperView()
     private lazy var typingSheet = TypingSheet(typingFont: typingFont, typingMode: .practice)
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
@@ -51,7 +52,9 @@ final class PracticeTypingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        _ = typingSheet.becomeFirstResponder()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.helperView.showDescription()
+        }
     }
     
     // MARK: Helpers
@@ -92,6 +95,13 @@ final class PracticeTypingViewController: UIViewController {
         typingSheet.snp.makeConstraints {
             $0.top.equalTo(dashboard.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
+        }
+        
+        view.addSubview(helperView)
+        helperView.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            $0.height.equalTo(200)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -160,6 +170,10 @@ extension PracticeTypingViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: State
+        reactor.pulse(\.$characterID)
+            .bind(onNext: helperView.setCharacterID)
+            .disposed(by: disposeBag)
+        
         reactor.pulse(\.$title)
             .bind(to: typingSheet.rx.title)
             .disposed(by: disposeBag)
@@ -203,6 +217,13 @@ extension PracticeTypingViewController: View {
             .disposed(by: disposeBag)
         
         // MARK: View
+        countdownView.rx.start
+            .bind(onNext: { [weak self] _ in
+                _ = self?.typingSheet.becomeFirstResponder()
+                self?.helperView.hideDescription()
+            })
+            .disposed(by: disposeBag)
+        
         countdownView.rx.isFinished
             .filter { $0 }
             .delay(.seconds(1), scheduler: MainScheduler.instance)
